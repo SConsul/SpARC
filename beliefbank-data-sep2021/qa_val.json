@@ -1,0 +1,8348 @@
+[
+ {
+  "question": "Can a tree bud ?",
+  "answer": "yes",
+  "source": "IsA,tree",
+  "target": "CapableOf,bud"
+ },
+ {
+  "question": "Is a tree a wood ?",
+  "answer": "yes",
+  "source": "IsA,tree",
+  "target": "IsA,wood"
+ },
+ {
+  "question": "Does a tree have  roots ?",
+  "answer": "yes",
+  "source": "IsA,tree",
+  "target": "HasA,roots"
+ },
+ {
+  "question": "Is a tree made of wood ?",
+  "answer": "yes",
+  "source": "IsA,tree",
+  "target": "MadeOf,wood"
+ },
+ {
+  "question": "Does a fruit have  seeds ?",
+  "answer": "yes",
+  "source": "IsA,fruit",
+  "target": "HasA,seeds"
+ },
+ {
+  "question": "Does a fruit have a pleasant taste ?",
+  "answer": "yes",
+  "source": "IsA,fruit",
+  "target": "HasA,pleasant taste"
+ },
+ {
+  "question": "Is a fruit good for health ?",
+  "answer": "yes",
+  "source": "IsA,fruit",
+  "target": "HasProperty,good for health"
+ },
+ {
+  "question": "Is an organism a mineral ?",
+  "answer": "no",
+  "source": "IsA,organism",
+  "target": "IsA,mineral"
+ },
+ {
+  "question": "Can  grass turn brown ?",
+  "answer": "yes",
+  "source": "IsA,grass",
+  "target": "CapableOf,turn brown"
+ },
+ {
+  "question": "Does a flower have an ovary ?",
+  "answer": "yes",
+  "source": "IsA,flower",
+  "target": "HasPart,ovary"
+ },
+ {
+  "question": "Does a flower have a stem ?",
+  "answer": "yes",
+  "source": "IsA,flower",
+  "target": "HasPart,stem"
+ },
+ {
+  "question": "Can a food please hungry person ?",
+  "answer": "yes",
+  "source": "IsA,food",
+  "target": "CapableOf,please hungry person"
+ },
+ {
+  "question": "Can a food cost money ?",
+  "answer": "yes",
+  "source": "IsA,food",
+  "target": "CapableOf,cost money"
+ },
+ {
+  "question": "Is a cheese a cake ?",
+  "answer": "no",
+  "source": "IsA,cheese",
+  "target": "IsA,cake"
+ },
+ {
+  "question": "Is a cheese a vegetable ?",
+  "answer": "no",
+  "source": "IsA,cheese",
+  "target": "IsA,vegetable"
+ },
+ {
+  "question": "Is a cake a bakery item ?",
+  "answer": "yes",
+  "source": "IsA,cake",
+  "target": "IsA,bakery item"
+ },
+ {
+  "question": "Is a cake made of ingredients ?",
+  "answer": "yes",
+  "source": "IsA,cake",
+  "target": "MadeOf,ingredients"
+ },
+ {
+  "question": "Is a candy a vegetable ?",
+  "answer": "no",
+  "source": "IsA,candy",
+  "target": "IsA,vegetable"
+ },
+ {
+  "question": "Is a candy a cake ?",
+  "answer": "no",
+  "source": "IsA,candy",
+  "target": "IsA,cake"
+ },
+ {
+  "question": "Can a computer process information ?",
+  "answer": "yes",
+  "source": "IsA,computer",
+  "target": "CapableOf,process information"
+ },
+ {
+  "question": "Does a computer have a mouse ?",
+  "answer": "yes",
+  "source": "IsA,computer",
+  "target": "HasA,mouse"
+ },
+ {
+  "question": "Does a computer have a display ?",
+  "answer": "yes",
+  "source": "IsA,computer",
+  "target": "HasPart,display"
+ },
+ {
+  "question": "Does a computer have a memory chip ?",
+  "answer": "yes",
+  "source": "IsA,computer",
+  "target": "HasPart,memory chip"
+ },
+ {
+  "question": "Is a computer a tool ?",
+  "answer": "yes",
+  "source": "IsA,computer",
+  "target": "IsA,tool"
+ },
+ {
+  "question": "Can a computer count symbols ?",
+  "answer": "yes",
+  "source": "IsA,computer",
+  "target": "CapableOf,count symbols"
+ },
+ {
+  "question": "Does a car have an accelerator ?",
+  "answer": "yes",
+  "source": "IsA,car",
+  "target": "HasPart,accelerator"
+ },
+ {
+  "question": "Is a car  large machine with four wheels ?",
+  "answer": "yes",
+  "source": "IsA,car",
+  "target": "IsA,large machine with four wheels"
+ },
+ {
+  "question": "Does a car have an at least one engine ?",
+  "answer": "yes",
+  "source": "IsA,car",
+  "target": "HasA,at least one engine"
+ },
+ {
+  "question": "Does a car have a brake ?",
+  "answer": "yes",
+  "source": "IsA,car",
+  "target": "HasPart,brake"
+ },
+ {
+  "question": "Can a car drive down street ?",
+  "answer": "yes",
+  "source": "IsA,car",
+  "target": "CapableOf,drive down street"
+ },
+ {
+  "question": "Does a car have a headlights to increase visibility ?",
+  "answer": "yes",
+  "source": "IsA,car",
+  "target": "HasA,headlights to increase visibility"
+ },
+ {
+  "question": "Can a car turn around corner ?",
+  "answer": "yes",
+  "source": "IsA,car",
+  "target": "CapableOf,turn around corner"
+ },
+ {
+  "question": "Can a car cost twenty thousand dollars ?",
+  "answer": "yes",
+  "source": "IsA,car",
+  "target": "CapableOf,cost twenty thousand dollars"
+ },
+ {
+  "question": "Can a car last several years ?",
+  "answer": "yes",
+  "source": "IsA,car",
+  "target": "CapableOf,last several years"
+ },
+ {
+  "question": "Is a car shiny ?",
+  "answer": "yes",
+  "source": "IsA,car",
+  "target": "HasProperty,shiny"
+ },
+ {
+  "question": "Can a car fail to start ?",
+  "answer": "yes",
+  "source": "IsA,car",
+  "target": "CapableOf,fail to start"
+ },
+ {
+  "question": "Does a car have a car window ?",
+  "answer": "yes",
+  "source": "IsA,car",
+  "target": "HasPart,car window"
+ },
+ {
+  "question": "Does a car have a radiator ?",
+  "answer": "yes",
+  "source": "IsA,car",
+  "target": "HasPart,radiator"
+ },
+ {
+  "question": "Does a car have  pistons ?",
+  "answer": "yes",
+  "source": "IsA,car",
+  "target": "HasPart,pistons"
+ },
+ {
+  "question": "Does a car have an automobile horn ?",
+  "answer": "yes",
+  "source": "IsA,car",
+  "target": "HasPart,automobile horn"
+ },
+ {
+  "question": "Is a protein a molecular material ?",
+  "answer": "yes",
+  "source": "IsA,protein",
+  "target": "IsA,molecular material"
+ },
+ {
+  "question": "Is a machine a kitchen utensil ?",
+  "answer": "no",
+  "source": "IsA,machine",
+  "target": "IsA,kitchen utensil"
+ },
+ {
+  "question": "Is a school a where children learn ?",
+  "answer": "yes",
+  "source": "IsA,school",
+  "target": "IsA,where children learn"
+ },
+ {
+  "question": "Does a house have a living room ?",
+  "answer": "yes",
+  "source": "IsA,house",
+  "target": "HasA,living room"
+ },
+ {
+  "question": "Does a house have a ceiling under roof ?",
+  "answer": "yes",
+  "source": "IsA,house",
+  "target": "HasA,ceiling under roof"
+ },
+ {
+  "question": "Is a mountain a solid ground ?",
+  "answer": "yes",
+  "source": "IsA,mountain",
+  "target": "IsA,solid ground"
+ },
+ {
+  "question": "Is a town a place ?",
+  "answer": "yes",
+  "source": "IsA,town",
+  "target": "IsA,place"
+ },
+ {
+  "question": "Is a city a big noisy place ?",
+  "answer": "yes",
+  "source": "IsA,city",
+  "target": "IsA,big noisy place"
+ },
+ {
+  "question": "Is a city a settlement ?",
+  "answer": "yes",
+  "source": "IsA,city",
+  "target": "IsA,settlement"
+ },
+ {
+  "question": "Does a city have a city center ?",
+  "answer": "yes",
+  "source": "IsA,city",
+  "target": "HasPart,city center"
+ },
+ {
+  "question": "Can a dog cause rabbit to run away ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "CapableOf,cause rabbit to run away"
+ },
+ {
+  "question": "Can a dog bark ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "CapableOf,bark"
+ },
+ {
+  "question": "Can a dog live in house ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "CapableOf,live in house"
+ },
+ {
+  "question": "Is a dog a domestic animal ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "IsA,domestic animal"
+ },
+ {
+  "question": "Can a dog guide blind human ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "CapableOf,guide blind human"
+ },
+ {
+  "question": "Is a dog a happy when wags tail ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "IsA,happy when wags tail"
+ },
+ {
+  "question": "Can a dog company man ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "CapableOf,company man"
+ },
+ {
+  "question": "Is a dog a horse ?",
+  "answer": "no",
+  "source": "IsA,dog",
+  "target": "IsA,horse"
+ },
+ {
+  "question": "Can a dog place bone in hole ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "CapableOf,place bone in hole"
+ },
+ {
+  "question": "Can a dog smell fear ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "CapableOf,smell fear"
+ },
+ {
+  "question": "Can a dog enjoy food ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "CapableOf,enjoy food"
+ },
+ {
+  "question": "Can a dog wag tail ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "CapableOf,wag tail"
+ },
+ {
+  "question": "Does a country have  sovereign rights ?",
+  "answer": "yes",
+  "source": "IsA,country",
+  "target": "HasA,sovereign rights"
+ },
+ {
+  "question": "Does an airplane have a cockpit ?",
+  "answer": "yes",
+  "source": "IsA,airplane",
+  "target": "HasPart,cockpit"
+ },
+ {
+  "question": "Is an airplane a car ?",
+  "answer": "no",
+  "source": "IsA,airplane",
+  "target": "IsA,car"
+ },
+ {
+  "question": "Can an airplane travel across world ?",
+  "answer": "yes",
+  "source": "IsA,airplane",
+  "target": "CapableOf,travel across world"
+ },
+ {
+  "question": "Can an airplane land in field ?",
+  "answer": "yes",
+  "source": "IsA,airplane",
+  "target": "CapableOf,land in field"
+ },
+ {
+  "question": "Is a fire a hot and makes smoke ?",
+  "answer": "yes",
+  "source": "IsA,fire",
+  "target": "IsA,hot and makes smoke"
+ },
+ {
+  "question": "Is a plastic an one type of material ?",
+  "answer": "yes",
+  "source": "IsA,plastic",
+  "target": "IsA,one type of material"
+ },
+ {
+  "question": "Is a bridge a structure ?",
+  "answer": "yes",
+  "source": "IsA,bridge",
+  "target": "IsA,structure"
+ },
+ {
+  "question": "Does a fish have  bones ?",
+  "answer": "yes",
+  "source": "IsA,fish",
+  "target": "HasA,bones"
+ },
+ {
+  "question": "Is a fish a herb ?",
+  "answer": "no",
+  "source": "IsA,fish",
+  "target": "IsA,herb"
+ },
+ {
+  "question": "Is a fish a fruit ?",
+  "answer": "no",
+  "source": "IsA,fish",
+  "target": "IsA,fruit"
+ },
+ {
+  "question": "Is a fish sold fresh or frozen ?",
+  "answer": "yes",
+  "source": "IsA,fish",
+  "target": "HasProperty,sold fresh or frozen"
+ },
+ {
+  "question": "Can a fish find food ?",
+  "answer": "yes",
+  "source": "IsA,fish",
+  "target": "CapableOf,find food"
+ },
+ {
+  "question": "Is a planet a planetary body ?",
+  "answer": "yes",
+  "source": "IsA,planet",
+  "target": "IsA,planetary body"
+ },
+ {
+  "question": "Is an ocean  home to multiple organic creatures ?",
+  "answer": "yes",
+  "source": "IsA,ocean",
+  "target": "IsA,home to multiple organic creatures"
+ },
+ {
+  "question": "Is a lake a body of fresh water ?",
+  "answer": "yes",
+  "source": "IsA,lake",
+  "target": "IsA,body of fresh water"
+ },
+ {
+  "question": "Is a lake a place to catch fish ?",
+  "answer": "yes",
+  "source": "IsA,lake",
+  "target": "IsA,place to catch fish"
+ },
+ {
+  "question": "Is a river an ocean ?",
+  "answer": "no",
+  "source": "IsA,river",
+  "target": "IsA,ocean"
+ },
+ {
+  "question": "Can a river branch more than once ?",
+  "answer": "yes",
+  "source": "IsA,river",
+  "target": "CapableOf,branch more than once"
+ },
+ {
+  "question": "Does a plant have a suture ?",
+  "answer": "yes",
+  "source": "IsA,plant",
+  "target": "HasPart,suture"
+ },
+ {
+  "question": "Is a rock a natural substance ?",
+  "answer": "yes",
+  "source": "IsA,rock",
+  "target": "IsA,natural substance"
+ },
+ {
+  "question": "Is a science a method to understand world ?",
+  "answer": "yes",
+  "source": "IsA,science",
+  "target": "IsA,method to understand world"
+ },
+ {
+  "question": "Is an insect an invertebrate ?",
+  "answer": "yes",
+  "source": "IsA,insect",
+  "target": "IsA,invertebrate"
+ },
+ {
+  "question": "Can an ant build colony ?",
+  "answer": "yes",
+  "source": "IsA,ant",
+  "target": "CapableOf,build colony"
+ },
+ {
+  "question": "Can a lizard sun itself ?",
+  "answer": "yes",
+  "source": "IsA,lizard",
+  "target": "CapableOf,sun itself"
+ },
+ {
+  "question": "Does a snake have  no legs ?",
+  "answer": "yes",
+  "source": "IsA,snake",
+  "target": "HasA,no legs"
+ },
+ {
+  "question": "Is an animal made of cells molecules and atoms ?",
+  "answer": "yes",
+  "source": "IsA,animal",
+  "target": "MadeOf,cells molecules and atoms"
+ },
+ {
+  "question": "Does a cat have  sharp claws ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "HasA,sharp claws"
+ },
+ {
+  "question": "Can a cat lie on mat ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "CapableOf,lie on mat"
+ },
+ {
+  "question": "Can a cat fight dog ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "CapableOf,fight dog"
+ },
+ {
+  "question": "Can a cat get wet ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "CapableOf,get wet"
+ },
+ {
+  "question": "Can a cat rest all day ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "CapableOf,rest all day"
+ },
+ {
+  "question": "Can a cat see at night ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "CapableOf,see at night"
+ },
+ {
+  "question": "Can a cat equal feline ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "CapableOf,equal feline"
+ },
+ {
+  "question": "Can a cat sun itself ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "CapableOf,sun itself"
+ },
+ {
+  "question": "Can a cat guard kittens ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "CapableOf,guard kittens"
+ },
+ {
+  "question": "Can a cat scratch if annoy ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "CapableOf,scratch if annoy"
+ },
+ {
+  "question": "Is a mammal a cheese ?",
+  "answer": "no",
+  "source": "IsA,mammal",
+  "target": "IsA,cheese"
+ },
+ {
+  "question": "Can a bird grow to larger size ?",
+  "answer": "yes",
+  "source": "IsA,bird",
+  "target": "CapableOf,grow to larger size"
+ },
+ {
+  "question": "Is a bird a fish ?",
+  "answer": "no",
+  "source": "IsA,bird",
+  "target": "IsA,fish"
+ },
+ {
+  "question": "Is a bird a terrestrial organism ?",
+  "answer": "yes",
+  "source": "IsA,bird",
+  "target": "IsA,terrestrial organism"
+ },
+ {
+  "question": "Is a deer a human being ?",
+  "answer": "no",
+  "source": "IsA,deer",
+  "target": "IsA,human being"
+ },
+ {
+  "question": "Is a horse a human being ?",
+  "answer": "no",
+  "source": "IsA,horse",
+  "target": "IsA,human being"
+ },
+ {
+  "question": "Can a horse carry person ?",
+  "answer": "yes",
+  "source": "IsA,horse",
+  "target": "CapableOf,carry person"
+ },
+ {
+  "question": "Is a horse an eukaryotic organism ?",
+  "answer": "yes",
+  "source": "IsA,horse",
+  "target": "IsA,eukaryotic organism"
+ },
+ {
+  "question": "Can a horse win race ?",
+  "answer": "yes",
+  "source": "IsA,horse",
+  "target": "CapableOf,win race"
+ },
+ {
+  "question": "Can a turtle live long time ?",
+  "answer": "yes",
+  "source": "IsA,turtle",
+  "target": "CapableOf,live long time"
+ },
+ {
+  "question": "Is a rodent a small mammal ?",
+  "answer": "yes",
+  "source": "IsA,rodent",
+  "target": "IsA,small mammal"
+ },
+ {
+  "question": "Does a bicycle have  two tires ?",
+  "answer": "yes",
+  "source": "IsA,bicycle",
+  "target": "HasA,two tires"
+ },
+ {
+  "question": "Does a book have an epilog ?",
+  "answer": "yes",
+  "source": "IsA,book",
+  "target": "HasPart,epilog"
+ },
+ {
+  "question": "Does a book have a page ?",
+  "answer": "yes",
+  "source": "IsA,book",
+  "target": "HasPart,page"
+ },
+ {
+  "question": "Is a liquid a company ?",
+  "answer": "no",
+  "source": "IsA,liquid",
+  "target": "IsA,company"
+ },
+ {
+  "question": "Is a president an elected official ?",
+  "answer": "yes",
+  "source": "IsA,president",
+  "target": "IsA,elected official"
+ },
+ {
+  "question": "Can a president govern nation ?",
+  "answer": "yes",
+  "source": "IsA,president",
+  "target": "CapableOf,govern nation"
+ },
+ {
+  "question": "Can a leader carry heavy responsibility ?",
+  "answer": "yes",
+  "source": "IsA,leader",
+  "target": "CapableOf,carry heavy responsibility"
+ },
+ {
+  "question": "Can a politician govern population ?",
+  "answer": "yes",
+  "source": "IsA,politician",
+  "target": "CapableOf,govern population"
+ },
+ {
+  "question": "Can a doctor help patient ?",
+  "answer": "yes",
+  "source": "IsA,doctor",
+  "target": "CapableOf,help patient"
+ },
+ {
+  "question": "Can a doctor order medicine ?",
+  "answer": "yes",
+  "source": "IsA,doctor",
+  "target": "CapableOf,order medicine"
+ },
+ {
+  "question": "Can a doctor help maintain good health ?",
+  "answer": "yes",
+  "source": "IsA,doctor",
+  "target": "CapableOf,help maintain good health"
+ },
+ {
+  "question": "Is a doctor an educated person ?",
+  "answer": "yes",
+  "source": "IsA,doctor",
+  "target": "IsA,educated person"
+ },
+ {
+  "question": "Can a human cross road ?",
+  "answer": "yes",
+  "source": "IsA,human",
+  "target": "CapableOf,cross road"
+ },
+ {
+  "question": "Can a human eat spaghetti ?",
+  "answer": "yes",
+  "source": "IsA,human",
+  "target": "CapableOf,eat spaghetti"
+ },
+ {
+  "question": "Can a human think and reason ?",
+  "answer": "yes",
+  "source": "IsA,human",
+  "target": "CapableOf,think and reason"
+ },
+ {
+  "question": "Is a human a being ?",
+  "answer": "yes",
+  "source": "IsA,human",
+  "target": "IsA,being"
+ },
+ {
+  "question": "Can a human need companionship ?",
+  "answer": "yes",
+  "source": "IsA,human",
+  "target": "CapableOf,need companionship"
+ },
+ {
+  "question": "Does a human have  two arms ?",
+  "answer": "yes",
+  "source": "IsA,human",
+  "target": "HasA,two arms"
+ },
+ {
+  "question": "Can a human smile ?",
+  "answer": "yes",
+  "source": "IsA,human",
+  "target": "CapableOf,smile"
+ },
+ {
+  "question": "Can a boat take to island ?",
+  "answer": "yes",
+  "source": "IsA,boat",
+  "target": "CapableOf,take to island"
+ },
+ {
+  "question": "Is a boat a boat shaped ?",
+  "answer": "yes",
+  "source": "IsA,boat",
+  "target": "IsA,boat shaped"
+ },
+ {
+  "question": "Is a sound a fire ?",
+  "answer": "no",
+  "source": "IsA,sound",
+  "target": "IsA,fire"
+ },
+ {
+  "question": "Is a sound a science ?",
+  "answer": "no",
+  "source": "IsA,sound",
+  "target": "IsA,science"
+ },
+ {
+  "question": "Is a music  specially pleasant sequence of sounds ?",
+  "answer": "yes",
+  "source": "IsA,music",
+  "target": "IsA,specially pleasant sequence of sounds"
+ },
+ {
+  "question": "Can a music beautifull ?",
+  "answer": "yes",
+  "source": "IsA,music",
+  "target": "CapableOf,beautifull"
+ },
+ {
+  "question": "Is a music enjoyable ?",
+  "answer": "yes",
+  "source": "IsA,music",
+  "target": "HasProperty,enjoyable"
+ },
+ {
+  "question": "Can a road branch off in different directions ?",
+  "answer": "yes",
+  "source": "IsA,road",
+  "target": "CapableOf,branch off in different directions"
+ },
+ {
+  "question": "Is a sugar a sweet particle ?",
+  "answer": "yes",
+  "source": "IsA,sugar",
+  "target": "IsA,sweet particle"
+ },
+ {
+  "question": "Is a herb a candy ?",
+  "answer": "no",
+  "source": "IsA,herb",
+  "target": "IsA,candy"
+ },
+ {
+  "question": "Is a religion a fire ?",
+  "answer": "no",
+  "source": "IsA,religion",
+  "target": "IsA,fire"
+ },
+ {
+  "question": "Is a religion an abstract idea ?",
+  "answer": "yes",
+  "source": "IsA,religion",
+  "target": "IsA,abstract idea"
+ },
+ {
+  "question": "Does an africa have  many facinating animals ?",
+  "answer": "yes",
+  "source": "IsA,africa",
+  "target": "HasA,many facinating animals"
+ },
+ {
+  "question": "Is an island  land mass ?",
+  "answer": "yes",
+  "source": "IsA,island",
+  "target": "IsA,land mass"
+ },
+ {
+  "question": "Is a forest  group of trees ?",
+  "answer": "yes",
+  "source": "IsA,forest",
+  "target": "IsA,group of trees"
+ },
+ {
+  "question": "Does a wheel have a spoke ?",
+  "answer": "yes",
+  "source": "IsA,wheel",
+  "target": "HasPart,spoke"
+ },
+ {
+  "question": "Does a building have a room ?",
+  "answer": "yes",
+  "source": "IsA,building",
+  "target": "HasPart,room"
+ },
+ {
+  "question": "Is a building a form of creation ?",
+  "answer": "yes",
+  "source": "IsA,building",
+  "target": "IsA,form of creation"
+ },
+ {
+  "question": "Can  clothes dry on clothes line ?",
+  "answer": "yes",
+  "source": "IsA,clothes",
+  "target": "CapableOf,dry on clothes line"
+ },
+ {
+  "question": "Is a wine an alcohol ?",
+  "answer": "yes",
+  "source": "IsA,wine",
+  "target": "IsA,alcohol"
+ },
+ {
+  "question": "Can a wine age with time ?",
+  "answer": "yes",
+  "source": "IsA,wine",
+  "target": "CapableOf,age with time"
+ },
+ {
+  "question": "Does a body have a digestive system ?",
+  "answer": "yes",
+  "source": "IsA,body",
+  "target": "HasPart,digestive system"
+ },
+ {
+  "question": "Is a molecule a hair ?",
+  "answer": "no",
+  "source": "IsA,molecule",
+  "target": "IsA,hair"
+ },
+ {
+  "question": "Does a hair have a hairline ?",
+  "answer": "yes",
+  "source": "IsA,hair",
+  "target": "HasPart,hairline"
+ },
+ {
+  "question": "Is a hair a disease ?",
+  "answer": "no",
+  "source": "IsA,hair",
+  "target": "IsA,disease"
+ },
+ {
+  "question": "Is a soda sticky ?",
+  "answer": "yes",
+  "source": "IsA,soda",
+  "target": "HasProperty,sticky"
+ },
+ {
+  "question": "Is a government a sport ?",
+  "answer": "no",
+  "source": "IsA,government",
+  "target": "IsA,sport"
+ },
+ {
+  "question": "Is an art a company ?",
+  "answer": "no",
+  "source": "IsA,art",
+  "target": "IsA,company"
+ },
+ {
+  "question": "Is a drug a machine ?",
+  "answer": "no",
+  "source": "IsA,drug",
+  "target": "IsA,machine"
+ },
+ {
+  "question": "Can a company out source administration ?",
+  "answer": "yes",
+  "source": "IsA,company",
+  "target": "CapableOf,out source administration"
+ },
+ {
+  "question": "Can a company own resources ?",
+  "answer": "yes",
+  "source": "IsA,company",
+  "target": "CapableOf,own resources"
+ },
+ {
+  "question": "Does a company have  earnings ?",
+  "answer": "yes",
+  "source": "IsA,company",
+  "target": "HasA,earnings"
+ },
+ {
+  "question": "Is an artifact a government ?",
+  "answer": "no",
+  "source": "IsA,artifact",
+  "target": "IsA,government"
+ },
+ {
+  "question": "Is a location a religion ?",
+  "answer": "no",
+  "source": "IsA,location",
+  "target": "IsA,religion"
+ },
+ {
+  "question": "Is a mineral a disease ?",
+  "answer": "no",
+  "source": "IsA,mineral",
+  "target": "IsA,disease"
+ },
+ {
+  "question": "Is an american bison a meal ?",
+  "answer": "no",
+  "source": "IsA,american bison",
+  "target": "IsA,meal"
+ },
+ {
+  "question": "Is an american bison an europe ?",
+  "answer": "no",
+  "source": "IsA,american bison",
+  "target": "IsA,europe"
+ },
+ {
+  "question": "Is an american bison a forest ?",
+  "answer": "no",
+  "source": "IsA,american bison",
+  "target": "IsA,forest"
+ },
+ {
+  "question": "Can an american bison move itself about ?",
+  "answer": "yes",
+  "source": "IsA,american bison",
+  "target": "CapableOf,move itself about"
+ },
+ {
+  "question": "Is an american bison a cat ?",
+  "answer": "no",
+  "source": "IsA,american bison",
+  "target": "IsA,cat"
+ },
+ {
+  "question": "Is an american bison a reptile ?",
+  "answer": "no",
+  "source": "IsA,american bison",
+  "target": "IsA,reptile"
+ },
+ {
+  "question": "Can an american bison eating ?",
+  "answer": "yes",
+  "source": "IsA,american bison",
+  "target": "CapableOf,eating"
+ },
+ {
+  "question": "Is an american bison a cake ?",
+  "answer": "no",
+  "source": "IsA,american bison",
+  "target": "IsA,cake"
+ },
+ {
+  "question": "Is an american bison a planet ?",
+  "answer": "no",
+  "source": "IsA,american bison",
+  "target": "IsA,planet"
+ },
+ {
+  "question": "Is an american bison a mammal ?",
+  "answer": "yes",
+  "source": "IsA,american bison",
+  "target": "IsA,mammal"
+ },
+ {
+  "question": "Is an american bison an asia ?",
+  "answer": "no",
+  "source": "IsA,american bison",
+  "target": "IsA,asia"
+ },
+ {
+  "question": "Is an american bison a government ?",
+  "answer": "no",
+  "source": "IsA,american bison",
+  "target": "IsA,government"
+ },
+ {
+  "question": "Is an american bison a horse ?",
+  "answer": "no",
+  "source": "IsA,american bison",
+  "target": "IsA,horse"
+ },
+ {
+  "question": "Is a baboon a water ?",
+  "answer": "no",
+  "source": "IsA,baboon",
+  "target": "IsA,water"
+ },
+ {
+  "question": "Is a baboon a human being ?",
+  "answer": "no",
+  "source": "IsA,baboon",
+  "target": "IsA,human being"
+ },
+ {
+  "question": "Is a baboon an acid ?",
+  "answer": "no",
+  "source": "IsA,baboon",
+  "target": "IsA,acid"
+ },
+ {
+  "question": "Is a baboon a president ?",
+  "answer": "no",
+  "source": "IsA,baboon",
+  "target": "IsA,president"
+ },
+ {
+  "question": "Is a baboon a wasp ?",
+  "answer": "no",
+  "source": "IsA,baboon",
+  "target": "IsA,wasp"
+ },
+ {
+  "question": "Is a baboon a baboon ?",
+  "answer": "yes",
+  "source": "IsA,baboon",
+  "target": "IsA,baboon"
+ },
+ {
+  "question": "Can a baboon live ?",
+  "answer": "yes",
+  "source": "IsA,baboon",
+  "target": "CapableOf,live"
+ },
+ {
+  "question": "Is a baboon an artifact ?",
+  "answer": "no",
+  "source": "IsA,baboon",
+  "target": "IsA,artifact"
+ },
+ {
+  "question": "Is a baboon a bridge ?",
+  "answer": "no",
+  "source": "IsA,baboon",
+  "target": "IsA,bridge"
+ },
+ {
+  "question": "Is a baboon a company ?",
+  "answer": "no",
+  "source": "IsA,baboon",
+  "target": "IsA,company"
+ },
+ {
+  "question": "Is a baboon a candy ?",
+  "answer": "no",
+  "source": "IsA,baboon",
+  "target": "IsA,candy"
+ },
+ {
+  "question": "Is a baboon a living thing ?",
+  "answer": "yes",
+  "source": "IsA,baboon",
+  "target": "IsA,living thing"
+ },
+ {
+  "question": "Is a baboon an ant ?",
+  "answer": "no",
+  "source": "IsA,baboon",
+  "target": "IsA,ant"
+ },
+ {
+  "question": "Is a buck an insect ?",
+  "answer": "no",
+  "source": "IsA,buck",
+  "target": "IsA,insect"
+ },
+ {
+  "question": "Is a buck a forest ?",
+  "answer": "no",
+  "source": "IsA,buck",
+  "target": "IsA,forest"
+ },
+ {
+  "question": "Is a buck a science ?",
+  "answer": "no",
+  "source": "IsA,buck",
+  "target": "IsA,science"
+ },
+ {
+  "question": "Is a buck a tree ?",
+  "answer": "no",
+  "source": "IsA,buck",
+  "target": "IsA,tree"
+ },
+ {
+  "question": "Is a buck a living creature ?",
+  "answer": "yes",
+  "source": "IsA,buck",
+  "target": "IsA,living creature"
+ },
+ {
+  "question": "Is a buck a candy ?",
+  "answer": "no",
+  "source": "IsA,buck",
+  "target": "IsA,candy"
+ },
+ {
+  "question": "Is a buck a kitchen ?",
+  "answer": "no",
+  "source": "IsA,buck",
+  "target": "IsA,kitchen"
+ },
+ {
+  "question": "Is a buck a jewelry ?",
+  "answer": "no",
+  "source": "IsA,buck",
+  "target": "IsA,jewelry"
+ },
+ {
+  "question": "Is a buck a doctor ?",
+  "answer": "no",
+  "source": "IsA,buck",
+  "target": "IsA,doctor"
+ },
+ {
+  "question": "Is a buck a fish ?",
+  "answer": "no",
+  "source": "IsA,buck",
+  "target": "IsA,fish"
+ },
+ {
+  "question": "Is a buck an animal ?",
+  "answer": "yes",
+  "source": "IsA,buck",
+  "target": "IsA,animal"
+ },
+ {
+  "question": "Is a buck a hair ?",
+  "answer": "no",
+  "source": "IsA,buck",
+  "target": "IsA,hair"
+ },
+ {
+  "question": "Can a buck drink liquids ?",
+  "answer": "yes",
+  "source": "IsA,buck",
+  "target": "CapableOf,drink liquids"
+ },
+ {
+  "question": "Is a bull a crustacean ?",
+  "answer": "no",
+  "source": "IsA,bull",
+  "target": "IsA,crustacean"
+ },
+ {
+  "question": "Is a bull a bacterium ?",
+  "answer": "no",
+  "source": "IsA,bull",
+  "target": "IsA,bacterium"
+ },
+ {
+  "question": "Is a bull made of cells ?",
+  "answer": "yes",
+  "source": "IsA,bull",
+  "target": "MadeOf,cells"
+ },
+ {
+  "question": "Is a bull an animal ?",
+  "answer": "yes",
+  "source": "IsA,bull",
+  "target": "IsA,animal"
+ },
+ {
+  "question": "Is a bull a plant ?",
+  "answer": "no",
+  "source": "IsA,bull",
+  "target": "IsA,plant"
+ },
+ {
+  "question": "Is a bull a lizard ?",
+  "answer": "no",
+  "source": "IsA,bull",
+  "target": "IsA,lizard"
+ },
+ {
+  "question": "Is a bull a salad ?",
+  "answer": "no",
+  "source": "IsA,bull",
+  "target": "IsA,salad"
+ },
+ {
+  "question": "Is a bull a mammal ?",
+  "answer": "yes",
+  "source": "IsA,bull",
+  "target": "IsA,mammal"
+ },
+ {
+  "question": "Is a bull a continent ?",
+  "answer": "no",
+  "source": "IsA,bull",
+  "target": "IsA,continent"
+ },
+ {
+  "question": "Is a bull a kitchen ?",
+  "answer": "no",
+  "source": "IsA,bull",
+  "target": "IsA,kitchen"
+ },
+ {
+  "question": "Does a bull have a face ?",
+  "answer": "yes",
+  "source": "IsA,bull",
+  "target": "HasPart,face"
+ },
+ {
+  "question": "Is a bull a molecule ?",
+  "answer": "no",
+  "source": "IsA,bull",
+  "target": "IsA,molecule"
+ },
+ {
+  "question": "Is a bull a town ?",
+  "answer": "no",
+  "source": "IsA,bull",
+  "target": "IsA,town"
+ },
+ {
+  "question": "Does a calf have a cell ?",
+  "answer": "yes",
+  "source": "IsA,calf",
+  "target": "HasPart,cell"
+ },
+ {
+  "question": "Is a calf a rodent ?",
+  "answer": "no",
+  "source": "IsA,calf",
+  "target": "IsA,rodent"
+ },
+ {
+  "question": "Is a calf a politician ?",
+  "answer": "no",
+  "source": "IsA,calf",
+  "target": "IsA,politician"
+ },
+ {
+  "question": "Is a calf a forest ?",
+  "answer": "no",
+  "source": "IsA,calf",
+  "target": "IsA,forest"
+ },
+ {
+  "question": "Is a calf a student ?",
+  "answer": "no",
+  "source": "IsA,calf",
+  "target": "IsA,student"
+ },
+ {
+  "question": "Is a calf an amniote ?",
+  "answer": "yes",
+  "source": "IsA,calf",
+  "target": "IsA,amniote"
+ },
+ {
+  "question": "Is a calf a human being ?",
+  "answer": "no",
+  "source": "IsA,calf",
+  "target": "IsA,human being"
+ },
+ {
+  "question": "Is a calf a disease ?",
+  "answer": "no",
+  "source": "IsA,calf",
+  "target": "IsA,disease"
+ },
+ {
+  "question": "Is a calf a school ?",
+  "answer": "no",
+  "source": "IsA,calf",
+  "target": "IsA,school"
+ },
+ {
+  "question": "Is a calf a body of water ?",
+  "answer": "no",
+  "source": "IsA,calf",
+  "target": "IsA,body of water"
+ },
+ {
+  "question": "Is a calf a snake ?",
+  "answer": "no",
+  "source": "IsA,calf",
+  "target": "IsA,snake"
+ },
+ {
+  "question": "Is a calf a jewelry ?",
+  "answer": "no",
+  "source": "IsA,calf",
+  "target": "IsA,jewelry"
+ },
+ {
+  "question": "Is a calf a government ?",
+  "answer": "no",
+  "source": "IsA,calf",
+  "target": "IsA,government"
+ },
+ {
+  "question": "Is a camel a mammal ?",
+  "answer": "yes",
+  "source": "IsA,camel",
+  "target": "IsA,mammal"
+ },
+ {
+  "question": "Is a camel a flower ?",
+  "answer": "no",
+  "source": "IsA,camel",
+  "target": "IsA,flower"
+ },
+ {
+  "question": "Is a camel a science ?",
+  "answer": "no",
+  "source": "IsA,camel",
+  "target": "IsA,science"
+ },
+ {
+  "question": "Is a camel a disease ?",
+  "answer": "no",
+  "source": "IsA,camel",
+  "target": "IsA,disease"
+ },
+ {
+  "question": "Is a camel a bicycle ?",
+  "answer": "no",
+  "source": "IsA,camel",
+  "target": "IsA,bicycle"
+ },
+ {
+  "question": "Is a camel  grass ?",
+  "answer": "no",
+  "source": "IsA,camel",
+  "target": "IsA,grass"
+ },
+ {
+  "question": "Is a camel a meal ?",
+  "answer": "no",
+  "source": "IsA,camel",
+  "target": "IsA,meal"
+ },
+ {
+  "question": "Is a camel a religion ?",
+  "answer": "no",
+  "source": "IsA,camel",
+  "target": "IsA,religion"
+ },
+ {
+  "question": "Is a camel a publication ?",
+  "answer": "no",
+  "source": "IsA,camel",
+  "target": "IsA,publication"
+ },
+ {
+  "question": "Is a camel an invertebrate ?",
+  "answer": "no",
+  "source": "IsA,camel",
+  "target": "IsA,invertebrate"
+ },
+ {
+  "question": "Is a camel a school ?",
+  "answer": "no",
+  "source": "IsA,camel",
+  "target": "IsA,school"
+ },
+ {
+  "question": "Is a camel an ocean ?",
+  "answer": "no",
+  "source": "IsA,camel",
+  "target": "IsA,ocean"
+ },
+ {
+  "question": "Is a camel a human being ?",
+  "answer": "no",
+  "source": "IsA,camel",
+  "target": "IsA,human being"
+ },
+ {
+  "question": "Is a carnivore a lizard ?",
+  "answer": "no",
+  "source": "IsA,carnivore",
+  "target": "IsA,lizard"
+ },
+ {
+  "question": "Is a carnivore a fish ?",
+  "answer": "no",
+  "source": "IsA,carnivore",
+  "target": "IsA,fish"
+ },
+ {
+  "question": "Is a carnivore a politician ?",
+  "answer": "no",
+  "source": "IsA,carnivore",
+  "target": "IsA,politician"
+ },
+ {
+  "question": "Is a carnivore a science ?",
+  "answer": "no",
+  "source": "IsA,carnivore",
+  "target": "IsA,science"
+ },
+ {
+  "question": "Is a carnivore a turtle ?",
+  "answer": "no",
+  "source": "IsA,carnivore",
+  "target": "IsA,turtle"
+ },
+ {
+  "question": "Is a carnivore a food ?",
+  "answer": "no",
+  "source": "IsA,carnivore",
+  "target": "IsA,food"
+ },
+ {
+  "question": "Is a carnivore a living thing ?",
+  "answer": "yes",
+  "source": "IsA,carnivore",
+  "target": "IsA,living thing"
+ },
+ {
+  "question": "Is a carnivore a restaurant ?",
+  "answer": "no",
+  "source": "IsA,carnivore",
+  "target": "IsA,restaurant"
+ },
+ {
+  "question": "Is a carnivore an ocean ?",
+  "answer": "no",
+  "source": "IsA,carnivore",
+  "target": "IsA,ocean"
+ },
+ {
+  "question": "Is a carnivore a sugar ?",
+  "answer": "no",
+  "source": "IsA,carnivore",
+  "target": "IsA,sugar"
+ },
+ {
+  "question": "Is a carnivore an organism ?",
+  "answer": "yes",
+  "source": "IsA,carnivore",
+  "target": "IsA,organism"
+ },
+ {
+  "question": "Is a carnivore a house ?",
+  "answer": "no",
+  "source": "IsA,carnivore",
+  "target": "IsA,house"
+ },
+ {
+  "question": "Is a carp a fish ?",
+  "answer": "yes",
+  "source": "IsA,carp",
+  "target": "IsA,fish"
+ },
+ {
+  "question": "Is a carp a water ?",
+  "answer": "no",
+  "source": "IsA,carp",
+  "target": "IsA,water"
+ },
+ {
+  "question": "Is a carp a kitchen ?",
+  "answer": "no",
+  "source": "IsA,carp",
+  "target": "IsA,kitchen"
+ },
+ {
+  "question": "Is a carp a leader ?",
+  "answer": "no",
+  "source": "IsA,carp",
+  "target": "IsA,leader"
+ },
+ {
+  "question": "Is a carp a wine ?",
+  "answer": "no",
+  "source": "IsA,carp",
+  "target": "IsA,wine"
+ },
+ {
+  "question": "Is a carp a bird ?",
+  "answer": "no",
+  "source": "IsA,carp",
+  "target": "IsA,bird"
+ },
+ {
+  "question": "Is a carp a tree ?",
+  "answer": "no",
+  "source": "IsA,carp",
+  "target": "IsA,tree"
+ },
+ {
+  "question": "Is a carp a vertebrate ?",
+  "answer": "yes",
+  "source": "IsA,carp",
+  "target": "IsA,vertebrate"
+ },
+ {
+  "question": "Does a carp have a lateral line ?",
+  "answer": "yes",
+  "source": "IsA,carp",
+  "target": "HasPart,lateral line"
+ },
+ {
+  "question": "Is a carp an aquatic vertebrate ?",
+  "answer": "yes",
+  "source": "IsA,carp",
+  "target": "IsA,aquatic vertebrate"
+ },
+ {
+  "question": "Is a carp a lifeform from ocean ?",
+  "answer": "yes",
+  "source": "IsA,carp",
+  "target": "IsA,lifeform from ocean"
+ },
+ {
+  "question": "Is a carp an under water ?",
+  "answer": "yes",
+  "source": "IsA,carp",
+  "target": "IsA,under water"
+ },
+ {
+  "question": "Can a carp swim ?",
+  "answer": "yes",
+  "source": "IsA,carp",
+  "target": "CapableOf,swim"
+ },
+ {
+  "question": "Is a carp a vehicle ?",
+  "answer": "no",
+  "source": "IsA,carp",
+  "target": "IsA,vehicle"
+ },
+ {
+  "question": "Is a carp a food ?",
+  "answer": "no",
+  "source": "IsA,carp",
+  "target": "IsA,food"
+ },
+ {
+  "question": "Is a carp a door ?",
+  "answer": "no",
+  "source": "IsA,carp",
+  "target": "IsA,door"
+ },
+ {
+  "question": "Is a cat a water ?",
+  "answer": "no",
+  "source": "IsA,cat",
+  "target": "IsA,water"
+ },
+ {
+  "question": "Is a cat a disease ?",
+  "answer": "no",
+  "source": "IsA,cat",
+  "target": "IsA,disease"
+ },
+ {
+  "question": "Can a cat drink milk ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "CapableOf,drink milk"
+ },
+ {
+  "question": "Can a cat following mouse ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "CapableOf,following mouse"
+ },
+ {
+  "question": "Can a cat sleep on windowsill ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "CapableOf,sleep on windowsill"
+ },
+ {
+  "question": "Does a cat have a hair ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "HasA,hair"
+ },
+ {
+  "question": "Is a cat a molecule ?",
+  "answer": "no",
+  "source": "IsA,cat",
+  "target": "IsA,molecule"
+ },
+ {
+  "question": "Is a cat a vertebrate ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "IsA,vertebrate"
+ },
+ {
+  "question": "Is a cat made of cells molecules and atoms ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "MadeOf,cells molecules and atoms"
+ },
+ {
+  "question": "Is a cat a meal ?",
+  "answer": "no",
+  "source": "IsA,cat",
+  "target": "IsA,meal"
+ },
+ {
+  "question": "Can a cat act irrational ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "CapableOf,act irrational"
+ },
+ {
+  "question": "Can a cat meow ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "CapableOf,meow"
+ },
+ {
+  "question": "Is a cat a forest ?",
+  "answer": "no",
+  "source": "IsA,cat",
+  "target": "IsA,forest"
+ },
+ {
+  "question": "Is a cat a toy ?",
+  "answer": "no",
+  "source": "IsA,cat",
+  "target": "IsA,toy"
+ },
+ {
+  "question": "Can a cat sit in window ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "CapableOf,sit in window"
+ },
+ {
+  "question": "Does a cat have  claws ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "HasA,claws"
+ },
+ {
+  "question": "Can a cat wash itself ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "CapableOf,wash itself"
+ },
+ {
+  "question": "Can a cat hide under bed ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "CapableOf,hide under bed"
+ },
+ {
+  "question": "Can a cat see in dark ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "CapableOf,see in dark"
+ },
+ {
+  "question": "Is a cat a horse ?",
+  "answer": "no",
+  "source": "IsA,cat",
+  "target": "IsA,horse"
+ },
+ {
+  "question": "Is a cat an action ?",
+  "answer": "no",
+  "source": "IsA,cat",
+  "target": "IsA,action"
+ },
+ {
+  "question": "Can a cat rest all day ?",
+  "answer": "yes",
+  "source": "IsA,cat",
+  "target": "CapableOf,rest all day"
+ },
+ {
+  "question": "Is a cat a salad ?",
+  "answer": "no",
+  "source": "IsA,cat",
+  "target": "IsA,salad"
+ },
+ {
+  "question": "Is a cheetah an art ?",
+  "answer": "no",
+  "source": "IsA,cheetah",
+  "target": "IsA,art"
+ },
+ {
+  "question": "Is a cheetah an amniote ?",
+  "answer": "yes",
+  "source": "IsA,cheetah",
+  "target": "IsA,amniote"
+ },
+ {
+  "question": "Is a cheetah a fire ?",
+  "answer": "no",
+  "source": "IsA,cheetah",
+  "target": "IsA,fire"
+ },
+ {
+  "question": "Is a cheetah a room ?",
+  "answer": "no",
+  "source": "IsA,cheetah",
+  "target": "IsA,room"
+ },
+ {
+  "question": "Is a cheetah an africa ?",
+  "answer": "no",
+  "source": "IsA,cheetah",
+  "target": "IsA,africa"
+ },
+ {
+  "question": "Does a cheetah have a hair ?",
+  "answer": "yes",
+  "source": "IsA,cheetah",
+  "target": "HasPart,hair"
+ },
+ {
+  "question": "Is a cheetah a computer ?",
+  "answer": "no",
+  "source": "IsA,cheetah",
+  "target": "IsA,computer"
+ },
+ {
+  "question": "Can a cheetah die no more than once ?",
+  "answer": "yes",
+  "source": "IsA,cheetah",
+  "target": "CapableOf,die no more than once"
+ },
+ {
+  "question": "Is a cheetah a herb ?",
+  "answer": "no",
+  "source": "IsA,cheetah",
+  "target": "IsA,herb"
+ },
+ {
+  "question": "Can a cheetah live ?",
+  "answer": "yes",
+  "source": "IsA,cheetah",
+  "target": "CapableOf,live"
+ },
+ {
+  "question": "Is a cheetah a horse ?",
+  "answer": "no",
+  "source": "IsA,cheetah",
+  "target": "IsA,horse"
+ },
+ {
+  "question": "Is a cheetah a living creature ?",
+  "answer": "yes",
+  "source": "IsA,cheetah",
+  "target": "IsA,living creature"
+ },
+ {
+  "question": "Is a cheetah a fruit ?",
+  "answer": "no",
+  "source": "IsA,cheetah",
+  "target": "IsA,fruit"
+ },
+ {
+  "question": "Is a chicken a school ?",
+  "answer": "no",
+  "source": "IsA,chicken",
+  "target": "IsA,school"
+ },
+ {
+  "question": "Is a chicken an oviparous animal ?",
+  "answer": "yes",
+  "source": "IsA,chicken",
+  "target": "IsA,oviparous animal"
+ },
+ {
+  "question": "Is a chicken rising early ?",
+  "answer": "yes",
+  "source": "IsA,chicken",
+  "target": "HasProperty,rising early"
+ },
+ {
+  "question": "Is a chicken a fruit ?",
+  "answer": "no",
+  "source": "IsA,chicken",
+  "target": "IsA,fruit"
+ },
+ {
+  "question": "Is a chicken a leader ?",
+  "answer": "no",
+  "source": "IsA,chicken",
+  "target": "IsA,leader"
+ },
+ {
+  "question": "Is a chicken an insect ?",
+  "answer": "no",
+  "source": "IsA,chicken",
+  "target": "IsA,insect"
+ },
+ {
+  "question": "Is a chicken a town ?",
+  "answer": "no",
+  "source": "IsA,chicken",
+  "target": "IsA,town"
+ },
+ {
+  "question": "Is a chicken a machine ?",
+  "answer": "no",
+  "source": "IsA,chicken",
+  "target": "IsA,machine"
+ },
+ {
+  "question": "Is a chicken a body of water ?",
+  "answer": "no",
+  "source": "IsA,chicken",
+  "target": "IsA,body of water"
+ },
+ {
+  "question": "Is a chicken a lizard ?",
+  "answer": "no",
+  "source": "IsA,chicken",
+  "target": "IsA,lizard"
+ },
+ {
+  "question": "Is a chicken a road ?",
+  "answer": "no",
+  "source": "IsA,chicken",
+  "target": "IsA,road"
+ },
+ {
+  "question": "Does a chicken have an air sac ?",
+  "answer": "yes",
+  "source": "IsA,chicken",
+  "target": "HasPart,air sac"
+ },
+ {
+  "question": "Is a chicken a vehicle ?",
+  "answer": "no",
+  "source": "IsA,chicken",
+  "target": "IsA,vehicle"
+ },
+ {
+  "question": "Is a chicken a bridge ?",
+  "answer": "no",
+  "source": "IsA,chicken",
+  "target": "IsA,bridge"
+ },
+ {
+  "question": "Is a chicken a metal ?",
+  "answer": "no",
+  "source": "IsA,chicken",
+  "target": "IsA,metal"
+ },
+ {
+  "question": "Is a chick a human being ?",
+  "answer": "no",
+  "source": "IsA,chick",
+  "target": "IsA,human being"
+ },
+ {
+  "question": "Is a chick a location ?",
+  "answer": "no",
+  "source": "IsA,chick",
+  "target": "IsA,location"
+ },
+ {
+  "question": "Is a chick an ant ?",
+  "answer": "no",
+  "source": "IsA,chick",
+  "target": "IsA,ant"
+ },
+ {
+  "question": "Can a chick fight for life ?",
+  "answer": "yes",
+  "source": "IsA,chick",
+  "target": "CapableOf,fight for life"
+ },
+ {
+  "question": "Is a chick a living creature ?",
+  "answer": "yes",
+  "source": "IsA,chick",
+  "target": "IsA,living creature"
+ },
+ {
+  "question": "Is a chick a movie ?",
+  "answer": "no",
+  "source": "IsA,chick",
+  "target": "IsA,movie"
+ },
+ {
+  "question": "Is a chick a government ?",
+  "answer": "no",
+  "source": "IsA,chick",
+  "target": "IsA,government"
+ },
+ {
+  "question": "Does a chick have a cell ?",
+  "answer": "yes",
+  "source": "IsA,chick",
+  "target": "HasPart,cell"
+ },
+ {
+  "question": "Is a chick an africa ?",
+  "answer": "no",
+  "source": "IsA,chick",
+  "target": "IsA,africa"
+ },
+ {
+  "question": "Is a chick a president ?",
+  "answer": "no",
+  "source": "IsA,chick",
+  "target": "IsA,president"
+ },
+ {
+  "question": "Is a chick a sugar ?",
+  "answer": "no",
+  "source": "IsA,chick",
+  "target": "IsA,sugar"
+ },
+ {
+  "question": "Is a chick a bacterium ?",
+  "answer": "no",
+  "source": "IsA,chick",
+  "target": "IsA,bacterium"
+ },
+ {
+  "question": "Is a chick a bathroom ?",
+  "answer": "no",
+  "source": "IsA,chick",
+  "target": "IsA,bathroom"
+ },
+ {
+  "question": "Is a chick a water ?",
+  "answer": "no",
+  "source": "IsA,chick",
+  "target": "IsA,water"
+ },
+ {
+  "question": "Is a chick alive ?",
+  "answer": "yes",
+  "source": "IsA,chick",
+  "target": "HasProperty,alive"
+ },
+ {
+  "question": "Is a chimpanzee a company ?",
+  "answer": "no",
+  "source": "IsA,chimpanzee",
+  "target": "IsA,company"
+ },
+ {
+  "question": "Is a chimpanzee a palm tree ?",
+  "answer": "no",
+  "source": "IsA,chimpanzee",
+  "target": "IsA,palm tree"
+ },
+ {
+  "question": "Is a chimpanzee a living thing ?",
+  "answer": "yes",
+  "source": "IsA,chimpanzee",
+  "target": "IsA,living thing"
+ },
+ {
+  "question": "Is a chimpanzee a publication ?",
+  "answer": "no",
+  "source": "IsA,chimpanzee",
+  "target": "IsA,publication"
+ },
+ {
+  "question": "Can a chimpanzee fight for life ?",
+  "answer": "yes",
+  "source": "IsA,chimpanzee",
+  "target": "CapableOf,fight for life"
+ },
+ {
+  "question": "Is a chimpanzee a leader ?",
+  "answer": "no",
+  "source": "IsA,chimpanzee",
+  "target": "IsA,leader"
+ },
+ {
+  "question": "Is a chimpanzee a living organism ?",
+  "answer": "yes",
+  "source": "IsA,chimpanzee",
+  "target": "IsA,living organism"
+ },
+ {
+  "question": "Is a chimpanzee a jewelry ?",
+  "answer": "no",
+  "source": "IsA,chimpanzee",
+  "target": "IsA,jewelry"
+ },
+ {
+  "question": "Is a chimpanzee a cat ?",
+  "answer": "no",
+  "source": "IsA,chimpanzee",
+  "target": "IsA,cat"
+ },
+ {
+  "question": "Is a chimpanzee a deer ?",
+  "answer": "no",
+  "source": "IsA,chimpanzee",
+  "target": "IsA,deer"
+ },
+ {
+  "question": "Is a chimpanzee a horse ?",
+  "answer": "no",
+  "source": "IsA,chimpanzee",
+  "target": "IsA,horse"
+ },
+ {
+  "question": "Is a chimpanzee a drug ?",
+  "answer": "no",
+  "source": "IsA,chimpanzee",
+  "target": "IsA,drug"
+ },
+ {
+  "question": "Is a chimpanzee a mammal ?",
+  "answer": "yes",
+  "source": "IsA,chimpanzee",
+  "target": "IsA,mammal"
+ },
+ {
+  "question": "Does a cockerel have  wings ?",
+  "answer": "yes",
+  "source": "IsA,cockerel",
+  "target": "HasA,wings"
+ },
+ {
+  "question": "Is a cockerel a house ?",
+  "answer": "no",
+  "source": "IsA,cockerel",
+  "target": "IsA,house"
+ },
+ {
+  "question": "Is a cockerel an air breathing vertebrate ?",
+  "answer": "yes",
+  "source": "IsA,cockerel",
+  "target": "IsA,air breathing vertebrate"
+ },
+ {
+  "question": "Is a cockerel a cheese ?",
+  "answer": "no",
+  "source": "IsA,cockerel",
+  "target": "IsA,cheese"
+ },
+ {
+  "question": "Does a cockerel have  two wings ?",
+  "answer": "yes",
+  "source": "IsA,cockerel",
+  "target": "HasA,two wings"
+ },
+ {
+  "question": "Is a cockerel an airplane ?",
+  "answer": "no",
+  "source": "IsA,cockerel",
+  "target": "IsA,airplane"
+ },
+ {
+  "question": "Can a cockerel spread wings ?",
+  "answer": "yes",
+  "source": "IsA,cockerel",
+  "target": "CapableOf,spread wings"
+ },
+ {
+  "question": "Is a cockerel a living organism ?",
+  "answer": "yes",
+  "source": "IsA,cockerel",
+  "target": "IsA,living organism"
+ },
+ {
+  "question": "Is a cockerel an animal ?",
+  "answer": "yes",
+  "source": "IsA,cockerel",
+  "target": "IsA,animal"
+ },
+ {
+  "question": "Does a cockerel have  two legs ?",
+  "answer": "yes",
+  "source": "IsA,cockerel",
+  "target": "HasA,two legs"
+ },
+ {
+  "question": "Is a cockerel a dog ?",
+  "answer": "no",
+  "source": "IsA,cockerel",
+  "target": "IsA,dog"
+ },
+ {
+  "question": "Is a cockerel a restaurant ?",
+  "answer": "no",
+  "source": "IsA,cockerel",
+  "target": "IsA,restaurant"
+ },
+ {
+  "question": "Is a cockerel a sugar ?",
+  "answer": "no",
+  "source": "IsA,cockerel",
+  "target": "IsA,sugar"
+ },
+ {
+  "question": "Is a cockerel a food ?",
+  "answer": "no",
+  "source": "IsA,cockerel",
+  "target": "IsA,food"
+ },
+ {
+  "question": "Is a cockerel a drug ?",
+  "answer": "no",
+  "source": "IsA,cockerel",
+  "target": "IsA,drug"
+ },
+ {
+  "question": "Is a cock a herb ?",
+  "answer": "no",
+  "source": "IsA,cock",
+  "target": "IsA,herb"
+ },
+ {
+  "question": "Is a cock a biped ?",
+  "answer": "yes",
+  "source": "IsA,cock",
+  "target": "IsA,biped"
+ },
+ {
+  "question": "Can a cock fly ?",
+  "answer": "yes",
+  "source": "IsA,cock",
+  "target": "CapableOf,fly"
+ },
+ {
+  "question": "Can a cock spread wings ?",
+  "answer": "yes",
+  "source": "IsA,cock",
+  "target": "CapableOf,spread wings"
+ },
+ {
+  "question": "Is a cock a computer ?",
+  "answer": "no",
+  "source": "IsA,cock",
+  "target": "IsA,computer"
+ },
+ {
+  "question": "Is a cock a flower ?",
+  "answer": "no",
+  "source": "IsA,cock",
+  "target": "IsA,flower"
+ },
+ {
+  "question": "Is a cock a toy ?",
+  "answer": "no",
+  "source": "IsA,cock",
+  "target": "IsA,toy"
+ },
+ {
+  "question": "Is a cock an invertebrate ?",
+  "answer": "no",
+  "source": "IsA,cock",
+  "target": "IsA,invertebrate"
+ },
+ {
+  "question": "Is a cock a feathered animal ?",
+  "answer": "yes",
+  "source": "IsA,cock",
+  "target": "IsA,feathered animal"
+ },
+ {
+  "question": "Is a cock a palm tree ?",
+  "answer": "no",
+  "source": "IsA,cock",
+  "target": "IsA,palm tree"
+ },
+ {
+  "question": "Can a cock move itself about ?",
+  "answer": "yes",
+  "source": "IsA,cock",
+  "target": "CapableOf,move itself about"
+ },
+ {
+  "question": "Is a cock an oviparous animal ?",
+  "answer": "yes",
+  "source": "IsA,cock",
+  "target": "IsA,oviparous animal"
+ },
+ {
+  "question": "Does a cock have an air sac ?",
+  "answer": "yes",
+  "source": "IsA,cock",
+  "target": "HasPart,air sac"
+ },
+ {
+  "question": "Is a cock a city ?",
+  "answer": "no",
+  "source": "IsA,cock",
+  "target": "IsA,city"
+ },
+ {
+  "question": "Can a cock eating ?",
+  "answer": "yes",
+  "source": "IsA,cock",
+  "target": "CapableOf,eating"
+ },
+ {
+  "question": "Is a crocodile a room ?",
+  "answer": "no",
+  "source": "IsA,crocodile",
+  "target": "IsA,room"
+ },
+ {
+  "question": "Does a crocodile have a face ?",
+  "answer": "yes",
+  "source": "IsA,crocodile",
+  "target": "HasPart,face"
+ },
+ {
+  "question": "Is a crocodile  fungus ?",
+  "answer": "no",
+  "source": "IsA,crocodile",
+  "target": "IsA,fungus"
+ },
+ {
+  "question": "Is a crocodile a planet ?",
+  "answer": "no",
+  "source": "IsA,crocodile",
+  "target": "IsA,planet"
+ },
+ {
+  "question": "Is a crocodile a bird ?",
+  "answer": "no",
+  "source": "IsA,crocodile",
+  "target": "IsA,bird"
+ },
+ {
+  "question": "Is a crocodile a living thing ?",
+  "answer": "yes",
+  "source": "IsA,crocodile",
+  "target": "IsA,living thing"
+ },
+ {
+  "question": "Is a crocodile a religion ?",
+  "answer": "no",
+  "source": "IsA,crocodile",
+  "target": "IsA,religion"
+ },
+ {
+  "question": "Is a crocodile a lizard ?",
+  "answer": "no",
+  "source": "IsA,crocodile",
+  "target": "IsA,lizard"
+ },
+ {
+  "question": "Is a crocodile a soup ?",
+  "answer": "no",
+  "source": "IsA,crocodile",
+  "target": "IsA,soup"
+ },
+ {
+  "question": "Is a crocodile a government ?",
+  "answer": "no",
+  "source": "IsA,crocodile",
+  "target": "IsA,government"
+ },
+ {
+  "question": "Can a crocodile live ?",
+  "answer": "yes",
+  "source": "IsA,crocodile",
+  "target": "CapableOf,live"
+ },
+ {
+  "question": "Is a crocodile a soda ?",
+  "answer": "no",
+  "source": "IsA,crocodile",
+  "target": "IsA,soda"
+ },
+ {
+  "question": "Can a dog hear whistling ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "CapableOf,hear whistling"
+ },
+ {
+  "question": "Is a dog a door ?",
+  "answer": "no",
+  "source": "IsA,dog",
+  "target": "IsA,door"
+ },
+ {
+  "question": "Can a dog taste dog food ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "CapableOf,taste dog food"
+ },
+ {
+  "question": "Can a dog mark territory with urine ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "CapableOf,mark territory with urine"
+ },
+ {
+  "question": "Is a dog a forest ?",
+  "answer": "no",
+  "source": "IsA,dog",
+  "target": "IsA,forest"
+ },
+ {
+  "question": "Is a dog an asia ?",
+  "answer": "no",
+  "source": "IsA,dog",
+  "target": "IsA,asia"
+ },
+ {
+  "question": "Is a dog a restaurant ?",
+  "answer": "no",
+  "source": "IsA,dog",
+  "target": "IsA,restaurant"
+ },
+ {
+  "question": "Is a dog a reptile ?",
+  "answer": "no",
+  "source": "IsA,dog",
+  "target": "IsA,reptile"
+ },
+ {
+  "question": "Can a dog understand simple commands ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "CapableOf,understand simple commands"
+ },
+ {
+  "question": "Can a dog father puppy ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "CapableOf,father puppy"
+ },
+ {
+  "question": "Can a dog hear whistle ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "CapableOf,hear whistle"
+ },
+ {
+  "question": "Can a dog please master ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "CapableOf,please master"
+ },
+ {
+  "question": "Is a dog a deer ?",
+  "answer": "no",
+  "source": "IsA,dog",
+  "target": "IsA,deer"
+ },
+ {
+  "question": "Is a dog a doctor ?",
+  "answer": "no",
+  "source": "IsA,dog",
+  "target": "IsA,doctor"
+ },
+ {
+  "question": "Is a dog a jellyfish ?",
+  "answer": "no",
+  "source": "IsA,dog",
+  "target": "IsA,jellyfish"
+ },
+ {
+  "question": "Can a dog bury bone in ground ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "CapableOf,bury bone in ground"
+ },
+ {
+  "question": "Can a dog cover hole in ground ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "CapableOf,cover hole in ground"
+ },
+ {
+  "question": "Does a dog have  fleas ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "HasA,fleas"
+ },
+ {
+  "question": "Is a dog  clothes ?",
+  "answer": "no",
+  "source": "IsA,dog",
+  "target": "IsA,clothes"
+ },
+ {
+  "question": "Is a dog a cat ?",
+  "answer": "no",
+  "source": "IsA,dog",
+  "target": "IsA,cat"
+ },
+ {
+  "question": "Does a dog have  paws ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "HasA,paws"
+ },
+ {
+  "question": "Is a dog a vegetable ?",
+  "answer": "no",
+  "source": "IsA,dog",
+  "target": "IsA,vegetable"
+ },
+ {
+  "question": "Can a dog feed it's babies ?",
+  "answer": "yes",
+  "source": "IsA,dog",
+  "target": "CapableOf,feed it's babies"
+ },
+ {
+  "question": "Is a dog a fish ?",
+  "answer": "no",
+  "source": "IsA,dog",
+  "target": "IsA,fish"
+ },
+ {
+  "question": "Is a dolphin a fish ?",
+  "answer": "no",
+  "source": "IsA,dolphin",
+  "target": "IsA,fish"
+ },
+ {
+  "question": "Is a dolphin a turtle ?",
+  "answer": "no",
+  "source": "IsA,dolphin",
+  "target": "IsA,turtle"
+ },
+ {
+  "question": "Is a dolphin an expert ?",
+  "answer": "no",
+  "source": "IsA,dolphin",
+  "target": "IsA,expert"
+ },
+ {
+  "question": "Is a dolphin a government ?",
+  "answer": "no",
+  "source": "IsA,dolphin",
+  "target": "IsA,government"
+ },
+ {
+  "question": "Is a dolphin a warm blooded animal ?",
+  "answer": "yes",
+  "source": "IsA,dolphin",
+  "target": "IsA,warm blooded animal"
+ },
+ {
+  "question": "Is a dolphin an airplane ?",
+  "answer": "no",
+  "source": "IsA,dolphin",
+  "target": "IsA,airplane"
+ },
+ {
+  "question": "Is a dolphin an europe ?",
+  "answer": "no",
+  "source": "IsA,dolphin",
+  "target": "IsA,europe"
+ },
+ {
+  "question": "Is a dolphin a drug ?",
+  "answer": "no",
+  "source": "IsA,dolphin",
+  "target": "IsA,drug"
+ },
+ {
+  "question": "Is a dolphin a lake ?",
+  "answer": "no",
+  "source": "IsA,dolphin",
+  "target": "IsA,lake"
+ },
+ {
+  "question": "Is a dolphin a city ?",
+  "answer": "no",
+  "source": "IsA,dolphin",
+  "target": "IsA,city"
+ },
+ {
+  "question": "Is a dolphin a meal ?",
+  "answer": "no",
+  "source": "IsA,dolphin",
+  "target": "IsA,meal"
+ },
+ {
+  "question": "Is a dolphin a body of water ?",
+  "answer": "no",
+  "source": "IsA,dolphin",
+  "target": "IsA,body of water"
+ },
+ {
+  "question": "Is a dolphin a room ?",
+  "answer": "no",
+  "source": "IsA,dolphin",
+  "target": "IsA,room"
+ },
+ {
+  "question": "Is  domestic ass a computer ?",
+  "answer": "no",
+  "source": "IsA,domestic ass",
+  "target": "IsA,computer"
+ },
+ {
+  "question": "Can  domestic ass drink liquids ?",
+  "answer": "yes",
+  "source": "IsA,domestic ass",
+  "target": "CapableOf,drink liquids"
+ },
+ {
+  "question": "Is  domestic ass a jellyfish ?",
+  "answer": "no",
+  "source": "IsA,domestic ass",
+  "target": "IsA,jellyfish"
+ },
+ {
+  "question": "Is  domestic ass a boat ?",
+  "answer": "no",
+  "source": "IsA,domestic ass",
+  "target": "IsA,boat"
+ },
+ {
+  "question": "Is  domestic ass a lizard ?",
+  "answer": "no",
+  "source": "IsA,domestic ass",
+  "target": "IsA,lizard"
+ },
+ {
+  "question": "Is  domestic ass a meal ?",
+  "answer": "no",
+  "source": "IsA,domestic ass",
+  "target": "IsA,meal"
+ },
+ {
+  "question": "Is  domestic ass a snake ?",
+  "answer": "no",
+  "source": "IsA,domestic ass",
+  "target": "IsA,snake"
+ },
+ {
+  "question": "Is  domestic ass a politician ?",
+  "answer": "no",
+  "source": "IsA,domestic ass",
+  "target": "IsA,politician"
+ },
+ {
+  "question": "Is  domestic ass a molecule ?",
+  "answer": "no",
+  "source": "IsA,domestic ass",
+  "target": "IsA,molecule"
+ },
+ {
+  "question": "Is  domestic ass an organism ?",
+  "answer": "yes",
+  "source": "IsA,domestic ass",
+  "target": "IsA,organism"
+ },
+ {
+  "question": "Is  domestic ass a cake ?",
+  "answer": "no",
+  "source": "IsA,domestic ass",
+  "target": "IsA,cake"
+ },
+ {
+  "question": "Is  domestic ass a movie ?",
+  "answer": "no",
+  "source": "IsA,domestic ass",
+  "target": "IsA,movie"
+ },
+ {
+  "question": "Can  domestic ass fight for life ?",
+  "answer": "yes",
+  "source": "IsA,domestic ass",
+  "target": "CapableOf,fight for life"
+ },
+ {
+  "question": "Is a duck a house ?",
+  "answer": "no",
+  "source": "IsA,duck",
+  "target": "IsA,house"
+ },
+ {
+  "question": "Is a duck a mammal ?",
+  "answer": "no",
+  "source": "IsA,duck",
+  "target": "IsA,mammal"
+ },
+ {
+  "question": "Is a duck a hair ?",
+  "answer": "no",
+  "source": "IsA,duck",
+  "target": "IsA,hair"
+ },
+ {
+  "question": "Is a duck a reptile ?",
+  "answer": "no",
+  "source": "IsA,duck",
+  "target": "IsA,reptile"
+ },
+ {
+  "question": "Is a duck a herb ?",
+  "answer": "no",
+  "source": "IsA,duck",
+  "target": "IsA,herb"
+ },
+ {
+  "question": "Is a duck a president ?",
+  "answer": "no",
+  "source": "IsA,duck",
+  "target": "IsA,president"
+ },
+ {
+  "question": "Is a duck a kitchen utensil ?",
+  "answer": "no",
+  "source": "IsA,duck",
+  "target": "IsA,kitchen utensil"
+ },
+ {
+  "question": "Is a duck made of cells ?",
+  "answer": "yes",
+  "source": "IsA,duck",
+  "target": "MadeOf,cells"
+ },
+ {
+  "question": "Is a duck a school ?",
+  "answer": "no",
+  "source": "IsA,duck",
+  "target": "IsA,school"
+ },
+ {
+  "question": "Is a duck a computer ?",
+  "answer": "no",
+  "source": "IsA,duck",
+  "target": "IsA,computer"
+ },
+ {
+  "question": "Does a duck have a body part ?",
+  "answer": "yes",
+  "source": "IsA,duck",
+  "target": "HasPart,body part"
+ },
+ {
+  "question": "Can a duck travel across world ?",
+  "answer": "yes",
+  "source": "IsA,duck",
+  "target": "CapableOf,travel across world"
+ },
+ {
+  "question": "Does a duck have a talon ?",
+  "answer": "yes",
+  "source": "IsA,duck",
+  "target": "HasPart,talon"
+ },
+ {
+  "question": "Is a duck a doctor ?",
+  "answer": "no",
+  "source": "IsA,duck",
+  "target": "IsA,doctor"
+ },
+ {
+  "question": "Is a duck an ocean ?",
+  "answer": "no",
+  "source": "IsA,duck",
+  "target": "IsA,ocean"
+ },
+ {
+  "question": "Is an eagle a soda ?",
+  "answer": "no",
+  "source": "IsA,eagle",
+  "target": "IsA,soda"
+ },
+ {
+  "question": "Is an eagle made of cells molecules and atoms ?",
+  "answer": "yes",
+  "source": "IsA,eagle",
+  "target": "MadeOf,cells molecules and atoms"
+ },
+ {
+  "question": "Is an eagle a machine ?",
+  "answer": "no",
+  "source": "IsA,eagle",
+  "target": "IsA,machine"
+ },
+ {
+  "question": "Can an eagle die no more than once ?",
+  "answer": "yes",
+  "source": "IsA,eagle",
+  "target": "CapableOf,die no more than once"
+ },
+ {
+  "question": "Can an eagle spread wings ?",
+  "answer": "yes",
+  "source": "IsA,eagle",
+  "target": "CapableOf,spread wings"
+ },
+ {
+  "question": "Is an eagle a wine ?",
+  "answer": "no",
+  "source": "IsA,eagle",
+  "target": "IsA,wine"
+ },
+ {
+  "question": "Is an eagle a lizard ?",
+  "answer": "no",
+  "source": "IsA,eagle",
+  "target": "IsA,lizard"
+ },
+ {
+  "question": "Is an eagle a cat ?",
+  "answer": "no",
+  "source": "IsA,eagle",
+  "target": "IsA,cat"
+ },
+ {
+  "question": "Is an eagle alive ?",
+  "answer": "yes",
+  "source": "IsA,eagle",
+  "target": "HasProperty,alive"
+ },
+ {
+  "question": "Can an eagle injur it's wing if falls ?",
+  "answer": "yes",
+  "source": "IsA,eagle",
+  "target": "CapableOf,injur it's wing if falls"
+ },
+ {
+  "question": "Is an eagle a jellyfish ?",
+  "answer": "no",
+  "source": "IsA,eagle",
+  "target": "IsA,jellyfish"
+ },
+ {
+  "question": "Is an eagle a dog ?",
+  "answer": "no",
+  "source": "IsA,eagle",
+  "target": "IsA,dog"
+ },
+ {
+  "question": "Is an eagle  grass ?",
+  "answer": "no",
+  "source": "IsA,eagle",
+  "target": "IsA,grass"
+ },
+ {
+  "question": "Is an eagle a bacterium ?",
+  "answer": "no",
+  "source": "IsA,eagle",
+  "target": "IsA,bacterium"
+ },
+ {
+  "question": "Is an eagle a warm blooded animal ?",
+  "answer": "yes",
+  "source": "IsA,eagle",
+  "target": "IsA,warm blooded animal"
+ },
+ {
+  "question": "Is an earthworm a sport ?",
+  "answer": "no",
+  "source": "IsA,earthworm",
+  "target": "IsA,sport"
+ },
+ {
+  "question": "Is an earthworm a deer ?",
+  "answer": "no",
+  "source": "IsA,earthworm",
+  "target": "IsA,deer"
+ },
+ {
+  "question": "Can an earthworm fight for life ?",
+  "answer": "yes",
+  "source": "IsA,earthworm",
+  "target": "CapableOf,fight for life"
+ },
+ {
+  "question": "Is an earthworm a living organism ?",
+  "answer": "yes",
+  "source": "IsA,earthworm",
+  "target": "IsA,living organism"
+ },
+ {
+  "question": "Can an earthworm live ?",
+  "answer": "yes",
+  "source": "IsA,earthworm",
+  "target": "CapableOf,live"
+ },
+ {
+  "question": "Is an earthworm a toy ?",
+  "answer": "no",
+  "source": "IsA,earthworm",
+  "target": "IsA,toy"
+ },
+ {
+  "question": "Is an earthworm a fish ?",
+  "answer": "no",
+  "source": "IsA,earthworm",
+  "target": "IsA,fish"
+ },
+ {
+  "question": "Is an earthworm a metal ?",
+  "answer": "no",
+  "source": "IsA,earthworm",
+  "target": "IsA,metal"
+ },
+ {
+  "question": "Is an earthworm a door ?",
+  "answer": "no",
+  "source": "IsA,earthworm",
+  "target": "IsA,door"
+ },
+ {
+  "question": "Is an earthworm a bacterium ?",
+  "answer": "no",
+  "source": "IsA,earthworm",
+  "target": "IsA,bacterium"
+ },
+ {
+  "question": "Is an earthworm a lizard ?",
+  "answer": "no",
+  "source": "IsA,earthworm",
+  "target": "IsA,lizard"
+ },
+ {
+  "question": "Is an earthworm  virus ?",
+  "answer": "no",
+  "source": "IsA,earthworm",
+  "target": "IsA,virus"
+ },
+ {
+  "question": "Is an earthworm a boat ?",
+  "answer": "no",
+  "source": "IsA,earthworm",
+  "target": "IsA,boat"
+ },
+ {
+  "question": "Is an elephant a plastic ?",
+  "answer": "no",
+  "source": "IsA,elephant",
+  "target": "IsA,plastic"
+ },
+ {
+  "question": "Is an elephant a door ?",
+  "answer": "no",
+  "source": "IsA,elephant",
+  "target": "IsA,door"
+ },
+ {
+  "question": "Is an elephant a body of water ?",
+  "answer": "no",
+  "source": "IsA,elephant",
+  "target": "IsA,body of water"
+ },
+ {
+  "question": "Is an elephant a kitchen ?",
+  "answer": "no",
+  "source": "IsA,elephant",
+  "target": "IsA,kitchen"
+ },
+ {
+  "question": "Is an elephant an airplane ?",
+  "answer": "no",
+  "source": "IsA,elephant",
+  "target": "IsA,airplane"
+ },
+ {
+  "question": "Is an elephant an europe ?",
+  "answer": "no",
+  "source": "IsA,elephant",
+  "target": "IsA,europe"
+ },
+ {
+  "question": "Is an elephant an acid ?",
+  "answer": "no",
+  "source": "IsA,elephant",
+  "target": "IsA,acid"
+ },
+ {
+  "question": "Is an elephant a drug ?",
+  "answer": "no",
+  "source": "IsA,elephant",
+  "target": "IsA,drug"
+ },
+ {
+  "question": "Is an elephant a liquid ?",
+  "answer": "no",
+  "source": "IsA,elephant",
+  "target": "IsA,liquid"
+ },
+ {
+  "question": "Is an elephant a water ?",
+  "answer": "no",
+  "source": "IsA,elephant",
+  "target": "IsA,water"
+ },
+ {
+  "question": "Is an elephant an amniote ?",
+  "answer": "yes",
+  "source": "IsA,elephant",
+  "target": "IsA,amniote"
+ },
+ {
+  "question": "Is an elephant a crustacean ?",
+  "answer": "no",
+  "source": "IsA,elephant",
+  "target": "IsA,crustacean"
+ },
+ {
+  "question": "Does an elephant have a hair ?",
+  "answer": "yes",
+  "source": "IsA,elephant",
+  "target": "HasPart,hair"
+ },
+ {
+  "question": "Is an european wolf spider a school ?",
+  "answer": "no",
+  "source": "IsA,european wolf spider",
+  "target": "IsA,school"
+ },
+ {
+  "question": "Is an european wolf spider an europe ?",
+  "answer": "no",
+  "source": "IsA,european wolf spider",
+  "target": "IsA,europe"
+ },
+ {
+  "question": "Does an european wolf spider have an air sac ?",
+  "answer": "yes",
+  "source": "IsA,european wolf spider",
+  "target": "HasPart,air sac"
+ },
+ {
+  "question": "Is an european wolf spider a country ?",
+  "answer": "no",
+  "source": "IsA,european wolf spider",
+  "target": "IsA,country"
+ },
+ {
+  "question": "Is an european wolf spider a structure ?",
+  "answer": "no",
+  "source": "IsA,european wolf spider",
+  "target": "IsA,structure"
+ },
+ {
+  "question": "Does an european wolf spider have a wing ?",
+  "answer": "yes",
+  "source": "IsA,european wolf spider",
+  "target": "HasPart,wing"
+ },
+ {
+  "question": "Is an european wolf spider a living organism ?",
+  "answer": "yes",
+  "source": "IsA,european wolf spider",
+  "target": "IsA,living organism"
+ },
+ {
+  "question": "Is an european wolf spider a politician ?",
+  "answer": "no",
+  "source": "IsA,european wolf spider",
+  "target": "IsA,politician"
+ },
+ {
+  "question": "Is an european wolf spider a car ?",
+  "answer": "no",
+  "source": "IsA,european wolf spider",
+  "target": "IsA,car"
+ },
+ {
+  "question": "Is an european wolf spider a hair ?",
+  "answer": "no",
+  "source": "IsA,european wolf spider",
+  "target": "IsA,hair"
+ },
+ {
+  "question": "Does an european wolf spider have a cell ?",
+  "answer": "yes",
+  "source": "IsA,european wolf spider",
+  "target": "HasPart,cell"
+ },
+ {
+  "question": "Is an european wolf spider a religion ?",
+  "answer": "no",
+  "source": "IsA,european wolf spider",
+  "target": "IsA,religion"
+ },
+ {
+  "question": "Is an european wolf spider a dog ?",
+  "answer": "no",
+  "source": "IsA,european wolf spider",
+  "target": "IsA,dog"
+ },
+ {
+  "question": "Is a foxhound a jewelry ?",
+  "answer": "no",
+  "source": "IsA,foxhound",
+  "target": "IsA,jewelry"
+ },
+ {
+  "question": "Is a foxhound a wine ?",
+  "answer": "no",
+  "source": "IsA,foxhound",
+  "target": "IsA,wine"
+ },
+ {
+  "question": "Is a foxhound a bird ?",
+  "answer": "no",
+  "source": "IsA,foxhound",
+  "target": "IsA,bird"
+ },
+ {
+  "question": "Is a foxhound a food ?",
+  "answer": "no",
+  "source": "IsA,foxhound",
+  "target": "IsA,food"
+ },
+ {
+  "question": "Is a foxhound an amniote ?",
+  "answer": "yes",
+  "source": "IsA,foxhound",
+  "target": "IsA,amniote"
+ },
+ {
+  "question": "Is a foxhound an action ?",
+  "answer": "no",
+  "source": "IsA,foxhound",
+  "target": "IsA,action"
+ },
+ {
+  "question": "Is a foxhound a palm tree ?",
+  "answer": "no",
+  "source": "IsA,foxhound",
+  "target": "IsA,palm tree"
+ },
+ {
+  "question": "Is a foxhound a bridge ?",
+  "answer": "no",
+  "source": "IsA,foxhound",
+  "target": "IsA,bridge"
+ },
+ {
+  "question": "Is a foxhound an europe ?",
+  "answer": "no",
+  "source": "IsA,foxhound",
+  "target": "IsA,europe"
+ },
+ {
+  "question": "Can a foxhound move itself about ?",
+  "answer": "yes",
+  "source": "IsA,foxhound",
+  "target": "CapableOf,move itself about"
+ },
+ {
+  "question": "Is a foxhound a building ?",
+  "answer": "no",
+  "source": "IsA,foxhound",
+  "target": "IsA,building"
+ },
+ {
+  "question": "Is a foxhound a sugar ?",
+  "answer": "no",
+  "source": "IsA,foxhound",
+  "target": "IsA,sugar"
+ },
+ {
+  "question": "Is a foxhound a forest ?",
+  "answer": "no",
+  "source": "IsA,foxhound",
+  "target": "IsA,forest"
+ },
+ {
+  "question": "Is a frog  fungus ?",
+  "answer": "no",
+  "source": "IsA,frog",
+  "target": "IsA,fungus"
+ },
+ {
+  "question": "Is a frog a toy ?",
+  "answer": "no",
+  "source": "IsA,frog",
+  "target": "IsA,toy"
+ },
+ {
+  "question": "Is a frog an ant ?",
+  "answer": "no",
+  "source": "IsA,frog",
+  "target": "IsA,ant"
+ },
+ {
+  "question": "Is a frog a jewelry ?",
+  "answer": "no",
+  "source": "IsA,frog",
+  "target": "IsA,jewelry"
+ },
+ {
+  "question": "Is a frog a structure ?",
+  "answer": "no",
+  "source": "IsA,frog",
+  "target": "IsA,structure"
+ },
+ {
+  "question": "Is a frog an acid ?",
+  "answer": "no",
+  "source": "IsA,frog",
+  "target": "IsA,acid"
+ },
+ {
+  "question": "Is a frog a house ?",
+  "answer": "no",
+  "source": "IsA,frog",
+  "target": "IsA,house"
+ },
+ {
+  "question": "Is a frog a living organism ?",
+  "answer": "yes",
+  "source": "IsA,frog",
+  "target": "IsA,living organism"
+ },
+ {
+  "question": "Is a frog a frog ?",
+  "answer": "yes",
+  "source": "IsA,frog",
+  "target": "IsA,frog"
+ },
+ {
+  "question": "Is a frog an organism ?",
+  "answer": "yes",
+  "source": "IsA,frog",
+  "target": "IsA,organism"
+ },
+ {
+  "question": "Does a frog have a face ?",
+  "answer": "yes",
+  "source": "IsA,frog",
+  "target": "HasPart,face"
+ },
+ {
+  "question": "Is a frog a location ?",
+  "answer": "no",
+  "source": "IsA,frog",
+  "target": "IsA,location"
+ },
+ {
+  "question": "Is a gazelle a mineral ?",
+  "answer": "no",
+  "source": "IsA,gazelle",
+  "target": "IsA,mineral"
+ },
+ {
+  "question": "Is a gazelle a metal ?",
+  "answer": "no",
+  "source": "IsA,gazelle",
+  "target": "IsA,metal"
+ },
+ {
+  "question": "Is a gazelle a living thing ?",
+  "answer": "yes",
+  "source": "IsA,gazelle",
+  "target": "IsA,living thing"
+ },
+ {
+  "question": "Is a gazelle a wine ?",
+  "answer": "no",
+  "source": "IsA,gazelle",
+  "target": "IsA,wine"
+ },
+ {
+  "question": "Is a gazelle an art ?",
+  "answer": "no",
+  "source": "IsA,gazelle",
+  "target": "IsA,art"
+ },
+ {
+  "question": "Is a gazelle a horse ?",
+  "answer": "no",
+  "source": "IsA,gazelle",
+  "target": "IsA,horse"
+ },
+ {
+  "question": "Is a gazelle a president ?",
+  "answer": "no",
+  "source": "IsA,gazelle",
+  "target": "IsA,president"
+ },
+ {
+  "question": "Is a gazelle a kitchen utensil ?",
+  "answer": "no",
+  "source": "IsA,gazelle",
+  "target": "IsA,kitchen utensil"
+ },
+ {
+  "question": "Is a gazelle a room ?",
+  "answer": "no",
+  "source": "IsA,gazelle",
+  "target": "IsA,room"
+ },
+ {
+  "question": "Is a gazelle a sugar ?",
+  "answer": "no",
+  "source": "IsA,gazelle",
+  "target": "IsA,sugar"
+ },
+ {
+  "question": "Is a gazelle a jewelry ?",
+  "answer": "no",
+  "source": "IsA,gazelle",
+  "target": "IsA,jewelry"
+ },
+ {
+  "question": "Is a gazelle a town ?",
+  "answer": "no",
+  "source": "IsA,gazelle",
+  "target": "IsA,town"
+ },
+ {
+  "question": "Is a gazelle a bicycle ?",
+  "answer": "no",
+  "source": "IsA,gazelle",
+  "target": "IsA,bicycle"
+ },
+ {
+  "question": "Is a gecko a carbohydrate ?",
+  "answer": "no",
+  "source": "IsA,gecko",
+  "target": "IsA,carbohydrate"
+ },
+ {
+  "question": "Is a gecko a forest ?",
+  "answer": "no",
+  "source": "IsA,gecko",
+  "target": "IsA,forest"
+ },
+ {
+  "question": "Is a gecko a bridge ?",
+  "answer": "no",
+  "source": "IsA,gecko",
+  "target": "IsA,bridge"
+ },
+ {
+  "question": "Is a gecko an africa ?",
+  "answer": "no",
+  "source": "IsA,gecko",
+  "target": "IsA,africa"
+ },
+ {
+  "question": "Is a gecko a movie ?",
+  "answer": "no",
+  "source": "IsA,gecko",
+  "target": "IsA,movie"
+ },
+ {
+  "question": "Is a gecko a company ?",
+  "answer": "no",
+  "source": "IsA,gecko",
+  "target": "IsA,company"
+ },
+ {
+  "question": "Is a gecko a town ?",
+  "answer": "no",
+  "source": "IsA,gecko",
+  "target": "IsA,town"
+ },
+ {
+  "question": "Does a gecko have a face ?",
+  "answer": "yes",
+  "source": "IsA,gecko",
+  "target": "HasPart,face"
+ },
+ {
+  "question": "Is a gecko a river ?",
+  "answer": "no",
+  "source": "IsA,gecko",
+  "target": "IsA,river"
+ },
+ {
+  "question": "Is a gecko  virus ?",
+  "answer": "no",
+  "source": "IsA,gecko",
+  "target": "IsA,virus"
+ },
+ {
+  "question": "Is a gecko a rodent ?",
+  "answer": "no",
+  "source": "IsA,gecko",
+  "target": "IsA,rodent"
+ },
+ {
+  "question": "Is a gecko a snake ?",
+  "answer": "no",
+  "source": "IsA,gecko",
+  "target": "IsA,snake"
+ },
+ {
+  "question": "Is a german shepherd an europe ?",
+  "answer": "no",
+  "source": "IsA,german shepherd",
+  "target": "IsA,europe"
+ },
+ {
+  "question": "Can a german shepherd follow it's owner ?",
+  "answer": "yes",
+  "source": "IsA,german shepherd",
+  "target": "CapableOf,follow it's owner"
+ },
+ {
+  "question": "Is a german shepherd a school ?",
+  "answer": "no",
+  "source": "IsA,german shepherd",
+  "target": "IsA,school"
+ },
+ {
+  "question": "Can a german shepherd guard property ?",
+  "answer": "yes",
+  "source": "IsA,german shepherd",
+  "target": "CapableOf,guard property"
+ },
+ {
+  "question": "Is a german shepherd a domestic animal ?",
+  "answer": "yes",
+  "source": "IsA,german shepherd",
+  "target": "IsA,domestic animal"
+ },
+ {
+  "question": "Can a german shepherd come when call name ?",
+  "answer": "yes",
+  "source": "IsA,german shepherd",
+  "target": "CapableOf,come when call name"
+ },
+ {
+  "question": "Can a german shepherd hear whistle ?",
+  "answer": "yes",
+  "source": "IsA,german shepherd",
+  "target": "CapableOf,hear whistle"
+ },
+ {
+  "question": "Can a german shepherd bite ?",
+  "answer": "yes",
+  "source": "IsA,german shepherd",
+  "target": "CapableOf,bite"
+ },
+ {
+  "question": "Does a german shepherd have a face ?",
+  "answer": "yes",
+  "source": "IsA,german shepherd",
+  "target": "HasPart,face"
+ },
+ {
+  "question": "Is a german shepherd an art ?",
+  "answer": "no",
+  "source": "IsA,german shepherd",
+  "target": "IsA,art"
+ },
+ {
+  "question": "Can a german shepherd cause rabbit to run away ?",
+  "answer": "yes",
+  "source": "IsA,german shepherd",
+  "target": "CapableOf,cause rabbit to run away"
+ },
+ {
+  "question": "Can a german shepherd breed several puppies ?",
+  "answer": "yes",
+  "source": "IsA,german shepherd",
+  "target": "CapableOf,breed several puppies"
+ },
+ {
+  "question": "Is a german shepherd a house ?",
+  "answer": "no",
+  "source": "IsA,german shepherd",
+  "target": "IsA,house"
+ },
+ {
+  "question": "Is a german shepherd a domesticated animal ?",
+  "answer": "yes",
+  "source": "IsA,german shepherd",
+  "target": "IsA,domesticated animal"
+ },
+ {
+  "question": "Is a german shepherd a plastic ?",
+  "answer": "no",
+  "source": "IsA,german shepherd",
+  "target": "IsA,plastic"
+ },
+ {
+  "question": "Can a german shepherd eating ?",
+  "answer": "yes",
+  "source": "IsA,german shepherd",
+  "target": "CapableOf,eating"
+ },
+ {
+  "question": "Is a german shepherd a wasp ?",
+  "answer": "no",
+  "source": "IsA,german shepherd",
+  "target": "IsA,wasp"
+ },
+ {
+  "question": "Is a german shepherd a leader ?",
+  "answer": "no",
+  "source": "IsA,german shepherd",
+  "target": "IsA,leader"
+ },
+ {
+  "question": "Can a german shepherd fetch ball ?",
+  "answer": "yes",
+  "source": "IsA,german shepherd",
+  "target": "CapableOf,fetch ball"
+ },
+ {
+  "question": "Is a german shepherd a city ?",
+  "answer": "no",
+  "source": "IsA,german shepherd",
+  "target": "IsA,city"
+ },
+ {
+  "question": "Is a german shepherd a structure ?",
+  "answer": "no",
+  "source": "IsA,german shepherd",
+  "target": "IsA,structure"
+ },
+ {
+  "question": "Can a german shepherd fight for life ?",
+  "answer": "yes",
+  "source": "IsA,german shepherd",
+  "target": "CapableOf,fight for life"
+ },
+ {
+  "question": "Can a german shepherd taste dog food ?",
+  "answer": "yes",
+  "source": "IsA,german shepherd",
+  "target": "CapableOf,taste dog food"
+ },
+ {
+  "question": "Is a german shepherd an africa ?",
+  "answer": "no",
+  "source": "IsA,german shepherd",
+  "target": "IsA,africa"
+ },
+ {
+  "question": "Is a giant panda a candy ?",
+  "answer": "no",
+  "source": "IsA,giant panda",
+  "target": "IsA,candy"
+ },
+ {
+  "question": "Is a giant panda a plastic ?",
+  "answer": "no",
+  "source": "IsA,giant panda",
+  "target": "IsA,plastic"
+ },
+ {
+  "question": "Is a giant panda  fungus ?",
+  "answer": "no",
+  "source": "IsA,giant panda",
+  "target": "IsA,fungus"
+ },
+ {
+  "question": "Is a giant panda a protein ?",
+  "answer": "no",
+  "source": "IsA,giant panda",
+  "target": "IsA,protein"
+ },
+ {
+  "question": "Is a giant panda a metal ?",
+  "answer": "no",
+  "source": "IsA,giant panda",
+  "target": "IsA,metal"
+ },
+ {
+  "question": "Can a giant panda drink liquids ?",
+  "answer": "yes",
+  "source": "IsA,giant panda",
+  "target": "CapableOf,drink liquids"
+ },
+ {
+  "question": "Can a giant panda note food ?",
+  "answer": "yes",
+  "source": "IsA,giant panda",
+  "target": "CapableOf,note food"
+ },
+ {
+  "question": "Can a giant panda fight for life ?",
+  "answer": "yes",
+  "source": "IsA,giant panda",
+  "target": "CapableOf,fight for life"
+ },
+ {
+  "question": "Is a giant panda a herb ?",
+  "answer": "no",
+  "source": "IsA,giant panda",
+  "target": "IsA,herb"
+ },
+ {
+  "question": "Is a giant panda a publication ?",
+  "answer": "no",
+  "source": "IsA,giant panda",
+  "target": "IsA,publication"
+ },
+ {
+  "question": "Is a giant panda a liquid ?",
+  "answer": "no",
+  "source": "IsA,giant panda",
+  "target": "IsA,liquid"
+ },
+ {
+  "question": "Does a giant panda have a head ?",
+  "answer": "yes",
+  "source": "IsA,giant panda",
+  "target": "HasPart,head"
+ },
+ {
+  "question": "Is a giant panda a bird ?",
+  "answer": "no",
+  "source": "IsA,giant panda",
+  "target": "IsA,bird"
+ },
+ {
+  "question": "Is a giraffe a sport ?",
+  "answer": "no",
+  "source": "IsA,giraffe",
+  "target": "IsA,sport"
+ },
+ {
+  "question": "Is a giraffe a protein ?",
+  "answer": "no",
+  "source": "IsA,giraffe",
+  "target": "IsA,protein"
+ },
+ {
+  "question": "Is a giraffe an ant ?",
+  "answer": "no",
+  "source": "IsA,giraffe",
+  "target": "IsA,ant"
+ },
+ {
+  "question": "Is a giraffe a student ?",
+  "answer": "no",
+  "source": "IsA,giraffe",
+  "target": "IsA,student"
+ },
+ {
+  "question": "Is a giraffe an insect ?",
+  "answer": "no",
+  "source": "IsA,giraffe",
+  "target": "IsA,insect"
+ },
+ {
+  "question": "Is a giraffe a fire ?",
+  "answer": "no",
+  "source": "IsA,giraffe",
+  "target": "IsA,fire"
+ },
+ {
+  "question": "Is a giraffe an action ?",
+  "answer": "no",
+  "source": "IsA,giraffe",
+  "target": "IsA,action"
+ },
+ {
+  "question": "Is a giraffe a mineral ?",
+  "answer": "no",
+  "source": "IsA,giraffe",
+  "target": "IsA,mineral"
+ },
+ {
+  "question": "Can a giraffe fight for life ?",
+  "answer": "yes",
+  "source": "IsA,giraffe",
+  "target": "CapableOf,fight for life"
+ },
+ {
+  "question": "Is a giraffe a deer ?",
+  "answer": "no",
+  "source": "IsA,giraffe",
+  "target": "IsA,deer"
+ },
+ {
+  "question": "Is a giraffe a cat ?",
+  "answer": "no",
+  "source": "IsA,giraffe",
+  "target": "IsA,cat"
+ },
+ {
+  "question": "Is a giraffe a bird ?",
+  "answer": "no",
+  "source": "IsA,giraffe",
+  "target": "IsA,bird"
+ },
+ {
+  "question": "Is a giraffe an europe ?",
+  "answer": "no",
+  "source": "IsA,giraffe",
+  "target": "IsA,europe"
+ },
+ {
+  "question": "Is a hen a wheel ?",
+  "answer": "no",
+  "source": "IsA,hen",
+  "target": "IsA,wheel"
+ },
+ {
+  "question": "Is a hen a sport ?",
+  "answer": "no",
+  "source": "IsA,hen",
+  "target": "IsA,sport"
+ },
+ {
+  "question": "Can a hen live ?",
+  "answer": "yes",
+  "source": "IsA,hen",
+  "target": "CapableOf,live"
+ },
+ {
+  "question": "Can a hen die no more than once ?",
+  "answer": "yes",
+  "source": "IsA,hen",
+  "target": "CapableOf,die no more than once"
+ },
+ {
+  "question": "Is a hen made of cells molecules and atoms ?",
+  "answer": "yes",
+  "source": "IsA,hen",
+  "target": "MadeOf,cells molecules and atoms"
+ },
+ {
+  "question": "Is a hen a government ?",
+  "answer": "no",
+  "source": "IsA,hen",
+  "target": "IsA,government"
+ },
+ {
+  "question": "Is a hen an acid ?",
+  "answer": "no",
+  "source": "IsA,hen",
+  "target": "IsA,acid"
+ },
+ {
+  "question": "Does a hen have  two legs ?",
+  "answer": "yes",
+  "source": "IsA,hen",
+  "target": "HasA,two legs"
+ },
+ {
+  "question": "Is a hen a bird ?",
+  "answer": "yes",
+  "source": "IsA,hen",
+  "target": "IsA,bird"
+ },
+ {
+  "question": "Is a hen a student ?",
+  "answer": "no",
+  "source": "IsA,hen",
+  "target": "IsA,student"
+ },
+ {
+  "question": "Is a hen  fungus ?",
+  "answer": "no",
+  "source": "IsA,hen",
+  "target": "IsA,fungus"
+ },
+ {
+  "question": "Is a hen a horse ?",
+  "answer": "no",
+  "source": "IsA,hen",
+  "target": "IsA,horse"
+ },
+ {
+  "question": "Is a hen a warm blooded animal ?",
+  "answer": "yes",
+  "source": "IsA,hen",
+  "target": "IsA,warm blooded animal"
+ },
+ {
+  "question": "Is a hen a wine ?",
+  "answer": "no",
+  "source": "IsA,hen",
+  "target": "IsA,wine"
+ },
+ {
+  "question": "Is a hen an air breathing vertebrate ?",
+  "answer": "yes",
+  "source": "IsA,hen",
+  "target": "IsA,air breathing vertebrate"
+ },
+ {
+  "question": "Is  hippopotamus an acid ?",
+  "answer": "no",
+  "source": "IsA,hippopotamus",
+  "target": "IsA,acid"
+ },
+ {
+  "question": "Is  hippopotamus a room ?",
+  "answer": "no",
+  "source": "IsA,hippopotamus",
+  "target": "IsA,room"
+ },
+ {
+  "question": "Is  hippopotamus a meal ?",
+  "answer": "no",
+  "source": "IsA,hippopotamus",
+  "target": "IsA,meal"
+ },
+ {
+  "question": "Is  hippopotamus an ocean ?",
+  "answer": "no",
+  "source": "IsA,hippopotamus",
+  "target": "IsA,ocean"
+ },
+ {
+  "question": "Is  hippopotamus a snake ?",
+  "answer": "no",
+  "source": "IsA,hippopotamus",
+  "target": "IsA,snake"
+ },
+ {
+  "question": "Is  hippopotamus a forest ?",
+  "answer": "no",
+  "source": "IsA,hippopotamus",
+  "target": "IsA,forest"
+ },
+ {
+  "question": "Is  hippopotamus a cheese ?",
+  "answer": "no",
+  "source": "IsA,hippopotamus",
+  "target": "IsA,cheese"
+ },
+ {
+  "question": "Is  hippopotamus a lizard ?",
+  "answer": "no",
+  "source": "IsA,hippopotamus",
+  "target": "IsA,lizard"
+ },
+ {
+  "question": "Is  hippopotamus an organism ?",
+  "answer": "yes",
+  "source": "IsA,hippopotamus",
+  "target": "IsA,organism"
+ },
+ {
+  "question": "Is  hippopotamus a deer ?",
+  "answer": "no",
+  "source": "IsA,hippopotamus",
+  "target": "IsA,deer"
+ },
+ {
+  "question": "Is  hippopotamus a lake ?",
+  "answer": "no",
+  "source": "IsA,hippopotamus",
+  "target": "IsA,lake"
+ },
+ {
+  "question": "Is  hippopotamus a living thing ?",
+  "answer": "yes",
+  "source": "IsA,hippopotamus",
+  "target": "IsA,living thing"
+ },
+ {
+  "question": "Is  hippopotamus a school ?",
+  "answer": "no",
+  "source": "IsA,hippopotamus",
+  "target": "IsA,school"
+ },
+ {
+  "question": "Is a horse an organism ?",
+  "answer": "yes",
+  "source": "IsA,horse",
+  "target": "IsA,organism"
+ },
+ {
+  "question": "Is a horse a food ?",
+  "answer": "no",
+  "source": "IsA,horse",
+  "target": "IsA,food"
+ },
+ {
+  "question": "Is a horse a cat ?",
+  "answer": "no",
+  "source": "IsA,horse",
+  "target": "IsA,cat"
+ },
+ {
+  "question": "Is a horse a rodent ?",
+  "answer": "no",
+  "source": "IsA,horse",
+  "target": "IsA,rodent"
+ },
+ {
+  "question": "Is a horse a herb ?",
+  "answer": "no",
+  "source": "IsA,horse",
+  "target": "IsA,herb"
+ },
+ {
+  "question": "Is a horse a dog ?",
+  "answer": "no",
+  "source": "IsA,horse",
+  "target": "IsA,dog"
+ },
+ {
+  "question": "Does a horse have  withers ?",
+  "answer": "yes",
+  "source": "IsA,horse",
+  "target": "HasPart,withers"
+ },
+ {
+  "question": "Is a horse a stronger than man ?",
+  "answer": "yes",
+  "source": "IsA,horse",
+  "target": "IsA,stronger than man"
+ },
+ {
+  "question": "Is a horse an eukaryotic organism ?",
+  "answer": "yes",
+  "source": "IsA,horse",
+  "target": "IsA,eukaryotic organism"
+ },
+ {
+  "question": "Is a horse a sport ?",
+  "answer": "no",
+  "source": "IsA,horse",
+  "target": "IsA,sport"
+ },
+ {
+  "question": "Is a horse a drug ?",
+  "answer": "no",
+  "source": "IsA,horse",
+  "target": "IsA,drug"
+ },
+ {
+  "question": "Is a horse a kitchen utensil ?",
+  "answer": "no",
+  "source": "IsA,horse",
+  "target": "IsA,kitchen utensil"
+ },
+ {
+  "question": "Does a horse have a horse's foot ?",
+  "answer": "yes",
+  "source": "IsA,horse",
+  "target": "HasPart,horse's foot"
+ },
+ {
+  "question": "Is a horse a planet ?",
+  "answer": "no",
+  "source": "IsA,horse",
+  "target": "IsA,planet"
+ },
+ {
+  "question": "Is a horse a molecule ?",
+  "answer": "no",
+  "source": "IsA,horse",
+  "target": "IsA,molecule"
+ },
+ {
+  "question": "Is a horse a river ?",
+  "answer": "no",
+  "source": "IsA,horse",
+  "target": "IsA,river"
+ },
+ {
+  "question": "Is a horse a fire ?",
+  "answer": "no",
+  "source": "IsA,horse",
+  "target": "IsA,fire"
+ },
+ {
+  "question": "Is a hound a vertebrate ?",
+  "answer": "yes",
+  "source": "IsA,hound",
+  "target": "IsA,vertebrate"
+ },
+ {
+  "question": "Can a hound chasing ball ?",
+  "answer": "yes",
+  "source": "IsA,hound",
+  "target": "CapableOf,chasing ball"
+ },
+ {
+  "question": "Is a hound a science ?",
+  "answer": "no",
+  "source": "IsA,hound",
+  "target": "IsA,science"
+ },
+ {
+  "question": "Is a hound made of flesh and bones ?",
+  "answer": "yes",
+  "source": "IsA,hound",
+  "target": "MadeOf,flesh and bones"
+ },
+ {
+  "question": "Can a hound follow master ?",
+  "answer": "yes",
+  "source": "IsA,hound",
+  "target": "CapableOf,follow master"
+ },
+ {
+  "question": "Can a hound eat cat food but probably shouldn't ?",
+  "answer": "yes",
+  "source": "IsA,hound",
+  "target": "CapableOf,eat cat food but probably shouldn't"
+ },
+ {
+  "question": "Can a hound mother puppy ?",
+  "answer": "yes",
+  "source": "IsA,hound",
+  "target": "CapableOf,mother puppy"
+ },
+ {
+  "question": "Is a hound an animal ?",
+  "answer": "yes",
+  "source": "IsA,hound",
+  "target": "IsA,animal"
+ },
+ {
+  "question": "Can a hound bark at strangers ?",
+  "answer": "yes",
+  "source": "IsA,hound",
+  "target": "CapableOf,bark at strangers"
+ },
+ {
+  "question": "Is a hound a human being ?",
+  "answer": "no",
+  "source": "IsA,hound",
+  "target": "IsA,human being"
+ },
+ {
+  "question": "Is a hound a kitchen ?",
+  "answer": "no",
+  "source": "IsA,hound",
+  "target": "IsA,kitchen"
+ },
+ {
+  "question": "Does a hound have a fur ?",
+  "answer": "yes",
+  "source": "IsA,hound",
+  "target": "HasA,fur"
+ },
+ {
+  "question": "Is a hound a boat ?",
+  "answer": "no",
+  "source": "IsA,hound",
+  "target": "IsA,boat"
+ },
+ {
+  "question": "Can a hound bury bone in ground ?",
+  "answer": "yes",
+  "source": "IsA,hound",
+  "target": "CapableOf,bury bone in ground"
+ },
+ {
+  "question": "Is a hound a living organism ?",
+  "answer": "yes",
+  "source": "IsA,hound",
+  "target": "IsA,living organism"
+ },
+ {
+  "question": "Can a hound stay in house ?",
+  "answer": "yes",
+  "source": "IsA,hound",
+  "target": "CapableOf,stay in house"
+ },
+ {
+  "question": "Can a hound taste dog food ?",
+  "answer": "yes",
+  "source": "IsA,hound",
+  "target": "CapableOf,taste dog food"
+ },
+ {
+  "question": "Can a hound walk on leash ?",
+  "answer": "yes",
+  "source": "IsA,hound",
+  "target": "CapableOf,walk on leash"
+ },
+ {
+  "question": "Can a hound guide blind woman ?",
+  "answer": "yes",
+  "source": "IsA,hound",
+  "target": "CapableOf,guide blind woman"
+ },
+ {
+  "question": "Can a hound lie down ?",
+  "answer": "yes",
+  "source": "IsA,hound",
+  "target": "CapableOf,lie down"
+ },
+ {
+  "question": "Is a hound a lizard ?",
+  "answer": "no",
+  "source": "IsA,hound",
+  "target": "IsA,lizard"
+ },
+ {
+  "question": "Is a hound a plastic ?",
+  "answer": "no",
+  "source": "IsA,hound",
+  "target": "IsA,plastic"
+ },
+ {
+  "question": "Can a hound cross street ?",
+  "answer": "yes",
+  "source": "IsA,hound",
+  "target": "CapableOf,cross street"
+ },
+ {
+  "question": "Can a hound breed several puppies ?",
+  "answer": "yes",
+  "source": "IsA,hound",
+  "target": "CapableOf,breed several puppies"
+ },
+ {
+  "question": "Is a howler monkey a house ?",
+  "answer": "no",
+  "source": "IsA,howler monkey",
+  "target": "IsA,house"
+ },
+ {
+  "question": "Is a howler monkey a human being ?",
+  "answer": "no",
+  "source": "IsA,howler monkey",
+  "target": "IsA,human being"
+ },
+ {
+  "question": "Is a howler monkey a plant ?",
+  "answer": "no",
+  "source": "IsA,howler monkey",
+  "target": "IsA,plant"
+ },
+ {
+  "question": "Can a howler monkey fight for life ?",
+  "answer": "yes",
+  "source": "IsA,howler monkey",
+  "target": "CapableOf,fight for life"
+ },
+ {
+  "question": "Can a howler monkey live ?",
+  "answer": "yes",
+  "source": "IsA,howler monkey",
+  "target": "CapableOf,live"
+ },
+ {
+  "question": "Is a howler monkey a computer ?",
+  "answer": "no",
+  "source": "IsA,howler monkey",
+  "target": "IsA,computer"
+ },
+ {
+  "question": "Is a howler monkey a city ?",
+  "answer": "no",
+  "source": "IsA,howler monkey",
+  "target": "IsA,city"
+ },
+ {
+  "question": "Is a howler monkey a carbohydrate ?",
+  "answer": "no",
+  "source": "IsA,howler monkey",
+  "target": "IsA,carbohydrate"
+ },
+ {
+  "question": "Is a howler monkey made of cells molecules and atoms ?",
+  "answer": "yes",
+  "source": "IsA,howler monkey",
+  "target": "MadeOf,cells molecules and atoms"
+ },
+ {
+  "question": "Is a howler monkey a bird ?",
+  "answer": "no",
+  "source": "IsA,howler monkey",
+  "target": "IsA,bird"
+ },
+ {
+  "question": "Is a howler monkey a doctor ?",
+  "answer": "no",
+  "source": "IsA,howler monkey",
+  "target": "IsA,doctor"
+ },
+ {
+  "question": "Is a howler monkey an airplane ?",
+  "answer": "no",
+  "source": "IsA,howler monkey",
+  "target": "IsA,airplane"
+ },
+ {
+  "question": "Is a howler monkey an africa ?",
+  "answer": "no",
+  "source": "IsA,howler monkey",
+  "target": "IsA,africa"
+ },
+ {
+  "question": "Does a hummingbird have a body part ?",
+  "answer": "yes",
+  "source": "IsA,hummingbird",
+  "target": "HasPart,body part"
+ },
+ {
+  "question": "Is a hummingbird an expert ?",
+  "answer": "no",
+  "source": "IsA,hummingbird",
+  "target": "IsA,expert"
+ },
+ {
+  "question": "Is a hummingbird a wine ?",
+  "answer": "no",
+  "source": "IsA,hummingbird",
+  "target": "IsA,wine"
+ },
+ {
+  "question": "Is a hummingbird a wheel ?",
+  "answer": "no",
+  "source": "IsA,hummingbird",
+  "target": "IsA,wheel"
+ },
+ {
+  "question": "Is a hummingbird a bacterium ?",
+  "answer": "no",
+  "source": "IsA,hummingbird",
+  "target": "IsA,bacterium"
+ },
+ {
+  "question": "Is a hummingbird an asia ?",
+  "answer": "no",
+  "source": "IsA,hummingbird",
+  "target": "IsA,asia"
+ },
+ {
+  "question": "Is a hummingbird a jewelry ?",
+  "answer": "no",
+  "source": "IsA,hummingbird",
+  "target": "IsA,jewelry"
+ },
+ {
+  "question": "Is a hummingbird alive ?",
+  "answer": "yes",
+  "source": "IsA,hummingbird",
+  "target": "HasProperty,alive"
+ },
+ {
+  "question": "Is a hummingbird a bridge ?",
+  "answer": "no",
+  "source": "IsA,hummingbird",
+  "target": "IsA,bridge"
+ },
+ {
+  "question": "Does a hummingbird have a feather ?",
+  "answer": "yes",
+  "source": "IsA,hummingbird",
+  "target": "HasPart,feather"
+ },
+ {
+  "question": "Is a hummingbird a food ?",
+  "answer": "no",
+  "source": "IsA,hummingbird",
+  "target": "IsA,food"
+ },
+ {
+  "question": "Can a hummingbird move itself about ?",
+  "answer": "yes",
+  "source": "IsA,hummingbird",
+  "target": "CapableOf,move itself about"
+ },
+ {
+  "question": "Does a hummingbird have a head ?",
+  "answer": "yes",
+  "source": "IsA,hummingbird",
+  "target": "HasPart,head"
+ },
+ {
+  "question": "Can a hummingbird fly ?",
+  "answer": "yes",
+  "source": "IsA,hummingbird",
+  "target": "CapableOf,fly"
+ },
+ {
+  "question": "Is a hummingbird a location ?",
+  "answer": "no",
+  "source": "IsA,hummingbird",
+  "target": "IsA,location"
+ },
+ {
+  "question": "Is a jaguar a leader ?",
+  "answer": "no",
+  "source": "IsA,jaguar",
+  "target": "IsA,leader"
+ },
+ {
+  "question": "Is a jaguar alive ?",
+  "answer": "yes",
+  "source": "IsA,jaguar",
+  "target": "HasProperty,alive"
+ },
+ {
+  "question": "Is a jaguar a herb ?",
+  "answer": "no",
+  "source": "IsA,jaguar",
+  "target": "IsA,herb"
+ },
+ {
+  "question": "Is a jaguar a bicycle ?",
+  "answer": "no",
+  "source": "IsA,jaguar",
+  "target": "IsA,bicycle"
+ },
+ {
+  "question": "Is a jaguar a structure ?",
+  "answer": "no",
+  "source": "IsA,jaguar",
+  "target": "IsA,structure"
+ },
+ {
+  "question": "Can a jaguar mate ?",
+  "answer": "yes",
+  "source": "IsA,jaguar",
+  "target": "CapableOf,mate"
+ },
+ {
+  "question": "Is a jaguar a car ?",
+  "answer": "no",
+  "source": "IsA,jaguar",
+  "target": "IsA,car"
+ },
+ {
+  "question": "Is a jaguar a student ?",
+  "answer": "no",
+  "source": "IsA,jaguar",
+  "target": "IsA,student"
+ },
+ {
+  "question": "Is a jaguar a science ?",
+  "answer": "no",
+  "source": "IsA,jaguar",
+  "target": "IsA,science"
+ },
+ {
+  "question": "Is a jaguar a palm tree ?",
+  "answer": "no",
+  "source": "IsA,jaguar",
+  "target": "IsA,palm tree"
+ },
+ {
+  "question": "Is a jaguar a president ?",
+  "answer": "no",
+  "source": "IsA,jaguar",
+  "target": "IsA,president"
+ },
+ {
+  "question": "Is a jaguar a crustacean ?",
+  "answer": "no",
+  "source": "IsA,jaguar",
+  "target": "IsA,crustacean"
+ },
+ {
+  "question": "Is a jaguar a bathroom ?",
+  "answer": "no",
+  "source": "IsA,jaguar",
+  "target": "IsA,bathroom"
+ },
+ {
+  "question": "Is a ladybug a water ?",
+  "answer": "no",
+  "source": "IsA,ladybug",
+  "target": "IsA,water"
+ },
+ {
+  "question": "Is a ladybug a kitchen utensil ?",
+  "answer": "no",
+  "source": "IsA,ladybug",
+  "target": "IsA,kitchen utensil"
+ },
+ {
+  "question": "Is a ladybug a protein ?",
+  "answer": "no",
+  "source": "IsA,ladybug",
+  "target": "IsA,protein"
+ },
+ {
+  "question": "Is a ladybug a liquid ?",
+  "answer": "no",
+  "source": "IsA,ladybug",
+  "target": "IsA,liquid"
+ },
+ {
+  "question": "Is a ladybug a deer ?",
+  "answer": "no",
+  "source": "IsA,ladybug",
+  "target": "IsA,deer"
+ },
+ {
+  "question": "Is a ladybug an insect ?",
+  "answer": "yes",
+  "source": "IsA,ladybug",
+  "target": "IsA,insect"
+ },
+ {
+  "question": "Is a ladybug a hair ?",
+  "answer": "no",
+  "source": "IsA,ladybug",
+  "target": "IsA,hair"
+ },
+ {
+  "question": "Is a ladybug a wasp ?",
+  "answer": "no",
+  "source": "IsA,ladybug",
+  "target": "IsA,wasp"
+ },
+ {
+  "question": "Is a ladybug a shop ?",
+  "answer": "no",
+  "source": "IsA,ladybug",
+  "target": "IsA,shop"
+ },
+ {
+  "question": "Is a ladybug  clothes ?",
+  "answer": "no",
+  "source": "IsA,ladybug",
+  "target": "IsA,clothes"
+ },
+ {
+  "question": "Is a ladybug a jewelry ?",
+  "answer": "no",
+  "source": "IsA,ladybug",
+  "target": "IsA,jewelry"
+ },
+ {
+  "question": "Is a ladybug a dog ?",
+  "answer": "no",
+  "source": "IsA,ladybug",
+  "target": "IsA,dog"
+ },
+ {
+  "question": "Is a ladybug a toy ?",
+  "answer": "no",
+  "source": "IsA,ladybug",
+  "target": "IsA,toy"
+ },
+ {
+  "question": "Is a lamb a soup ?",
+  "answer": "no",
+  "source": "IsA,lamb",
+  "target": "IsA,soup"
+ },
+ {
+  "question": "Is a lamb a living thing ?",
+  "answer": "yes",
+  "source": "IsA,lamb",
+  "target": "IsA,living thing"
+ },
+ {
+  "question": "Does a lamb have a cell ?",
+  "answer": "yes",
+  "source": "IsA,lamb",
+  "target": "HasPart,cell"
+ },
+ {
+  "question": "Is a lamb a carbohydrate ?",
+  "answer": "no",
+  "source": "IsA,lamb",
+  "target": "IsA,carbohydrate"
+ },
+ {
+  "question": "Can a lamb note food ?",
+  "answer": "yes",
+  "source": "IsA,lamb",
+  "target": "CapableOf,note food"
+ },
+ {
+  "question": "Is a lamb a river ?",
+  "answer": "no",
+  "source": "IsA,lamb",
+  "target": "IsA,river"
+ },
+ {
+  "question": "Is a lamb a liquid ?",
+  "answer": "no",
+  "source": "IsA,lamb",
+  "target": "IsA,liquid"
+ },
+ {
+  "question": "Is a lamb  virus ?",
+  "answer": "no",
+  "source": "IsA,lamb",
+  "target": "IsA,virus"
+ },
+ {
+  "question": "Can a lamb drink liquids ?",
+  "answer": "yes",
+  "source": "IsA,lamb",
+  "target": "CapableOf,drink liquids"
+ },
+ {
+  "question": "Does a lamb have a body part ?",
+  "answer": "yes",
+  "source": "IsA,lamb",
+  "target": "HasPart,body part"
+ },
+ {
+  "question": "Is a lamb an ocean ?",
+  "answer": "no",
+  "source": "IsA,lamb",
+  "target": "IsA,ocean"
+ },
+ {
+  "question": "Is a lamb a door ?",
+  "answer": "no",
+  "source": "IsA,lamb",
+  "target": "IsA,door"
+ },
+ {
+  "question": "Is a lamb a student ?",
+  "answer": "no",
+  "source": "IsA,lamb",
+  "target": "IsA,student"
+ },
+ {
+  "question": "Is a leopard a computer ?",
+  "answer": "no",
+  "source": "IsA,leopard",
+  "target": "IsA,computer"
+ },
+ {
+  "question": "Is a leopard a house ?",
+  "answer": "no",
+  "source": "IsA,leopard",
+  "target": "IsA,house"
+ },
+ {
+  "question": "Is a leopard an africa ?",
+  "answer": "no",
+  "source": "IsA,leopard",
+  "target": "IsA,africa"
+ },
+ {
+  "question": "Is a leopard  fungus ?",
+  "answer": "no",
+  "source": "IsA,leopard",
+  "target": "IsA,fungus"
+ },
+ {
+  "question": "Is a leopard a government ?",
+  "answer": "no",
+  "source": "IsA,leopard",
+  "target": "IsA,government"
+ },
+ {
+  "question": "Can a leopard die no more than once ?",
+  "answer": "yes",
+  "source": "IsA,leopard",
+  "target": "CapableOf,die no more than once"
+ },
+ {
+  "question": "Is a leopard a door ?",
+  "answer": "no",
+  "source": "IsA,leopard",
+  "target": "IsA,door"
+ },
+ {
+  "question": "Is a leopard a doctor ?",
+  "answer": "no",
+  "source": "IsA,leopard",
+  "target": "IsA,doctor"
+ },
+ {
+  "question": "Is a leopard an expert ?",
+  "answer": "no",
+  "source": "IsA,leopard",
+  "target": "IsA,expert"
+ },
+ {
+  "question": "Is a leopard an insect ?",
+  "answer": "no",
+  "source": "IsA,leopard",
+  "target": "IsA,insect"
+ },
+ {
+  "question": "Does a leopard have a hair ?",
+  "answer": "yes",
+  "source": "IsA,leopard",
+  "target": "HasPart,hair"
+ },
+ {
+  "question": "Is a leopard a warm blooded animal ?",
+  "answer": "yes",
+  "source": "IsA,leopard",
+  "target": "IsA,warm blooded animal"
+ },
+ {
+  "question": "Is a leopard a jellyfish ?",
+  "answer": "no",
+  "source": "IsA,leopard",
+  "target": "IsA,jellyfish"
+ },
+ {
+  "question": "Is a lion a road ?",
+  "answer": "no",
+  "source": "IsA,lion",
+  "target": "IsA,road"
+ },
+ {
+  "question": "Is a lion a religion ?",
+  "answer": "no",
+  "source": "IsA,lion",
+  "target": "IsA,religion"
+ },
+ {
+  "question": "Is a lion a president ?",
+  "answer": "no",
+  "source": "IsA,lion",
+  "target": "IsA,president"
+ },
+ {
+  "question": "Can a lion live ?",
+  "answer": "yes",
+  "source": "IsA,lion",
+  "target": "CapableOf,live"
+ },
+ {
+  "question": "Does a lion have a hair ?",
+  "answer": "yes",
+  "source": "IsA,lion",
+  "target": "HasPart,hair"
+ },
+ {
+  "question": "Is a lion a candy ?",
+  "answer": "no",
+  "source": "IsA,lion",
+  "target": "IsA,candy"
+ },
+ {
+  "question": "Is a lion a company ?",
+  "answer": "no",
+  "source": "IsA,lion",
+  "target": "IsA,company"
+ },
+ {
+  "question": "Is a lion a food ?",
+  "answer": "no",
+  "source": "IsA,lion",
+  "target": "IsA,food"
+ },
+ {
+  "question": "Is a lion an asia ?",
+  "answer": "no",
+  "source": "IsA,lion",
+  "target": "IsA,asia"
+ },
+ {
+  "question": "Is a lion a bathroom ?",
+  "answer": "no",
+  "source": "IsA,lion",
+  "target": "IsA,bathroom"
+ },
+ {
+  "question": "Is a lion a wasp ?",
+  "answer": "no",
+  "source": "IsA,lion",
+  "target": "IsA,wasp"
+ },
+ {
+  "question": "Is a lion an africa ?",
+  "answer": "no",
+  "source": "IsA,lion",
+  "target": "IsA,africa"
+ },
+ {
+  "question": "Can a lion drink liquids ?",
+  "answer": "yes",
+  "source": "IsA,lion",
+  "target": "CapableOf,drink liquids"
+ },
+ {
+  "question": "Is a livestock a wheel ?",
+  "answer": "no",
+  "source": "IsA,livestock",
+  "target": "IsA,wheel"
+ },
+ {
+  "question": "Is a livestock a salad ?",
+  "answer": "no",
+  "source": "IsA,livestock",
+  "target": "IsA,salad"
+ },
+ {
+  "question": "Is a livestock a liquid ?",
+  "answer": "no",
+  "source": "IsA,livestock",
+  "target": "IsA,liquid"
+ },
+ {
+  "question": "Is a livestock a bird ?",
+  "answer": "no",
+  "source": "IsA,livestock",
+  "target": "IsA,bird"
+ },
+ {
+  "question": "Can a livestock move itself about ?",
+  "answer": "yes",
+  "source": "IsA,livestock",
+  "target": "CapableOf,move itself about"
+ },
+ {
+  "question": "Is a livestock a body of water ?",
+  "answer": "no",
+  "source": "IsA,livestock",
+  "target": "IsA,body of water"
+ },
+ {
+  "question": "Is a livestock a dog ?",
+  "answer": "no",
+  "source": "IsA,livestock",
+  "target": "IsA,dog"
+ },
+ {
+  "question": "Is a livestock a palm tree ?",
+  "answer": "no",
+  "source": "IsA,livestock",
+  "target": "IsA,palm tree"
+ },
+ {
+  "question": "Is a livestock a leader ?",
+  "answer": "no",
+  "source": "IsA,livestock",
+  "target": "IsA,leader"
+ },
+ {
+  "question": "Is a livestock an asia ?",
+  "answer": "no",
+  "source": "IsA,livestock",
+  "target": "IsA,asia"
+ },
+ {
+  "question": "Is a livestock a soda ?",
+  "answer": "no",
+  "source": "IsA,livestock",
+  "target": "IsA,soda"
+ },
+ {
+  "question": "Is a livestock a kitchen utensil ?",
+  "answer": "no",
+  "source": "IsA,livestock",
+  "target": "IsA,kitchen utensil"
+ },
+ {
+  "question": "Is a livestock a bacterium ?",
+  "answer": "no",
+  "source": "IsA,livestock",
+  "target": "IsA,bacterium"
+ },
+ {
+  "question": "Can a llama fight for life ?",
+  "answer": "yes",
+  "source": "IsA,llama",
+  "target": "CapableOf,fight for life"
+ },
+ {
+  "question": "Is a llama a human being ?",
+  "answer": "no",
+  "source": "IsA,llama",
+  "target": "IsA,human being"
+ },
+ {
+  "question": "Is a llama a meal ?",
+  "answer": "no",
+  "source": "IsA,llama",
+  "target": "IsA,meal"
+ },
+ {
+  "question": "Does a llama have a hair ?",
+  "answer": "yes",
+  "source": "IsA,llama",
+  "target": "HasPart,hair"
+ },
+ {
+  "question": "Is a llama a science ?",
+  "answer": "no",
+  "source": "IsA,llama",
+  "target": "IsA,science"
+ },
+ {
+  "question": "Is a llama a disease ?",
+  "answer": "no",
+  "source": "IsA,llama",
+  "target": "IsA,disease"
+ },
+ {
+  "question": "Does a llama have a face ?",
+  "answer": "yes",
+  "source": "IsA,llama",
+  "target": "HasPart,face"
+ },
+ {
+  "question": "Can a llama mate ?",
+  "answer": "yes",
+  "source": "IsA,llama",
+  "target": "CapableOf,mate"
+ },
+ {
+  "question": "Is a llama a leader ?",
+  "answer": "no",
+  "source": "IsA,llama",
+  "target": "IsA,leader"
+ },
+ {
+  "question": "Is a llama an art ?",
+  "answer": "no",
+  "source": "IsA,llama",
+  "target": "IsA,art"
+ },
+ {
+  "question": "Is a llama a horse ?",
+  "answer": "no",
+  "source": "IsA,llama",
+  "target": "IsA,horse"
+ },
+ {
+  "question": "Is a llama a reptile ?",
+  "answer": "no",
+  "source": "IsA,llama",
+  "target": "IsA,reptile"
+ },
+ {
+  "question": "Is a llama made of cells ?",
+  "answer": "yes",
+  "source": "IsA,llama",
+  "target": "MadeOf,cells"
+ },
+ {
+  "question": "Is a magpie a school ?",
+  "answer": "no",
+  "source": "IsA,magpie",
+  "target": "IsA,school"
+ },
+ {
+  "question": "Is a magpie a location ?",
+  "answer": "no",
+  "source": "IsA,magpie",
+  "target": "IsA,location"
+ },
+ {
+  "question": "Is a magpie  virus ?",
+  "answer": "no",
+  "source": "IsA,magpie",
+  "target": "IsA,virus"
+ },
+ {
+  "question": "Is a magpie a country ?",
+  "answer": "no",
+  "source": "IsA,magpie",
+  "target": "IsA,country"
+ },
+ {
+  "question": "Is a magpie a flower ?",
+  "answer": "no",
+  "source": "IsA,magpie",
+  "target": "IsA,flower"
+ },
+ {
+  "question": "Is a magpie a metal ?",
+  "answer": "no",
+  "source": "IsA,magpie",
+  "target": "IsA,metal"
+ },
+ {
+  "question": "Is a magpie a cake ?",
+  "answer": "no",
+  "source": "IsA,magpie",
+  "target": "IsA,cake"
+ },
+ {
+  "question": "Is a magpie a door ?",
+  "answer": "no",
+  "source": "IsA,magpie",
+  "target": "IsA,door"
+ },
+ {
+  "question": "Does a magpie have  two wings ?",
+  "answer": "yes",
+  "source": "IsA,magpie",
+  "target": "HasA,two wings"
+ },
+ {
+  "question": "Is a magpie  clothes ?",
+  "answer": "no",
+  "source": "IsA,magpie",
+  "target": "IsA,clothes"
+ },
+ {
+  "question": "Is a magpie a protein ?",
+  "answer": "no",
+  "source": "IsA,magpie",
+  "target": "IsA,protein"
+ },
+ {
+  "question": "Can a magpie note food ?",
+  "answer": "yes",
+  "source": "IsA,magpie",
+  "target": "CapableOf,note food"
+ },
+ {
+  "question": "Is a magpie an ant ?",
+  "answer": "no",
+  "source": "IsA,magpie",
+  "target": "IsA,ant"
+ },
+ {
+  "question": "Is a magpie a deer ?",
+  "answer": "no",
+  "source": "IsA,magpie",
+  "target": "IsA,deer"
+ },
+ {
+  "question": "Is a magpie a publication ?",
+  "answer": "no",
+  "source": "IsA,magpie",
+  "target": "IsA,publication"
+ },
+ {
+  "question": "Is a mammal a drug ?",
+  "answer": "no",
+  "source": "IsA,mammal",
+  "target": "IsA,drug"
+ },
+ {
+  "question": "Is a mammal a reptile ?",
+  "answer": "no",
+  "source": "IsA,mammal",
+  "target": "IsA,reptile"
+ },
+ {
+  "question": "Is a mammal an expert ?",
+  "answer": "no",
+  "source": "IsA,mammal",
+  "target": "IsA,expert"
+ },
+ {
+  "question": "Is a mammal a vertebrate ?",
+  "answer": "yes",
+  "source": "IsA,mammal",
+  "target": "IsA,vertebrate"
+ },
+ {
+  "question": "Is a mammal a politician ?",
+  "answer": "no",
+  "source": "IsA,mammal",
+  "target": "IsA,politician"
+ },
+ {
+  "question": "Is a mammal a living thing ?",
+  "answer": "yes",
+  "source": "IsA,mammal",
+  "target": "IsA,living thing"
+ },
+ {
+  "question": "Is a mammal a country ?",
+  "answer": "no",
+  "source": "IsA,mammal",
+  "target": "IsA,country"
+ },
+ {
+  "question": "Is a mammal a car ?",
+  "answer": "no",
+  "source": "IsA,mammal",
+  "target": "IsA,car"
+ },
+ {
+  "question": "Can a mammal live ?",
+  "answer": "yes",
+  "source": "IsA,mammal",
+  "target": "CapableOf,live"
+ },
+ {
+  "question": "Is a mammal a school ?",
+  "answer": "no",
+  "source": "IsA,mammal",
+  "target": "IsA,school"
+ },
+ {
+  "question": "Is a mammal a wine ?",
+  "answer": "no",
+  "source": "IsA,mammal",
+  "target": "IsA,wine"
+ },
+ {
+  "question": "Is a mammal a fish ?",
+  "answer": "no",
+  "source": "IsA,mammal",
+  "target": "IsA,fish"
+ },
+ {
+  "question": "Is a mammal a cheese ?",
+  "answer": "no",
+  "source": "IsA,mammal",
+  "target": "IsA,cheese"
+ },
+ {
+  "question": "Does a midge have an abdomen ?",
+  "answer": "yes",
+  "source": "IsA,midge",
+  "target": "HasPart,abdomen"
+ },
+ {
+  "question": "Is a midge a wild animal ?",
+  "answer": "yes",
+  "source": "IsA,midge",
+  "target": "IsA,wild animal"
+ },
+ {
+  "question": "Does a midge have  clypeus ?",
+  "answer": "yes",
+  "source": "IsA,midge",
+  "target": "HasPart,clypeus"
+ },
+ {
+  "question": "Is a midge an arthropod ?",
+  "answer": "yes",
+  "source": "IsA,midge",
+  "target": "IsA,arthropod"
+ },
+ {
+  "question": "Is a midge a hair ?",
+  "answer": "no",
+  "source": "IsA,midge",
+  "target": "IsA,hair"
+ },
+ {
+  "question": "Is a midge a city ?",
+  "answer": "no",
+  "source": "IsA,midge",
+  "target": "IsA,city"
+ },
+ {
+  "question": "Does a midge have a body part ?",
+  "answer": "yes",
+  "source": "IsA,midge",
+  "target": "HasPart,body part"
+ },
+ {
+  "question": "Is a midge an organism ?",
+  "answer": "yes",
+  "source": "IsA,midge",
+  "target": "IsA,organism"
+ },
+ {
+  "question": "Is a midge a door ?",
+  "answer": "no",
+  "source": "IsA,midge",
+  "target": "IsA,door"
+ },
+ {
+  "question": "Is a midge a food ?",
+  "answer": "no",
+  "source": "IsA,midge",
+  "target": "IsA,food"
+ },
+ {
+  "question": "Does a midge have a cell ?",
+  "answer": "yes",
+  "source": "IsA,midge",
+  "target": "HasPart,cell"
+ },
+ {
+  "question": "Can a midge note food ?",
+  "answer": "yes",
+  "source": "IsA,midge",
+  "target": "CapableOf,note food"
+ },
+ {
+  "question": "Is a midge a dog ?",
+  "answer": "no",
+  "source": "IsA,midge",
+  "target": "IsA,dog"
+ },
+ {
+  "question": "Is a mink a meal ?",
+  "answer": "no",
+  "source": "IsA,mink",
+  "target": "IsA,meal"
+ },
+ {
+  "question": "Is a mink an expert ?",
+  "answer": "no",
+  "source": "IsA,mink",
+  "target": "IsA,expert"
+ },
+ {
+  "question": "Is a mink a kitchen utensil ?",
+  "answer": "no",
+  "source": "IsA,mink",
+  "target": "IsA,kitchen utensil"
+ },
+ {
+  "question": "Is a mink a human being ?",
+  "answer": "no",
+  "source": "IsA,mink",
+  "target": "IsA,human being"
+ },
+ {
+  "question": "Is a mink a lizard ?",
+  "answer": "no",
+  "source": "IsA,mink",
+  "target": "IsA,lizard"
+ },
+ {
+  "question": "Is a mink a religion ?",
+  "answer": "no",
+  "source": "IsA,mink",
+  "target": "IsA,religion"
+ },
+ {
+  "question": "Is a mink a bicycle ?",
+  "answer": "no",
+  "source": "IsA,mink",
+  "target": "IsA,bicycle"
+ },
+ {
+  "question": "Is a mink a warm blooded animal ?",
+  "answer": "yes",
+  "source": "IsA,mink",
+  "target": "IsA,warm blooded animal"
+ },
+ {
+  "question": "Is a mink a living thing ?",
+  "answer": "yes",
+  "source": "IsA,mink",
+  "target": "IsA,living thing"
+ },
+ {
+  "question": "Is a mink an acid ?",
+  "answer": "no",
+  "source": "IsA,mink",
+  "target": "IsA,acid"
+ },
+ {
+  "question": "Is a mink a restaurant ?",
+  "answer": "no",
+  "source": "IsA,mink",
+  "target": "IsA,restaurant"
+ },
+ {
+  "question": "Can a mink die no more than once ?",
+  "answer": "yes",
+  "source": "IsA,mink",
+  "target": "CapableOf,die no more than once"
+ },
+ {
+  "question": "Is a mink a mink ?",
+  "answer": "yes",
+  "source": "IsA,mink",
+  "target": "IsA,mink"
+ },
+ {
+  "question": "Is a mullet a plastic ?",
+  "answer": "no",
+  "source": "IsA,mullet",
+  "target": "IsA,plastic"
+ },
+ {
+  "question": "Is a mullet a tree ?",
+  "answer": "no",
+  "source": "IsA,mullet",
+  "target": "IsA,tree"
+ },
+ {
+  "question": "Is a mullet a mineral ?",
+  "answer": "no",
+  "source": "IsA,mullet",
+  "target": "IsA,mineral"
+ },
+ {
+  "question": "Is a mullet a disease ?",
+  "answer": "no",
+  "source": "IsA,mullet",
+  "target": "IsA,disease"
+ },
+ {
+  "question": "Is a mullet a turtle ?",
+  "answer": "no",
+  "source": "IsA,mullet",
+  "target": "IsA,turtle"
+ },
+ {
+  "question": "Is a mullet a vehicle ?",
+  "answer": "no",
+  "source": "IsA,mullet",
+  "target": "IsA,vehicle"
+ },
+ {
+  "question": "Is a mullet a restaurant ?",
+  "answer": "no",
+  "source": "IsA,mullet",
+  "target": "IsA,restaurant"
+ },
+ {
+  "question": "Is a mullet a leader ?",
+  "answer": "no",
+  "source": "IsA,mullet",
+  "target": "IsA,leader"
+ },
+ {
+  "question": "Is a mullet a room ?",
+  "answer": "no",
+  "source": "IsA,mullet",
+  "target": "IsA,room"
+ },
+ {
+  "question": "Is a mullet an airplane ?",
+  "answer": "no",
+  "source": "IsA,mullet",
+  "target": "IsA,airplane"
+ },
+ {
+  "question": "Is a mullet a soda ?",
+  "answer": "no",
+  "source": "IsA,mullet",
+  "target": "IsA,soda"
+ },
+ {
+  "question": "Can a mullet drink liquids ?",
+  "answer": "yes",
+  "source": "IsA,mullet",
+  "target": "CapableOf,drink liquids"
+ },
+ {
+  "question": "Is a mullet an invertebrate ?",
+  "answer": "no",
+  "source": "IsA,mullet",
+  "target": "IsA,invertebrate"
+ },
+ {
+  "question": "Is a myna an animal ?",
+  "answer": "yes",
+  "source": "IsA,myna",
+  "target": "IsA,animal"
+ },
+ {
+  "question": "Is a myna a living creature ?",
+  "answer": "yes",
+  "source": "IsA,myna",
+  "target": "IsA,living creature"
+ },
+ {
+  "question": "Is a myna a house ?",
+  "answer": "no",
+  "source": "IsA,myna",
+  "target": "IsA,house"
+ },
+ {
+  "question": "Is a myna a herb ?",
+  "answer": "no",
+  "source": "IsA,myna",
+  "target": "IsA,herb"
+ },
+ {
+  "question": "Is a myna a country ?",
+  "answer": "no",
+  "source": "IsA,myna",
+  "target": "IsA,country"
+ },
+ {
+  "question": "Is a myna a religion ?",
+  "answer": "no",
+  "source": "IsA,myna",
+  "target": "IsA,religion"
+ },
+ {
+  "question": "Is a myna a vegetable ?",
+  "answer": "no",
+  "source": "IsA,myna",
+  "target": "IsA,vegetable"
+ },
+ {
+  "question": "Is a myna a computer ?",
+  "answer": "no",
+  "source": "IsA,myna",
+  "target": "IsA,computer"
+ },
+ {
+  "question": "Can a myna note food ?",
+  "answer": "yes",
+  "source": "IsA,myna",
+  "target": "CapableOf,note food"
+ },
+ {
+  "question": "Is a myna a hair ?",
+  "answer": "no",
+  "source": "IsA,myna",
+  "target": "IsA,hair"
+ },
+ {
+  "question": "Can a myna grow to larger size ?",
+  "answer": "yes",
+  "source": "IsA,myna",
+  "target": "CapableOf,grow to larger size"
+ },
+ {
+  "question": "Is a myna a government ?",
+  "answer": "no",
+  "source": "IsA,myna",
+  "target": "IsA,government"
+ },
+ {
+  "question": "Is a myna a wasp ?",
+  "answer": "no",
+  "source": "IsA,myna",
+  "target": "IsA,wasp"
+ },
+ {
+  "question": "Is a myna an invertebrate ?",
+  "answer": "no",
+  "source": "IsA,myna",
+  "target": "IsA,invertebrate"
+ },
+ {
+  "question": "Is a myna a warm blooded animal ?",
+  "answer": "yes",
+  "source": "IsA,myna",
+  "target": "IsA,warm blooded animal"
+ },
+ {
+  "question": "Is a new world blackbird a biped ?",
+  "answer": "yes",
+  "source": "IsA,new world blackbird",
+  "target": "IsA,biped"
+ },
+ {
+  "question": "Can a new world blackbird grow to larger size ?",
+  "answer": "yes",
+  "source": "IsA,new world blackbird",
+  "target": "CapableOf,grow to larger size"
+ },
+ {
+  "question": "Is a new world blackbird a bicycle ?",
+  "answer": "no",
+  "source": "IsA,new world blackbird",
+  "target": "IsA,bicycle"
+ },
+ {
+  "question": "Is a new world blackbird a rodent ?",
+  "answer": "no",
+  "source": "IsA,new world blackbird",
+  "target": "IsA,rodent"
+ },
+ {
+  "question": "Can a new world blackbird sing to other birds ?",
+  "answer": "yes",
+  "source": "IsA,new world blackbird",
+  "target": "CapableOf,sing to other birds"
+ },
+ {
+  "question": "Is a new world blackbird  fungus ?",
+  "answer": "no",
+  "source": "IsA,new world blackbird",
+  "target": "IsA,fungus"
+ },
+ {
+  "question": "Is a new world blackbird a science ?",
+  "answer": "no",
+  "source": "IsA,new world blackbird",
+  "target": "IsA,science"
+ },
+ {
+  "question": "Is a new world blackbird an invertebrate ?",
+  "answer": "no",
+  "source": "IsA,new world blackbird",
+  "target": "IsA,invertebrate"
+ },
+ {
+  "question": "Is a new world blackbird a fire ?",
+  "answer": "no",
+  "source": "IsA,new world blackbird",
+  "target": "IsA,fire"
+ },
+ {
+  "question": "Is a new world blackbird a car ?",
+  "answer": "no",
+  "source": "IsA,new world blackbird",
+  "target": "IsA,car"
+ },
+ {
+  "question": "Is a new world blackbird an airplane ?",
+  "answer": "no",
+  "source": "IsA,new world blackbird",
+  "target": "IsA,airplane"
+ },
+ {
+  "question": "Can a new world blackbird live ?",
+  "answer": "yes",
+  "source": "IsA,new world blackbird",
+  "target": "CapableOf,live"
+ },
+ {
+  "question": "Is a new world blackbird a jellyfish ?",
+  "answer": "no",
+  "source": "IsA,new world blackbird",
+  "target": "IsA,jellyfish"
+ },
+ {
+  "question": "Is a new world blackbird a liquid ?",
+  "answer": "no",
+  "source": "IsA,new world blackbird",
+  "target": "IsA,liquid"
+ },
+ {
+  "question": "Is a new world blackbird a palm tree ?",
+  "answer": "no",
+  "source": "IsA,new world blackbird",
+  "target": "IsA,palm tree"
+ },
+ {
+  "question": "Is an oryx a fish ?",
+  "answer": "no",
+  "source": "IsA,oryx",
+  "target": "IsA,fish"
+ },
+ {
+  "question": "Is an oryx a deer ?",
+  "answer": "no",
+  "source": "IsA,oryx",
+  "target": "IsA,deer"
+ },
+ {
+  "question": "Is an oryx a country ?",
+  "answer": "no",
+  "source": "IsA,oryx",
+  "target": "IsA,country"
+ },
+ {
+  "question": "Is an oryx a cake ?",
+  "answer": "no",
+  "source": "IsA,oryx",
+  "target": "IsA,cake"
+ },
+ {
+  "question": "Is an oryx a movie ?",
+  "answer": "no",
+  "source": "IsA,oryx",
+  "target": "IsA,movie"
+ },
+ {
+  "question": "Is an oryx a planet ?",
+  "answer": "no",
+  "source": "IsA,oryx",
+  "target": "IsA,planet"
+ },
+ {
+  "question": "Is an oryx a liquid ?",
+  "answer": "no",
+  "source": "IsA,oryx",
+  "target": "IsA,liquid"
+ },
+ {
+  "question": "Can an oryx note food ?",
+  "answer": "yes",
+  "source": "IsA,oryx",
+  "target": "CapableOf,note food"
+ },
+ {
+  "question": "Is an oryx a kitchen ?",
+  "answer": "no",
+  "source": "IsA,oryx",
+  "target": "IsA,kitchen"
+ },
+ {
+  "question": "Is an oryx an oryx ?",
+  "answer": "yes",
+  "source": "IsA,oryx",
+  "target": "IsA,oryx"
+ },
+ {
+  "question": "Is an oryx  fungus ?",
+  "answer": "no",
+  "source": "IsA,oryx",
+  "target": "IsA,fungus"
+ },
+ {
+  "question": "Is an oryx a warm blooded animal ?",
+  "answer": "yes",
+  "source": "IsA,oryx",
+  "target": "IsA,warm blooded animal"
+ },
+ {
+  "question": "Does an oryx have a body part ?",
+  "answer": "yes",
+  "source": "IsA,oryx",
+  "target": "HasPart,body part"
+ },
+ {
+  "question": "Is an owl a machine ?",
+  "answer": "no",
+  "source": "IsA,owl",
+  "target": "IsA,machine"
+ },
+ {
+  "question": "Is an owl made of cells ?",
+  "answer": "yes",
+  "source": "IsA,owl",
+  "target": "MadeOf,cells"
+ },
+ {
+  "question": "Is an owl an ocean ?",
+  "answer": "no",
+  "source": "IsA,owl",
+  "target": "IsA,ocean"
+ },
+ {
+  "question": "Is an owl a town ?",
+  "answer": "no",
+  "source": "IsA,owl",
+  "target": "IsA,town"
+ },
+ {
+  "question": "Is an owl a location ?",
+  "answer": "no",
+  "source": "IsA,owl",
+  "target": "IsA,location"
+ },
+ {
+  "question": "Is an owl an artifact ?",
+  "answer": "no",
+  "source": "IsA,owl",
+  "target": "IsA,artifact"
+ },
+ {
+  "question": "Is an owl a doctor ?",
+  "answer": "no",
+  "source": "IsA,owl",
+  "target": "IsA,doctor"
+ },
+ {
+  "question": "Is an owl a crustacean ?",
+  "answer": "no",
+  "source": "IsA,owl",
+  "target": "IsA,crustacean"
+ },
+ {
+  "question": "Does an owl have an air sac ?",
+  "answer": "yes",
+  "source": "IsA,owl",
+  "target": "HasPart,air sac"
+ },
+ {
+  "question": "Is an owl a metal ?",
+  "answer": "no",
+  "source": "IsA,owl",
+  "target": "IsA,metal"
+ },
+ {
+  "question": "Is an owl a company ?",
+  "answer": "no",
+  "source": "IsA,owl",
+  "target": "IsA,company"
+ },
+ {
+  "question": "Is an owl a sound ?",
+  "answer": "no",
+  "source": "IsA,owl",
+  "target": "IsA,sound"
+ },
+ {
+  "question": "Is an owl a bridge ?",
+  "answer": "no",
+  "source": "IsA,owl",
+  "target": "IsA,bridge"
+ },
+ {
+  "question": "Does an owl have a head ?",
+  "answer": "yes",
+  "source": "IsA,owl",
+  "target": "HasPart,head"
+ },
+ {
+  "question": "Is an owl a planet ?",
+  "answer": "no",
+  "source": "IsA,owl",
+  "target": "IsA,planet"
+ },
+ {
+  "question": "Is an ox an invertebrate ?",
+  "answer": "no",
+  "source": "IsA,ox",
+  "target": "IsA,invertebrate"
+ },
+ {
+  "question": "Is an ox a vehicle ?",
+  "answer": "no",
+  "source": "IsA,ox",
+  "target": "IsA,vehicle"
+ },
+ {
+  "question": "Can an ox die no more than once ?",
+  "answer": "yes",
+  "source": "IsA,ox",
+  "target": "CapableOf,die no more than once"
+ },
+ {
+  "question": "Is an ox an animal ?",
+  "answer": "yes",
+  "source": "IsA,ox",
+  "target": "IsA,animal"
+ },
+ {
+  "question": "Is an ox an ant ?",
+  "answer": "no",
+  "source": "IsA,ox",
+  "target": "IsA,ant"
+ },
+ {
+  "question": "Is an ox a protein ?",
+  "answer": "no",
+  "source": "IsA,ox",
+  "target": "IsA,protein"
+ },
+ {
+  "question": "Is an ox a dog ?",
+  "answer": "no",
+  "source": "IsA,ox",
+  "target": "IsA,dog"
+ },
+ {
+  "question": "Can an ox move itself about ?",
+  "answer": "yes",
+  "source": "IsA,ox",
+  "target": "CapableOf,move itself about"
+ },
+ {
+  "question": "Is an ox a plant ?",
+  "answer": "no",
+  "source": "IsA,ox",
+  "target": "IsA,plant"
+ },
+ {
+  "question": "Is an ox a crustacean ?",
+  "answer": "no",
+  "source": "IsA,ox",
+  "target": "IsA,crustacean"
+ },
+ {
+  "question": "Is an ox alive ?",
+  "answer": "yes",
+  "source": "IsA,ox",
+  "target": "HasProperty,alive"
+ },
+ {
+  "question": "Is an ox a vertebrate ?",
+  "answer": "yes",
+  "source": "IsA,ox",
+  "target": "IsA,vertebrate"
+ },
+ {
+  "question": "Is an ox a location ?",
+  "answer": "no",
+  "source": "IsA,ox",
+  "target": "IsA,location"
+ },
+ {
+  "question": "Is a peacock a living organism ?",
+  "answer": "yes",
+  "source": "IsA,peacock",
+  "target": "IsA,living organism"
+ },
+ {
+  "question": "Is a peacock a house ?",
+  "answer": "no",
+  "source": "IsA,peacock",
+  "target": "IsA,house"
+ },
+ {
+  "question": "Does a peacock have a talon ?",
+  "answer": "yes",
+  "source": "IsA,peacock",
+  "target": "HasPart,talon"
+ },
+ {
+  "question": "Can a peacock move itself about ?",
+  "answer": "yes",
+  "source": "IsA,peacock",
+  "target": "CapableOf,move itself about"
+ },
+ {
+  "question": "Is a peacock a movie ?",
+  "answer": "no",
+  "source": "IsA,peacock",
+  "target": "IsA,movie"
+ },
+ {
+  "question": "Is a peacock a kitchen ?",
+  "answer": "no",
+  "source": "IsA,peacock",
+  "target": "IsA,kitchen"
+ },
+ {
+  "question": "Is a peacock a reptile ?",
+  "answer": "no",
+  "source": "IsA,peacock",
+  "target": "IsA,reptile"
+ },
+ {
+  "question": "Is a peacock a protein ?",
+  "answer": "no",
+  "source": "IsA,peacock",
+  "target": "IsA,protein"
+ },
+ {
+  "question": "Is a peacock a soup ?",
+  "answer": "no",
+  "source": "IsA,peacock",
+  "target": "IsA,soup"
+ },
+ {
+  "question": "Is a peacock a city ?",
+  "answer": "no",
+  "source": "IsA,peacock",
+  "target": "IsA,city"
+ },
+ {
+  "question": "Is a peacock a cheese ?",
+  "answer": "no",
+  "source": "IsA,peacock",
+  "target": "IsA,cheese"
+ },
+ {
+  "question": "Is a peacock a tree ?",
+  "answer": "no",
+  "source": "IsA,peacock",
+  "target": "IsA,tree"
+ },
+ {
+  "question": "Is a peacock a turtle ?",
+  "answer": "no",
+  "source": "IsA,peacock",
+  "target": "IsA,turtle"
+ },
+ {
+  "question": "Does a peacock have a head ?",
+  "answer": "yes",
+  "source": "IsA,peacock",
+  "target": "HasPart,head"
+ },
+ {
+  "question": "Is a peacock a religion ?",
+  "answer": "no",
+  "source": "IsA,peacock",
+  "target": "IsA,religion"
+ },
+ {
+  "question": "Does a penguin have  wings ?",
+  "answer": "yes",
+  "source": "IsA,penguin",
+  "target": "HasA,wings"
+ },
+ {
+  "question": "Is a penguin a boat ?",
+  "answer": "no",
+  "source": "IsA,penguin",
+  "target": "IsA,boat"
+ },
+ {
+  "question": "Is a penguin a biped ?",
+  "answer": "yes",
+  "source": "IsA,penguin",
+  "target": "IsA,biped"
+ },
+ {
+  "question": "Is a penguin a religion ?",
+  "answer": "no",
+  "source": "IsA,penguin",
+  "target": "IsA,religion"
+ },
+ {
+  "question": "Is a penguin a bacterium ?",
+  "answer": "no",
+  "source": "IsA,penguin",
+  "target": "IsA,bacterium"
+ },
+ {
+  "question": "Is a penguin a mineral ?",
+  "answer": "no",
+  "source": "IsA,penguin",
+  "target": "IsA,mineral"
+ },
+ {
+  "question": "Is a penguin a restaurant ?",
+  "answer": "no",
+  "source": "IsA,penguin",
+  "target": "IsA,restaurant"
+ },
+ {
+  "question": "Is a penguin alive ?",
+  "answer": "yes",
+  "source": "IsA,penguin",
+  "target": "HasProperty,alive"
+ },
+ {
+  "question": "Is a penguin a door ?",
+  "answer": "no",
+  "source": "IsA,penguin",
+  "target": "IsA,door"
+ },
+ {
+  "question": "Is a penguin an ant ?",
+  "answer": "no",
+  "source": "IsA,penguin",
+  "target": "IsA,ant"
+ },
+ {
+  "question": "Is a penguin a publication ?",
+  "answer": "no",
+  "source": "IsA,penguin",
+  "target": "IsA,publication"
+ },
+ {
+  "question": "Is a penguin an air breathing vertebrate ?",
+  "answer": "yes",
+  "source": "IsA,penguin",
+  "target": "IsA,air breathing vertebrate"
+ },
+ {
+  "question": "Is a penguin  fungus ?",
+  "answer": "no",
+  "source": "IsA,penguin",
+  "target": "IsA,fungus"
+ },
+ {
+  "question": "Is a penguin a dog ?",
+  "answer": "no",
+  "source": "IsA,penguin",
+  "target": "IsA,dog"
+ },
+ {
+  "question": "Is a penguin a tree ?",
+  "answer": "no",
+  "source": "IsA,penguin",
+  "target": "IsA,tree"
+ },
+ {
+  "question": "Is a pigeon a bacterium ?",
+  "answer": "no",
+  "source": "IsA,pigeon",
+  "target": "IsA,bacterium"
+ },
+ {
+  "question": "Is a pigeon a cake ?",
+  "answer": "no",
+  "source": "IsA,pigeon",
+  "target": "IsA,cake"
+ },
+ {
+  "question": "Is a pigeon a palm tree ?",
+  "answer": "no",
+  "source": "IsA,pigeon",
+  "target": "IsA,palm tree"
+ },
+ {
+  "question": "Is a pigeon an air breathing vertebrate ?",
+  "answer": "yes",
+  "source": "IsA,pigeon",
+  "target": "IsA,air breathing vertebrate"
+ },
+ {
+  "question": "Is a pigeon a living organism ?",
+  "answer": "yes",
+  "source": "IsA,pigeon",
+  "target": "IsA,living organism"
+ },
+ {
+  "question": "Is a pigeon a president ?",
+  "answer": "no",
+  "source": "IsA,pigeon",
+  "target": "IsA,president"
+ },
+ {
+  "question": "Can a pigeon eating ?",
+  "answer": "yes",
+  "source": "IsA,pigeon",
+  "target": "CapableOf,eating"
+ },
+ {
+  "question": "Is a pigeon a wine ?",
+  "answer": "no",
+  "source": "IsA,pigeon",
+  "target": "IsA,wine"
+ },
+ {
+  "question": "Is a pigeon a continent ?",
+  "answer": "no",
+  "source": "IsA,pigeon",
+  "target": "IsA,continent"
+ },
+ {
+  "question": "Is a pigeon a government ?",
+  "answer": "no",
+  "source": "IsA,pigeon",
+  "target": "IsA,government"
+ },
+ {
+  "question": "Is a pigeon a lake ?",
+  "answer": "no",
+  "source": "IsA,pigeon",
+  "target": "IsA,lake"
+ },
+ {
+  "question": "Is a pigeon a fish ?",
+  "answer": "no",
+  "source": "IsA,pigeon",
+  "target": "IsA,fish"
+ },
+ {
+  "question": "Is a pigeon a road ?",
+  "answer": "no",
+  "source": "IsA,pigeon",
+  "target": "IsA,road"
+ },
+ {
+  "question": "Is a pigeon a wheel ?",
+  "answer": "no",
+  "source": "IsA,pigeon",
+  "target": "IsA,wheel"
+ },
+ {
+  "question": "Is a pigeon an artifact ?",
+  "answer": "no",
+  "source": "IsA,pigeon",
+  "target": "IsA,artifact"
+ },
+ {
+  "question": "Is a poodle a town ?",
+  "answer": "no",
+  "source": "IsA,poodle",
+  "target": "IsA,town"
+ },
+ {
+  "question": "Can a poodle lie down ?",
+  "answer": "yes",
+  "source": "IsA,poodle",
+  "target": "CapableOf,lie down"
+ },
+ {
+  "question": "Can a poodle wear collar ?",
+  "answer": "yes",
+  "source": "IsA,poodle",
+  "target": "CapableOf,wear collar"
+ },
+ {
+  "question": "Is a poodle a kitchen utensil ?",
+  "answer": "no",
+  "source": "IsA,poodle",
+  "target": "IsA,kitchen utensil"
+ },
+ {
+  "question": "Is a poodle a flower ?",
+  "answer": "no",
+  "source": "IsA,poodle",
+  "target": "IsA,flower"
+ },
+ {
+  "question": "Is a poodle a sport ?",
+  "answer": "no",
+  "source": "IsA,poodle",
+  "target": "IsA,sport"
+ },
+ {
+  "question": "Can a poodle hear whistling ?",
+  "answer": "yes",
+  "source": "IsA,poodle",
+  "target": "CapableOf,hear whistling"
+ },
+ {
+  "question": "Is a poodle a candy ?",
+  "answer": "no",
+  "source": "IsA,poodle",
+  "target": "IsA,candy"
+ },
+ {
+  "question": "Can a poodle answer to master ?",
+  "answer": "yes",
+  "source": "IsA,poodle",
+  "target": "CapableOf,answer to master"
+ },
+ {
+  "question": "Can a poodle sleep long time ?",
+  "answer": "yes",
+  "source": "IsA,poodle",
+  "target": "CapableOf,sleep long time"
+ },
+ {
+  "question": "Can a poodle learn to fetch things ?",
+  "answer": "yes",
+  "source": "IsA,poodle",
+  "target": "CapableOf,learn to fetch things"
+ },
+ {
+  "question": "Can a poodle mother puppy ?",
+  "answer": "yes",
+  "source": "IsA,poodle",
+  "target": "CapableOf,mother puppy"
+ },
+ {
+  "question": "Can a poodle taste dog food ?",
+  "answer": "yes",
+  "source": "IsA,poodle",
+  "target": "CapableOf,taste dog food"
+ },
+ {
+  "question": "Can a poodle live in house ?",
+  "answer": "yes",
+  "source": "IsA,poodle",
+  "target": "CapableOf,live in house"
+ },
+ {
+  "question": "Can a poodle follow master ?",
+  "answer": "yes",
+  "source": "IsA,poodle",
+  "target": "CapableOf,follow master"
+ },
+ {
+  "question": "Can a poodle put paw on knee ?",
+  "answer": "yes",
+  "source": "IsA,poodle",
+  "target": "CapableOf,put paw on knee"
+ },
+ {
+  "question": "Can a poodle guide blind woman ?",
+  "answer": "yes",
+  "source": "IsA,poodle",
+  "target": "CapableOf,guide blind woman"
+ },
+ {
+  "question": "Can a poodle live ?",
+  "answer": "yes",
+  "source": "IsA,poodle",
+  "target": "CapableOf,live"
+ },
+ {
+  "question": "Can a poodle remember basic commands ?",
+  "answer": "yes",
+  "source": "IsA,poodle",
+  "target": "CapableOf,remember basic commands"
+ },
+ {
+  "question": "Can a poodle fight cat ?",
+  "answer": "yes",
+  "source": "IsA,poodle",
+  "target": "CapableOf,fight cat"
+ },
+ {
+  "question": "Is a poodle a soup ?",
+  "answer": "no",
+  "source": "IsA,poodle",
+  "target": "IsA,soup"
+ },
+ {
+  "question": "Is a poodle a machine ?",
+  "answer": "no",
+  "source": "IsA,poodle",
+  "target": "IsA,machine"
+ },
+ {
+  "question": "Can a poodle circle tree ?",
+  "answer": "yes",
+  "source": "IsA,poodle",
+  "target": "CapableOf,circle tree"
+ },
+ {
+  "question": "Can a poodle company man ?",
+  "answer": "yes",
+  "source": "IsA,poodle",
+  "target": "CapableOf,company man"
+ },
+ {
+  "question": "Is a porcupine an acid ?",
+  "answer": "no",
+  "source": "IsA,porcupine",
+  "target": "IsA,acid"
+ },
+ {
+  "question": "Is a porcupine a reptile ?",
+  "answer": "no",
+  "source": "IsA,porcupine",
+  "target": "IsA,reptile"
+ },
+ {
+  "question": "Is a porcupine an air breathing vertebrate ?",
+  "answer": "yes",
+  "source": "IsA,porcupine",
+  "target": "IsA,air breathing vertebrate"
+ },
+ {
+  "question": "Is a porcupine a wine ?",
+  "answer": "no",
+  "source": "IsA,porcupine",
+  "target": "IsA,wine"
+ },
+ {
+  "question": "Is a porcupine a jewelry ?",
+  "answer": "no",
+  "source": "IsA,porcupine",
+  "target": "IsA,jewelry"
+ },
+ {
+  "question": "Does a porcupine have a face ?",
+  "answer": "yes",
+  "source": "IsA,porcupine",
+  "target": "HasPart,face"
+ },
+ {
+  "question": "Can a porcupine live ?",
+  "answer": "yes",
+  "source": "IsA,porcupine",
+  "target": "CapableOf,live"
+ },
+ {
+  "question": "Is a porcupine a machine ?",
+  "answer": "no",
+  "source": "IsA,porcupine",
+  "target": "IsA,machine"
+ },
+ {
+  "question": "Is a porcupine a building ?",
+  "answer": "no",
+  "source": "IsA,porcupine",
+  "target": "IsA,building"
+ },
+ {
+  "question": "Is a porcupine  clothes ?",
+  "answer": "no",
+  "source": "IsA,porcupine",
+  "target": "IsA,clothes"
+ },
+ {
+  "question": "Is a porcupine an organism ?",
+  "answer": "yes",
+  "source": "IsA,porcupine",
+  "target": "IsA,organism"
+ },
+ {
+  "question": "Is a porcupine a mineral ?",
+  "answer": "no",
+  "source": "IsA,porcupine",
+  "target": "IsA,mineral"
+ },
+ {
+  "question": "Is a porcupine a cheese ?",
+  "answer": "no",
+  "source": "IsA,porcupine",
+  "target": "IsA,cheese"
+ },
+ {
+  "question": "Is a puppy a continent ?",
+  "answer": "no",
+  "source": "IsA,puppy",
+  "target": "IsA,continent"
+ },
+ {
+  "question": "Can a puppy understand simple commands ?",
+  "answer": "yes",
+  "source": "IsA,puppy",
+  "target": "CapableOf,understand simple commands"
+ },
+ {
+  "question": "Can a puppy bark ?",
+  "answer": "yes",
+  "source": "IsA,puppy",
+  "target": "CapableOf,bark"
+ },
+ {
+  "question": "Is a puppy a dog ?",
+  "answer": "yes",
+  "source": "IsA,puppy",
+  "target": "IsA,dog"
+ },
+ {
+  "question": "Can a puppy mark territory ?",
+  "answer": "yes",
+  "source": "IsA,puppy",
+  "target": "CapableOf,mark territory"
+ },
+ {
+  "question": "Is a puppy an europe ?",
+  "answer": "no",
+  "source": "IsA,puppy",
+  "target": "IsA,europe"
+ },
+ {
+  "question": "Does a puppy have a cell ?",
+  "answer": "yes",
+  "source": "IsA,puppy",
+  "target": "HasPart,cell"
+ },
+ {
+  "question": "Can a puppy help master ?",
+  "answer": "yes",
+  "source": "IsA,puppy",
+  "target": "CapableOf,help master"
+ },
+ {
+  "question": "Can a puppy enter doghouse ?",
+  "answer": "yes",
+  "source": "IsA,puppy",
+  "target": "CapableOf,enter doghouse"
+ },
+ {
+  "question": "Is a puppy an air breathing vertebrate ?",
+  "answer": "yes",
+  "source": "IsA,puppy",
+  "target": "IsA,air breathing vertebrate"
+ },
+ {
+  "question": "Is a puppy a deer ?",
+  "answer": "no",
+  "source": "IsA,puppy",
+  "target": "IsA,deer"
+ },
+ {
+  "question": "Is a puppy  clothes ?",
+  "answer": "no",
+  "source": "IsA,puppy",
+  "target": "IsA,clothes"
+ },
+ {
+  "question": "Can a puppy mother puppy ?",
+  "answer": "yes",
+  "source": "IsA,puppy",
+  "target": "CapableOf,mother puppy"
+ },
+ {
+  "question": "Does a puppy have a hair ?",
+  "answer": "yes",
+  "source": "IsA,puppy",
+  "target": "HasPart,hair"
+ },
+ {
+  "question": "Is a puppy a doctor ?",
+  "answer": "no",
+  "source": "IsA,puppy",
+  "target": "IsA,doctor"
+ },
+ {
+  "question": "Is a puppy one among many animals ?",
+  "answer": "yes",
+  "source": "IsA,puppy",
+  "target": "HasProperty,one among many animals"
+ },
+ {
+  "question": "Is a puppy made of cells ?",
+  "answer": "yes",
+  "source": "IsA,puppy",
+  "target": "MadeOf,cells"
+ },
+ {
+  "question": "Is a puppy a soda ?",
+  "answer": "no",
+  "source": "IsA,puppy",
+  "target": "IsA,soda"
+ },
+ {
+  "question": "Can a puppy live in dog house ?",
+  "answer": "yes",
+  "source": "IsA,puppy",
+  "target": "CapableOf,live in dog house"
+ },
+ {
+  "question": "Is a puppy a toy ?",
+  "answer": "no",
+  "source": "IsA,puppy",
+  "target": "IsA,toy"
+ },
+ {
+  "question": "Can a puppy fight cat ?",
+  "answer": "yes",
+  "source": "IsA,puppy",
+  "target": "CapableOf,fight cat"
+ },
+ {
+  "question": "Is a puppy an expert ?",
+  "answer": "no",
+  "source": "IsA,puppy",
+  "target": "IsA,expert"
+ },
+ {
+  "question": "Is a puppy a door ?",
+  "answer": "no",
+  "source": "IsA,puppy",
+  "target": "IsA,door"
+ },
+ {
+  "question": "Is a puppy a town ?",
+  "answer": "no",
+  "source": "IsA,puppy",
+  "target": "IsA,town"
+ },
+ {
+  "question": "Is a rabbit a mammal ?",
+  "answer": "yes",
+  "source": "IsA,rabbit",
+  "target": "IsA,mammal"
+ },
+ {
+  "question": "Is a rabbit a living thing ?",
+  "answer": "yes",
+  "source": "IsA,rabbit",
+  "target": "IsA,living thing"
+ },
+ {
+  "question": "Is a rabbit an invertebrate ?",
+  "answer": "no",
+  "source": "IsA,rabbit",
+  "target": "IsA,invertebrate"
+ },
+ {
+  "question": "Is a rabbit a car ?",
+  "answer": "no",
+  "source": "IsA,rabbit",
+  "target": "IsA,car"
+ },
+ {
+  "question": "Is a rabbit a country ?",
+  "answer": "no",
+  "source": "IsA,rabbit",
+  "target": "IsA,country"
+ },
+ {
+  "question": "Is a rabbit a fire ?",
+  "answer": "no",
+  "source": "IsA,rabbit",
+  "target": "IsA,fire"
+ },
+ {
+  "question": "Is a rabbit a meal ?",
+  "answer": "no",
+  "source": "IsA,rabbit",
+  "target": "IsA,meal"
+ },
+ {
+  "question": "Is a rabbit a computer ?",
+  "answer": "no",
+  "source": "IsA,rabbit",
+  "target": "IsA,computer"
+ },
+ {
+  "question": "Is a rabbit a dog ?",
+  "answer": "no",
+  "source": "IsA,rabbit",
+  "target": "IsA,dog"
+ },
+ {
+  "question": "Is a rabbit a palm tree ?",
+  "answer": "no",
+  "source": "IsA,rabbit",
+  "target": "IsA,palm tree"
+ },
+ {
+  "question": "Is a rabbit a disease ?",
+  "answer": "no",
+  "source": "IsA,rabbit",
+  "target": "IsA,disease"
+ },
+ {
+  "question": "Is a rabbit alive ?",
+  "answer": "yes",
+  "source": "IsA,rabbit",
+  "target": "HasProperty,alive"
+ },
+ {
+  "question": "Is a rabbit a food ?",
+  "answer": "no",
+  "source": "IsA,rabbit",
+  "target": "IsA,food"
+ },
+ {
+  "question": "Is a rat a cheese ?",
+  "answer": "no",
+  "source": "IsA,rat",
+  "target": "IsA,cheese"
+ },
+ {
+  "question": "Is a rat a building ?",
+  "answer": "no",
+  "source": "IsA,rat",
+  "target": "IsA,building"
+ },
+ {
+  "question": "Is a rat a river ?",
+  "answer": "no",
+  "source": "IsA,rat",
+  "target": "IsA,river"
+ },
+ {
+  "question": "Is a rat a liquid ?",
+  "answer": "no",
+  "source": "IsA,rat",
+  "target": "IsA,liquid"
+ },
+ {
+  "question": "Can a rat fight for life ?",
+  "answer": "yes",
+  "source": "IsA,rat",
+  "target": "CapableOf,fight for life"
+ },
+ {
+  "question": "Is a rat a wheel ?",
+  "answer": "no",
+  "source": "IsA,rat",
+  "target": "IsA,wheel"
+ },
+ {
+  "question": "Can a rat note food ?",
+  "answer": "yes",
+  "source": "IsA,rat",
+  "target": "CapableOf,note food"
+ },
+ {
+  "question": "Is a rat an airplane ?",
+  "answer": "no",
+  "source": "IsA,rat",
+  "target": "IsA,airplane"
+ },
+ {
+  "question": "Is a rat a country ?",
+  "answer": "no",
+  "source": "IsA,rat",
+  "target": "IsA,country"
+ },
+ {
+  "question": "Is a rat an insect ?",
+  "answer": "no",
+  "source": "IsA,rat",
+  "target": "IsA,insect"
+ },
+ {
+  "question": "Is a rat a car ?",
+  "answer": "no",
+  "source": "IsA,rat",
+  "target": "IsA,car"
+ },
+ {
+  "question": "Is a rat an europe ?",
+  "answer": "no",
+  "source": "IsA,rat",
+  "target": "IsA,europe"
+ },
+ {
+  "question": "Is a rat a rat ?",
+  "answer": "yes",
+  "source": "IsA,rat",
+  "target": "IsA,rat"
+ },
+ {
+  "question": "Is a reptile a movie ?",
+  "answer": "no",
+  "source": "IsA,reptile",
+  "target": "IsA,movie"
+ },
+ {
+  "question": "Is a reptile  virus ?",
+  "answer": "no",
+  "source": "IsA,reptile",
+  "target": "IsA,virus"
+ },
+ {
+  "question": "Is a reptile a lake ?",
+  "answer": "no",
+  "source": "IsA,reptile",
+  "target": "IsA,lake"
+ },
+ {
+  "question": "Is a reptile a vertebrate ?",
+  "answer": "yes",
+  "source": "IsA,reptile",
+  "target": "IsA,vertebrate"
+ },
+ {
+  "question": "Can a reptile die no more than once ?",
+  "answer": "yes",
+  "source": "IsA,reptile",
+  "target": "CapableOf,die no more than once"
+ },
+ {
+  "question": "Is a reptile a body of water ?",
+  "answer": "no",
+  "source": "IsA,reptile",
+  "target": "IsA,body of water"
+ },
+ {
+  "question": "Is a reptile a mammal ?",
+  "answer": "no",
+  "source": "IsA,reptile",
+  "target": "IsA,mammal"
+ },
+ {
+  "question": "Is a reptile a room ?",
+  "answer": "no",
+  "source": "IsA,reptile",
+  "target": "IsA,room"
+ },
+ {
+  "question": "Is a reptile alive ?",
+  "answer": "yes",
+  "source": "IsA,reptile",
+  "target": "HasProperty,alive"
+ },
+ {
+  "question": "Is a reptile a road ?",
+  "answer": "no",
+  "source": "IsA,reptile",
+  "target": "IsA,road"
+ },
+ {
+  "question": "Is a reptile a human being ?",
+  "answer": "no",
+  "source": "IsA,reptile",
+  "target": "IsA,human being"
+ },
+ {
+  "question": "Is a reptile a snake ?",
+  "answer": "no",
+  "source": "IsA,reptile",
+  "target": "IsA,snake"
+ },
+ {
+  "question": "Is a robin a science ?",
+  "answer": "no",
+  "source": "IsA,robin",
+  "target": "IsA,science"
+ },
+ {
+  "question": "Can a robin travel across world ?",
+  "answer": "yes",
+  "source": "IsA,robin",
+  "target": "CapableOf,travel across world"
+ },
+ {
+  "question": "Is a robin a restaurant ?",
+  "answer": "no",
+  "source": "IsA,robin",
+  "target": "IsA,restaurant"
+ },
+ {
+  "question": "Can a robin injur it's wing if falls ?",
+  "answer": "yes",
+  "source": "IsA,robin",
+  "target": "CapableOf,injur it's wing if falls"
+ },
+ {
+  "question": "Is a robin a living thing ?",
+  "answer": "yes",
+  "source": "IsA,robin",
+  "target": "IsA,living thing"
+ },
+ {
+  "question": "Is a robin  clothes ?",
+  "answer": "no",
+  "source": "IsA,robin",
+  "target": "IsA,clothes"
+ },
+ {
+  "question": "Is a robin a computer ?",
+  "answer": "no",
+  "source": "IsA,robin",
+  "target": "IsA,computer"
+ },
+ {
+  "question": "Is a robin an animal ?",
+  "answer": "yes",
+  "source": "IsA,robin",
+  "target": "IsA,animal"
+ },
+ {
+  "question": "Does a robin have a cell ?",
+  "answer": "yes",
+  "source": "IsA,robin",
+  "target": "HasPart,cell"
+ },
+ {
+  "question": "Does a robin have a beak ?",
+  "answer": "yes",
+  "source": "IsA,robin",
+  "target": "HasPart,beak"
+ },
+ {
+  "question": "Is a robin a rodent ?",
+  "answer": "no",
+  "source": "IsA,robin",
+  "target": "IsA,rodent"
+ },
+ {
+  "question": "Is a robin a sugar ?",
+  "answer": "no",
+  "source": "IsA,robin",
+  "target": "IsA,sugar"
+ },
+ {
+  "question": "Is a robin a wasp ?",
+  "answer": "no",
+  "source": "IsA,robin",
+  "target": "IsA,wasp"
+ },
+ {
+  "question": "Does a robin have a feather ?",
+  "answer": "yes",
+  "source": "IsA,robin",
+  "target": "HasPart,feather"
+ },
+ {
+  "question": "Does a robin have a bird's foot ?",
+  "answer": "yes",
+  "source": "IsA,robin",
+  "target": "HasPart,bird's foot"
+ },
+ {
+  "question": "Is a salamander an art ?",
+  "answer": "no",
+  "source": "IsA,salamander",
+  "target": "IsA,art"
+ },
+ {
+  "question": "Is a salamander a road ?",
+  "answer": "no",
+  "source": "IsA,salamander",
+  "target": "IsA,road"
+ },
+ {
+  "question": "Is a salamander a river ?",
+  "answer": "no",
+  "source": "IsA,salamander",
+  "target": "IsA,river"
+ },
+ {
+  "question": "Is a salamander a living organism ?",
+  "answer": "yes",
+  "source": "IsA,salamander",
+  "target": "IsA,living organism"
+ },
+ {
+  "question": "Is a salamander a salamander ?",
+  "answer": "yes",
+  "source": "IsA,salamander",
+  "target": "IsA,salamander"
+ },
+ {
+  "question": "Is a salamander a water ?",
+  "answer": "no",
+  "source": "IsA,salamander",
+  "target": "IsA,water"
+ },
+ {
+  "question": "Is a salamander a cat ?",
+  "answer": "no",
+  "source": "IsA,salamander",
+  "target": "IsA,cat"
+ },
+ {
+  "question": "Is a salamander a snake ?",
+  "answer": "no",
+  "source": "IsA,salamander",
+  "target": "IsA,snake"
+ },
+ {
+  "question": "Is a salamander a sugar ?",
+  "answer": "no",
+  "source": "IsA,salamander",
+  "target": "IsA,sugar"
+ },
+ {
+  "question": "Is a salamander an airplane ?",
+  "answer": "no",
+  "source": "IsA,salamander",
+  "target": "IsA,airplane"
+ },
+ {
+  "question": "Is a salamander a hair ?",
+  "answer": "no",
+  "source": "IsA,salamander",
+  "target": "IsA,hair"
+ },
+ {
+  "question": "Is a salamander a leader ?",
+  "answer": "no",
+  "source": "IsA,salamander",
+  "target": "IsA,leader"
+ },
+ {
+  "question": "Is a sparrow hawk made of cells molecules and atoms ?",
+  "answer": "yes",
+  "source": "IsA,sparrow hawk",
+  "target": "MadeOf,cells molecules and atoms"
+ },
+ {
+  "question": "Is a sparrow hawk a company ?",
+  "answer": "no",
+  "source": "IsA,sparrow hawk",
+  "target": "IsA,company"
+ },
+ {
+  "question": "Does a sparrow hawk have a talon ?",
+  "answer": "yes",
+  "source": "IsA,sparrow hawk",
+  "target": "HasPart,talon"
+ },
+ {
+  "question": "Is a sparrow hawk a restaurant ?",
+  "answer": "no",
+  "source": "IsA,sparrow hawk",
+  "target": "IsA,restaurant"
+ },
+ {
+  "question": "Is a sparrow hawk a plant ?",
+  "answer": "no",
+  "source": "IsA,sparrow hawk",
+  "target": "IsA,plant"
+ },
+ {
+  "question": "Is a sparrow hawk a boat ?",
+  "answer": "no",
+  "source": "IsA,sparrow hawk",
+  "target": "IsA,boat"
+ },
+ {
+  "question": "Is a sparrow hawk a terrestrial organism ?",
+  "answer": "yes",
+  "source": "IsA,sparrow hawk",
+  "target": "IsA,terrestrial organism"
+ },
+ {
+  "question": "Is a sparrow hawk an air breathing vertebrate ?",
+  "answer": "yes",
+  "source": "IsA,sparrow hawk",
+  "target": "IsA,air breathing vertebrate"
+ },
+ {
+  "question": "Is a sparrow hawk a leader ?",
+  "answer": "no",
+  "source": "IsA,sparrow hawk",
+  "target": "IsA,leader"
+ },
+ {
+  "question": "Is a sparrow hawk a car ?",
+  "answer": "no",
+  "source": "IsA,sparrow hawk",
+  "target": "IsA,car"
+ },
+ {
+  "question": "Is a sparrow hawk a snake ?",
+  "answer": "no",
+  "source": "IsA,sparrow hawk",
+  "target": "IsA,snake"
+ },
+ {
+  "question": "Is a sparrow hawk a sugar ?",
+  "answer": "no",
+  "source": "IsA,sparrow hawk",
+  "target": "IsA,sugar"
+ },
+ {
+  "question": "Is a sparrow hawk an airplane ?",
+  "answer": "no",
+  "source": "IsA,sparrow hawk",
+  "target": "IsA,airplane"
+ },
+ {
+  "question": "Does a sparrow hawk have an air sac ?",
+  "answer": "yes",
+  "source": "IsA,sparrow hawk",
+  "target": "HasPart,air sac"
+ },
+ {
+  "question": "Is a sparrow hawk a movie ?",
+  "answer": "no",
+  "source": "IsA,sparrow hawk",
+  "target": "IsA,movie"
+ },
+ {
+  "question": "Is a sparrow a science ?",
+  "answer": "no",
+  "source": "IsA,sparrow",
+  "target": "IsA,science"
+ },
+ {
+  "question": "Is a sparrow a machine ?",
+  "answer": "no",
+  "source": "IsA,sparrow",
+  "target": "IsA,machine"
+ },
+ {
+  "question": "Is a sparrow a sparrow ?",
+  "answer": "yes",
+  "source": "IsA,sparrow",
+  "target": "IsA,sparrow"
+ },
+ {
+  "question": "Is a sparrow a carbohydrate ?",
+  "answer": "no",
+  "source": "IsA,sparrow",
+  "target": "IsA,carbohydrate"
+ },
+ {
+  "question": "Is a sparrow a rodent ?",
+  "answer": "no",
+  "source": "IsA,sparrow",
+  "target": "IsA,rodent"
+ },
+ {
+  "question": "Is a sparrow a house ?",
+  "answer": "no",
+  "source": "IsA,sparrow",
+  "target": "IsA,house"
+ },
+ {
+  "question": "Can a sparrow note food ?",
+  "answer": "yes",
+  "source": "IsA,sparrow",
+  "target": "CapableOf,note food"
+ },
+ {
+  "question": "Is a sparrow a company ?",
+  "answer": "no",
+  "source": "IsA,sparrow",
+  "target": "IsA,company"
+ },
+ {
+  "question": "Is a sparrow  virus ?",
+  "answer": "no",
+  "source": "IsA,sparrow",
+  "target": "IsA,virus"
+ },
+ {
+  "question": "Is a sparrow a crustacean ?",
+  "answer": "no",
+  "source": "IsA,sparrow",
+  "target": "IsA,crustacean"
+ },
+ {
+  "question": "Is a sparrow an air breathing vertebrate ?",
+  "answer": "yes",
+  "source": "IsA,sparrow",
+  "target": "IsA,air breathing vertebrate"
+ },
+ {
+  "question": "Is a sparrow a city ?",
+  "answer": "no",
+  "source": "IsA,sparrow",
+  "target": "IsA,city"
+ },
+ {
+  "question": "Is a sparrow a kitchen ?",
+  "answer": "no",
+  "source": "IsA,sparrow",
+  "target": "IsA,kitchen"
+ },
+ {
+  "question": "Can a sparrow travel across world ?",
+  "answer": "yes",
+  "source": "IsA,sparrow",
+  "target": "CapableOf,travel across world"
+ },
+ {
+  "question": "Is a sparrow a wheel ?",
+  "answer": "no",
+  "source": "IsA,sparrow",
+  "target": "IsA,wheel"
+ },
+ {
+  "question": "Is a squirrel a tree ?",
+  "answer": "no",
+  "source": "IsA,squirrel",
+  "target": "IsA,tree"
+ },
+ {
+  "question": "Is a squirrel a wine ?",
+  "answer": "no",
+  "source": "IsA,squirrel",
+  "target": "IsA,wine"
+ },
+ {
+  "question": "Is a squirrel a food ?",
+  "answer": "no",
+  "source": "IsA,squirrel",
+  "target": "IsA,food"
+ },
+ {
+  "question": "Is a squirrel a road ?",
+  "answer": "no",
+  "source": "IsA,squirrel",
+  "target": "IsA,road"
+ },
+ {
+  "question": "Is a squirrel a country ?",
+  "answer": "no",
+  "source": "IsA,squirrel",
+  "target": "IsA,country"
+ },
+ {
+  "question": "Is a squirrel a student ?",
+  "answer": "no",
+  "source": "IsA,squirrel",
+  "target": "IsA,student"
+ },
+ {
+  "question": "Is a squirrel a disease ?",
+  "answer": "no",
+  "source": "IsA,squirrel",
+  "target": "IsA,disease"
+ },
+ {
+  "question": "Is a squirrel a liquid ?",
+  "answer": "no",
+  "source": "IsA,squirrel",
+  "target": "IsA,liquid"
+ },
+ {
+  "question": "Is a squirrel a small wild mammal ?",
+  "answer": "yes",
+  "source": "IsA,squirrel",
+  "target": "IsA,small wild mammal"
+ },
+ {
+  "question": "Is a squirrel a mammal ?",
+  "answer": "yes",
+  "source": "IsA,squirrel",
+  "target": "IsA,mammal"
+ },
+ {
+  "question": "Can a squirrel die no more than once ?",
+  "answer": "yes",
+  "source": "IsA,squirrel",
+  "target": "CapableOf,die no more than once"
+ },
+ {
+  "question": "Is a squirrel a human being ?",
+  "answer": "no",
+  "source": "IsA,squirrel",
+  "target": "IsA,human being"
+ },
+ {
+  "question": "Is a squirrel a fish ?",
+  "answer": "no",
+  "source": "IsA,squirrel",
+  "target": "IsA,fish"
+ },
+ {
+  "question": "Is a starling a carbohydrate ?",
+  "answer": "no",
+  "source": "IsA,starling",
+  "target": "IsA,carbohydrate"
+ },
+ {
+  "question": "Can a starling injur it's wing if falls ?",
+  "answer": "yes",
+  "source": "IsA,starling",
+  "target": "CapableOf,injur it's wing if falls"
+ },
+ {
+  "question": "Is a starling a jellyfish ?",
+  "answer": "no",
+  "source": "IsA,starling",
+  "target": "IsA,jellyfish"
+ },
+ {
+  "question": "Is a starling an artifact ?",
+  "answer": "no",
+  "source": "IsA,starling",
+  "target": "IsA,artifact"
+ },
+ {
+  "question": "Is a starling an oviparous animal ?",
+  "answer": "yes",
+  "source": "IsA,starling",
+  "target": "IsA,oviparous animal"
+ },
+ {
+  "question": "Is a starling an ocean ?",
+  "answer": "no",
+  "source": "IsA,starling",
+  "target": "IsA,ocean"
+ },
+ {
+  "question": "Is a starling a terrestrial organism ?",
+  "answer": "yes",
+  "source": "IsA,starling",
+  "target": "IsA,terrestrial organism"
+ },
+ {
+  "question": "Is a starling a warm blooded animal ?",
+  "answer": "yes",
+  "source": "IsA,starling",
+  "target": "IsA,warm blooded animal"
+ },
+ {
+  "question": "Can a starling chirp ?",
+  "answer": "yes",
+  "source": "IsA,starling",
+  "target": "CapableOf,chirp"
+ },
+ {
+  "question": "Is a starling a road ?",
+  "answer": "no",
+  "source": "IsA,starling",
+  "target": "IsA,road"
+ },
+ {
+  "question": "Is a starling a religion ?",
+  "answer": "no",
+  "source": "IsA,starling",
+  "target": "IsA,religion"
+ },
+ {
+  "question": "Is a starling a horse ?",
+  "answer": "no",
+  "source": "IsA,starling",
+  "target": "IsA,horse"
+ },
+ {
+  "question": "Can a starling fly ?",
+  "answer": "yes",
+  "source": "IsA,starling",
+  "target": "CapableOf,fly"
+ },
+ {
+  "question": "Is a starling a body of water ?",
+  "answer": "no",
+  "source": "IsA,starling",
+  "target": "IsA,body of water"
+ },
+ {
+  "question": "Is a starling a shop ?",
+  "answer": "no",
+  "source": "IsA,starling",
+  "target": "IsA,shop"
+ },
+ {
+  "question": "Is a tiger a wine ?",
+  "answer": "no",
+  "source": "IsA,tiger",
+  "target": "IsA,wine"
+ },
+ {
+  "question": "Is a tiger an action ?",
+  "answer": "no",
+  "source": "IsA,tiger",
+  "target": "IsA,action"
+ },
+ {
+  "question": "Is a tiger a deer ?",
+  "answer": "no",
+  "source": "IsA,tiger",
+  "target": "IsA,deer"
+ },
+ {
+  "question": "Is a tiger an airplane ?",
+  "answer": "no",
+  "source": "IsA,tiger",
+  "target": "IsA,airplane"
+ },
+ {
+  "question": "Is a tiger a cheese ?",
+  "answer": "no",
+  "source": "IsA,tiger",
+  "target": "IsA,cheese"
+ },
+ {
+  "question": "Can a tiger note food ?",
+  "answer": "yes",
+  "source": "IsA,tiger",
+  "target": "CapableOf,note food"
+ },
+ {
+  "question": "Is a tiger a dog ?",
+  "answer": "no",
+  "source": "IsA,tiger",
+  "target": "IsA,dog"
+ },
+ {
+  "question": "Is a tiger a student ?",
+  "answer": "no",
+  "source": "IsA,tiger",
+  "target": "IsA,student"
+ },
+ {
+  "question": "Is a tiger a flower ?",
+  "answer": "no",
+  "source": "IsA,tiger",
+  "target": "IsA,flower"
+ },
+ {
+  "question": "Is a tiger a tiger ?",
+  "answer": "yes",
+  "source": "IsA,tiger",
+  "target": "IsA,tiger"
+ },
+ {
+  "question": "Is a tiger a location ?",
+  "answer": "no",
+  "source": "IsA,tiger",
+  "target": "IsA,location"
+ },
+ {
+  "question": "Is a tiger a planet ?",
+  "answer": "no",
+  "source": "IsA,tiger",
+  "target": "IsA,planet"
+ },
+ {
+  "question": "Is a tiger a computer ?",
+  "answer": "no",
+  "source": "IsA,tiger",
+  "target": "IsA,computer"
+ },
+ {
+  "question": "Is a turkey a city ?",
+  "answer": "no",
+  "source": "IsA,turkey",
+  "target": "IsA,city"
+ },
+ {
+  "question": "Is a turkey a soda ?",
+  "answer": "no",
+  "source": "IsA,turkey",
+  "target": "IsA,soda"
+ },
+ {
+  "question": "Is a turkey a vehicle ?",
+  "answer": "no",
+  "source": "IsA,turkey",
+  "target": "IsA,vehicle"
+ },
+ {
+  "question": "Is a turkey a candy ?",
+  "answer": "no",
+  "source": "IsA,turkey",
+  "target": "IsA,candy"
+ },
+ {
+  "question": "Is a turkey a location ?",
+  "answer": "no",
+  "source": "IsA,turkey",
+  "target": "IsA,location"
+ },
+ {
+  "question": "Does a turkey have a feather ?",
+  "answer": "yes",
+  "source": "IsA,turkey",
+  "target": "HasPart,feather"
+ },
+ {
+  "question": "Is a turkey a jewelry ?",
+  "answer": "no",
+  "source": "IsA,turkey",
+  "target": "IsA,jewelry"
+ },
+ {
+  "question": "Is a turkey a room ?",
+  "answer": "no",
+  "source": "IsA,turkey",
+  "target": "IsA,room"
+ },
+ {
+  "question": "Is a turkey an expert ?",
+  "answer": "no",
+  "source": "IsA,turkey",
+  "target": "IsA,expert"
+ },
+ {
+  "question": "Is a turkey a continent ?",
+  "answer": "no",
+  "source": "IsA,turkey",
+  "target": "IsA,continent"
+ },
+ {
+  "question": "Is a turkey a computer ?",
+  "answer": "no",
+  "source": "IsA,turkey",
+  "target": "IsA,computer"
+ },
+ {
+  "question": "Is a turkey a crustacean ?",
+  "answer": "no",
+  "source": "IsA,turkey",
+  "target": "IsA,crustacean"
+ },
+ {
+  "question": "Is a turkey a drug ?",
+  "answer": "no",
+  "source": "IsA,turkey",
+  "target": "IsA,drug"
+ },
+ {
+  "question": "Is a turkey an invertebrate ?",
+  "answer": "no",
+  "source": "IsA,turkey",
+  "target": "IsA,invertebrate"
+ },
+ {
+  "question": "Is a turkey a reptile ?",
+  "answer": "no",
+  "source": "IsA,turkey",
+  "target": "IsA,reptile"
+ },
+ {
+  "question": "Is a turtle a school ?",
+  "answer": "no",
+  "source": "IsA,turtle",
+  "target": "IsA,school"
+ },
+ {
+  "question": "Is a turtle a wasp ?",
+  "answer": "no",
+  "source": "IsA,turtle",
+  "target": "IsA,wasp"
+ },
+ {
+  "question": "Is a turtle a living organism ?",
+  "answer": "yes",
+  "source": "IsA,turtle",
+  "target": "IsA,living organism"
+ },
+ {
+  "question": "Is a turtle a flower ?",
+  "answer": "no",
+  "source": "IsA,turtle",
+  "target": "IsA,flower"
+ },
+ {
+  "question": "Is a turtle a drug ?",
+  "answer": "no",
+  "source": "IsA,turtle",
+  "target": "IsA,drug"
+ },
+ {
+  "question": "Is a turtle an africa ?",
+  "answer": "no",
+  "source": "IsA,turtle",
+  "target": "IsA,africa"
+ },
+ {
+  "question": "Can a turtle eating ?",
+  "answer": "yes",
+  "source": "IsA,turtle",
+  "target": "CapableOf,eating"
+ },
+ {
+  "question": "Can a turtle note food ?",
+  "answer": "yes",
+  "source": "IsA,turtle",
+  "target": "CapableOf,note food"
+ },
+ {
+  "question": "Is a turtle a herb ?",
+  "answer": "no",
+  "source": "IsA,turtle",
+  "target": "IsA,herb"
+ },
+ {
+  "question": "Is a turtle an organism ?",
+  "answer": "yes",
+  "source": "IsA,turtle",
+  "target": "IsA,organism"
+ },
+ {
+  "question": "Is a turtle an ant ?",
+  "answer": "no",
+  "source": "IsA,turtle",
+  "target": "IsA,ant"
+ },
+ {
+  "question": "Is a turtle a food ?",
+  "answer": "no",
+  "source": "IsA,turtle",
+  "target": "IsA,food"
+ },
+ {
+  "question": "Is a turtle a religion ?",
+  "answer": "no",
+  "source": "IsA,turtle",
+  "target": "IsA,religion"
+ },
+ {
+  "question": "Is a vertebrate a road ?",
+  "answer": "no",
+  "source": "IsA,vertebrate",
+  "target": "IsA,road"
+ },
+ {
+  "question": "Is a vertebrate a school ?",
+  "answer": "no",
+  "source": "IsA,vertebrate",
+  "target": "IsA,school"
+ },
+ {
+  "question": "Is a vertebrate a dog ?",
+  "answer": "no",
+  "source": "IsA,vertebrate",
+  "target": "IsA,dog"
+ },
+ {
+  "question": "Is a vertebrate an asia ?",
+  "answer": "no",
+  "source": "IsA,vertebrate",
+  "target": "IsA,asia"
+ },
+ {
+  "question": "Is a vertebrate a kitchen utensil ?",
+  "answer": "no",
+  "source": "IsA,vertebrate",
+  "target": "IsA,kitchen utensil"
+ },
+ {
+  "question": "Does a vertebrate have a body part ?",
+  "answer": "yes",
+  "source": "IsA,vertebrate",
+  "target": "HasPart,body part"
+ },
+ {
+  "question": "Is a vertebrate a shop ?",
+  "answer": "no",
+  "source": "IsA,vertebrate",
+  "target": "IsA,shop"
+ },
+ {
+  "question": "Is a vertebrate a vegetable ?",
+  "answer": "no",
+  "source": "IsA,vertebrate",
+  "target": "IsA,vegetable"
+ },
+ {
+  "question": "Is a vertebrate a soup ?",
+  "answer": "no",
+  "source": "IsA,vertebrate",
+  "target": "IsA,soup"
+ },
+ {
+  "question": "Is a vertebrate a liquid ?",
+  "answer": "no",
+  "source": "IsA,vertebrate",
+  "target": "IsA,liquid"
+ },
+ {
+  "question": "Is a vertebrate a science ?",
+  "answer": "no",
+  "source": "IsA,vertebrate",
+  "target": "IsA,science"
+ },
+ {
+  "question": "Is a vertebrate a body of water ?",
+  "answer": "no",
+  "source": "IsA,vertebrate",
+  "target": "IsA,body of water"
+ },
+ {
+  "question": "Is a whale an africa ?",
+  "answer": "no",
+  "source": "IsA,whale",
+  "target": "IsA,africa"
+ },
+ {
+  "question": "Is a whale a location ?",
+  "answer": "no",
+  "source": "IsA,whale",
+  "target": "IsA,location"
+ },
+ {
+  "question": "Can a whale move itself about ?",
+  "answer": "yes",
+  "source": "IsA,whale",
+  "target": "CapableOf,move itself about"
+ },
+ {
+  "question": "Is a whale a horse ?",
+  "answer": "no",
+  "source": "IsA,whale",
+  "target": "IsA,horse"
+ },
+ {
+  "question": "Does a whale have a hair ?",
+  "answer": "yes",
+  "source": "IsA,whale",
+  "target": "HasPart,hair"
+ },
+ {
+  "question": "Is a whale a tree ?",
+  "answer": "no",
+  "source": "IsA,whale",
+  "target": "IsA,tree"
+ },
+ {
+  "question": "Is a whale a mineral ?",
+  "answer": "no",
+  "source": "IsA,whale",
+  "target": "IsA,mineral"
+ },
+ {
+  "question": "Is a whale a city ?",
+  "answer": "no",
+  "source": "IsA,whale",
+  "target": "IsA,city"
+ },
+ {
+  "question": "Is a whale a wheel ?",
+  "answer": "no",
+  "source": "IsA,whale",
+  "target": "IsA,wheel"
+ },
+ {
+  "question": "Is a whale a movie ?",
+  "answer": "no",
+  "source": "IsA,whale",
+  "target": "IsA,movie"
+ },
+ {
+  "question": "Is a whale a car ?",
+  "answer": "no",
+  "source": "IsA,whale",
+  "target": "IsA,car"
+ },
+ {
+  "question": "Can a whale live ?",
+  "answer": "yes",
+  "source": "IsA,whale",
+  "target": "CapableOf,live"
+ },
+ {
+  "question": "Is a whale a candy ?",
+  "answer": "no",
+  "source": "IsA,whale",
+  "target": "IsA,candy"
+ },
+ {
+  "question": "Is a wren a fire ?",
+  "answer": "no",
+  "source": "IsA,wren",
+  "target": "IsA,fire"
+ },
+ {
+  "question": "Is a wren an ant ?",
+  "answer": "no",
+  "source": "IsA,wren",
+  "target": "IsA,ant"
+ },
+ {
+  "question": "Is a wren a wasp ?",
+  "answer": "no",
+  "source": "IsA,wren",
+  "target": "IsA,wasp"
+ },
+ {
+  "question": "Is a wren a city ?",
+  "answer": "no",
+  "source": "IsA,wren",
+  "target": "IsA,city"
+ },
+ {
+  "question": "Can a wren sing to other birds ?",
+  "answer": "yes",
+  "source": "IsA,wren",
+  "target": "CapableOf,sing to other birds"
+ },
+ {
+  "question": "Is a wren a biped ?",
+  "answer": "yes",
+  "source": "IsA,wren",
+  "target": "IsA,biped"
+ },
+ {
+  "question": "Is a wren a country ?",
+  "answer": "no",
+  "source": "IsA,wren",
+  "target": "IsA,country"
+ },
+ {
+  "question": "Is a wren a feathered animal ?",
+  "answer": "yes",
+  "source": "IsA,wren",
+  "target": "IsA,feathered animal"
+ },
+ {
+  "question": "Is a wren a herb ?",
+  "answer": "no",
+  "source": "IsA,wren",
+  "target": "IsA,herb"
+ },
+ {
+  "question": "Does a wren have a body part ?",
+  "answer": "yes",
+  "source": "IsA,wren",
+  "target": "HasPart,body part"
+ },
+ {
+  "question": "Is a wren a continent ?",
+  "answer": "no",
+  "source": "IsA,wren",
+  "target": "IsA,continent"
+ },
+ {
+  "question": "Is a wren a human being ?",
+  "answer": "no",
+  "source": "IsA,wren",
+  "target": "IsA,human being"
+ },
+ {
+  "question": "Is a wren  virus ?",
+  "answer": "no",
+  "source": "IsA,wren",
+  "target": "IsA,virus"
+ },
+ {
+  "question": "Is a wren a location ?",
+  "answer": "no",
+  "source": "IsA,wren",
+  "target": "IsA,location"
+ },
+ {
+  "question": "Is a wren an art ?",
+  "answer": "no",
+  "source": "IsA,wren",
+  "target": "IsA,art"
+ },
+ {
+  "question": "Is a zebra a vehicle ?",
+  "answer": "no",
+  "source": "IsA,zebra",
+  "target": "IsA,vehicle"
+ },
+ {
+  "question": "Is a zebra a deer ?",
+  "answer": "no",
+  "source": "IsA,zebra",
+  "target": "IsA,deer"
+ },
+ {
+  "question": "Is a zebra a warm blooded animal ?",
+  "answer": "yes",
+  "source": "IsA,zebra",
+  "target": "IsA,warm blooded animal"
+ },
+ {
+  "question": "Is a zebra a fish ?",
+  "answer": "no",
+  "source": "IsA,zebra",
+  "target": "IsA,fish"
+ },
+ {
+  "question": "Is a zebra a kitchen ?",
+  "answer": "no",
+  "source": "IsA,zebra",
+  "target": "IsA,kitchen"
+ },
+ {
+  "question": "Is a zebra a machine ?",
+  "answer": "no",
+  "source": "IsA,zebra",
+  "target": "IsA,machine"
+ },
+ {
+  "question": "Is a zebra a country ?",
+  "answer": "no",
+  "source": "IsA,zebra",
+  "target": "IsA,country"
+ },
+ {
+  "question": "Is a zebra alive ?",
+  "answer": "yes",
+  "source": "IsA,zebra",
+  "target": "HasProperty,alive"
+ },
+ {
+  "question": "Does a zebra have a face ?",
+  "answer": "yes",
+  "source": "IsA,zebra",
+  "target": "HasPart,face"
+ },
+ {
+  "question": "Can a zebra fight for life ?",
+  "answer": "yes",
+  "source": "IsA,zebra",
+  "target": "CapableOf,fight for life"
+ },
+ {
+  "question": "Is a zebra a sport ?",
+  "answer": "no",
+  "source": "IsA,zebra",
+  "target": "IsA,sport"
+ },
+ {
+  "question": "Is a zebra a vertebrate ?",
+  "answer": "yes",
+  "source": "IsA,zebra",
+  "target": "IsA,vertebrate"
+ },
+ {
+  "question": "Is a zebra a living creature ?",
+  "answer": "yes",
+  "source": "IsA,zebra",
+  "target": "IsA,living creature"
+ },
+ {
+  "question": "Is an oak an insect ?",
+  "answer": "no",
+  "source": "IsA,oak",
+  "target": "IsA,insect"
+ },
+ {
+  "question": "Is an oak a room ?",
+  "answer": "no",
+  "source": "IsA,oak",
+  "target": "IsA,room"
+ },
+ {
+  "question": "Is an oak a sport ?",
+  "answer": "no",
+  "source": "IsA,oak",
+  "target": "IsA,sport"
+ },
+ {
+  "question": "Is an oak a herb ?",
+  "answer": "no",
+  "source": "IsA,oak",
+  "target": "IsA,herb"
+ },
+ {
+  "question": "Can an oak branch off and get bigger ?",
+  "answer": "yes",
+  "source": "IsA,oak",
+  "target": "CapableOf,branch off and get bigger"
+ },
+ {
+  "question": "Is an oak a water ?",
+  "answer": "no",
+  "source": "IsA,oak",
+  "target": "IsA,water"
+ },
+ {
+  "question": "Is an oak a president ?",
+  "answer": "no",
+  "source": "IsA,oak",
+  "target": "IsA,president"
+ },
+ {
+  "question": "Is an oak  clothes ?",
+  "answer": "no",
+  "source": "IsA,oak",
+  "target": "IsA,clothes"
+ },
+ {
+  "question": "Is an oak a sugar ?",
+  "answer": "no",
+  "source": "IsA,oak",
+  "target": "IsA,sugar"
+ },
+ {
+  "question": "Is an oak a town ?",
+  "answer": "no",
+  "source": "IsA,oak",
+  "target": "IsA,town"
+ },
+ {
+  "question": "Is an oak a country ?",
+  "answer": "no",
+  "source": "IsA,oak",
+  "target": "IsA,country"
+ },
+ {
+  "question": "Can an oak grow in garden ?",
+  "answer": "yes",
+  "source": "IsA,oak",
+  "target": "CapableOf,grow in garden"
+ },
+ {
+  "question": "Can an oak suffering dehydration ?",
+  "answer": "yes",
+  "source": "IsA,oak",
+  "target": "CapableOf,suffering dehydration"
+ },
+ {
+  "question": "Is an oak a student ?",
+  "answer": "no",
+  "source": "IsA,oak",
+  "target": "IsA,student"
+ },
+ {
+  "question": "Is an oak a bacterium ?",
+  "answer": "no",
+  "source": "IsA,oak",
+  "target": "IsA,bacterium"
+ },
+ {
+  "question": "Is an oak a soda ?",
+  "answer": "no",
+  "source": "IsA,oak",
+  "target": "IsA,soda"
+ },
+ {
+  "question": "Can an orchid spread petals ?",
+  "answer": "yes",
+  "source": "IsA,orchid",
+  "target": "CapableOf,spread petals"
+ },
+ {
+  "question": "Is an orchid made of cells ?",
+  "answer": "yes",
+  "source": "IsA,orchid",
+  "target": "MadeOf,cells"
+ },
+ {
+  "question": "Does an orchid have a perianth ?",
+  "answer": "yes",
+  "source": "IsA,orchid",
+  "target": "HasPart,perianth"
+ },
+ {
+  "question": "Is an orchid a jellyfish ?",
+  "answer": "no",
+  "source": "IsA,orchid",
+  "target": "IsA,jellyfish"
+ },
+ {
+  "question": "Is an orchid an invertebrate ?",
+  "answer": "no",
+  "source": "IsA,orchid",
+  "target": "IsA,invertebrate"
+ },
+ {
+  "question": "Is an orchid a shop ?",
+  "answer": "no",
+  "source": "IsA,orchid",
+  "target": "IsA,shop"
+ },
+ {
+  "question": "Is an orchid a religion ?",
+  "answer": "no",
+  "source": "IsA,orchid",
+  "target": "IsA,religion"
+ },
+ {
+  "question": "Is an orchid a structure ?",
+  "answer": "no",
+  "source": "IsA,orchid",
+  "target": "IsA,structure"
+ },
+ {
+  "question": "Is an orchid a planet ?",
+  "answer": "no",
+  "source": "IsA,orchid",
+  "target": "IsA,planet"
+ },
+ {
+  "question": "Is an orchid a soda ?",
+  "answer": "no",
+  "source": "IsA,orchid",
+  "target": "IsA,soda"
+ },
+ {
+  "question": "Is an orchid a student ?",
+  "answer": "no",
+  "source": "IsA,orchid",
+  "target": "IsA,student"
+ },
+ {
+  "question": "Is an orchid a vehicle ?",
+  "answer": "no",
+  "source": "IsA,orchid",
+  "target": "IsA,vehicle"
+ },
+ {
+  "question": "Is an orchid an art ?",
+  "answer": "no",
+  "source": "IsA,orchid",
+  "target": "IsA,art"
+ },
+ {
+  "question": "Is an orchid a boat ?",
+  "answer": "no",
+  "source": "IsA,orchid",
+  "target": "IsA,boat"
+ },
+ {
+  "question": "Can  gladiolus suffering dehydration ?",
+  "answer": "yes",
+  "source": "IsA,gladiolus",
+  "target": "CapableOf,suffering dehydration"
+ },
+ {
+  "question": "Is  gladiolus an invertebrate ?",
+  "answer": "no",
+  "source": "IsA,gladiolus",
+  "target": "IsA,invertebrate"
+ },
+ {
+  "question": "Is  gladiolus a molecule ?",
+  "answer": "no",
+  "source": "IsA,gladiolus",
+  "target": "IsA,molecule"
+ },
+ {
+  "question": "Is  gladiolus a city ?",
+  "answer": "no",
+  "source": "IsA,gladiolus",
+  "target": "IsA,city"
+ },
+ {
+  "question": "Is  gladiolus a sugar ?",
+  "answer": "no",
+  "source": "IsA,gladiolus",
+  "target": "IsA,sugar"
+ },
+ {
+  "question": "Is  gladiolus alive ?",
+  "answer": "yes",
+  "source": "IsA,gladiolus",
+  "target": "HasProperty,alive"
+ },
+ {
+  "question": "Is  gladiolus a computer ?",
+  "answer": "no",
+  "source": "IsA,gladiolus",
+  "target": "IsA,computer"
+ },
+ {
+  "question": "Can  gladiolus drop petals ?",
+  "answer": "yes",
+  "source": "IsA,gladiolus",
+  "target": "CapableOf,drop petals"
+ },
+ {
+  "question": "Does  gladiolus have a floral leaf ?",
+  "answer": "yes",
+  "source": "IsA,gladiolus",
+  "target": "HasPart,floral leaf"
+ },
+ {
+  "question": "Is  gladiolus a president ?",
+  "answer": "no",
+  "source": "IsA,gladiolus",
+  "target": "IsA,president"
+ },
+ {
+  "question": "Is  gladiolus a jellyfish ?",
+  "answer": "no",
+  "source": "IsA,gladiolus",
+  "target": "IsA,jellyfish"
+ },
+ {
+  "question": "Is  gladiolus a horse ?",
+  "answer": "no",
+  "source": "IsA,gladiolus",
+  "target": "IsA,horse"
+ },
+ {
+  "question": "Is  gladiolus a tree ?",
+  "answer": "no",
+  "source": "IsA,gladiolus",
+  "target": "IsA,tree"
+ },
+ {
+  "question": "Is  gladiolus a carbohydrate ?",
+  "answer": "no",
+  "source": "IsA,gladiolus",
+  "target": "IsA,carbohydrate"
+ },
+ {
+  "question": "Is a birch a body of water ?",
+  "answer": "no",
+  "source": "IsA,birch",
+  "target": "IsA,body of water"
+ },
+ {
+  "question": "Does a birch have a burl ?",
+  "answer": "yes",
+  "source": "IsA,birch",
+  "target": "HasPart,burl"
+ },
+ {
+  "question": "Is a birch an europe ?",
+  "answer": "no",
+  "source": "IsA,birch",
+  "target": "IsA,europe"
+ },
+ {
+  "question": "Is a birch a building ?",
+  "answer": "no",
+  "source": "IsA,birch",
+  "target": "IsA,building"
+ },
+ {
+  "question": "Is a birch  grass ?",
+  "answer": "no",
+  "source": "IsA,birch",
+  "target": "IsA,grass"
+ },
+ {
+  "question": "Is a birch a deer ?",
+  "answer": "no",
+  "source": "IsA,birch",
+  "target": "IsA,deer"
+ },
+ {
+  "question": "Can a birch grow in garden ?",
+  "answer": "yes",
+  "source": "IsA,birch",
+  "target": "CapableOf,grow in garden"
+ },
+ {
+  "question": "Is a birch a fire ?",
+  "answer": "no",
+  "source": "IsA,birch",
+  "target": "IsA,fire"
+ },
+ {
+  "question": "Does a birch have  leaves ?",
+  "answer": "yes",
+  "source": "IsA,birch",
+  "target": "HasA,leaves"
+ },
+ {
+  "question": "Does a birch have a stem ?",
+  "answer": "yes",
+  "source": "IsA,birch",
+  "target": "HasPart,stem"
+ },
+ {
+  "question": "Is a birch a molecule ?",
+  "answer": "no",
+  "source": "IsA,birch",
+  "target": "IsA,molecule"
+ },
+ {
+  "question": "Is a birch a sound ?",
+  "answer": "no",
+  "source": "IsA,birch",
+  "target": "IsA,sound"
+ },
+ {
+  "question": "Can a birch die from pollution ?",
+  "answer": "yes",
+  "source": "IsA,birch",
+  "target": "CapableOf,die from pollution"
+ },
+ {
+  "question": "Can a birch have roots ?",
+  "answer": "yes",
+  "source": "IsA,birch",
+  "target": "CapableOf,have roots"
+ },
+ {
+  "question": "Is a birch an organism ?",
+  "answer": "yes",
+  "source": "IsA,birch",
+  "target": "IsA,organism"
+ },
+ {
+  "question": "Is a birch a snake ?",
+  "answer": "no",
+  "source": "IsA,birch",
+  "target": "IsA,snake"
+ },
+ {
+  "question": "Is a pine an organism ?",
+  "answer": "yes",
+  "source": "IsA,pine",
+  "target": "IsA,organism"
+ },
+ {
+  "question": "Is a pine a snake ?",
+  "answer": "no",
+  "source": "IsA,pine",
+  "target": "IsA,snake"
+ },
+ {
+  "question": "Is a pine a palm tree ?",
+  "answer": "no",
+  "source": "IsA,pine",
+  "target": "IsA,palm tree"
+ },
+ {
+  "question": "Is a pine a body of water ?",
+  "answer": "no",
+  "source": "IsA,pine",
+  "target": "IsA,body of water"
+ },
+ {
+  "question": "Is a pine a fruit ?",
+  "answer": "no",
+  "source": "IsA,pine",
+  "target": "IsA,fruit"
+ },
+ {
+  "question": "Is a pine an airplane ?",
+  "answer": "no",
+  "source": "IsA,pine",
+  "target": "IsA,airplane"
+ },
+ {
+  "question": "Is a pine a tracheophyte ?",
+  "answer": "yes",
+  "source": "IsA,pine",
+  "target": "IsA,tracheophyte"
+ },
+ {
+  "question": "Is a pine a movie ?",
+  "answer": "no",
+  "source": "IsA,pine",
+  "target": "IsA,movie"
+ },
+ {
+  "question": "Is a pine an action ?",
+  "answer": "no",
+  "source": "IsA,pine",
+  "target": "IsA,action"
+ },
+ {
+  "question": "Is a pine a liquid ?",
+  "answer": "no",
+  "source": "IsA,pine",
+  "target": "IsA,liquid"
+ },
+ {
+  "question": "Is a pine a kitchen ?",
+  "answer": "no",
+  "source": "IsA,pine",
+  "target": "IsA,kitchen"
+ },
+ {
+  "question": "Is a pine made of cells ?",
+  "answer": "yes",
+  "source": "IsA,pine",
+  "target": "MadeOf,cells"
+ },
+ {
+  "question": "Is a pine a river ?",
+  "answer": "no",
+  "source": "IsA,pine",
+  "target": "IsA,river"
+ },
+ {
+  "question": "Is a pine a soda ?",
+  "answer": "no",
+  "source": "IsA,pine",
+  "target": "IsA,soda"
+ },
+ {
+  "question": "Is a pine a hair ?",
+  "answer": "no",
+  "source": "IsA,pine",
+  "target": "IsA,hair"
+ },
+ {
+  "question": "Is a pine  fungus ?",
+  "answer": "no",
+  "source": "IsA,pine",
+  "target": "IsA,fungus"
+ },
+ {
+  "question": "Is a rose a turtle ?",
+  "answer": "no",
+  "source": "IsA,rose",
+  "target": "IsA,turtle"
+ },
+ {
+  "question": "Can a rose have roots ?",
+  "answer": "yes",
+  "source": "IsA,rose",
+  "target": "CapableOf,have roots"
+ },
+ {
+  "question": "Is a rose a bathroom ?",
+  "answer": "no",
+  "source": "IsA,rose",
+  "target": "IsA,bathroom"
+ },
+ {
+  "question": "Is a rose a fruit ?",
+  "answer": "no",
+  "source": "IsA,rose",
+  "target": "IsA,fruit"
+ },
+ {
+  "question": "Is a rose a cat ?",
+  "answer": "no",
+  "source": "IsA,rose",
+  "target": "IsA,cat"
+ },
+ {
+  "question": "Is a rose a meal ?",
+  "answer": "no",
+  "source": "IsA,rose",
+  "target": "IsA,meal"
+ },
+ {
+  "question": "Is a rose a dog ?",
+  "answer": "no",
+  "source": "IsA,rose",
+  "target": "IsA,dog"
+ },
+ {
+  "question": "Is a rose a crustacean ?",
+  "answer": "no",
+  "source": "IsA,rose",
+  "target": "IsA,crustacean"
+ },
+ {
+  "question": "Is a rose a carbohydrate ?",
+  "answer": "no",
+  "source": "IsA,rose",
+  "target": "IsA,carbohydrate"
+ },
+ {
+  "question": "Does a rose have a perianth ?",
+  "answer": "yes",
+  "source": "IsA,rose",
+  "target": "HasPart,perianth"
+ },
+ {
+  "question": "Is a rose a kitchen ?",
+  "answer": "no",
+  "source": "IsA,rose",
+  "target": "IsA,kitchen"
+ },
+ {
+  "question": "Can a rose give nectar to hummingbirds ?",
+  "answer": "yes",
+  "source": "IsA,rose",
+  "target": "CapableOf,give nectar to hummingbirds"
+ },
+ {
+  "question": "Is a rose a plastic ?",
+  "answer": "no",
+  "source": "IsA,rose",
+  "target": "IsA,plastic"
+ },
+ {
+  "question": "Is a rose a city ?",
+  "answer": "no",
+  "source": "IsA,rose",
+  "target": "IsA,city"
+ },
+ {
+  "question": "Is a tulip a deer ?",
+  "answer": "no",
+  "source": "IsA,tulip",
+  "target": "IsA,deer"
+ },
+ {
+  "question": "Can a tulip give nectar to hummingbirds ?",
+  "answer": "yes",
+  "source": "IsA,tulip",
+  "target": "CapableOf,give nectar to hummingbirds"
+ },
+ {
+  "question": "Is a tulip  clothes ?",
+  "answer": "no",
+  "source": "IsA,tulip",
+  "target": "IsA,clothes"
+ },
+ {
+  "question": "Is a tulip a bridge ?",
+  "answer": "no",
+  "source": "IsA,tulip",
+  "target": "IsA,bridge"
+ },
+ {
+  "question": "Is a tulip a lizard ?",
+  "answer": "no",
+  "source": "IsA,tulip",
+  "target": "IsA,lizard"
+ },
+ {
+  "question": "Is a tulip a bird ?",
+  "answer": "no",
+  "source": "IsA,tulip",
+  "target": "IsA,bird"
+ },
+ {
+  "question": "Is a tulip an action ?",
+  "answer": "no",
+  "source": "IsA,tulip",
+  "target": "IsA,action"
+ },
+ {
+  "question": "Does a tulip have an ovary ?",
+  "answer": "yes",
+  "source": "IsA,tulip",
+  "target": "HasPart,ovary"
+ },
+ {
+  "question": "Is a tulip a shop ?",
+  "answer": "no",
+  "source": "IsA,tulip",
+  "target": "IsA,shop"
+ },
+ {
+  "question": "Is a tulip a publication ?",
+  "answer": "no",
+  "source": "IsA,tulip",
+  "target": "IsA,publication"
+ },
+ {
+  "question": "Does a tulip have a pistil ?",
+  "answer": "yes",
+  "source": "IsA,tulip",
+  "target": "HasPart,pistil"
+ },
+ {
+  "question": "Is a tulip  virus ?",
+  "answer": "no",
+  "source": "IsA,tulip",
+  "target": "IsA,virus"
+ },
+ {
+  "question": "Is a tulip an acid ?",
+  "answer": "no",
+  "source": "IsA,tulip",
+  "target": "IsA,acid"
+ },
+ {
+  "question": "Is a tulip a country ?",
+  "answer": "no",
+  "source": "IsA,tulip",
+  "target": "IsA,country"
+ },
+ {
+  "question": "Can a daisy suffering dehydration ?",
+  "answer": "yes",
+  "source": "IsA,daisy",
+  "target": "CapableOf,suffering dehydration"
+ },
+ {
+  "question": "Is a daisy a vertebrate ?",
+  "answer": "no",
+  "source": "IsA,daisy",
+  "target": "IsA,vertebrate"
+ },
+ {
+  "question": "Does a daisy have a cell ?",
+  "answer": "yes",
+  "source": "IsA,daisy",
+  "target": "HasPart,cell"
+ },
+ {
+  "question": "Is a daisy an angiosperm ?",
+  "answer": "yes",
+  "source": "IsA,daisy",
+  "target": "IsA,angiosperm"
+ },
+ {
+  "question": "Is a daisy a leader ?",
+  "answer": "no",
+  "source": "IsA,daisy",
+  "target": "IsA,leader"
+ },
+ {
+  "question": "Is a daisy a cat ?",
+  "answer": "no",
+  "source": "IsA,daisy",
+  "target": "IsA,cat"
+ },
+ {
+  "question": "Is a daisy a flowering plant ?",
+  "answer": "yes",
+  "source": "IsA,daisy",
+  "target": "IsA,flowering plant"
+ },
+ {
+  "question": "Is a daisy a metal ?",
+  "answer": "no",
+  "source": "IsA,daisy",
+  "target": "IsA,metal"
+ },
+ {
+  "question": "Is a daisy an ocean ?",
+  "answer": "no",
+  "source": "IsA,daisy",
+  "target": "IsA,ocean"
+ },
+ {
+  "question": "Is a daisy a bacterium ?",
+  "answer": "no",
+  "source": "IsA,daisy",
+  "target": "IsA,bacterium"
+ },
+ {
+  "question": "Is a daisy a palm tree ?",
+  "answer": "no",
+  "source": "IsA,daisy",
+  "target": "IsA,palm tree"
+ },
+ {
+  "question": "Is a daisy a country ?",
+  "answer": "no",
+  "source": "IsA,daisy",
+  "target": "IsA,country"
+ },
+ {
+  "question": "Can a daisy drop petals ?",
+  "answer": "yes",
+  "source": "IsA,daisy",
+  "target": "CapableOf,drop petals"
+ },
+ {
+  "question": "Is a daisy a fish ?",
+  "answer": "no",
+  "source": "IsA,daisy",
+  "target": "IsA,fish"
+ },
+ {
+  "question": "Is a peony a door ?",
+  "answer": "no",
+  "source": "IsA,peony",
+  "target": "IsA,door"
+ },
+ {
+  "question": "Is a peony a drug ?",
+  "answer": "no",
+  "source": "IsA,peony",
+  "target": "IsA,drug"
+ },
+ {
+  "question": "Is a peony a dog ?",
+  "answer": "no",
+  "source": "IsA,peony",
+  "target": "IsA,dog"
+ },
+ {
+  "question": "Is a peony a wine ?",
+  "answer": "no",
+  "source": "IsA,peony",
+  "target": "IsA,wine"
+ },
+ {
+  "question": "Is a peony a tree ?",
+  "answer": "no",
+  "source": "IsA,peony",
+  "target": "IsA,tree"
+ },
+ {
+  "question": "Is a peony a forest ?",
+  "answer": "no",
+  "source": "IsA,peony",
+  "target": "IsA,forest"
+ },
+ {
+  "question": "Is a peony a sound ?",
+  "answer": "no",
+  "source": "IsA,peony",
+  "target": "IsA,sound"
+ },
+ {
+  "question": "Is a peony a car ?",
+  "answer": "no",
+  "source": "IsA,peony",
+  "target": "IsA,car"
+ },
+ {
+  "question": "Is a peony an acid ?",
+  "answer": "no",
+  "source": "IsA,peony",
+  "target": "IsA,acid"
+ },
+ {
+  "question": "Is a peony a crustacean ?",
+  "answer": "no",
+  "source": "IsA,peony",
+  "target": "IsA,crustacean"
+ },
+ {
+  "question": "Is a peony alive ?",
+  "answer": "yes",
+  "source": "IsA,peony",
+  "target": "HasProperty,alive"
+ },
+ {
+  "question": "Is a peony  fungus ?",
+  "answer": "no",
+  "source": "IsA,peony",
+  "target": "IsA,fungus"
+ },
+ {
+  "question": "Is a peony a leader ?",
+  "answer": "no",
+  "source": "IsA,peony",
+  "target": "IsA,leader"
+ },
+ {
+  "question": "Is a peony a kitchen utensil ?",
+  "answer": "no",
+  "source": "IsA,peony",
+  "target": "IsA,kitchen utensil"
+ }
+]
