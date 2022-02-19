@@ -90,7 +90,7 @@ def eval_consistency(sentences, constraint_file):
     return consistencies
 
 if __name__ == "__main__":
-    sentences = [{'source': 'IsA,palm tree', 'target': 'IsA,fire', 'answer': "yes"}, {'source': 'IsA,palm tree', 'target': 'IsA,computer', 'answer': "yes"}]
+    sentences = [{'source': 'IsA,palm tree', 'target': 'IsA,fire', 'answer': "yes"}, {'source': 'IsA,palm tree', 'target': 'IsA,computer', 'answer': "yes"}, {'source': 'IsA,palm tree', 'target': 'IsA,palm tree', 'answer': "yes"}]
     constraint_file = 'beliefbank-data-sep2021/constraints_v2.json'
     
     consistencies = eval_consistency(sentences, constraint_file)
