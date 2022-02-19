@@ -5,7 +5,7 @@ def create_constraint_graph(constraint_file):
     """
     Use constraint json file to create an adjacency list of the form:
     {
-        'ource_node: [[target_node, truth_value], [target_node, truth_value], ...]
+        source_node: [[target_node, truth_value], [target_node, truth_value], ...]
     }
     """
     with open(constraint_file, 'r') as f:
