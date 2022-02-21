@@ -1,6 +1,7 @@
-import torch
 import json
 import argparse
+from tqdm import tqdm
+import torch
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 from torch.utils.data import Dataset
 from torch.utils.data.dataloader import DataLoader
@@ -37,10 +38,10 @@ class tokenedDataset(Dataset):
                 #                             truncation=True)
                 # )
 
-def test():
+def infer():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--in_path', default="/beliefbank-data-sep2021/qa.json")
-    parser.add_argument('--out_path', default="/beliefbank-data-sep2021/baseline.json")
+    parser.add_argument('--in_path', default="./beliefbank-data-sep2021/qa.json")
+    parser.add_argument('--out_path', default="./beliefbank-data-sep2021/baseline.json")
     args = parser.parse_args()
 
     device = torch.cuda.current_device() if torch.cuda.is_available() else 'cpu'
@@ -50,10 +51,9 @@ def test():
     model = AutoModelForSeq2SeqLM.from_pretrained("allenai/macaw-large")
     model = model.to(device)
     test_dataset = tokenedDataset(args.in_path,tokenizer)
-    count=0
-    for id, (q,a_gt) in enumerate(test_dataset):
-        if(count==50):
-            break
+
+    pbar = tqdm(enumerate(test_dataset), total=len(test_dataset))
+    for id, (q,a_gt) in pbar:
         # forward the model
         outputs = model.generate(input_ids = q.input_ids.to(device))
         preds = tokenizer.decode(outputs[0], skip_special_tokens=True)
@@ -72,4 +72,4 @@ def test():
     outfile.close()
 
 if __name__ =="__main__":
-    test()
+    infer()
