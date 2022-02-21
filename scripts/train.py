@@ -1,9 +1,8 @@
-import tqdm
 import torch
-from torch import NoneType
+from tqdm import tqdm
 import torch.optim as optim
-from torch.optim.lr_scheduler import LambdaLR
 from torch.utils.data.dataloader import DataLoader
+
 
 def train(model, tokenizer, train_dataset, config):
     no_decay = ["bias", "LayerNorm.weight"]
@@ -17,19 +16,20 @@ def train(model, tokenizer, train_dataset, config):
 
     model.train()
     
-    train_dataloader = DataLoader(train_dataset, batch_size=config['batch_size'],num_workers=config['num_workers'])
+    train_dataloader = DataLoader(train_dataset, batch_size=config['batch_size'],
+                                  num_workers=config['num_workers'])
     losses=[]
 
     for epoch in range(config['max_epochs']):
         pbar = tqdm(enumerate(train_dataloader), total=len(train_dataloader))
-        for it, (q,a_gt) in pbar:
-            q = tokenizer.encode(q, return_tensors="pt")
-            a_gt = tokenizer.encode(a_gt, return_tensors="pt")
-            q = q.to(config['device'])
-            a_gt = a_gt.to(config['device'])
+        for it, (x, a, y) in pbar:
+            x = x.to(config['device'])
+            a = a.to(config['device'])
+            y = y.to(config['device'])
 
-            # forward the model
-            loss = model(input_ids=q, labels=a_gt).loss
+            out = model(input_ids=x, attention_mask=a, labels=y)
+            loss = out.loss
+
             loss = loss.mean() # collapse all losses if they are scattered on multiple gpus
             losses.append(loss.item())
 
@@ -42,5 +42,6 @@ def train(model, tokenizer, train_dataset, config):
             pbar.set_description(f"epoch {epoch+1} iter {it}: train loss {loss.item():.5f}")
 
         #save checkpoint
-        model_path = config['chkpt_path']+"_"+str(epoch)
-        torch.save(model.state_dict(),model_path)
+        if (epoch % 10) == 0:
+            model_path = config['chkpt_path']+"_" + str(epoch)
+            torch.save(model.state_dict(), model_path)

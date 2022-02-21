@@ -1,24 +1,14 @@
-import argparse
-import json
 import torch
+import argparse
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
-import train
-from torch.utils.data import Dataset
 
-class tokenedDataset(Dataset):
-    def __init__(self, json_filepath, tokenizer):
-        self.data = json.load(open(json_filepath))
-        self.input_strings = ["$question$ = "+ line['question'] for line in self.data]
-        self.output_strings = ["$answer$ = " + line['answer'] for line in self.data]
+from train import train
+from utils.dataset import QADataset
 
-    def __len__(self):
-        return len(self.data)
-    def __getitem__(self, idx):
-        return (self.input_strings[idx], self.output_strings[idx])
 
-def main():
+def passed_arguments():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--train_path', default="/beliefbank-data-sep2021/qa.json")
+    parser.add_argument('--train_path', default="./beliefbank-data-sep2021/qa.json")
     parser.add_argument('--max_epochs', type=int, default=10)
     parser.add_argument('--batch_size', type=int, default=64)
     parser.add_argument('--lr', type=float, default=3e-4)
@@ -27,13 +17,18 @@ def main():
     parser.add_argument('--model_path', default="runs/baseline")
     parser.add_argument('--num_workers', type=int, default=4)
     args = parser.parse_args()
+    return args
+
+
+def main():
+    args = passed_arguments()
 
     device = torch.cuda.current_device() if torch.cuda.is_available() else 'cpu'
     tokenizer = AutoTokenizer.from_pretrained("allenai/macaw-large")
     model = AutoModelForSeq2SeqLM.from_pretrained("allenai/macaw-large")
-    model = torch.nn.DataParallel(model).to(device)
+    # model = torch.nn.DataParallel(model).to(device)
 
-    train_dataset = tokenedDataset(args.train_path)
+    train_dataset = QADataset(args.train_path, tokenizer)
 
     config = {
         'device': device,
@@ -42,14 +37,15 @@ def main():
         'learning_rate': args.lr,
         'betas': (0.9, 0.95),
         'grad_norm_clip': 1.0,
-        'weight_decay':  args.weight_decay, # only applied on matmul weights
+        'weight_decay': args.weight_decay,  # only applied on matmul weights
         # learning rate decay params: linear warmup followed by cosine decay to 10% of original
         'lr_decay': args.lr_decay,
         # checkpoint settings
         'chkpt_path': args.model_path,
-        'num_workers': args.num_workers # for DataLoader
+        'num_workers': args.num_workers  # for DataLoader
     }
     train(model, tokenizer, train_dataset, config)
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     main()
