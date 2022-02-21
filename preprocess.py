@@ -3,31 +3,60 @@ import random
 from collections import defaultdict, namedtuple
 
 
-data_row = namedtuple('DataRow', ['question', 'answer', 'source', 'target'])
+Edge = namedtuple('DataRow', ['question', 'answer', 'source', 'target', 'gold'])
+
+
+class DataRow(Edge):
+    def __hash__(self):
+        return hash(self.question)
+
+    def __eq__(self, other):
+        return self.question == other.question
 
 
 def parse_source_target(source, target):
     # ASSUME: source is always "IsA"
     s_obj, t_obj = source.split(',')[1], target.split(',')[1]
 
-    s_art = 'an' if s_obj[0] in {'a', 'e', 'i', 'o', 'u'} else 'a'
+    s_art = 'an ' if s_obj[0] in {'a', 'e', 'i', 'o', 'u'} else 'a '
     s_art = s_art if s_obj[-1] != 's' else ''
-    t_art = 'an' if t_obj[0] in {'a', 'e', 'i', 'o', 'u'} else 'a'
+    t_art = 'an ' if t_obj[0] in {'a', 'e', 'i', 'o', 'u'} else 'a '
     t_art = t_art if t_obj[-1] != 's' else ''
     if target.startswith('IsA'):
-        return f'Is {s_art} {s_obj} {t_art} {t_obj} ?'
+        return f'Is {s_art}{s_obj} {t_art}{t_obj} ?'
     elif target.startswith('HasA'):
-        return f'Does {s_art} {s_obj} have {t_art} {t_obj} ?'
+        return f'Does {s_art}{s_obj} have {t_art}{t_obj} ?'
     elif target.startswith('HasPart'):
-        return f'Does {s_art} {s_obj} have {t_art} {t_obj} ?'
+        return f'Does {s_art}{s_obj} have {t_art}{t_obj} ?'
     elif target.startswith('HasProperty'):
-        return f'Is {s_art} {s_obj} {t_obj} ?'
+        return f'Is {s_art}{s_obj} {t_obj} ?'
     elif target.startswith('MadeOf'):
-        return f'Is {s_art} {s_obj} made of {t_obj} ?'
+        return f'Is {s_art}{s_obj} made of {t_obj} ?'
     elif target.startswith('CapableOf'):
-        return f'Can {s_art} {s_obj} {t_obj} ?'
+        return f'Can {s_art}{s_obj} {t_obj} ?'
     else:
         raise ValueError("NOOOOO")
+
+
+def traverse(data_adj_list):
+    visited = defaultdict(set)
+
+    def _traverse_dfs(source, n):
+        for e in data_adj_list.get(n):
+            s_n_edge = DataRow(question=parse_source_target(source, e.target), answer=e.answer,
+                               source=source, target=e.target, gold=e.source == source)
+
+            if s_n_edge not in visited[source]:
+                visited[source].add(s_n_edge)
+
+                if s_n_edge.target in data_adj_list and s_n_edge.answer == 'yes':
+                    _traverse_dfs(source, s_n_edge.target)
+        return
+
+    for n in data_adj_list:
+        _traverse_dfs(n, n)
+
+    return visited
 
 
 def process_c_graph(c_graph):
@@ -39,25 +68,25 @@ def process_c_graph(c_graph):
         s, t = (e['source'], e['target']) if e['direction'] == 'forward' else (e['target'], e['source'])
         impl = e['weight']
 
-        row = data_row(question=parse_source_target(s, t), answer='yes' if impl == 'yes_yes' else 'no',
-                       source=s, target=t)
+        row = DataRow(question=parse_source_target(s, t), answer='yes' if impl == 'yes_yes' else 'no',
+                      source=s, target=t, gold=True)
         # row = {'question': parse_source_target(s, t), 'answer': 'yes' if impl == 'yes_yes' else 'no',
                # 'source': s, 'target': t}
         data[s].add(row)
 
-    data = {n: [q._asdict() for q in qs] for n, qs in data.items()}
-    return data
+    # Add silver edges
+    return traverse(data)
 
 
 def process_silver_facts(silver_facts):
     data = defaultdict(set)
     for source, targets in silver_facts.items():
         for target, label in targets.items():
-            row = data_row(question=parse_source_target('IsA,' + source, target), answer=label,
-                           source='IsA,' + source, target=target)
+            row = DataRow(question=parse_source_target('IsA,' + source, target), answer=label,
+                          source='IsA,' + source, target=target, gold=False)
             data['IsA,' + source].add(row)
 
-    data = {n: [q._asdict() for q in qs] for n, qs in data.items()}
+    # data = {n: [q._asdict() for q in qs] for n, qs in data.items()}
     return data
 
 
@@ -94,8 +123,18 @@ if __name__ == "__main__":
     c_data = process_c_graph(c_graph)
     s_data = process_silver_facts(facts)
 
-    train_c, val_c, test_c = data_split(c_data)
-    train_s, val_s, test_s = data_split(s_data)
+    data = defaultdict(set)
+    for n, qs in c_data.items():
+        data[n].update(qs)
+    for n, qs in s_data.items():
+        data[n].update(qs)
+
+    c_data = {n: [q._asdict() for q in qs] for n, qs in c_data.items()}
+    s_data = {n: [q._asdict() for q in qs] for n, qs in s_data.items()}
+    data = {n: [q._asdict() for q in qs] for n, qs in data.items()}
+
+    train, val, test = data_split(data)
+    # train_s, val_s, test_s = data_split(s_data)
 
     with open('beliefbank-data-sep2021/constraints_qa.json', 'w') as f:
         json.dump(c_data, f)
@@ -104,15 +143,15 @@ if __name__ == "__main__":
         json.dump(s_data, f)
 
     with open('beliefbank-data-sep2021/qa.json', 'w') as f:
-        json.dump(flatten(c_data.values()) + flatten(s_data.values()), f, indent=1)
+        json.dump(flatten(data.values()), f, indent=1)
 
     with open('beliefbank-data-sep2021/qa_train.json', 'w') as f:
-        json.dump(flatten(train_c.values()) + flatten(train_s.values()), f, indent=1)
+        json.dump(flatten(train.values()), f, indent=1)
 
     with open('beliefbank-data-sep2021/qa_val.json', 'w') as f:
-        json.dump(flatten(val_c.values()) + flatten(val_s.values()), f, indent=1)
+        json.dump(flatten(val.values()), f, indent=1)
 
     with open('beliefbank-data-sep2021/qa_test.json', 'w') as f:
-        json.dump(flatten(test_c.values()) + flatten(test_s.values()), f, indent=1)
+        json.dump(flatten(test.values()), f, indent=1)
 
 
