@@ -43,16 +43,19 @@ def test():
     parser.add_argument('--out_path', default="/beliefbank-data-sep2021/baseline.json")
     args = parser.parse_args()
 
+    device = torch.cuda.current_device() if torch.cuda.is_available() else 'cpu'
+
     output_preds = []
     tokenizer = AutoTokenizer.from_pretrained("allenai/macaw-large")
     model = AutoModelForSeq2SeqLM.from_pretrained("allenai/macaw-large")
+    model = model.to(device)
     test_dataset = tokenedDataset(args.in_path,tokenizer)
     count=0
     for id, (q,a_gt) in enumerate(test_dataset):
         if(count==50):
             break
         # forward the model
-        outputs = model.generate(input_ids = q.input_ids)
+        outputs = model.generate(input_ids = q.input_ids.to(device))
         preds = tokenizer.decode(outputs[0], skip_special_tokens=True)
         
         data = {'id':id,
