@@ -43,6 +43,6 @@ def train(model, tokenizer, train_dataset, config):
             pbar.set_description(f"epoch {epoch+1} iter {it}: train loss {loss.item():.5f}")
 
         #save checkpoint
-        if (epoch % 10) == 0:
+        if (epoch % 1) == 0:
             model_path = os.path.join(config['model_path'], f"{epoch}.bin")
             torch.save(model.state_dict(), model_path)
