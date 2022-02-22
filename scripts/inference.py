@@ -5,43 +5,18 @@ import torch
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 from torch.utils.data import Dataset
 from torch.utils.data.dataloader import DataLoader
+from utils.dataset import QADataset
 
-class tokenedDataset(Dataset):
-    def __init__(self, json_filepath,tokenizer):
-        self.data = json.load(open(json_filepath))
-
-        self.input_strings = ["$answer$ ; $mcoptions$ ; $question$ = "+ line['question'] for line in self.data]
-        self.output_strings = ["$answer$ = " + line['answer'] for line in self.data]
-        self.source_len = 100#max(len(s.split()) for s in self.input_strings)
-        self.target_len = 100#max(len(t.split()) for t in self.output_strings)
-        self.tokenizer = tokenizer
-
-    def __len__(self):
-        return len(self.data)
-    def __getitem__(self, idx):
-        src_text = str(self.input_strings[idx])
-        src_text = " ".join(src_text.split())
-        tgt_text = str(self.output_strings[idx])
-        tgt_text = " ".join(tgt_text.split())
-        return (self.tokenizer.batch_encode_plus([src_text],
-                                            return_tensors="pt",
-                                            max_length=self.source_len,
-                                            pad_to_max_length=True,
-                                            padding="max_length",
-                                            truncation=True), 
-                tgt_text)                            
-                # self.tokenizer.batch_encode_plus([tgt_text],
-                #                             return_tensors="pt",
-                #                             max_length=self.source_len,
-                #                             pad_to_max_length=True,
-                #                             padding="max_length",
-                #                             truncation=True)
-                # )
+def batch(iterable, n=1):
+    l = len(iterable)
+    for ndx in range(0, l, n):
+        yield iterable[ndx:min(ndx + n, l)]
 
 def infer():
     parser = argparse.ArgumentParser()
     parser.add_argument('--in_path', default="./beliefbank-data-sep2021/qa.json")
     parser.add_argument('--out_path', default="./beliefbank-data-sep2021/baseline.json")
+    parser.add_argument('--batch_size', type=int, default=64)
     args = parser.parse_args()
 
     device = torch.cuda.current_device() if torch.cuda.is_available() else 'cpu'
@@ -50,22 +25,36 @@ def infer():
     tokenizer = AutoTokenizer.from_pretrained("allenai/macaw-large")
     model = AutoModelForSeq2SeqLM.from_pretrained("allenai/macaw-large")
     model = model.to(device)
-    test_dataset = tokenedDataset(args.in_path,tokenizer)
 
-    pbar = tqdm(enumerate(test_dataset), total=len(test_dataset))
-    for id, (q,a_gt) in pbar:
-        # forward the model
-        outputs = model.generate(input_ids = q.input_ids.to(device))
-        preds = tokenizer.decode(outputs[0], skip_special_tokens=True)
-        
-        data = {'id':id,
-                'q':tokenizer.decode(q.input_ids[0], skip_special_tokens=True),
-                'pred': preds,
-                 'tgt': a_gt   
-                }
-        output_preds.append(data)
 
-        count+=1
+    with open(args.in_path, 'r') as f:
+        qa = json.load(f)
+
+    test_dataset = QADataset(args.in_path,tokenizer)
+    test_dataloader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False)
+    pbar = tqdm(zip(test_dataloader,batch(qa,args.batch_size)), total=len(test_dataloader))
+
+    output_preds = []
+    for dl, dc in pbar:
+        q_ids,attn,_ = dl
+        q_ids = q_ids.to(device)
+        attn = attn.to(device)
+
+        output_sequences = model.generate(
+                                input_ids=q_ids,
+                                attention_mask=attn,
+                                do_sample=False,  # disable sampling to test if batching affects output
+                            )
+
+        preds = tokenizer.batch_decode(output_sequences, skip_special_tokens=True)
+        q_s = [d['question'] for d in dc]
+        a_s = [d['answer'] for d in dc]
+        # q_s = tokenizer.batch_decode(q, skip_special_tokens=True)
+        # y[y==-100] = tokenizer.pad_token_id
+        # a_s = tokenizer.batch_decode(y, skip_special_tokens=True)        
+        data = [{'q':q, 'pred': pred, 'tgt': a } for (q,pred,a) in zip(q_s,preds,a_s)]
+        output_preds = output_preds + data
+
         
     with open(args.out_path, 'w') as outfile:
         json.dump(output_preds, outfile, indent=4)
