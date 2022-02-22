@@ -1,3 +1,4 @@
+import os
 import torch
 from tqdm import tqdm
 import torch.optim as optim
@@ -43,5 +44,7 @@ def train(model, tokenizer, train_dataset, config):
 
         #save checkpoint
         if (epoch % 10) == 0:
-            model_path = config['chkpt_path']+"_" + str(epoch)
+            os.makedirs(config['chkpt_path'], exist_ok=True)
+
+            model_path = os.path.join(config['chkpt_path'], f"{epoch}.bin")
             torch.save(model.state_dict(), model_path)

@@ -1,3 +1,4 @@
+import os
 import torch
 import argparse
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
@@ -23,9 +24,12 @@ def passed_arguments():
 def main():
     args = passed_arguments()
 
+    os.makedirs(args.chkpt_path, exist_ok=True)
+
     device = torch.cuda.current_device() if torch.cuda.is_available() else 'cpu'
     tokenizer = AutoTokenizer.from_pretrained("allenai/macaw-large")
     model = AutoModelForSeq2SeqLM.from_pretrained("allenai/macaw-large")
+    model = model.to(device)
     # model = torch.nn.DataParallel(model).to(device)
 
     train_dataset = QADataset(args.train_path, tokenizer)
