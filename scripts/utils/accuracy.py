@@ -9,13 +9,13 @@ def F1_score(results):
     FN = 0.0
     skip_count = 0
     for pred in res:
-        if pred['pred'].split()[2][:3]=="yes":
-            if pred['tgt'].split()[2]=='yes':
+        if pred['pred'].split()[2][:3]=="Yes" or pred['pred'].split()[2][:3]=="yes":
+            if pred['tgt']=='yes':
                 TP+=1
             else:
                 FP+=1
-        elif pred['pred'].split()[2][:2]=="no":
-            if pred['tgt'].split()[2]=='yes':
+        elif pred['pred'].split()[2][:2]=="No" or pred['pred'].split()[2][:2]=="no":
+            if pred['tgt']=='yes':
                 FN+=1
             else:
                 TN+=1
