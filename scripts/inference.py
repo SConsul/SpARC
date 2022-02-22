@@ -16,6 +16,7 @@ def infer():
     parser = argparse.ArgumentParser()
     parser.add_argument('--in_path', default="./beliefbank-data-sep2021/qa.json")
     parser.add_argument('--out_path', default="./beliefbank-data-sep2021/baseline.json")
+    parser.add_argument('--model_path', default=None, type=str)
     parser.add_argument('--batch_size', type=int, default=64)
     args = parser.parse_args()
 
@@ -24,6 +25,9 @@ def infer():
     output_preds = []
     tokenizer = AutoTokenizer.from_pretrained("allenai/macaw-large")
     model = AutoModelForSeq2SeqLM.from_pretrained("allenai/macaw-large")
+
+    if args.model_path is not None:
+        model.load_state_dict(torch.load(args.model_path, map_location='cpu'))
     model = model.to(device)
 
 
