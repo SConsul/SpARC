@@ -4,7 +4,7 @@ from torch.utils.data import Dataset
 
 
 class QADataset(Dataset):
-    def __init__(self, json_filepath, tokenizer, max_source_len=128, max_target_len=16):
+    def __init__(self, json_filepath, tokenizer, max_source_len=64, max_target_len=8):
         with open(json_filepath, 'r') as f:
             data = json.load(f)
         self.data = data
