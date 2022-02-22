@@ -24,7 +24,7 @@ def passed_arguments():
 def main():
     args = passed_arguments()
 
-    os.makedirs(args.chkpt_path, exist_ok=True)
+    os.makedirs(args.model_path, exist_ok=True)
 
     device = torch.cuda.current_device() if torch.cuda.is_available() else 'cpu'
     tokenizer = AutoTokenizer.from_pretrained("allenai/macaw-large")
@@ -45,7 +45,7 @@ def main():
         # learning rate decay params: linear warmup followed by cosine decay to 10% of original
         'lr_decay': args.lr_decay,
         # checkpoint settings
-        'chkpt_path': args.model_path,
+        'model_path': args.model_path,
         'num_workers': args.num_workers  # for DataLoader
     }
     train(model, tokenizer, train_dataset, config)

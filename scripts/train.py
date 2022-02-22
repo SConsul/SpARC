@@ -44,7 +44,5 @@ def train(model, tokenizer, train_dataset, config):
 
         #save checkpoint
         if (epoch % 10) == 0:
-            os.makedirs(config['chkpt_path'], exist_ok=True)
-
-            model_path = os.path.join(config['chkpt_path'], f"{epoch}.bin")
+            model_path = os.path.join(config['model_path'], f"{epoch}.bin")
             torch.save(model.state_dict(), model_path)
