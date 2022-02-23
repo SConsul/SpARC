@@ -75,7 +75,7 @@ def process_c_graph(c_graph):
         data[s].add(row)
 
     # Add silver edges
-    return traverse(data)
+    return data, traverse(data)
 
 
 def process_silver_facts(silver_facts):
@@ -96,7 +96,7 @@ def data_split(data, train=0.8, val=0.1, test=0.1):
     test_data = defaultdict(list)
 
     for n, questions in data.items():
-        q_prime = questions.copy()
+        q_prime = list(questions.copy())
         random.shuffle(q_prime)
         tr_a, tr_b = 0, int(train * len(q_prime))
         val_a, val_b = tr_b, tr_b + int(val * len(q_prime))
@@ -107,6 +107,21 @@ def data_split(data, train=0.8, val=0.1, test=0.1):
         test_data[n].extend(q_prime[test_a:test_b])
 
     return train_data, val_data, test_data
+
+
+def merge(data1, data2):
+    new_data = defaultdict(set)
+    for k, qs in data1.items():
+        new_data[k].update(qs)
+
+    for k, qs in data2.items():
+        new_data[k].update(qs)
+
+    return new_data
+
+
+def json_serialize(data):
+    return {n: [q._asdict() for q in qs] for n, qs in data.items()}
 
 
 def flatten(l):
@@ -120,30 +135,35 @@ if __name__ == "__main__":
     with open('beliefbank-data-sep2021/silver_facts.json', 'r') as f:
         facts = json.load(f)
 
-    c_data = process_c_graph(c_graph)
+    c_adj_list, c_data = process_c_graph(c_graph)
+
     s_data = process_silver_facts(facts)
 
-    data = defaultdict(set)
-    for n, qs in c_data.items():
-        data[n].update(qs)
-    for n, qs in s_data.items():
-        data[n].update(qs)
+    c_multi_hop = defaultdict(set)
+    for n, all_edges in c_data.items():
+        c_multi_hop[n] = all_edges - c_adj_list[n]
 
-    c_data = {n: [q._asdict() for q in qs] for n, qs in c_data.items()}
-    s_data = {n: [q._asdict() for q in qs] for n, qs in s_data.items()}
-    data = {n: [q._asdict() for q in qs] for n, qs in data.items()}
+    # Merge multihop with silver data
+    eval_data = merge(c_multi_hop, s_data)
 
-    train, val, test = data_split(data)
-    # train_s, val_s, test_s = data_split(s_data)
+    # Split single hop edges into train/val/test
+    train, one_hop_val, one_hop_test = data_split(c_adj_list)
+    _, multi_val, multi_test = data_split(eval_data, train=0., val=0.5, test=0.5)
+    val = merge(one_hop_val, multi_val)
+    test = merge(one_hop_test, multi_test)
+    
+    train = json_serialize(train)
+    val = json_serialize(val)
+    test = json_serialize(test)
 
     with open('beliefbank-data-sep2021/constraints_qa.json', 'w') as f:
-        json.dump(c_data, f)
+        json.dump(json_serialize(c_data), f)
 
     with open('beliefbank-data-sep2021/silver_qa.json', 'w') as f:
-        json.dump(s_data, f)
+        json.dump(json_serialize(s_data), f)
 
-    with open('beliefbank-data-sep2021/qa.json', 'w') as f:
-        json.dump(flatten(data.values()), f, indent=1)
+    # with open('beliefbank-data-sep2021/qa.json', 'w') as f:
+    #     json.dump(flatten(data.values()), f, indent=1)
 
     with open('beliefbank-data-sep2021/qa_train.json', 'w') as f:
         json.dump(flatten(train.values()), f, indent=1)
