@@ -16,21 +16,22 @@ def train(model, tokenizer, train_dataset, config):
     optimizer = optim.AdamW(optim_groups, lr=config['learning_rate'], betas=config['betas'])
 
     model.train()
-    
+
     train_dataloader = DataLoader(train_dataset, batch_size=config['batch_size'],
                                   num_workers=config['num_workers'])
-    losses=[]
-
+    losses = []
     activation = {}
+
     def get_activation(name):
         def hook(model, input, output):
             activation[name] = output.detach()
+
         return hook
 
     if config['l1_reg'] is not None:
         model.lm_head.register_forward_hook(get_activation('lm_head'))
 
-    for epoch in range(config['max_epochs']):        
+    for epoch in range(config['max_epochs']):
         pbar = tqdm(enumerate(train_dataloader), total=len(train_dataloader))
         for it, (x, a, y) in pbar:
             x = x.to(config['device'])
@@ -40,23 +41,22 @@ def train(model, tokenizer, train_dataset, config):
             out = model(input_ids=x, attention_mask=a, labels=y)
             loss = out.loss
 
-            loss = loss.mean() # collapse all losses if they are scattered on multiple gpus
+            loss = loss.mean()  # collapse all losses if they are scattered on multiple gpus
             losses.append(loss.item())
-
-            model.zero_grad()
 
             if config['l1_reg'] is not None:
                 l1_regularization = config['l1_reg'] * torch.norm(activation['lm_head'], 1)
-                loss += l1_regularization            
+                loss += l1_regularization
 
+            model.zero_grad()
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), config['grad_norm_clip'])
             optimizer.step()
-            
-            # report progress
-            pbar.set_description(f"epoch {epoch+1} iter {it}: train loss {loss.item():.5f}")
 
-        #save checkpoint
+            # report progress
+            pbar.set_description(f"epoch {epoch + 1} iter {it}: train loss {loss.item():.5f}")
+
+        # save checkpoint
         if (epoch % 1) == 0:
             model_path = os.path.join(config['model_path'], f"{epoch}.bin")
             torch.save(model.state_dict(), model_path)
