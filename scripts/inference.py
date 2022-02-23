@@ -7,10 +7,12 @@ from torch.utils.data import Dataset
 from torch.utils.data.dataloader import DataLoader
 from utils.dataset import QADataset
 
+
 def batch(iterable, n=1):
     l = len(iterable)
     for ndx in range(0, l, n):
         yield iterable[ndx:min(ndx + n, l)]
+
 
 def infer():
     parser = argparse.ArgumentParser()
@@ -30,25 +32,24 @@ def infer():
         model.load_state_dict(torch.load(args.model_path, map_location='cpu'))
     model = model.to(device)
 
-
     with open(args.in_path, 'r') as f:
         qa = json.load(f)
 
-    test_dataset = QADataset(args.in_path,tokenizer)
+    test_dataset = QADataset(args.in_path, tokenizer)
     test_dataloader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False)
-    pbar = tqdm(zip(test_dataloader,batch(qa,args.batch_size)), total=len(test_dataloader))
+    pbar = tqdm(zip(test_dataloader, batch(qa, args.batch_size)), total=len(test_dataloader))
 
     output_preds = []
     for dl, dc in pbar:
-        q_ids,attn,_ = dl
+        q_ids, attn, _ = dl
         q_ids = q_ids.to(device)
         attn = attn.to(device)
 
         output_sequences = model.generate(
-                                input_ids=q_ids,
-                                attention_mask=attn,
-                                do_sample=False,  # disable sampling to test if batching affects output
-                            )
+            input_ids=q_ids,
+            attention_mask=attn,
+            do_sample=False,  # disable sampling to test if batching affects output
+        )
 
         preds = tokenizer.batch_decode(output_sequences, skip_special_tokens=True)
         q_s = [d['question'] for d in dc]
@@ -56,13 +57,13 @@ def infer():
         # q_s = tokenizer.batch_decode(q, skip_special_tokens=True)
         # y[y==-100] = tokenizer.pad_token_id
         # a_s = tokenizer.batch_decode(y, skip_special_tokens=True)        
-        data = [{'q':q, 'pred': pred, 'tgt': a } for (q,pred,a) in zip(q_s,preds,a_s)]
+        data = [{'q': q, 'pred': pred, 'tgt': a} for (q, pred, a) in zip(q_s, preds, a_s)]
         output_preds = output_preds + data
 
-        
     with open(args.out_path, 'w') as outfile:
         json.dump(output_preds, outfile, indent=4)
     outfile.close()
 
-if __name__ =="__main__":
+
+if __name__ == "__main__":
     infer()
