@@ -11,7 +11,7 @@ class QADataset(Dataset):
         self.tokenizer = tokenizer
 
         self.input_strings = ["$answer$ ; $question$ = " + line['question']
-                              + ' $mcoptions$ = (A) Yes (B) No' for line in self.data]
+                              + ' ; $mcoptions$ = (A) Yes (B) No' for line in self.data]
         self.output_strings = ["$answer$ = " + line['answer'] for line in self.data]
         self.source_len = max_source_len
         self.target_len = max_target_len
