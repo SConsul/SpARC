@@ -17,6 +17,7 @@ def passed_arguments():
     parser.add_argument('--weight_decay', type=float, default=0.1)
     parser.add_argument('--model_path', default="runs/baseline")
     parser.add_argument('--num_workers', type=int, default=4)
+    parser.add_argument('--l1_reg', type=float, default=None)
     args = parser.parse_args()
     return args
 
@@ -46,7 +47,8 @@ def main():
         'lr_decay': args.lr_decay,
         # checkpoint settings
         'model_path': args.model_path,
-        'num_workers': args.num_workers  # for DataLoader
+        'num_workers': args.num_workers,  # for DataLoader
+        'l1_reg': args.l1_reg
     }
     train(model, tokenizer, train_dataset, config)
 

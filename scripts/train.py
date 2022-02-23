@@ -21,7 +21,16 @@ def train(model, tokenizer, train_dataset, config):
                                   num_workers=config['num_workers'])
     losses=[]
 
-    for epoch in range(config['max_epochs']):
+    activation = {}
+    def get_activation(name):
+        def hook(model, input, output):
+            activation[name] = output.detach()
+        return hook
+
+    if config['l1_reg'] is not None:
+        model.lm_head.register_forward_hook(get_activation('lm_head'))
+
+    for epoch in range(config['max_epochs']):        
         pbar = tqdm(enumerate(train_dataloader), total=len(train_dataloader))
         for it, (x, a, y) in pbar:
             x = x.to(config['device'])
@@ -35,6 +44,11 @@ def train(model, tokenizer, train_dataset, config):
             losses.append(loss.item())
 
             model.zero_grad()
+
+            if config['l1_reg'] is not None:
+                l1_regularization = config['l1_reg'] * torch.norm(activation['lm_head'], 1)
+                loss += l1_regularization            
+
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), config['grad_norm_clip'])
             optimizer.step()
