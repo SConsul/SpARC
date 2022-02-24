@@ -142,12 +142,12 @@ def consistency(true_constraint_file, pred_results_file, qa_to_nodes_file):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--consistency_graph_path', default="./../beliefbank-data-sep2021/qa.json")
-    parser.add_argument('--results_path', default="./../beliefbank-data-sep2021/baseline.json")
-    parser.add_argument('--question_to_node_file', default="./../beliefbank-data-sep2021/qa_to_nodes.json")
+    parser.add_argument('--consistency_graph_path', default="../beliefbank-data-sep2021/qa.json")
+    parser.add_argument('--results_path', default="../beliefbank-data-sep2021/baseline.json")
+    parser.add_argument('--question_to_node_file', default="../beliefbank-data-sep2021/qa_to_nodes.json")
     args = parser.parse_args()
 
     # Evaluate consistency
-    consis = consistency(args.true_path, args.pred_consistency_file, args.question_to_node_file)
+    consis = consistency(args.consistency_graph_path, args.results_path, args.question_to_node_file)
     print("Consistency = ", consis)
     
