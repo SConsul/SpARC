@@ -60,5 +60,5 @@ def train(model, tokenizer, train_dataset, config):
 
         # save checkpoint
         if (epoch % 1) == 0:
-            model_path = os.path.join(config['model_path'], f"{epoch}.bin")
+            model_path = os.path.join(config['model_path'], f"{epoch+1}.bin")
             torch.save(model.state_dict(), model_path)
