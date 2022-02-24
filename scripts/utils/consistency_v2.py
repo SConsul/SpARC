@@ -25,15 +25,15 @@ def create_graph(pred_results_file, c_graph_path, q_consistency_path):
     with open(pred_results_file, 'r') as f:
         pred_results = json.load(f)
 
-    pred = np.zeros((len(nodes), len(nodes)))
+    adj_mat = np.zeros((len(nodes), len(nodes)))
     for pred in pred_results:
         question = pred['q']
         source, target = q_to_nodes[question]
         s, t = nodes[source], nodes[target]
         answer = pred['pred'].split()[2]
-        pred[s][t] = (answer == 'yes' or answer == 'Yes')
+        adj_mat[s, t] = (answer == 'yes' or answer == 'Yes')
 
-    return pred
+    return adj_mat
 
 
 def consistency(results_path, qa_to_node_path, q_consistency_path):
