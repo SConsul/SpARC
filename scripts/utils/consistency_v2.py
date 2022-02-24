@@ -39,7 +39,7 @@ def consistency(results_path,qa_to_node_path,num_nodes):
     for _ in range(3,10):
         A_multi = A_multi@A_single 
         num += np.sum(A_multi*A_single)
-        den += np.sum(A_single)
+        den += np.sum(A_multi)
 
     return num/den
 
