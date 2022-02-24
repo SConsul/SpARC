@@ -1,5 +1,6 @@
 import json
 import random
+from itertools import product
 from collections import defaultdict, namedtuple
 
 
@@ -78,6 +79,18 @@ def process_c_graph(c_graph):
     return data, traverse(data)
 
 
+def create_all_questions(c_graph):
+    nodes = [n['id'] for n in c_graph['nodes']]
+    isa_nodes = [n for n in nodes if n.startswith('IsA')]
+    all_pairs = product(isa_nodes, nodes)
+
+    all_questions = defaultdict(set)
+    for source, target in all_pairs:
+        all_questions[source].add(DataRow(question=parse_source_target(source, target), answer='n/a',
+                                          source=source, target=target, gold=False))
+    return all_questions
+
+
 def process_silver_facts(silver_facts):
     data = defaultdict(set)
     for source, targets in silver_facts.items():
@@ -149,6 +162,9 @@ if __name__ == "__main__":
     # Eval data is all edges in constraint graph (single and multi hop)
     test = c_data
 
+    # Consistency data is dense graph of all questions starting with isA
+    # consistency_data = create_all_questions(c_graph)
+
     # # Merge multihop with silver data
     # eval_data = merge(c_multi_hop, s_data)
     #
@@ -175,5 +191,8 @@ if __name__ == "__main__":
 
     with open('beliefbank-data-sep2021/qa_test.json', 'w') as f:
         json.dump(flatten(json_serialize(test).values()), f, indent=1)
+
+    # with open('beliefbank-data-sep2021/qa_consistency.json', 'w') as f:
+    #     json.dump(flatten(json_serialize(consistency_data).values()), f, indent=1)
 
 
