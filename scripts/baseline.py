@@ -18,7 +18,7 @@ def passed_arguments():
     parser.add_argument('--model_path', default="runs/baseline")
     parser.add_argument('--num_workers', type=int, default=4)
     parser.add_argument('--l1_reg', type=float, default=None)
-    parser.add_argument('--freeze_backbone', type=bool, action='store_true', default=True)
+    parser.add_argument('--freeze_backbone', type=bool, action='store_true', default=False)
     args = parser.parse_args()
     return args
 
