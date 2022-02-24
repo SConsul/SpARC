@@ -17,3 +17,22 @@ def check_constraint_link_pairs():
         link_pairs.add((source, target, direction))
 
     print(link_pairs)
+
+
+def questions_to_source_target_node():
+    """
+    Create dictionary of questions to source and target nodes
+    """
+    with open("../beliefbank-data-sep2021/qa.json") as f:
+        qa_info = json.load(f)
+    
+    question_to_node_dict = {}
+    for qa in qa_info:
+        question = qa['question'][:-2] + '?'
+        question_to_node_dict[question] = {
+            'source': qa['source'],
+            'target': qa['target']
+        }
+
+    with open('../beliefbank-data-sep2021/qa_to_nodes.json', 'w') as f:
+        json.dump(question_to_node_dict, f)
