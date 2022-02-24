@@ -143,18 +143,20 @@ if __name__ == "__main__":
     for n, all_edges in c_data.items():
         c_multi_hop[n] = all_edges - c_adj_list[n]
 
-    # Merge multihop with silver data
-    eval_data = merge(c_multi_hop, s_data)
+    # Train data is most of silver facts (i.e. actual questions with entities)
+    train, s_val, s_test = data_split(s_data, train=0.8, val=0.1, test=0.1)
 
-    # Split single hop edges into train/val/test
-    train, one_hop_val, one_hop_test = data_split(c_adj_list)
-    _, multi_val, multi_test = data_split(eval_data, train=0., val=0.5, test=0.5)
-    val = merge(one_hop_val, multi_val)
-    test = merge(one_hop_test, multi_test)
-    
-    train = json_serialize(train)
-    val = json_serialize(val)
-    test = json_serialize(test)
+    # Eval data is all edges in constraint graph (single and multi hop)
+    test = c_data
+
+    # # Merge multihop with silver data
+    # eval_data = merge(c_multi_hop, s_data)
+    #
+    # # Split single hop edges into train/val/test
+    # train, one_hop_val, one_hop_test = data_split(c_adj_list)
+    # _, multi_val, multi_test = data_split(eval_data, train=0., val=0.5, test=0.5)
+    # val = merge(one_hop_val, multi_val)
+    # test = merge(one_hop_test, multi_test)
 
     with open('beliefbank-data-sep2021/constraints_qa.json', 'w') as f:
         json.dump(json_serialize(c_data), f)
@@ -166,12 +168,12 @@ if __name__ == "__main__":
     #     json.dump(flatten(data.values()), f, indent=1)
 
     with open('beliefbank-data-sep2021/qa_train.json', 'w') as f:
-        json.dump(flatten(train.values()), f, indent=1)
+        json.dump(flatten(json_serialize(train).values()), f, indent=1)
 
-    with open('beliefbank-data-sep2021/qa_val.json', 'w') as f:
-        json.dump(flatten(val.values()), f, indent=1)
+    # with open('beliefbank-data-sep2021/qa_val.json', 'w') as f:
+    #     json.dump(flatten(json_serialize(val).values()), f, indent=1)
 
     with open('beliefbank-data-sep2021/qa_test.json', 'w') as f:
-        json.dump(flatten(test.values()), f, indent=1)
+        json.dump(flatten(json_serialize(test).values()), f, indent=1)
 
 
