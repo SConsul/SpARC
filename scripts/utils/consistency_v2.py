@@ -3,20 +3,24 @@ import argparse
 import numpy as np
 
 
-def create_graph(pred_results_file, c_graph):
+def create_graph(pred_results_file, c_graph_path, q_consistency_path):
     """
     Returns predicted results in the form of the adjacency matrix:
     A[source_node_id][target_node_id] = predicted_value
-
-    Inputs: 
-     (string) pred_results_file: path to json file that has results of inference
-     (string) qa_to_nodes_file: path to json file that maps each node to an (int) id
-     (int) num_nodes: the total number of unique nodes
+    :param pred_results_file: path to json file that has results of inference
+    :param c_graph_path: path to consistency graph json file (original dataset)
+    :param q_consistency_path: path to file mapping question -> source, target
+    :return:
     """
-    with open(c_graph, 'r') as f:
+    with open(c_graph_path, 'r') as f:
         c_graph = json.load(f)
 
     nodes = {n['id']: i for i, n in enumerate(c_graph['nodes'])}
+
+    with open(q_consistency_path, 'r') as f:
+        q_consistency = json.load(f)
+
+    q_to_nodes = {q['question']: (q['source'], q['target']) for q in q_consistency}
 
     with open(pred_results_file, 'r') as f:
         pred_results = json.load(f)
@@ -24,16 +28,16 @@ def create_graph(pred_results_file, c_graph):
     pred = np.zeros((len(nodes), len(nodes)))
     for pred in pred_results:
         question = pred['q']
-        s = nodes[question['source']]
-        t = nodes[question['target']]
+        source, target = q_to_nodes[question]
+        s, t = nodes[source], nodes[target]
         answer = pred['pred'].split()[2]
         pred[s][t] = (answer == 'yes' or answer == 'Yes')
 
     return pred
 
 
-def consistency(results_path, qa_to_node_path):
-    A_single = create_graph(results_path, qa_to_node_path)
+def consistency(results_path, qa_to_node_path, q_consistency_path):
+    A_single = create_graph(results_path, qa_to_node_path, q_consistency_path)
     num = 0.0
     den = 0.0
     A_multi = A_single
@@ -48,8 +52,9 @@ def consistency(results_path, qa_to_node_path):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--c_graph', default='./beliefbank-data-sep2021/constraints_v2.json')
+    parser.add_argument('--q_consistency', default='./beliefbank-data-sep2021/qa_consistency.json')
     parser.add_argument('--results_path', default="./beliefbank-data-sep2021/baseline.json")
     args = parser.parse_args()
 
-    consis = consistency(args.results_path, args.c_graph)
+    consis = consistency(args.results_path, args.c_graph, args.q_consistency)
     print("Consistency = ", consis)
