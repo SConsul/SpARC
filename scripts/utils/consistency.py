@@ -148,6 +148,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Evaluate consistency
-    consis = consistency(args.consistency_graph_path, args.results_path, args.question_to_question_to_node_filenode_file)
+    consis = consistency(args.consistency_graph_path, args.results_path, args.question_to_node_file)
     print("Consistency = ", consis)
     
