@@ -7,8 +7,10 @@ from torch.utils.data.dataloader import DataLoader
 
 def train(model, tokenizer, train_dataset, config):
     no_decay = ["bias", "LayerNorm.weight"]
-    params_decay = [p for n, p in model.named_parameters() if not any(nd in n for nd in no_decay)]
-    params_nodecay = [p for n, p in model.named_parameters() if any(nd in n for nd in no_decay)]
+    param_gen = model.lm_head if config['freeze_backbone'] else model
+
+    params_decay = [p for n, p in param_gen.named_parameters() if not any(nd in n for nd in no_decay)]
+    params_nodecay = [p for n, p in param_gen.named_parameters() if any(nd in n for nd in no_decay)]
     optim_groups = [
         {"params": params_decay, "weight_decay": config['weight_decay']},
         {"params": params_nodecay, "weight_decay": 0.0},

@@ -18,6 +18,7 @@ def passed_arguments():
     parser.add_argument('--model_path', default="runs/baseline")
     parser.add_argument('--num_workers', type=int, default=4)
     parser.add_argument('--l1_reg', type=float, default=None)
+    parser.add_argument('--freeze_backbone', type=bool, action='store_true', default=True)
     args = parser.parse_args()
     return args
 
@@ -43,12 +44,13 @@ def main():
         'betas': (0.9, 0.95),
         'grad_norm_clip': 1.0,
         'weight_decay': args.weight_decay,  # only applied on matmul weights
+        'l1_reg': args.l1_reg,
+        'freeze_backbone': args.freeze_backbone,
         # learning rate decay params: linear warmup followed by cosine decay to 10% of original
         'lr_decay': args.lr_decay,
         # checkpoint settings
         'model_path': args.model_path,
         'num_workers': args.num_workers,  # for DataLoader
-        'l1_reg': args.l1_reg
     }
     train(model, tokenizer, train_dataset, config)
 
