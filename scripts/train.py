@@ -38,7 +38,7 @@ def train(model, train_dataset, config):
         return hook
 
     if config['l1_reg'] is not None:
-        print(f"L1 sparsity on {config.layer_names}")
+        print(f"L1 sparsity on {config['layer_names']}")
         for name, layer in model.named_modules():
             if name in config['layer_names']:
                 print(f"Register hook on {name}")
