@@ -20,7 +20,8 @@ def passed_arguments():
     parser.add_argument('--l1_reg', type=float, default=None)
     parser.add_argument('--freeze_backbone', action='store_true', default=False)
     parser.add_argument('--adapter', action='store_true', default=False)
-    parser.add_argument('--layer_name', default='lm_head') # Options: lm_head, encoder.final_layer_norm, etc
+    # Options: lm_head, encoder.final_layer_norm, etc
+    parser.add_argument('--layer_names', nargs='+', type=str, default=[])
     args = parser.parse_args()
     return args
 
@@ -57,7 +58,7 @@ def main():
         'model_path': args.model_path,
         'num_workers': args.num_workers,  # for DataLoader
         'adapter': args.adapter,
-        'layer_name': args.layer_name
+        'layer_names': args.layer_names
     }
     train(model, train_dataset, config)
 
