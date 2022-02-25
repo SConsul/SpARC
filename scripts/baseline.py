@@ -52,7 +52,7 @@ def main():
         # checkpoint settings
         'model_path': args.model_path,
         'num_workers': args.num_workers,  # for DataLoader
-        'adapter':args.adapter
+        'adapter': args.adapter
     }
     train(model, train_dataset, config)
 

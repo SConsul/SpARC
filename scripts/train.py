@@ -6,14 +6,16 @@ from torch.utils.data.dataloader import DataLoader
 
 
 def train(model, train_dataset, config):
-    if(config.adapter):
+    if config['adapter']:
         model.add_adapter("beliefbank", config="pfeiffer")
-        
-        no_decay = ["bias", "LayerNorm.weight"]
-        optim_groups = [p for n,p in model.named_parameters() if len(n.split('.'))>5 and n.split('.')[5]=='adapters']
-        optimizer = optim.AdamW(optim_groups, lr=config['learning_rate'], betas=config['betas'])
-        model.train_adapter("beliefbank")
 
+        no_decay = ["bias", "LayerNorm.weight"]
+        # optim_groups = [p for n, p in model.named_parameters()
+        #                 if len(n.split('.')) > 5 and n.split('.')[5] == 'adapters']
+        model.train_adapter("beliefbank")
+        model.set_active_adapters("beliefbank")
+
+        optimizer = optim.AdamW(model.parameters(), lr=config['learning_rate'], betas=config['betas'])
     else:
         no_decay = ["bias", "LayerNorm.weight"]
         param_gen = model.lm_head if config['freeze_backbone'] else model
@@ -69,5 +71,5 @@ def train(model, train_dataset, config):
 
         # save checkpoint
         if (epoch % 1) == 0:
-            model_path = os.path.join(config['model_path'], f"{epoch+1}.bin")
+            model_path = os.path.join(config['model_path'], f"{epoch + 1}.bin")
             torch.save(model.state_dict(), model_path)
