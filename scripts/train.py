@@ -47,20 +47,25 @@ def train(model, train_dataset, config):
                 layer.register_forward_hook(get_activation(name))
                 l1_layers.append(name)
             
-            if config['layer_names'] == 'enc' or config['layer_names'] == 'all':
+            if ('enc' in config['layer_names']) or ('all' in config['layer_names']):
                 layer_name_parts = name.split('.')
                 if layer_name_parts[0] == 'encoder' and layer_name_parts[-1] in ['layer_norm', 'final_layer_norm']: 
                     print(f"Register hook on {name}")
                     layer.register_forward_hook(get_activation(name))
                     l1_layers.append(name)
 
-            if config['layer_names'] == 'dec' or config['layer_names'] == 'all':
+            if ('dec' in config['layer_names']) or ('all' in config['layer_names']):
                 layer_name_parts = name.split('.')
                 if layer_name_parts[0] == 'decoder' and layer_name_parts[-1] in ['layer_norm', 'final_layer_norm']: 
                     print(f"Register hook on {name}")
                     layer.register_forward_hook(get_activation(name))
                     l1_layers.append(name)
-
+                
+        if ('all' in config['layer_names']):
+            name = 'lm_head'
+            print(f"Register hook on {name}")
+            layer.register_forward_hook(get_activation(name))
+            l1_layers.append(name)
 
     for epoch in range(config['max_epochs']):
         pbar = tqdm(enumerate(train_dataloader), total=len(train_dataloader))
