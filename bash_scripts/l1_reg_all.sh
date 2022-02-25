@@ -17,7 +17,7 @@ python scripts/inference.py \
     --batch_size 512;
 
 python scripts/utils/accuracy.py \
-    --results_path "runs/l1_reg_all/v_acc.json";
+    --results_path "runs/l1_reg_all/l1_reg_all_acc.json";
 
 python scripts/inference.py \
     --in_path "./beliefbank-data-sep2021/qa_consistency.json" \
