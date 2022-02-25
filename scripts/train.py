@@ -60,12 +60,6 @@ def train(model, train_dataset, config):
                     print(f"Register hook on {name}")
                     layer.register_forward_hook(get_activation(name))
                     l1_layers.append(name)
-                
-        if ('all' in config['layer_names']):
-            name = 'lm_head'
-            print(f"Register hook on {name}")
-            layer.register_forward_hook(get_activation(name))
-            l1_layers.append(name)
 
     for epoch in range(config['max_epochs']):
         pbar = tqdm(enumerate(train_dataloader), total=len(train_dataloader))
