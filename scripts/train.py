@@ -5,19 +5,28 @@ import torch.optim as optim
 from torch.utils.data.dataloader import DataLoader
 
 
-def train(model, tokenizer, train_dataset, config):
-    no_decay = ["bias", "LayerNorm.weight"]
-    param_gen = model.lm_head if config['freeze_backbone'] else model
+def train(model, train_dataset, config):
+    if(config.adapter):
+        model.add_adapter("beliefbank", config="pfeiffer")
+        
+        no_decay = ["bias", "LayerNorm.weight"]
+        optim_groups = [p for n,p in model.named_parameters() if len(n.split('.'))>5 and n.split('.')[5]=='adapters']
+        optimizer = optim.AdamW(optim_groups, lr=config['learning_rate'], betas=config['betas'])
+        model.train_adapter("beliefbank")
 
-    params_decay = [p for n, p in param_gen.named_parameters() if not any(nd in n for nd in no_decay)]
-    params_nodecay = [p for n, p in param_gen.named_parameters() if any(nd in n for nd in no_decay)]
-    optim_groups = [
-        {"params": params_decay, "weight_decay": config['weight_decay']},
-        {"params": params_nodecay, "weight_decay": 0.0},
-    ]
-    optimizer = optim.AdamW(optim_groups, lr=config['learning_rate'], betas=config['betas'])
+    else:
+        no_decay = ["bias", "LayerNorm.weight"]
+        param_gen = model.lm_head if config['freeze_backbone'] else model
 
-    model.train()
+        params_decay = [p for n, p in param_gen.named_parameters() if not any(nd in n for nd in no_decay)]
+        params_nodecay = [p for n, p in param_gen.named_parameters() if any(nd in n for nd in no_decay)]
+        optim_groups = [
+            {"params": params_decay, "weight_decay": config['weight_decay']},
+            {"params": params_nodecay, "weight_decay": 0.0},
+        ]
+        optimizer = optim.AdamW(optim_groups, lr=config['learning_rate'], betas=config['betas'])
+
+        model.train()
 
     train_dataloader = DataLoader(train_dataset, batch_size=config['batch_size'],
                                   num_workers=config['num_workers'])

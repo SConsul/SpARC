@@ -19,6 +19,7 @@ def passed_arguments():
     parser.add_argument('--num_workers', type=int, default=4)
     parser.add_argument('--l1_reg', type=float, default=None)
     parser.add_argument('--freeze_backbone', action='store_true', default=False)
+    parser.add_argument('--adapter', action='store_true', default=False)
     args = parser.parse_args()
     return args
 
@@ -51,8 +52,9 @@ def main():
         # checkpoint settings
         'model_path': args.model_path,
         'num_workers': args.num_workers,  # for DataLoader
+        'adapter':args.adapter
     }
-    train(model, tokenizer, train_dataset, config)
+    train(model, train_dataset, config)
 
 
 if __name__ == "__main__":
