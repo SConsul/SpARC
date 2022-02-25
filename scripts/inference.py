@@ -20,6 +20,7 @@ def infer():
     parser.add_argument('--out_path', default="./beliefbank-data-sep2021/baseline.json")
     parser.add_argument('--model_path', default=None, type=str)
     parser.add_argument('--batch_size', type=int, default=64)
+    parser.add_argument('--adapter', action='store_true', default=False)
     args = parser.parse_args()
 
     device = torch.cuda.current_device() if torch.cuda.is_available() else 'cpu'
@@ -27,6 +28,9 @@ def infer():
     output_preds = []
     tokenizer = AutoTokenizer.from_pretrained("allenai/macaw-large")
     model = AutoModelForSeq2SeqLM.from_pretrained("allenai/macaw-large")
+    if args.adapter:
+        model.add_adapter("beliefbank", config="pfeiffer")
+        model.set_active_adapters("beliefbank")
 
     if args.model_path is not None:
         model.load_state_dict(torch.load(args.model_path, map_location='cpu'))

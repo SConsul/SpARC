@@ -32,6 +32,9 @@ def main():
     device = torch.cuda.current_device() if torch.cuda.is_available() else 'cpu'
     tokenizer = AutoTokenizer.from_pretrained("allenai/macaw-large")
     model = AutoModelForSeq2SeqLM.from_pretrained("allenai/macaw-large")
+    if args.adapter:
+        model.add_adapter("beliefbank", config="pfeiffer")
+        model.set_active_adapters("beliefbank")
     model = model.to(device)
     # model = torch.nn.DataParallel(model).to(device)
 

@@ -7,15 +7,11 @@ from torch.utils.data.dataloader import DataLoader
 
 def train(model, train_dataset, config):
     if config['adapter']:
-        model.add_adapter("beliefbank", config="pfeiffer")
-
-        no_decay = ["bias", "LayerNorm.weight"]
         # optim_groups = [p for n, p in model.named_parameters()
         #                 if len(n.split('.')) > 5 and n.split('.')[5] == 'adapters']
         model.train_adapter("beliefbank")
-        model.set_active_adapters("beliefbank")
 
-        optimizer = optim.AdamW(model.parameters(), lr=config['learning_rate'], betas=config['betas'])
+        optim_groups = model.parameters()
     else:
         no_decay = ["bias", "LayerNorm.weight"]
         param_gen = model.lm_head if config['freeze_backbone'] else model
@@ -26,9 +22,9 @@ def train(model, train_dataset, config):
             {"params": params_decay, "weight_decay": config['weight_decay']},
             {"params": params_nodecay, "weight_decay": 0.0},
         ]
-        optimizer = optim.AdamW(optim_groups, lr=config['learning_rate'], betas=config['betas'])
-
         model.train()
+
+    optimizer = optim.AdamW(optim_groups, lr=config['learning_rate'], betas=config['betas'])
 
     train_dataloader = DataLoader(train_dataset, batch_size=config['batch_size'],
                                   num_workers=config['num_workers'])
