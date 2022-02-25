@@ -38,7 +38,9 @@ def train(model, train_dataset, config):
         return hook
 
     if config['l1_reg'] is not None:
-        model.lm_head.register_forward_hook(get_activation('lm_head'))
+        for name, layer in model.named_modules():
+            if name == config['layer_name']:
+                layer.register_forward_hook(get_activation(config['layer_name']))
 
     for epoch in range(config['max_epochs']):
         pbar = tqdm(enumerate(train_dataloader), total=len(train_dataloader))
@@ -54,7 +56,7 @@ def train(model, train_dataset, config):
             losses.append(loss.item())
 
             if config['l1_reg'] is not None:
-                l1_regularization = config['l1_reg'] * torch.norm(activation['lm_head'], 1)
+                l1_regularization = config['l1_reg'] * torch.norm(activation[config['layer_name']], 1)
                 loss += l1_regularization
 
             model.zero_grad()
