@@ -36,6 +36,8 @@ def train(model, train_dataset, config):
             activation[name] = output.detach()
 
         return hook
+    
+    l1_layers = []
 
     if config['l1_reg'] is not None:
         print(f"L1 sparsity on {config['layer_names']}")
@@ -43,6 +45,22 @@ def train(model, train_dataset, config):
             if name in config['layer_names']:
                 print(f"Register hook on {name}")
                 layer.register_forward_hook(get_activation(name))
+                l1_layers.append(name)
+            
+            if config['layer_names'] == 'enc' or config['layer_names'] == 'all':
+                layer_name_parts = name.split('.')
+                if layer_name_parts[0] == 'encoder' and layer_name_parts[-1] in ['layer_norm', 'final_layer_norm']: 
+                    print(f"Register hook on {name}")
+                    layer.register_forward_hook(get_activation(name))
+                    l1_layers.append(name)
+
+            if config['layer_names'] == 'dec' or config['layer_names'] == 'all':
+                layer_name_parts = name.split('.')
+                if layer_name_parts[0] == 'decoder' and layer_name_parts[-1] in ['layer_norm', 'final_layer_norm']: 
+                    print(f"Register hook on {name}")
+                    layer.register_forward_hook(get_activation(name))
+                    l1_layers.append(name)
+
 
     for epoch in range(config['max_epochs']):
         pbar = tqdm(enumerate(train_dataloader), total=len(train_dataloader))
@@ -58,7 +76,7 @@ def train(model, train_dataset, config):
             losses.append(loss.item())
 
             if config['l1_reg'] is not None:
-                for name in config['layer_names']:
+                for name in l1_layers:
                     l1_regularization = config['l1_reg'] * torch.norm(activation[name], 1)
                     loss += l1_regularization
 
