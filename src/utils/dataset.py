@@ -36,5 +36,6 @@ class QADataset(Dataset):
         # replace padding id's of labels by -100 for CrossEntropy to ignore (-100 is ignore index)
         out_token_ids[out_token_ids == self.tokenizer.pad_token_id] = -100
 
-        # Remove batch dimension (as PyTorch will handle batching)
-        return in_token_ids.squeeze(dim=0), in_attn_mask.squeeze(dim=0), out_token_ids.squeeze(dim=0)
+        # Keep batch dimension (as PyTorch will handle batching)
+        # Shapes (1, InL), (1, InL), (1, OutL)
+        return in_token_ids, in_attn_mask, out_token_ids

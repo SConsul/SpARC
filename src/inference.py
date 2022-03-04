@@ -50,8 +50,8 @@ def infer():
         attn = attn.to(device)
 
         output_sequences = model.generate(
-            input_ids=q_ids,
-            attention_mask=attn,
+            input_ids=q_ids.squeeze(1),  # (b, 1, L) -> (b, L)
+            attention_mask=attn.squeeze(1),  # (b, 1, L) -> (b, L)
             do_sample=False,  # disable sampling to test if batching affects output
         )
 

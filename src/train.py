@@ -87,11 +87,15 @@ def train(model, train_dataset, writer, config):
     for epoch in range(config['max_epochs']):
         pbar = tqdm(enumerate(train_dataloader), total=len(train_dataloader))
         for it, (x, a, y) in pbar:
-            x = x.to(config['device'])
-            a = a.to(config['device'])
-            y = y.to(config['device'])
+            x = x.to(config['device'])  # (b, 1 or 2, InL)
+            a = a.to(config['device'])  # (b, 1 or 2, InL)
+            y = y.to(config['device'])  # (b, 1 or 2, OutL)
 
-            out = model(input_ids=x, attention_mask=a, labels=y)
+            b, s, inL = x.shape
+            _, _, outL = y.shape
+
+            # Collapse batch dimension so model gets (b*s, L) shape tensors
+            out = model(input_ids=x.view(-1, inL), attention_mask=a.view(-1, inL), labels=y.view(-1, outL))
             loss = out.loss
 
             loss = loss.mean()  # collapse all losses if they are scattered on multiple gpus
