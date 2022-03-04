@@ -160,7 +160,7 @@ if __name__ == "__main__":
     train, s_val, s_test = data_split(s_data, train=0.8, val=0.1, test=0.1)
 
     # Eval data is all edges in constraint graph (single and multi hop)
-    test = c_data
+    _, val, test = data_split(c_data, train=0., val=0.5, test=0.5)
 
     # Consistency data is dense graph of all questions starting with isA
     # consistency_data = create_all_questions(c_graph)
@@ -186,8 +186,8 @@ if __name__ == "__main__":
     with open('beliefbank-data-sep2021/qa_train.json', 'w') as f:
         json.dump(flatten(json_serialize(train).values()), f, indent=1)
 
-    # with open('beliefbank-data-sep2021/qa_val.json', 'w') as f:
-    #     json.dump(flatten(json_serialize(val).values()), f, indent=1)
+    with open('beliefbank-data-sep2021/qa_val.json', 'w') as f:
+        json.dump(flatten(json_serialize(val).values()), f, indent=1)
 
     with open('beliefbank-data-sep2021/qa_test.json', 'w') as f:
         json.dump(flatten(json_serialize(test).values()), f, indent=1)
