@@ -8,6 +8,7 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 from utils.dataset import QADataset
 from torch.utils.tensorboard import SummaryWriter
 
+
 def passed_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument('--train_path', default="./beliefbank-data-sep2021/qa.json")
@@ -26,7 +27,8 @@ def passed_arguments():
     args = parser.parse_args()
     return args
 
-def train(model, train_dataset, config):
+
+def train(model, train_dataset, writer, config):
     if config['adapter']:
         # optim_groups = [p for n, p in model.named_parameters()
         #                 if len(n.split('.')) > 5 and n.split('.')[5] == 'adapters']
@@ -57,7 +59,7 @@ def train(model, train_dataset, config):
             activation[name] = output.detach()
 
         return hook
-    
+
     l1_layers = []
 
     if config['l1_reg'] is not None:
@@ -67,22 +69,20 @@ def train(model, train_dataset, config):
                 print(f"Register hook on {name}")
                 layer.register_forward_hook(get_activation(name))
                 l1_layers.append(name)
-            
+
             if ('enc' in config['layer_names']) or ('all' in config['layer_names']):
                 layer_name_parts = name.split('.')
-                if layer_name_parts[0] == 'encoder' and layer_name_parts[-1] in ['layer_norm', 'final_layer_norm']: 
+                if layer_name_parts[0] == 'encoder' and layer_name_parts[-1] in ['layer_norm', 'final_layer_norm']:
                     print(f"Register hook on {name}")
                     layer.register_forward_hook(get_activation(name))
                     l1_layers.append(name)
 
             if ('dec' in config['layer_names']) or ('all' in config['layer_names']):
                 layer_name_parts = name.split('.')
-                if layer_name_parts[0] == 'decoder' and layer_name_parts[-1] in ['layer_norm', 'final_layer_norm']: 
+                if layer_name_parts[0] == 'decoder' and layer_name_parts[-1] in ['layer_norm', 'final_layer_norm']:
                     print(f"Register hook on {name}")
                     layer.register_forward_hook(get_activation(name))
                     l1_layers.append(name)
-
-    writer = SummaryWriter()
 
     for epoch in range(config['max_epochs']):
         pbar = tqdm(enumerate(train_dataloader), total=len(train_dataloader))
@@ -118,6 +118,7 @@ def train(model, train_dataset, config):
 
     writer.flush()
 
+
 def main():
     args = passed_arguments()
 
@@ -133,6 +134,8 @@ def main():
     # model = torch.nn.DataParallel(model).to(device)
 
     train_dataset = QADataset(args.train_path, tokenizer)
+
+    writer = SummaryWriter(args.model_path)
 
     config = {
         'device': device,
@@ -152,7 +155,8 @@ def main():
         'adapter': args.adapter,
         'layer_names': args.layer_names
     }
-    train(model, train_dataset, config)
+    train(model, train_dataset, writer, config)
+
 
 if __name__ == "__main__":
     main()
