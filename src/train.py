@@ -50,7 +50,6 @@ def train(model, train_dataset, writer, config):
         ]
         model.train()
 
-
     optimizer = optim.AdamW(optim_groups, lr=config['learning_rate'], betas=config['betas'])
 
     train_dataloader = DataLoader(train_dataset, batch_size=config['batch_size'],
@@ -110,7 +109,7 @@ def train(model, train_dataset, writer, config):
                     l1_regularization = config['l1_reg'] * torch.norm(activation[name], 1)
                     loss += l1_regularization
             if config['sim'] is not None:
-                loss+= config['sim'] * binary_sim_loss(activation[name])
+                loss += config['sim'] * binary_sim_loss(activation[name])
 
             model.zero_grad()
             loss.backward()
@@ -142,7 +141,7 @@ def main():
         model.set_active_adapters("beliefbank")
     model = model.to(device)
     # model = torch.nn.DataParallel(model).to(device)
-   
+
     if args.sim is not None:
         train_dataset = QAPairsDataset(args.train_path, tokenizer)
     else:
@@ -166,7 +165,7 @@ def main():
         'num_workers': args.num_workers,  # for DataLoader
         'adapter': args.adapter,
         'layer_names': args.layer_names,
-        'sim':args.sim
+        'sim': args.sim
     }
     train(model, train_dataset, writer, config)
 
