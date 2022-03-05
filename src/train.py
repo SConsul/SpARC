@@ -6,6 +6,8 @@ import torch.optim as optim
 from torch.utils.data.dataloader import DataLoader
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 from utils.dataset import QADataset
+from utils.loss import binary_sim_loss
+from utils.dataset_sim import QAPairsDataset
 from torch.utils.tensorboard import SummaryWriter
 
 
@@ -24,6 +26,7 @@ def passed_arguments():
     parser.add_argument('--adapter', action='store_true', default=False)
     # Options: lm_head, encoder.final_layer_norm, etc
     parser.add_argument('--layer_names', nargs='+', type=str, default=[])
+    parser.add_argument('--sim', type=float, default=None)
     args = parser.parse_args()
     return args
 
@@ -46,6 +49,7 @@ def train(model, train_dataset, writer, config):
             {"params": params_nodecay, "weight_decay": 0.0},
         ]
         model.train()
+
 
     optimizer = optim.AdamW(optim_groups, lr=config['learning_rate'], betas=config['betas'])
 
@@ -105,6 +109,8 @@ def train(model, train_dataset, writer, config):
                 for name in l1_layers:
                     l1_regularization = config['l1_reg'] * torch.norm(activation[name], 1)
                     loss += l1_regularization
+            if config['sim'] is not None:
+                loss+= config['sim'] * binary_sim_loss(activation[name])
 
             model.zero_grad()
             loss.backward()
@@ -136,9 +142,11 @@ def main():
         model.set_active_adapters("beliefbank")
     model = model.to(device)
     # model = torch.nn.DataParallel(model).to(device)
-
-    train_dataset = QADataset(args.train_path, tokenizer)
-
+   
+    if args.sim is not None:
+        train_dataset = QAPairsDataset(args.train_path, tokenizer)
+    else:
+        train_dataset = QADataset(args.train_path, tokenizer)
     writer = SummaryWriter(args.model_path)
 
     config = {
@@ -157,7 +165,8 @@ def main():
         'model_path': args.model_path,
         'num_workers': args.num_workers,  # for DataLoader
         'adapter': args.adapter,
-        'layer_names': args.layer_names
+        'layer_names': args.layer_names,
+        'sim':args.sim
     }
     train(model, train_dataset, writer, config)
 
