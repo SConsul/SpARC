@@ -65,7 +65,7 @@ def train(model, train_dataset, writer, config):
 
     l1_layers = []
 
-    if config['l1_reg'] is not None:
+    if config['l1_reg'] is not None or config['sim'] is not None:
         print(f"L1 sparsity on {config['layer_names']}")
         for name, layer in model.named_modules():
             if name in config['layer_names']:
@@ -109,7 +109,8 @@ def train(model, train_dataset, writer, config):
                     l1_regularization = config['l1_reg'] * torch.norm(activation[name], 1)
                     loss += l1_regularization
             if config['sim'] is not None:
-                loss += config['sim'] * binary_sim_loss(activation[name])
+                for name in l1_layers:
+                    loss += config['sim'] * binary_sim_loss(activation[name])
 
             model.zero_grad()
             loss.backward()
