@@ -122,7 +122,7 @@ def train(model, train_dataset, writer, config):
             writer.add_scalar("Loss/train", loss.item(), epoch)
 
         # save checkpoint
-        if (epoch % 1) == 0:
+        if ((epoch + 1) % 5) == 0:
             model_path = os.path.join(config['model_path'], f"{epoch + 1}.bin")
             torch.save(model.state_dict(), model_path)
 
