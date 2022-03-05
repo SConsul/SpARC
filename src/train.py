@@ -146,7 +146,10 @@ def main():
         train_dataset = QAPairsDataset(args.train_path, tokenizer)
     else:
         train_dataset = QADataset(args.train_path, tokenizer)
-    writer = SummaryWriter(args.model_path)
+
+    logdir = os.path.join(args.model_path, 'logs')
+    os.makedirs(logdir, exist_ok=True)
+    writer = SummaryWriter(logdir)
 
     config = {
         'device': device,
