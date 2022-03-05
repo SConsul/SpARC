@@ -79,7 +79,7 @@ def get_similar_pairs_adjacent(adjacency_list):
     for source, info_list in adjacency_list.items():
         random.shuffle(info_list)
         num_pairs_count = 0
-        for i in range(len(info_list)):
+        for i in range(0, len(info_list), 2):
             if i + 1 < len(info_list):
                 similar_pairs.append((info_list[i], info_list[i + 1]))
             else:
@@ -98,10 +98,10 @@ if __name__ == "__main__":
 
     adjacency_list = create_adjacency_list(train_data)
 
-    similar_pairs_linked = get_similar_pairs_linked(adjacency_list)
+    # similar_pairs_linked = get_similar_pairs_linked(adjacency_list)
 
-    with open('beliefbank-data-sep2021/qa_train_similar_linked.json', 'w') as f:
-        json.dump(similar_pairs_linked, f, indent=1)
+    # with open('beliefbank-data-sep2021/qa_train_similar_linked.json', 'w') as f:
+    #     json.dump(similar_pairs_linked, f, indent=1)
 
     similar_pairs_adj = get_similar_pairs_adjacent(adjacency_list)
 
