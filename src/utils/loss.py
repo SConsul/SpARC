@@ -9,12 +9,15 @@ def binary_sim_loss(batch):
     ∑[i = 0, 2, ..., 2B] (1 - a_i.a_i) + ∑[i=0,1,...]∑[j!=i,j!=i+1] a_i . a_j
     First sum is -ve cosine similarity of similar questions,
     second sum is cosine similarity of each question with every other dissimilar question.
-    :param batch: shape (2B, L) of (a_0, a_0', a_1, a_1', ..., a_B, a_B')
+    :param batch: shape (2B, L, C) of (a_0, a_0', a_1, a_1', ..., a_B, a_B')
         where consecutive questions are similar
     :return: Loss value
     """
+    b, L, c = batch.shape
+    batch = batch.view(b, -1)
+
     # Unit norm vectors
-    batch = F.normalize(batch, dim=1)  # shape (B,L)
+    batch = F.normalize(batch, dim=1)  # shape (B,L*C)
 
     # stores all the dot products of every combination
     dot_prods = batch @ batch.T  # shape (B,B)
