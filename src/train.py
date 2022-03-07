@@ -54,7 +54,7 @@ def train(model, train_dataset, writer, config):
 
     train_dataloader = DataLoader(train_dataset, batch_size=config['batch_size'],
                                   num_workers=config['num_workers'])
-    losses = []
+
     activation = {}
 
     def get_activation(name):
@@ -88,6 +88,7 @@ def train(model, train_dataset, writer, config):
                     l1_layers.append(name)
 
     for epoch in range(config['max_epochs']):
+        losses = []
         pbar = tqdm(enumerate(train_dataloader), total=len(train_dataloader))
         for it, (x, a, y) in pbar:
             x = x.to(config['device'])  # (b, 1 or 2, InL)
@@ -99,19 +100,22 @@ def train(model, train_dataset, writer, config):
 
             # Collapse batch dimension so model gets (b*s, L) shape tensors
             out = model(input_ids=x.view(-1, inL), attention_mask=a.view(-1, inL), labels=y.view(-1, outL))
-            loss = out.loss
+            ce_loss = out.loss
 
-            loss = loss.mean()  # collapse all losses if they are scattered on multiple gpus
-            losses.append(loss.item())
+            ce_loss = ce_loss.mean()  # collapse all losses if they are scattered on multiple gpus
 
+            l1_reg_loss = torch.tensor(0.0)
             if config['l1_reg'] is not None:
                 for name in l1_layers:
                     l1_regularization = config['l1_reg'] * torch.norm(activation[name], 1)
-                    loss += l1_regularization
+                    l1_reg_loss += l1_regularization
+
+            sim_loss = torch.tensor(0.0)
             if config['sim'] is not None:
                 for name in l1_layers:
-                    loss += config['sim'] * binary_sim_loss(activation[name])
+                    sim_loss += config['sim'] * binary_sim_loss(activation[name])
 
+            loss = ce_loss + l1_reg_loss + sim_loss
             model.zero_grad()
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), config['grad_norm_clip'])
@@ -119,8 +123,23 @@ def train(model, train_dataset, writer, config):
 
             # report progress
             pbar.set_description(f"epoch {epoch + 1} iter {it}: train loss {loss.item():.5f}")
-            writer.add_scalar("Loss/train", loss.item(), epoch)
 
+            losses.append((ce_loss.item(), l1_reg_loss.item(), sim_loss.item()))
+
+            if (it % 100) == 0:
+                writer.add_scalar("Train/CELoss/Iter", ce_loss.item(), it+1)
+                writer.add_scalar("Train/L1Loss/Iter", l1_reg_loss.item(), it + 1)
+                writer.add_scalar("Train/SimLoss/Iter", sim_loss.item(), it + 1)
+                writer.add_scalar("Train/Loss/Iter", loss.item(), it + 1)
+
+        # Log average loss over epoch
+        losses = torch.as_tensor(losses)
+        mean_ce, mean_l1, mean_sim = losses.mean(dim=0)
+        writer.add_scalar("Train/CELoss/Epoch", mean_ce, epoch + 1)
+        writer.add_scalar("Train/L1Loss/Epoch", mean_l1, epoch + 1)
+        writer.add_scalar("Train/SimLoss/Epoch", mean_sim, epoch + 1)
+        writer.add_scalar("Train/Loss/Epoch", mean_ce + mean_l1 + mean_sim, epoch + 1)
+        
         # save checkpoint
         if ((epoch + 1) % 5) == 0:
             model_path = os.path.join(config['model_path'], f"{epoch + 1}.bin")
