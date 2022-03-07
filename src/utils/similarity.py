@@ -35,10 +35,13 @@ def create_adjacency_list(train_data):
         count += 1
     print("Original Train Num:", count)
 
-    return adjacency_list
+    # for source, info_list in adjacency_list.items():
+        # random.shuffle(info_list)
+
+    return adjacency_list, count
 
 
-def get_similar_pairs_linked(adjacency_list):
+def get_similar_pairs_linked(adjacency_list, train_set_count):
     """
     Use adjacency list to generate similar pairs of linked nodes:
     {
@@ -46,23 +49,34 @@ def get_similar_pairs_linked(adjacency_list):
     }
     The target of node1 is the source of node2
     """
+    pair_limit = int(train_set_count / 2)
     similar_pairs = []
-    ignored_count = 0
-    max_num_pairs = float("-inf")
-    for source, info_list in adjacency_list.items():
-        for info in info_list:
-            num_pairs_count = 0
-            if info["target"] in adjacency_list and info["answer"] == 'yes':
-                for match in adjacency_list[info["target"]]:
-                    similar_pairs.append((info, match))
-                    num_pairs_count += 1
-            else:
-                ignored_count += 1
-            max_num_pairs = max(max_num_pairs, num_pairs_count)
 
-    print("Ignored Target Count:", str(ignored_count))
-    print("Total Num Pairs:", len(similar_pairs))
-    print("Max Pairs Per Source", max_num_pairs)
+    next_index = {}
+    for source in adjacency_list.keys():
+        next_index[source] = 0
+    
+    set_of_links = set()
+    num_pairs_chosen = 0
+    while (num_pairs_chosen < pair_limit):
+        for source, info_list in adjacency_list.items():
+            if next_index[source] >= len(info_list):
+                next_index[source] = 0
+
+            info = info_list[next_index[source]]
+            next_index[source] += 1
+
+            if info["target"] in adjacency_list.keys() and info["source"] != info["target"] and info["answer"] == 'yes':
+                index = random.randint(0, len(adjacency_list[info["target"]]) - 1)
+                match = adjacency_list[info["target"]][index]
+                link = (source, info["target"], match["target"])
+                if link not in set_of_links:
+                    similar_pairs.append((info, match))
+                    set_of_links.add(link)
+                    num_pairs_chosen += 1
+                    break  
+    
+    print("Total Num Pairs: ", len(similar_pairs))
     return similar_pairs
 
 
@@ -77,7 +91,6 @@ def get_similar_pairs_adjacent(adjacency_list):
     similar_pairs = []
     max_num_pairs = float("-inf")
     for source, info_list in adjacency_list.items():
-        random.shuffle(info_list)
         num_pairs_count = 0
         for i in range(0, len(info_list), 2):
             if i + 1 < len(info_list):
@@ -96,16 +109,16 @@ if __name__ == "__main__":
     with open("./beliefbank-data-sep2021/qa_train.json") as f:
         train_data = json.load(f)
 
-    adjacency_list = create_adjacency_list(train_data)
+    adjacency_list, train_set_count = create_adjacency_list(train_data)
 
-    # similar_pairs_linked = get_similar_pairs_linked(adjacency_list)
+    similar_pairs_linked = get_similar_pairs_linked(adjacency_list, train_set_count)
 
-    # with open('beliefbank-data-sep2021/qa_train_similar_linked.json', 'w') as f:
-    #     json.dump(similar_pairs_linked, f, indent=1)
+    with open('beliefbank-data-sep2021/qa_train_similar_linked.json', 'w') as f:
+        json.dump(similar_pairs_linked, f, indent=1)
 
-    similar_pairs_adj = get_similar_pairs_adjacent(adjacency_list)
+    # similar_pairs_adj = get_similar_pairs_adjacent(adjacency_list)
 
-    with open('beliefbank-data-sep2021/qa_train_similar_adjacent.json', 'w') as f:
-        json.dump(similar_pairs_adj, f, indent=1)
+    # with open('beliefbank-data-sep2021/qa_train_similar_adjacent.json', 'w') as f:
+    #     json.dump(similar_pairs_adj, f, indent=1)
 
     
