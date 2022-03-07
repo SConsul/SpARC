@@ -153,16 +153,14 @@ def get_similar_pairs_cosine(train_data):
     with torch.no_grad():
         embeddings = model(**inputs, output_hidden_states=True, return_dict=True).pooler_output
 
-    threshold = 0.7
+    threshold = 0.652
     similar_pairs_index = set()
     
     num_questions = len(questions)
     pair_limit = int(num_questions / 2)
-    pair_limit = 1
     print("Retrieving Pairs")
     while len(similar_pairs_index) < pair_limit:
         questionsIndex = random.sample(range(len(questions)), 2)
-        print(questionsIndex)
         cosine_sim = 1 - cosine(embeddings[questionsIndex[0]], embeddings[questionsIndex[1]])
         if cosine_sim >= threshold:
             similar_pairs_index.add(tuple(questionsIndex))
