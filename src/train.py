@@ -104,13 +104,13 @@ def train(model, train_dataset, writer, config):
 
             ce_loss = ce_loss.mean()  # collapse all losses if they are scattered on multiple gpus
 
-            l1_reg_loss = torch.tensor(0.0)
+            l1_reg_loss = torch.tensor(0.0, device=config['device'])
             if config['l1_reg'] is not None:
                 for name in l1_layers:
                     l1_regularization = config['l1_reg'] * torch.norm(activation[name], 1)
                     l1_reg_loss += l1_regularization
 
-            sim_loss = torch.tensor(0.0)
+            sim_loss = torch.tensor(0.0, device=config['device'])
             if config['sim'] is not None:
                 for name in l1_layers:
                     sim_loss += config['sim'] * binary_sim_loss(activation[name])
@@ -139,7 +139,7 @@ def train(model, train_dataset, writer, config):
         writer.add_scalar("Train/L1Loss/Epoch", mean_l1, epoch + 1)
         writer.add_scalar("Train/SimLoss/Epoch", mean_sim, epoch + 1)
         writer.add_scalar("Train/Loss/Epoch", mean_ce + mean_l1 + mean_sim, epoch + 1)
-        
+
         # save checkpoint
         if ((epoch + 1) % 5) == 0:
             model_path = os.path.join(config['model_path'], f"{epoch + 1}.bin")
