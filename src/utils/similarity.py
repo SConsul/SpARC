@@ -1,5 +1,10 @@
 import json
+import numpy as np
 import random
+import argparse
+import torch
+from scipy.spatial.distance import cosine
+from transformers import AutoModel, AutoTokenizer
 
 
 def create_adjacency_list(train_data):
@@ -34,9 +39,6 @@ def create_adjacency_list(train_data):
         adjacency_list[data["source"]].append(info_dict)
         count += 1
     print("Original Train Num:", count)
-
-    # for source, info_list in adjacency_list.items():
-        # random.shuffle(info_list)
 
     return adjacency_list, count
 
@@ -105,20 +107,108 @@ def get_similar_pairs_adjacent(adjacency_list):
     return similar_pairs
 
 
+def linked_similarity_cosine_stats(linked_similarity_data):
+    """
+    Get cosine similarity score statistics
+    """
+    tokenizer = AutoTokenizer.from_pretrained("princeton-nlp/sup-simcse-bert-base-uncased")
+    model = AutoModel.from_pretrained("princeton-nlp/sup-simcse-bert-base-uncased")
+
+    questions = []
+    cosine_values = []
+    for pair in linked_similarity_data:
+        questions = [pair[0]["question"], pair[1]["question"]]
+        inputs = tokenizer(questions, padding=True, truncation=True, return_tensors="pt")
+
+        # Get the embeddings
+        with torch.no_grad():
+            embeddings = model(**inputs, output_hidden_states=True, return_dict=True).pooler_output
+
+        cosine_sim = 1 - cosine(embeddings[0], embeddings[1])
+        cosine_values.append(cosine_sim)
+
+    print("Cosine Min: ", np.min(cosine_values))
+    print("Cosine Max: ", np.max(cosine_values))
+    print("Cosine Mean: ", np.mean(cosine_values))
+    print("Cosine Median: ", np.median(cosine_values))
+    print("Cosine Stddev: ", np.std(cosine_values))
+    print("Cosine Variance: ", np.var(cosine_values))
+
+
+def get_similar_pairs_cosine(train_data):
+    """
+    Use SimCSE to get cosine similarity of question embeddings
+    """
+    tokenizer = AutoTokenizer.from_pretrained("princeton-nlp/sup-simcse-bert-base-uncased")
+    model = AutoModel.from_pretrained("princeton-nlp/sup-simcse-bert-base-uncased")
+
+    questions = []
+    for data in train_data:
+        questions.append(data["question"])
+    
+    inputs = tokenizer(questions, padding=True, truncation=True, return_tensors="pt")
+
+    # Get the embeddings
+    print("Retrieve Embeddings")
+    with torch.no_grad():
+        embeddings = model(**inputs, output_hidden_states=True, return_dict=True).pooler_output
+
+    threshold = 0.7
+    similar_pairs_index = set()
+    
+    num_questions = len(questions)
+    pair_limit = int(num_questions / 2)
+    pair_limit = 1
+    print("Retrieving Pairs")
+    while len(similar_pairs_index) < pair_limit:
+        questionsIndex = random.sample(range(len(questions)), 2)
+        print(questionsIndex)
+        cosine_sim = 1 - cosine(embeddings[questionsIndex[0]], embeddings[questionsIndex[1]])
+        if cosine_sim >= threshold:
+            similar_pairs_index.add(tuple(questionsIndex))
+    
+    similar_pairs = []
+    for pair in list(similar_pairs_index):
+        similar_pairs.append([train_data[pair[0]], train_data[pair[1]]])
+
+    return similar_pairs
+
+
 if __name__ == "__main__":
-    with open("./beliefbank-data-sep2021/qa_train.json") as f:
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--train_path', default="./beliefbank-data-sep2021/qa_train.json")
+    parser.add_argument('--method', default="") # Options: adjacent, linked, cosine
+    args = parser.parse_args()
+
+    with open(args.train_path) as f:
         train_data = json.load(f)
 
-    adjacency_list, train_set_count = create_adjacency_list(train_data)
+    if (args.method == "linked"):
+        adjacency_list, train_set_count = create_adjacency_list(train_data)
 
-    similar_pairs_linked = get_similar_pairs_linked(adjacency_list, train_set_count)
+        similar_pairs_linked = get_similar_pairs_linked(adjacency_list, train_set_count)
 
-    with open('beliefbank-data-sep2021/qa_train_similar_linked.json', 'w') as f:
-        json.dump(similar_pairs_linked, f, indent=1)
+        with open('beliefbank-data-sep2021/qa_train_similar_linked.json', 'w') as f:
+            json.dump(similar_pairs_linked, f, indent=1)
 
-    # similar_pairs_adj = get_similar_pairs_adjacent(adjacency_list)
+    elif (args.method == "adjacent"):
+        adjacency_list, train_set_count = create_adjacency_list(train_data)
 
-    # with open('beliefbank-data-sep2021/qa_train_similar_adjacent.json', 'w') as f:
-    #     json.dump(similar_pairs_adj, f, indent=1)
+        similar_pairs_adj = get_similar_pairs_adjacent(adjacency_list)
+
+        with open('beliefbank-data-sep2021/qa_train_similar_adjacent.json', 'w') as f:
+            json.dump(similar_pairs_adj, f, indent=1)
+    
+    elif (args.method == "cosine_stats"):
+        linked_similarity_cosine_stats(train_data)
+    
+    elif (args.method == "cosine"):
+        similar_pairs_cosine = get_similar_pairs_cosine(train_data)
+
+        with open('beliefbank-data-sep2021/qa_train_similar_cosine.json', 'w') as f:
+            json.dump(similar_pairs_cosine, f, indent=1)
+    
+    
+
 
     
