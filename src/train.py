@@ -87,6 +87,7 @@ def train(model, train_dataset, writer, config):
                     layer.register_forward_hook(get_activation(name))
                     l1_layers.append(name)
 
+    it_n = 0
     for epoch in range(config['max_epochs']):
         losses = []
         pbar = tqdm(enumerate(train_dataloader), total=len(train_dataloader))
@@ -127,10 +128,11 @@ def train(model, train_dataset, writer, config):
             losses.append((ce_loss.item(), l1_reg_loss.item(), sim_loss.item()))
 
             if (it % 100) == 0:
-                writer.add_scalar("Train/CELoss/Iter", ce_loss.item(), it+1)
-                writer.add_scalar("Train/L1Loss/Iter", l1_reg_loss.item(), it + 1)
-                writer.add_scalar("Train/SimLoss/Iter", sim_loss.item(), it + 1)
-                writer.add_scalar("Train/Loss/Iter", loss.item(), it + 1)
+                writer.add_scalar("Train/CELoss/Iter", ce_loss.item(), it_n+1)
+                writer.add_scalar("Train/L1Loss/Iter", l1_reg_loss.item(), it_n + 1)
+                writer.add_scalar("Train/SimLoss/Iter", sim_loss.item(), it_n + 1)
+                writer.add_scalar("Train/Loss/Iter", loss.item(), it_n + 1)
+                it_n += it
 
         # Log average loss over epoch
         losses = torch.as_tensor(losses)
