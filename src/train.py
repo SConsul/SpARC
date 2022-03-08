@@ -27,6 +27,7 @@ def passed_arguments():
     # Options: lm_head, encoder.final_layer_norm, etc
     parser.add_argument('--layer_names', nargs='+', type=str, default=[])
     parser.add_argument('--sim', type=float, default=None)
+    parser.add_argument('--token_type', type=str, default=None)
     args = parser.parse_args()
     return args
 
@@ -91,14 +92,14 @@ def train(model, train_dataset, writer, config):
     for epoch in range(config['max_epochs']):
         losses = []
         pbar = tqdm(enumerate(train_dataloader), total=len(train_dataloader))
-        for it, (x, a, y) in pbar:
+        for it, (x, a, y,idx) in pbar:
             x = x.to(config['device'])  # (b, 1 or 2, InL)
             a = a.to(config['device'])  # (b, 1 or 2, InL)
             y = y.to(config['device'])  # (b, 1 or 2, OutL)
 
             b, s, inL = x.shape
             _, _, outL = y.shape
-
+            
             # Collapse batch dimension so model gets (b*s, L) shape tensors
             out = model(input_ids=x.view(-1, inL), attention_mask=a.view(-1, inL), labels=y.view(-1, outL))
             ce_loss = out.loss
@@ -114,8 +115,8 @@ def train(model, train_dataset, writer, config):
             sim_loss = torch.tensor(0.0, device=config['device'])
             if config['sim'] is not None:
                 for name in l1_layers:
-                    sim_loss += config['sim'] * binary_sim_loss(activation[name])
-
+                        sim_loss += config['sim'] * binary_sim_loss(activation[name],idx)
+                        
             loss = ce_loss + l1_reg_loss + sim_loss
             model.zero_grad()
             loss.backward()
@@ -165,7 +166,7 @@ def main():
     # model = torch.nn.DataParallel(model).to(device)
 
     if args.sim is not None:
-        train_dataset = QAPairsDataset(args.train_path, tokenizer)
+        train_dataset = QAPairsDataset(args.train_path, tokenizer, args.token)
     else:
         train_dataset = QADataset(args.train_path, tokenizer)
 
@@ -190,7 +191,8 @@ def main():
         'num_workers': args.num_workers,  # for DataLoader
         'adapter': args.adapter,
         'layer_names': args.layer_names,
-        'sim': args.sim
+        'sim': args.sim,
+        'token_type': args.token_type
     }
     train(model, train_dataset, writer, config)
 
