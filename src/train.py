@@ -92,11 +92,11 @@ def train(model, train_dataset, writer, config):
     for epoch in range(config['max_epochs']):
         losses = []
         pbar = tqdm(enumerate(train_dataloader), total=len(train_dataloader))
-        for it, (x, a, y,idx) in pbar:
+        for it, (x, a, y, token_ids) in pbar:
             x = x.to(config['device'])  # (b, 1 or 2, InL)
             a = a.to(config['device'])  # (b, 1 or 2, InL)
             y = y.to(config['device'])  # (b, 1 or 2, OutL)
-
+            token_ids = token_ids.to(config['device'])
             b, s, inL = x.shape
             _, _, outL = y.shape
             
@@ -115,7 +115,7 @@ def train(model, train_dataset, writer, config):
             sim_loss = torch.tensor(0.0, device=config['device'])
             if config['sim'] is not None:
                 for name in l1_layers:
-                        sim_loss += config['sim'] * binary_sim_loss(activation[name],idx)
+                        sim_loss += config['sim'] * binary_sim_loss(activation[name],token_ids)
                         
             loss = ce_loss + l1_reg_loss + sim_loss
             model.zero_grad()
@@ -166,7 +166,7 @@ def main():
     # model = torch.nn.DataParallel(model).to(device)
 
     if args.sim is not None:
-        train_dataset = QAPairsDataset(args.train_path, tokenizer, args.token)
+        train_dataset = QAPairsDataset(args.train_path, tokenizer, token_type=args.token_type)
     else:
         train_dataset = QADataset(args.train_path, tokenizer)
 
