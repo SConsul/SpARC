@@ -3,7 +3,7 @@ import torch.nn.functional as F
 import numpy as np
 
 
-def binary_sim_loss(batch,idx):
+def binary_sim_loss(batch, idx):
     """
     Computes the similarity/difference loss:
     ∑[i = 0, 2, ..., 2B] (1 - a_i.a_i) + ∑[i=0,1,...]∑[j!=i,j!=i+1] a_i . a_j
@@ -11,15 +11,16 @@ def binary_sim_loss(batch,idx):
     second sum is cosine similarity of each question with every other dissimilar question.
     :param batch: shape (2B, L, C) of (a_0, a_0', a_1, a_1', ..., a_B, a_B')
         where consecutive questions are similar
+    :param idx: shape (2B, I) of which indices of the activation to compute cosine sim
     :return: Loss value
     """
+    b, L, c = batch.shape
     if idx is not None:
-        idx = idx.view(-1) #shape 2B,
-        r = torch.LongTensor(range(idx.shape[0]))
-        batch = batch[r,idx[r],:] #shape = (2B, C)
+        _, I = idx.shape
+        idx = idx.unqueeze(2).expand(b, I, c)  # (2B, I, C)
+        batch = torch.gather(batch, dim=1, index=idx)  # (2B, I, C)
     else:
-        b, L, c = batch.shape
-        batch = batch.view(b, -1) #shape = (2B, C)
+        batch = batch.view(b, -1)  # shape = (2B, C)
 
     # Unit norm vectors
     batch = F.normalize(batch, dim=1)  # shape (B,L*C)
