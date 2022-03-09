@@ -19,8 +19,8 @@ def binary_sim_loss(batch, idx):
         _, I = idx.shape
         idx = idx.unsqueeze(2).expand(b, I, c)  # (2B, I, C)
         batch = torch.gather(batch, dim=1, index=idx)  # (2B, I, C)
-    else:
-        batch = batch.view(b, -1)  # shape = (2B, C)
+
+    batch = batch.view(b, -1)  # shape = (2B, L*C)
 
     # Unit norm vectors
     batch = F.normalize(batch, dim=1)  # shape (B,L*C)
