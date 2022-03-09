@@ -27,6 +27,7 @@ def passed_arguments():
     # Options: lm_head, encoder.final_layer_norm, etc
     parser.add_argument('--layer_names', nargs='+', type=str, default=[])
     parser.add_argument('--sim', type=float, default=None)
+    parser.add_argument('--ce_loss', type=float, default=1.0)
     parser.add_argument('--token_type', type=str, default=None)
     args = parser.parse_args()
     return args
@@ -104,7 +105,7 @@ def train(model, train_dataset, writer, config):
             out = model(input_ids=x.view(-1, inL), attention_mask=a.view(-1, inL), labels=y.view(-1, outL))
             ce_loss = out.loss
 
-            ce_loss = ce_loss.mean()  # collapse all losses if they are scattered on multiple gpus
+            ce_loss = config['ce_loss'] * ce_loss.mean()  # collapse all losses if they are scattered on multiple gpus
 
             l1_reg_loss = torch.tensor(0.0, device=config['device'])
             if config['l1_reg'] is not None:
@@ -192,6 +193,7 @@ def main():
         'adapter': args.adapter,
         'layer_names': args.layer_names,
         'sim': args.sim,
+        'ce_loss': args.ce_loss,
         'token_type': args.token_type
     }
     train(model, train_dataset, writer, config)
