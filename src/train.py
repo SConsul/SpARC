@@ -54,7 +54,7 @@ def train(model, train_dataset, writer, config):
     optimizer = optim.AdamW(optim_groups, lr=config['learning_rate'], betas=config['betas'])
 
     train_dataloader = DataLoader(train_dataset, batch_size=config['batch_size'],
-                                  num_workers=config['num_workers'])
+                                  num_workers=config['num_workers'], shuffle=True)
 
     activation = {}
 
