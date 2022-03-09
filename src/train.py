@@ -99,7 +99,7 @@ def train(model, train_dataset, writer, config):
             token_ids = token_ids.to(config['device'])
             b, s, inL = x.shape
             _, _, outL = y.shape
-            
+
             # Collapse batch dimension so model gets (b*s, L) shape tensors
             out = model(input_ids=x.view(-1, inL), attention_mask=a.view(-1, inL), labels=y.view(-1, outL))
             ce_loss = out.loss
@@ -115,8 +115,8 @@ def train(model, train_dataset, writer, config):
             sim_loss = torch.tensor(0.0, device=config['device'])
             if config['sim'] is not None:
                 for name in l1_layers:
-                        sim_loss += config['sim'] * binary_sim_loss(activation[name],token_ids)
-                        
+                    sim_loss += config['sim'] * binary_sim_loss(activation[name], token_ids.view(b*s, -1))
+
             loss = ce_loss + l1_reg_loss + sim_loss
             model.zero_grad()
             loss.backward()
@@ -129,7 +129,7 @@ def train(model, train_dataset, writer, config):
             losses.append((ce_loss.item(), l1_reg_loss.item(), sim_loss.item()))
 
             if (it % 100) == 0:
-                writer.add_scalar("Train/CELoss/Iter", ce_loss.item(), it_n+1)
+                writer.add_scalar("Train/CELoss/Iter", ce_loss.item(), it_n + 1)
                 writer.add_scalar("Train/L1Loss/Iter", l1_reg_loss.item(), it_n + 1)
                 writer.add_scalar("Train/SimLoss/Iter", sim_loss.item(), it_n + 1)
                 writer.add_scalar("Train/Loss/Iter", loss.item(), it_n + 1)
