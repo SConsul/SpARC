@@ -15,7 +15,7 @@ def binary_sim_loss(batch, idx):
     :return: Loss value
     """
     b, L, c = batch.shape
-    if idx is not None:
+    if idx[0, 0] != -1:
         _, I = idx.shape
         idx = idx.unsqueeze(2).expand(b, I, c)  # (2B, I, C)
         batch = torch.gather(batch, dim=1, index=idx)  # (2B, I, C)

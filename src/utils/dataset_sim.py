@@ -36,7 +36,6 @@ class QAPairsDataset(Dataset):
         inp2 = self.tokenizer(q2, return_tensors='pt', max_length=self.source_len, padding="max_length",
                               truncation=True)
 
-        token_idx = None
         if self.token_type is not None:
             if self.token_type == 'answer':
                 # Answer token ids always the first 4
@@ -58,10 +57,12 @@ class QAPairsDataset(Dataset):
                 idx1, idx2 = [idx1], [idx2]
             else:
                 raise NotImplementedError('NOOO')
+        else:
+            idx1, idx2 = [-1], [-1]
 
-            idx1 = torch.tensor(idx1, dtype=torch.long)
-            idx2 = torch.tensor(idx2, dtype=torch.long)
-            token_idx = torch.stack([idx1, idx2])  # (2, n)
+        idx1 = torch.tensor(idx1, dtype=torch.long)
+        idx2 = torch.tensor(idx2, dtype=torch.long)
+        token_idx = torch.stack([idx1, idx2])  # (2, I)
 
         in_token_ids = torch.cat((inp1.input_ids, inp2.input_ids), dim=0)  # (2, InL)
         in_attn_mask = torch.cat((inp1.attention_mask, inp2.attention_mask), dim=0)  # (2, InL)
