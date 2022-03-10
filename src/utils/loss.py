@@ -20,10 +20,11 @@ def binary_sim_loss(batch, idx, sim_type=None):
         idx = idx.unsqueeze(2).expand(b, I, c)  # (2B, I, C)
         batch = torch.gather(batch, dim=1, index=idx)  # (2B, I, C)
 
-    batch = batch.view(b, -1)  # shape = (2B, L*C)
+    # Unit norm vectors across channel dim
+    batch = F.normalize(batch, dim=-1)  # (2B, I, C)
+    batch = batch.view(b, -1)  # shape = (2B, I*C)
 
-    # Unit norm vectors
-    batch = F.normalize(batch, dim=1)  # shape (2B, L*C)
+    # batch = F.normalize(batch, dim=1)  # shape (2B, L*C)
 
     # stores all the dot products of every combination
     sim_matrix = batch @ batch.T  # shape (B,B)
@@ -56,6 +57,6 @@ def binary_sim_loss(batch, idx, sim_type=None):
         neg = sim_matrix[~pos_pair_mask.bool()].view(sim_matrix.shape[0], -1)  # (2B, 2B-2)
         logits = torch.cat((pos, neg), dim=1)  # (2B, 2B-1)
         labels = torch.zeros(logits.shape[0], dtype=torch.long, device=batch.device)  # (2B,)
-        loss = torch.nn.functional.cross_entropy(logits, labels)
+        loss = F.cross_entropy(logits, labels)
 
     return loss
