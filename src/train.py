@@ -29,7 +29,7 @@ def passed_arguments():
     parser.add_argument('--sim', type=float, default=None)
     parser.add_argument('--ce_loss', type=float, default=1.0)
     parser.add_argument('--token_type', type=str, default=None)
-    parser.add_argument('--sim_angle', action='store_true', default=False)
+    parser.add_argument('--sim_type', type=str, default=None)
     args = parser.parse_args()
     return args
 
@@ -117,7 +117,8 @@ def train(model, train_dataset, writer, config):
             sim_loss = torch.tensor(0.0, device=config['device'])
             if config['sim'] is not None:
                 for name in l1_layers:
-                    sim_loss += config['sim'] * binary_sim_loss(activation[name], token_ids.view(b*s, -1), config['sim_angle'])
+                    sim_loss += config['sim'] * binary_sim_loss(activation[name], token_ids.view(b*s, -1),
+                                                                config['sim_type'])
 
             loss = ce_loss + l1_reg_loss + sim_loss
             model.zero_grad()
@@ -196,7 +197,7 @@ def main():
         'sim': args.sim,
         'ce_loss': args.ce_loss,
         'token_type': args.token_type,
-        'sim_angle': args.sim_angle
+        'sim_type': args.sim_type
     }
     train(model, train_dataset, writer, config)
 
