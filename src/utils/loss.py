@@ -3,7 +3,7 @@ import torch.nn.functional as F
 import numpy as np
 
 
-def binary_sim_loss(batch, idx):
+def binary_sim_loss(batch, idx, angle):
     """
     Computes the similarity/difference loss:
     ∑[i = 0, 2, ..., 2B] (1 - a_i.a_i) + ∑[i=0,1,...]∑[j!=i,j!=i+1] a_i . a_j
@@ -27,11 +27,18 @@ def binary_sim_loss(batch, idx):
 
     # stores all the dot products of every combination
     dot_prods = batch @ batch.T  # shape (B,B)
-
-    # Sum all similarity, but overcounting 2 + a_i.a_{i+1},
-    # we want 1 - a_i.a_{i+1}, so add -2*a_i.a_{i+1} - 1
-    loss = torch.sum(dot_prods)
-    for i in range(0, len(batch), 2):
-        loss += -2 * dot_prods[i][i + 1] - 1
+    if angle:
+        eps = 1e-7
+        dot_prods = torch.clamp(dot_prods,-1+eps,1-eps)
+        ang = torch.acos(dot_prods)
+        loss = -torch.sum(ang)
+        for i in range(0, len(batch), 2):
+            loss += 2 * ang[i][i + 1]
+    else:
+        # Sum all similarity, but overcounting 2 + a_i.a_{i+1},
+        # we want 1 - a_i.a_{i+1}, so add -2*a_i.a_{i+1} - 1
+        loss = torch.sum(dot_prods)
+        for i in range(0, len(batch), 2):
+            loss += -2 * dot_prods[i][i + 1] - 1
 
     return loss
