@@ -45,7 +45,7 @@ def infer():
 
     output_preds = []
     for dl, dc in pbar:
-        q_ids, attn, _ = dl
+        q_ids, attn, _, _ = dl
         q_ids = q_ids.to(device)
         attn = attn.to(device)
 

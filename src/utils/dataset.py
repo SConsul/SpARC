@@ -38,4 +38,4 @@ class QADataset(Dataset):
 
         # Keep batch dimension (as PyTorch will handle batching)
         # Shapes (1, InL), (1, InL), (1, OutL)
-        return in_token_ids, in_attn_mask, out_token_ids
+        return in_token_ids, in_attn_mask, out_token_ids, torch.tensor([[-1]], dtype=torch.long)
