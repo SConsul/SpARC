@@ -46,6 +46,10 @@ class QAPairsDataset(Dataset):
                 idx1 = [23, 24, 25, 26]
                 idx2 = [23, 24, 25, 26]
 
+            elif self.token_type == 'eos':
+                 idx1 = [(inp1.input_ids[inp1.attention_mask>0]==1).nonzero()[0][-1]]
+                 idx2 = [(inp2.input_ids[inp2.attention_mask>0]==1).nonzero()[0][-1]]
+
             elif self.token_type == 'link':
                 idx1 = inp1.input_ids[inp1.attention_mask > 0].shape[0] - 3
 
