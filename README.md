@@ -1,4 +1,4 @@
-# SpARC: Sparse Activatiion Regularization for Consistency
+# SpARC: Sparse Activation Regularization for Consistency
 The repository is part of a course project for Stanford CS 224N (Winter 2022), taught by [Prof. Chris Manning](https://nlp.stanford.edu/~manning/).
 
 
