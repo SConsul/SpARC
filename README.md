@@ -84,4 +84,4 @@ python src/utils/consistency_v2.py --results_path <path to inferences on qa_cons
 ```
 
 #
-Team Members: Julia Xu ([**@jwxu**](https://github.com/jwxu)), Samar Khanna ([**@Dieblitzen**](https://github.com/Dieblitzen)), Sarthak Consul ([**@SConsul**](https://github.com/SConsul))
+Team Members: Julia Xu ([**@jwxu**](https://github.com/jwxu)), Samar Khanna ([**@samar-khanna**](https://github.com/samar-khanna)), Sarthak Consul ([**@SConsul**](https://github.com/SConsul))
