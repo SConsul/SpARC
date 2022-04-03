@@ -15,8 +15,40 @@ class DataRow(Edge):
         return self.question == other.question
 
 
+TEMPLATES = {
+    "IsA": {"assertion_positive": "[X] is [Y].", "assertion_negative":  "[X] is not [Y].",
+            "templates": ["Is [X] [Y]?", "Is it true that [X] is [Y]?"],
+            "templates_negated": ["Is [X] not [Y]?", "Is it true that [X] is not [Y]?"]},
+    "HasPart": {"assertion_positive": "[X] has [Y].", "assertion_negative":  "[X] does not have [Y].",
+                "templates": ["Does [X] have [Y]?", "Is [Y] part of [X]?",
+                              "Is it true that [Y] is part of [X]?", "Is it true that [X] has [Y]?"],
+                "templates_negated": ["Does [X] not have [Y]?", "Is [Y] not part of [X]?",
+                                      "Is it true that [Y] is not part of [X]?",
+                                      "Is it true that [X] does not have [Y]?"]},
+    "CapableOf": {"assertion_positive": "[X] can [Y].", "assertion_negative":  "[X] cannot [Y].",
+                  "templates": ["Can [X] [Y]?", "Is it true that [X] can [Y]?",
+                                "Is it true that [X] is capable of [Y]?", "Is [X] capable of [Y]?",
+                                "Is [X] able to [Y]?", "Is it true that [X] is able to [Y]?"],
+                  "templates_negated": ["Can [X] not [Y]?", "Is it true that [X] cannot [Y]?",
+                                        "Is it true that [X] is not capable of [Y]?",
+                                        "Is [X] not capable of [Y]?",
+                                        "Is [X] able not to [Y]?",
+                                        "Is it true that [X] is not able to [Y]?"]},
+    "MadeOf": {"assertion_positive": "[X] is made of [Y].", "assertion_negative":  "[X] is not made of [Y].",
+               "templates": ["Is [X] made of [Y]?", "Is it true that [X] is made of [Y]?"],
+               "templates_negated": ["Is [X] not made of [Y]?", "Is it true that [X] is not made of [Y]?"]},
+    "HasProperty": {"assertion_positive": "[X] is [Y].", "assertion_negative":  "[X] is not [Y].",
+                    "templates": ["Is [X] [Y]?", "Is it true that [X] is [Y]?"],
+                    "templates_negated": ["Is [X] not [Y]?", "Is it true that [X] is not [Y]?"]},
+    "HasA": {"assertion_positive": "[X] has [Y].", "assertion_negative":  "[X] does not have [Y].",
+             "templates": ["Does [X] have [Y]?", "Is it true that [X] has [Y]?"],
+             "templates_negated": ["Does [X] not have [Y]?", "Is it true that [X] has not [Y]?"]}
+}
+
+
 def parse_source_target(source, target):
     # ASSUME: source is always "IsA"
+    # Use non_countable
     s_obj, t_obj = source.split(',')[1], target.split(',')[1]
 
     s_art = 'an ' if s_obj[0] in {'a', 'e', 'i', 'o', 'u'} else 'a '
@@ -147,6 +179,9 @@ if __name__ == "__main__":
 
     with open('beliefbank-data-sep2021/silver_facts.json', 'r') as f:
         facts = json.load(f)
+
+    with open('beliefbank-data-sep2021/non_countable.txt', 'r') as f:
+        non_countable = f.readlines()
 
     c_adj_list, c_data = process_c_graph(c_graph)
 
