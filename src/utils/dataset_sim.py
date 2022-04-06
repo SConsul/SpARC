@@ -3,13 +3,13 @@ import torch
 from torch.utils.data import Dataset
 
 
-LEN_TOKEN_TYPES = {
-    'answer': 4, 'question': 4,
-    'eos': 1, 'link': 1
-}
-
-
 class QAPairsDataset(Dataset):
+
+    LEN_TOKEN_TYPES = {
+        'answer': 4, 'question': 4,
+        'eos': 1, 'link': 1
+    }
+
     def __init__(self, json_filepath, tokenizer, max_source_len=64, max_target_len=8, token_type=None):
         with open(json_filepath, 'r') as f:
             data = json.load(f)
@@ -29,6 +29,11 @@ class QAPairsDataset(Dataset):
                                for line1, line2 in self.data]
         self.source_len = max_source_len
         self.target_len = max_target_len
+
+    def get_activation_src_tgt_len(self):
+        src_len = self.source_len if self.token_type is not None \
+            else self.LEN_TOKEN_TYPES[self.token_type]
+        return src_len, self.target_len
 
     def __len__(self):
         return len(self.data)

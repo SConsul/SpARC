@@ -9,7 +9,7 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
 from utils.moco import Moco
 from utils.dataset import QADataset
-from utils.dataset_sim import QAPairsDataset, LEN_TOKEN_TYPES
+from utils.dataset_sim import QAPairsDataset
 
 
 def passed_arguments():
@@ -94,10 +94,8 @@ def train(model, train_dataset, writer, config):
     # Set up moco
     activations_k = {}
     if config['sim'] is not None:
-        source_len = train_dataset.source_len
-        if config['token_type'] is not None:
-            source_len = LEN_TOKEN_TYPES[config['token_type']]
-        moco = Moco(model, activations.keys(), source_len=source_len, tgt_len=train_dataset.target_len)
+        source_len, tgt_len = train_dataset.get_activation_src_tgt_len()
+        moco = Moco(model, activations.keys(), source_len=source_len, tgt_len=tgt_len)
         moco.to(config['device'])
         register_hooks(moco.model_k, config, activations_k)
 
