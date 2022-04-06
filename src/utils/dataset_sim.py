@@ -31,7 +31,7 @@ class QAPairsDataset(Dataset):
         self.target_len = max_target_len
 
     def get_activation_src_tgt_len(self):
-        src_len = self.source_len if self.token_type is not None \
+        src_len = self.source_len if self.token_type is None \
             else self.LEN_TOKEN_TYPES[self.token_type]
         return src_len, self.target_len
 
