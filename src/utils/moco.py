@@ -84,7 +84,7 @@ class Moco(nn.Module):
         queue = getattr(self, f"queue_{layer_name.replace('.', '_')}")  # (I*C, K)
         l_neg = torch.einsum('nc,ck->nk', [q_pos, queue.clone().detach()])  # (B, K)
 
-        self._dequeue_and_enqueue(k_pos)
+        self._dequeue_and_enqueue(layer_name, k_pos)
 
         # logits: Bx(1+K)
         logits = torch.cat([l_pos, l_neg], dim=1)  # (B, K + 1)
