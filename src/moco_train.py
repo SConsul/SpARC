@@ -42,23 +42,27 @@ def register_hooks(model, config, activation, ):
 
         return hook
 
+    names = []
     for name, layer in model.named_modules():
         if name in config['layer_names']:
             print(f"Register hook on {name}")
             layer.register_forward_hook(get_activation(name))
+            names.append(name)
 
         if ('enc' in config['layer_names']) or ('all' in config['layer_names']):
             layer_name_parts = name.split('.')
             if layer_name_parts[0] == 'encoder' and layer_name_parts[-1] in ['layer_norm', 'final_layer_norm']:
                 print(f"Register hook on {name}")
                 layer.register_forward_hook(get_activation(name))
+                names.append(names)
 
         if ('dec' in config['layer_names']) or ('all' in config['layer_names']):
             layer_name_parts = name.split('.')
             if layer_name_parts[0] == 'decoder' and layer_name_parts[-1] in ['layer_norm', 'final_layer_norm']:
                 print(f"Register hook on {name}")
                 layer.register_forward_hook(get_activation(name))
-    return
+                names.append(names)
+    return names
 
 
 def train(model, train_dataset, writer, config):
@@ -86,16 +90,17 @@ def train(model, train_dataset, writer, config):
                                   num_workers=config['num_workers'], shuffle=True)
 
     # Register hooks to get intermediate activation output
+    model_layer_names = []
     activations = {}
     if config['l1_reg'] is not None or config['sim'] is not None:
         print(f"L1 sparsity on {config['layer_names']}")
-        register_hooks(model, config, activations)
+        model_layer_names = register_hooks(model, config, activations)
 
     # Set up moco
     activations_k = {}
     if config['sim'] is not None:
         source_len, tgt_len = train_dataset.get_activation_src_tgt_len()
-        moco = Moco(model, activations.keys(), source_len=source_len, tgt_len=tgt_len)
+        moco = Moco(model, model_layer_names, source_len=source_len, tgt_len=tgt_len)
         moco.to(config['device'])
         register_hooks(moco.model_k, config, activations_k)
 
