@@ -43,7 +43,7 @@ def binary_sim_loss(batch, idx, sim_type=None):
         # for i in range(0, len(batch), 2):
         #     loss += -2 * sim_matrix[i][i + 1] - 1
 
-        pos_pair_mask = torch.arange(b // 2).repeat_interleave(2)  # (2B
+        pos_pair_mask = torch.arange(b // 2).repeat_interleave(2)  # (2B,)
         pos_pair_mask = (pos_pair_mask.unsqueeze(0) == pos_pair_mask.unsqueeze(1)).float()  # (2B, 2B)
         pos_pair_mask.to(batch.device)
 
