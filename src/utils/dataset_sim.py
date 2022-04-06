@@ -3,6 +3,12 @@ import torch
 from torch.utils.data import Dataset
 
 
+LEN_TOKEN_TYPES = {
+    'answer': 4, 'question': 4,
+    'eos': 1, 'link': 1
+}
+
+
 class QAPairsDataset(Dataset):
     def __init__(self, json_filepath, tokenizer, max_source_len=64, max_target_len=8, token_type=None):
         with open(json_filepath, 'r') as f:
