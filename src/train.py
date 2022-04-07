@@ -34,6 +34,45 @@ def passed_arguments():
     return args
 
 
+def check_register_hook(name, config_layer_names):
+    name_parts = name.split('.')
+    exact_match = name in config_layer_names
+
+    all_match = 'all' in config_layer_names
+    enc_match = (('enc' in config_layer_names) or all_match) and \
+                (name_parts[0] == 'encoder') and \
+                (name_parts[-1] in ['layer_norm', 'final_layer_norm'])
+    dec_match = (('dec' in config_layer_names) or all_match) and \
+                (name_parts[0] == 'decoder') and \
+                (name_parts[-1] in ['layer_norm', 'final_layer_norm'])
+
+    adp_all_match = 'adapter_all' in config_layer_names
+    adp_enc_match = (('adapter_enc' in config_layer_names) or adp_all_match) and \
+                    (name_parts[0] == 'encoder') and \
+                    (name_parts[-1] in ['adapter_up'])
+    adp_dec_match = (('adapter_dec' in config_layer_names) or adp_all_match) and \
+                    (name_parts[0] == 'decoder') and \
+                    (name_parts[-1] in ['adapter_up'])
+    return exact_match or enc_match or dec_match or adp_enc_match or adp_dec_match
+
+
+def register_hooks(model, config, activation):
+    def get_activation(name):
+        def hook(model, input, output):
+            activation[name] = output.detach()
+
+        return hook
+
+    names = []
+    for name, layer in model.named_modules():
+        if check_register_hook(name, config['layer_names']):
+            print(f"Register hook on {name}")
+            layer.register_forward_hook(get_activation(name))
+            names.append(name)
+
+    return names
+
+
 def train(model, train_dataset, writer, config):
     if config['adapter']:
         # optim_groups = [p for n, p in model.named_parameters()
@@ -59,36 +98,10 @@ def train(model, train_dataset, writer, config):
                                   num_workers=config['num_workers'], shuffle=True)
 
     activation = {}
-
-    def get_activation(name):
-        def hook(model, input, output):
-            activation[name] = output.detach()
-
-        return hook
-
-    l1_layers = []
-
+    model_layer_names = []
     if config['l1_reg'] is not None or config['sim'] is not None:
         print(f"L1 sparsity on {config['layer_names']}")
-        for name, layer in model.named_modules():
-            if name in config['layer_names']:
-                print(f"Register hook on {name}")
-                layer.register_forward_hook(get_activation(name))
-                l1_layers.append(name)
-
-            if ('enc' in config['layer_names']) or ('all' in config['layer_names']):
-                layer_name_parts = name.split('.')
-                if layer_name_parts[0] == 'encoder' and layer_name_parts[-1] in ['layer_norm', 'final_layer_norm']:
-                    print(f"Register hook on {name}")
-                    layer.register_forward_hook(get_activation(name))
-                    l1_layers.append(name)
-
-            if ('dec' in config['layer_names']) or ('all' in config['layer_names']):
-                layer_name_parts = name.split('.')
-                if layer_name_parts[0] == 'decoder' and layer_name_parts[-1] in ['layer_norm', 'final_layer_norm']:
-                    print(f"Register hook on {name}")
-                    layer.register_forward_hook(get_activation(name))
-                    l1_layers.append(name)
+        model_layer_names = register_hooks(model, config, activation)
 
     it_n = 0
     for epoch in range(config['max_epochs']):
@@ -110,13 +123,13 @@ def train(model, train_dataset, writer, config):
 
             l1_reg_loss = torch.tensor(0.0, device=config['device'])
             if config['l1_reg'] is not None:
-                for name in l1_layers:
+                for name in activation:
                     l1_regularization = config['l1_reg'] * torch.norm(activation[name], 1)
                     l1_reg_loss += l1_regularization
 
             sim_loss = torch.tensor(0.0, device=config['device'])
             if config['sim'] is not None:
-                for name in l1_layers:
+                for name in activation:
                     sim_loss += config['sim'] * binary_sim_loss(activation[name], token_ids.view(b*s, -1),
                                                                 config['sim_type'])
 
