@@ -3,12 +3,13 @@ import torch
 import argparse
 from tqdm import tqdm
 import torch.optim as optim
+from torch.utils.tensorboard import SummaryWriter
 from torch.utils.data.dataloader import DataLoader
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+
 from utils.dataset import QADataset
-from utils.loss import binary_sim_loss
 from utils.dataset_sim import QAPairsDataset
-from torch.utils.tensorboard import SummaryWriter
+from utils.loss import binary_sim_loss, l1_loss
 
 
 def passed_arguments():
@@ -111,7 +112,7 @@ def train(model, train_dataset, writer, config):
             x = x.to(config['device'])  # (b, 1 or 2, InL)
             a = a.to(config['device'])  # (b, 1 or 2, InL)
             y = y.to(config['device'])  # (b, 1 or 2, OutL)
-            token_ids = token_ids.to(config['device'])
+            token_ids = token_ids.to(config['device'])  # (b, 1 or 2, I)
             b, s, inL = x.shape
             _, _, outL = y.shape
 
@@ -124,8 +125,7 @@ def train(model, train_dataset, writer, config):
             l1_reg_loss = torch.tensor(0.0, device=config['device'])
             if config['l1_reg'] is not None:
                 for name in activation:
-                    l1_regularization = config['l1_reg'] * torch.norm(activation[name], 1)
-                    l1_reg_loss += l1_regularization
+                    l1_reg_loss += config['l1_reg'] * l1_loss(activation[name], token_ids.view(b*s, -1))
 
             sim_loss = torch.tensor(0.0, device=config['device'])
             if config['sim'] is not None:

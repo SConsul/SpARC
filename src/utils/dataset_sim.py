@@ -91,4 +91,4 @@ class QAPairsDataset(Dataset):
         # replace padding id's of labels by -100 for CrossEntropy to ignore (-100 is ignore index)
         out_token_ids[out_token_ids == self.tokenizer.pad_token_id] = -100
 
-        return in_token_ids, in_attn_mask, out_token_ids, token_idx  # (2, InL), (2, InL), (2, OutL), (2)
+        return in_token_ids, in_attn_mask, out_token_ids, token_idx  # (2, InL), (2, InL), (2, OutL), (2, I)

@@ -3,6 +3,22 @@ import torch.nn.functional as F
 import numpy as np
 
 
+def l1_loss(batch, idx):
+    """
+    Computes the L1 regularisation of the activation
+    :param batch: shape (2B, L, C) or (B, L, C)
+    :param idx: shape (2B, I) of which indices of the activation to compute l1
+    :return: L1 loss
+    """
+    b, L, c = batch.shape
+    if idx[0, 0] != -1:
+        _, I = idx.shape
+        idx = idx.unsqueeze(2).expand(b, I, c)  # (2B, I, C)
+        batch = torch.gather(batch, dim=1, index=idx)  # (2B, I, C)
+
+    return torch.norm(batch, 1)
+
+
 def binary_sim_loss(batch, idx, sim_type=None):
     """
     Computes the similarity/difference loss:
