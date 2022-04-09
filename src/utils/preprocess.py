@@ -12,7 +12,8 @@ class DataRow(Edge):
         return hash(self.question)
 
     def __eq__(self, other):
-        return self.question == other.question
+        # return self.question == other.question
+        return self.source == other.source and self.target == other.target
 
 
 TEMPLATES = {
@@ -46,29 +47,21 @@ TEMPLATES = {
 }
 
 
-def parse_source_target(source, target):
+def parse_source_target(source, target, use_pos=True):
     # ASSUME: source is always "IsA"
     # Use non_countable
-    s_obj, t_obj = source.split(',')[1], target.split(',')[1]
+    _, s_obj = source.split(',')
+    link, t_obj = target.split(',')
+
+    template_qs = TEMPLATES[link]['templates' if use_pos else 'templates_negated']
+    question = random.choice(template_qs)
 
     s_art = 'an ' if s_obj[0] in {'a', 'e', 'i', 'o', 'u'} else 'a '
-    s_art = s_art if s_obj[-1] != 's' else ''
+    s_art = '' if s_obj in non_countable else s_art
     t_art = 'an ' if t_obj[0] in {'a', 'e', 'i', 'o', 'u'} else 'a '
-    t_art = t_art if t_obj[-1] != 's' else ''
-    if target.startswith('IsA'):
-        return f'Is {s_art}{s_obj} {t_art}{t_obj}?'
-    elif target.startswith('HasA'):
-        return f'Does {s_art}{s_obj} have {t_art}{t_obj}?'
-    elif target.startswith('HasPart'):
-        return f'Does {s_art}{s_obj} have {t_art}{t_obj}?'
-    elif target.startswith('HasProperty'):
-        return f'Is {s_art}{s_obj} {t_obj}?'
-    elif target.startswith('MadeOf'):
-        return f'Is {s_art}{s_obj} made of {t_obj}?'
-    elif target.startswith('CapableOf'):
-        return f'Can {s_art}{s_obj} {t_obj}?'
-    else:
-        raise ValueError("NOOOOO")
+    t_art = '' if t_obj in non_countable else t_art
+
+    return question.replace('[X]', s_art + s_obj).replace('[Y]', t_art + t_obj)
 
 
 def traverse(data_adj_list):
@@ -124,10 +117,40 @@ def create_all_questions(c_graph):
 
 
 def process_silver_facts(silver_facts):
+    # Correct imbalance in silver facts by ensuring equal number of yes qs and no qs
+    num_yes, num_no = 0, 0
+    use_positive_question = {}
+    for source, targets in silver_facts.items():
+        for target, label in targets.items():
+            use_positive_question['IsA,' + source + target] = label
+            num_yes += 1 if label == 'yes' else 0
+            num_no += 1 if label == 'no' else 0
+
+    keys = list(use_positive_question.keys())
+    random.shuffle(keys)
+
+    imbalance_ans = 'yes' if num_yes >= num_no else 'no'
+    flip_ans = lambda a: 'yes' if a == 'no' else 'no'
+
+    i = 0
+    count_flipped = 0
+    while count_flipped < (max(num_yes, num_no) - min(num_yes, num_no))/2:
+        k = keys[i]
+        ans = use_positive_question[k]
+        if ans == imbalance_ans:
+            use_positive_question[k] = False
+            count_flipped += 1
+        else:
+            use_positive_question[k] = True
+        i += 1
+
     data = defaultdict(set)
     for source, targets in silver_facts.items():
         for target, label in targets.items():
-            row = DataRow(question=parse_source_target('IsA,' + source, target), answer=label,
+            # If use_pos, then use template, else use negative template and flip answer
+            use_pos = use_positive_question['IsA,' + source + target]
+            row = DataRow(question=parse_source_target('IsA,' + source, target, use_pos=use_pos),
+                          answer=label if use_pos else flip_ans(label),
                           source='IsA,' + source, target=target, gold=False)
             data['IsA,' + source].add(row)
 
@@ -192,10 +215,10 @@ if __name__ == "__main__":
         c_multi_hop[n] = all_edges - c_adj_list[n]
 
     # Train data is most of silver facts (i.e. actual questions with entities)
-    train, s_val, s_test = data_split(s_data, train=0.8, val=0.1, test=0.1)
+    train, s_val, s_test = data_split(s_data, train=0.9, val=0.05, test=0.05)
 
     # Eval data is all edges in constraint graph (single and multi hop)
-    _, val, test = data_split(c_data, train=0., val=0.5, test=0.5)
+    _, val, test = data_split(c_adj_list, train=0., val=0.5, test=0.5)
 
     # Consistency data is dense graph of all questions starting with isA
     # consistency_data = create_all_questions(c_graph)
@@ -210,7 +233,10 @@ if __name__ == "__main__":
     # test = merge(one_hop_test, multi_test)
 
     with open('beliefbank-data-sep2021/constraints_qa.json', 'w') as f:
-        json.dump(json_serialize(c_data), f)
+        json.dump(json_serialize(c_adj_list), f, indent=1)
+
+    with open('beliefbank-data-sep2021/constraints_qa_multihop.json', 'w') as f:
+        json.dump(json_serialize(c_data), f, indent=1)
 
     with open('beliefbank-data-sep2021/silver_qa.json', 'w') as f:
         json.dump(json_serialize(s_data), f)
