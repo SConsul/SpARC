@@ -1,5 +1,6 @@
 import json
 import random
+import numpy as np
 from itertools import product
 from collections import defaultdict, namedtuple
 
@@ -158,6 +159,66 @@ def process_silver_facts(silver_facts):
     return data
 
 
+def graph_split(all_adj_list, n_nodes):
+    val_adj_list = defaultdict(set)
+    test_adj_list = defaultdict(set)
+
+    start_nodes = np.random.choice(list(all_adj_list.keys()), size=2, replace=False)
+    val_degree_nodes = {start_nodes[0]}
+    val_nodes = {start_nodes[0]}
+    test_degree_nodes = {start_nodes[1]}
+    test_nodes = {start_nodes[1]}
+
+    missing_edges = {0: 0}
+    def depth_step(source, split_adj_list, split_degree_nodes, split_nodes, other_nodes):
+        
+        if source is not None:
+            neighbours = all_adj_list.get(source, [])
+
+            used = 0
+            new_source = None
+            for data_row in neighbours:
+                target = data_row.target
+
+                if target not in split_nodes and target not in other_nodes:
+                    if new_source is None:
+                        used += 1
+                        split_adj_list[source].add(data_row)
+                        split_nodes.add(target)
+                        split_degree_nodes.add(target)
+                        new_source = target
+                        # if len(all_adj_list.get(target, [])) > 0:
+                        #     split_degree_nodes.add(target)
+                        #     new_source = target
+                        # elif len(split_degree_nodes) > 0:
+                        #     new_source = random.choice(list(split_degree_nodes))
+                        # else:
+                        #     raise ValueError("NO")
+                else:
+                    if target in other_nodes:
+                        missing_edges[0] += 1
+                    used += 1
+
+            if used == len(neighbours):
+                split_degree_nodes.remove(source)
+
+            if new_source is None and len(split_degree_nodes) > 0:
+                new_source = random.choice(list(split_degree_nodes))
+            elif new_source is None:
+                new_source = random.choice(list(set(all_adj_list.keys()) - other_nodes))
+
+            return new_source
+
+    curr_val = start_nodes[0]
+    curr_test = start_nodes[0]
+    while len(val_nodes) + len(test_nodes) < n_nodes:
+        curr_val = depth_step(curr_val, val_adj_list, val_degree_nodes, val_nodes, test_nodes)
+        curr_test = depth_step(curr_test, test_adj_list, test_degree_nodes, test_nodes, val_nodes)
+
+    print(f"Number of edges lost: {missing_edges[0]}")
+    return val_adj_list, test_adj_list
+
+
 def data_split(data, train=0.8, val=0.1, test=0.1):
     train_data = defaultdict(list)
     val_data = defaultdict(list)
@@ -218,7 +279,9 @@ if __name__ == "__main__":
     train, s_val, s_test = data_split(s_data, train=0.9, val=0.05, test=0.05)
 
     # Eval data is all edges in constraint graph (single and multi hop)
-    _, val, test = data_split(c_adj_list, train=0., val=0.5, test=0.5)
+    n_nodes = len(c_graph['nodes'])
+    # _, val, test = data_split(c_adj_list, train=0., val=0.5, test=0.5)
+    val, test = graph_split(c_adj_list, n_nodes)
 
     # Consistency data is dense graph of all questions starting with isA
     # consistency_data = create_all_questions(c_graph)
