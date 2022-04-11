@@ -106,12 +106,17 @@ if __name__ == "__main__":
     with open('data/original_lot/hypernyms_explicit_only_short_neg_hypernym_rule_test.jsonl') as f:
         test_explicit = [json.loads(line) for line in f]
 
-    train_data = process_data(train)
-    val_data = process_data(val)
+    # train_data = process_data(train)
+    # val_data = process_data(val)
 
     test_data_statement = process_data(test_statement)
     test_data_implicit = process_data(test_implicit)
     test_data_explicit = process_data(test_explicit)
+
+    test_data = []
+    test_data.extend(test_data_statement)
+    test_data.extend(test_data_implicit)
+    test_data.extend(test_data_explicit)
 
     # with open('data/lot_train.json', 'w') as f:
     #     print("Train Data: ", len(train_data)) # 165947
@@ -132,4 +137,8 @@ if __name__ == "__main__":
     # with open('data/lot_test_explicit.json', 'w') as f:
     #     print("Test Data: ", len(test_data_explicit)) # 9794
     #     json.dump(json_serialize(test_data_explicit), f, indent=1)
+
+    with open('data/lot_test_combined.json', 'w') as f:
+        print("Test Data: ", len(test_data)) # 21,680
+        json.dump(json_serialize(test_data), f, indent=1)
     
