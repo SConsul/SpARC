@@ -13,7 +13,11 @@ class DataRow(Edge):
 
 
 def json_serialize(data):
-    return {n: [q._asdict() for q in qs] for n, qs in data.items()}
+    # return {n: [q._asdict() for q in qs] for n, qs in data.items()}
+    output = []
+    for info in data:
+        output.append(info._asdict())
+    return output
 
 
 def parse_question(source, target, predicate):
@@ -66,7 +70,8 @@ def get_links(data_dict, data_id, link_type):
 
 
 def process_data(data):
-    all_data = defaultdict(list)
+    # all_data = defaultdict(list)
+    all_data = []
     link_types = ["implicit_rule", "property", "statement"]
 
     for d in tqdm(data):
@@ -74,20 +79,57 @@ def process_data(data):
         data_id = d["id"]
         for link in link_types:
             if link in metadata:
-                all_data[data_id].extend(get_links(metadata, data_id, link))
+                # all_data[data_id].extend(get_links(metadata, data_id, link))
+                all_data.extend(get_links(metadata, data_id, link))
 
         if "distractors" in metadata:
             for link in link_types:
                 if link in metadata['distractors']:
-                    all_data[data_id].extend(get_links(metadata['distractors'], data_id, link))
+                    # all_data[data_id].extend(get_links(metadata['distractors'], data_id, link))
+                    all_data.extend(get_links(metadata['distractors'], data_id, link))
     return all_data
         
 
 if __name__ == "__main__":
-    with open('data/hypernyms_training_mix_short_train.jsonl', 'r') as f:
-        data = [json.loads(line) for line in f]
+    with open('data/original_lot/hypernyms_training_mix_short_train.jsonl', 'r') as f:
+        train = [json.loads(line) for line in f]
+    
+    with open('data/original_lot/hypernyms_training_mix_short_dev.jsonl', 'r') as f:
+        val = [json.loads(line) for line in f]
 
-    constraint_data = process_data(data)
+    with open('data/original_lot/hypernyms_statement_only_short_neg_hypernym_rule_test.jsonl') as f:
+        test_statement = [json.loads(line) for line in f]
+    
+    with open('data/original_lot/hypernyms_implicit_only_short_neg_hypernym_rule_test.jsonl') as f:
+        test_implicit = [json.loads(line) for line in f]
+    
+    with open('data/original_lot/hypernyms_explicit_only_short_neg_hypernym_rule_test.jsonl') as f:
+        test_explicit = [json.loads(line) for line in f]
 
-    with open('data/leapofthought.json', 'w') as f:
-        json.dump(json_serialize(constraint_data), f)
+    train_data = process_data(train)
+    val_data = process_data(val)
+
+    test_data_statement = process_data(test_statement)
+    test_data_implicit = process_data(test_implicit)
+    test_data_explicit = process_data(test_explicit)
+
+    # with open('data/lot_train.json', 'w') as f:
+    #     print("Train Data: ", len(train_data)) # 165947
+    #     json.dump(json_serialize(train_data), f, indent=1)
+    
+    # with open('data/lot_val.json', 'w') as f:
+    #     print("Val Data: ", len(val_data)) # 7574
+    #     json.dump(json_serialize(val_data), f, indent=1)
+
+    # with open('data/lot_test_statement.json', 'w') as f:
+    #     print("Test Data: ", len(test_data_statement)) # 4670
+    #     json.dump(json_serialize(test_data_statement), f, indent=1)
+    
+    # with open('data/lot_test_implicit.json', 'w') as f:
+    #     print("Test Data: ", len(test_data_implicit)) # 7216
+    #     json.dump(json_serialize(test_data_implicit), f, indent=1)
+    
+    # with open('data/lot_test_explicit.json', 'w') as f:
+    #     print("Test Data: ", len(test_data_explicit)) # 9794
+    #     json.dump(json_serialize(test_data_explicit), f, indent=1)
+    
