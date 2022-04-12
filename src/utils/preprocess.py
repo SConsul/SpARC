@@ -151,9 +151,11 @@ def process_silver_facts(silver_facts):
         for target, label in targets.items():
             # If use_pos, then use template, else use negative template and flip answer
             use_pos = use_positive_question['IsA,' + source + target]
+            t_type, t_obj = target.split(',')
+            target_ = t_type + ',' + ('' if use_pos else 'not ') + t_obj
             row = DataRow(question=parse_source_target('IsA,' + source, target, use_pos=use_pos),
                           answer=label if use_pos else flip_ans(label),
-                          source='IsA,' + source, target=target, gold=False)
+                          source='IsA,' + source, target=target_, gold=False)
             data['IsA,' + source].add(row)
 
     # data = {n: [q._asdict() for q in qs] for n, qs in data.items()}
@@ -306,12 +308,6 @@ if __name__ == "__main__":
     # Consistency data is dense graph of all questions starting with isA
     # consistency_data = create_all_questions(c_graph)
 
-    # with open('beliefbank-data-sep2021/constraints_qa.json', 'w') as f:
-    #     json.dump(json_serialize(c_adj_list), f, indent=1)
-    #
-    # with open('beliefbank-data-sep2021/constraints_qa_multihop.json', 'w') as f:
-    #     json.dump(json_serialize(c_data), f, indent=1)
-    # 
     # with open('beliefbank-data-sep2021/silver_qa.json', 'w') as f:
     #     json.dump(json_serialize(s_data), f)
     #
@@ -320,6 +316,12 @@ if __name__ == "__main__":
     #
     # with open('beliefbank-data-sep2021/qa_train.json', 'w') as f:
     #     json.dump(flatten(json_serialize(train).values()), f, indent=1)
+    #
+    # with open('beliefbank-data-sep2021/constraints_qa.json', 'w') as f:
+    #     json.dump(json_serialize(c_adj_list), f, indent=1)
+    #
+    # with open('beliefbank-data-sep2021/constraints_qa_multihop.json', 'w') as f:
+    #     json.dump(json_serialize(c_data), f, indent=1)
     #
     # with open('beliefbank-data-sep2021/qa_val.json', 'w') as f:
     #     json.dump(flatten(json_serialize(val).values()), f, indent=1)
