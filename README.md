@@ -25,7 +25,7 @@ The BeliefBank dataset is available at https://allenai.org/data/beliefbank
 
 To parse the relation graphs into question-answer pairs, as well as generating the train, val and test splits, run:
 ```bash
-python src/utils/preprocess.py
+python src/utils/beliefbank_preprocess.py
 ```
 This will generate json files with the required question-answer splits, qa_train, qa_val and qa_test. A separate qa_consistency to test the consistency of the model.
 
