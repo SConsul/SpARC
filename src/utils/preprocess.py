@@ -10,7 +10,8 @@ Edge = namedtuple('DataRow', ['question', 'answer', 'source', 'target', 'gold'])
 
 class DataRow(Edge):
     def __hash__(self):
-        return hash(self.question)
+        # return hash(self.question)
+        return hash((self.source, self.target))
 
     def __eq__(self, other):
         # return self.question == other.question
@@ -163,59 +164,78 @@ def graph_split(all_adj_list, n_nodes):
     val_adj_list = defaultdict(set)
     test_adj_list = defaultdict(set)
 
+    available_nodes, available_edges = set(), set()
+    for n, edges in all_adj_list.items():
+        available_edges.update(edges)
+        for data_row in edges:
+            available_nodes.add(data_row.source)
+            available_nodes.add(data_row.target)
+    print(f"Total nodes: {len(available_nodes)}, total edges: {len(available_edges)}")
+
     start_nodes = np.random.choice(list(all_adj_list.keys()), size=2, replace=False)
+    for s in start_nodes:
+        available_nodes.remove(s)
+
     val_degree_nodes = {start_nodes[0]}
     val_nodes = {start_nodes[0]}
+
     test_degree_nodes = {start_nodes[1]}
     test_nodes = {start_nodes[1]}
 
-    missing_edges = {0: 0}
     def depth_step(source, split_adj_list, split_degree_nodes, split_nodes, other_nodes):
-        
-        if source is not None:
-            neighbours = all_adj_list.get(source, [])
+        if source is None:
+            return
 
-            used = 0
-            new_source = None
-            for data_row in neighbours:
-                target = data_row.target
+        neighbours = all_adj_list.get(source, [])
 
-                if target not in split_nodes and target not in other_nodes:
-                    if new_source is None:
-                        used += 1
-                        split_adj_list[source].add(data_row)
-                        split_nodes.add(target)
-                        split_degree_nodes.add(target)
-                        new_source = target
-                        # if len(all_adj_list.get(target, [])) > 0:
-                        #     split_degree_nodes.add(target)
-                        #     new_source = target
-                        # elif len(split_degree_nodes) > 0:
-                        #     new_source = random.choice(list(split_degree_nodes))
-                        # else:
-                        #     raise ValueError("NO")
-                else:
-                    if target in other_nodes:
-                        missing_edges[0] += 1
-                    used += 1
+        for data_row in neighbours:
+            target = data_row.target
 
-            if used == len(neighbours):
-                split_degree_nodes.remove(source)
+            # Add edge if target is not in other split and if edge is available
+            if target not in other_nodes and data_row in available_edges:
+                split_adj_list[source].add(data_row)
+                available_edges.remove(data_row)
 
-            if new_source is None and len(split_degree_nodes) > 0:
-                new_source = random.choice(list(split_degree_nodes))
-            elif new_source is None:
-                new_source = random.choice(list(set(all_adj_list.keys()) - other_nodes))
+                split_nodes.add(target)
+                split_degree_nodes.add(target)
+                available_nodes.discard(target)
 
-            return new_source
+                return target
+
+        # Discard source as restart option because no outgoing edges left to explore here
+        split_degree_nodes.discard(source)
+
+        # Prefer nodes along graph already in split before completely random restart
+        if len(split_degree_nodes) > 0:
+            restart = random.choice(list(split_degree_nodes))
+            split_nodes.add(restart)
+            split_degree_nodes.add(restart)
+            available_nodes.discard(restart)
+            return restart
+        if len(available_nodes) > 0:
+            restart = random.choice(list(available_nodes))
+            split_nodes.add(restart)
+            split_degree_nodes.add(restart)
+            available_nodes.remove(restart)
+            return restart
+
+        print("No more nodes")
+        return None
 
     curr_val = start_nodes[0]
     curr_test = start_nodes[0]
-    while len(val_nodes) + len(test_nodes) < n_nodes:
+    while len(val_nodes) + len(test_nodes) < n_nodes and (curr_val is not None or curr_test is not None):
         curr_val = depth_step(curr_val, val_adj_list, val_degree_nodes, val_nodes, test_nodes)
         curr_test = depth_step(curr_test, test_adj_list, test_degree_nodes, test_nodes, val_nodes)
 
-    print(f"Number of edges lost: {missing_edges[0]}")
+    conflict = val_nodes.intersection(test_nodes)
+    assert len(conflict) == 0, f"Conflict: {len(conflict)}, Intersection: {conflict}"
+
+    n_val_edges = sum([len(edges) for edges in val_adj_list.values()])
+    n_test_edges = sum([len(edges) for edges in test_adj_list.values()])
+
+    print(f"Missing edges: {len(available_edges)}, val edges: {n_val_edges}, test edges: {n_test_edges}")
+    print(f"Val nodes: {len(val_nodes)}, test nodes: {len(test_nodes)}")
     return val_adj_list, test_adj_list
 
 
@@ -286,35 +306,26 @@ if __name__ == "__main__":
     # Consistency data is dense graph of all questions starting with isA
     # consistency_data = create_all_questions(c_graph)
 
-    # # Merge multihop with silver data
-    # eval_data = merge(c_multi_hop, s_data)
-    #
-    # # Split single hop edges into train/val/test
-    # train, one_hop_val, one_hop_test = data_split(c_adj_list)
-    # _, multi_val, multi_test = data_split(eval_data, train=0., val=0.5, test=0.5)
-    # val = merge(one_hop_val, multi_val)
-    # test = merge(one_hop_test, multi_test)
+    with open('beliefbank-data-sep2021/constraints_qa.json', 'w') as f:
+        json.dump(json_serialize(c_adj_list), f, indent=1)
 
-    # with open('beliefbank-data-sep2021/constraints_qa.json', 'w') as f:
-    #     json.dump(json_serialize(c_adj_list), f, indent=1)
-    #
-    # with open('beliefbank-data-sep2021/constraints_qa_multihop.json', 'w') as f:
-    #     json.dump(json_serialize(c_data), f, indent=1)
-    #
-    # with open('beliefbank-data-sep2021/silver_qa.json', 'w') as f:
-    #     json.dump(json_serialize(s_data), f)
-    #
-    # # with open('beliefbank-data-sep2021/qa.json', 'w') as f:
-    # #     json.dump(flatten(data.values()), f, indent=1)
-    #
-    # with open('beliefbank-data-sep2021/qa_train.json', 'w') as f:
-    #     json.dump(flatten(json_serialize(train).values()), f, indent=1)
+    with open('beliefbank-data-sep2021/constraints_qa_multihop.json', 'w') as f:
+        json.dump(json_serialize(c_data), f, indent=1)
 
-    with open('beliefbank-data-sep2021/qa_val.json', 'w') as f:
-        json.dump(flatten(json_serialize(val).values()), f, indent=1)
+    with open('beliefbank-data-sep2021/silver_qa.json', 'w') as f:
+        json.dump(json_serialize(s_data), f)
 
-    with open('beliefbank-data-sep2021/qa_test.json', 'w') as f:
-        json.dump(flatten(json_serialize(test).values()), f, indent=1)
+    # with open('beliefbank-data-sep2021/qa.json', 'w') as f:
+    #     json.dump(flatten(data.values()), f, indent=1)
+
+    with open('beliefbank-data-sep2021/qa_train.json', 'w') as f:
+        json.dump(flatten(json_serialize(train).values()), f, indent=1)
+
+    # with open('beliefbank-data-sep2021/qa_val.json', 'w') as f:
+    #     json.dump(flatten(json_serialize(val).values()), f, indent=1)
+    #
+    # with open('beliefbank-data-sep2021/qa_test.json', 'w') as f:
+    #     json.dump(flatten(json_serialize(test).values()), f, indent=1)
 
     # with open('beliefbank-data-sep2021/qa_consistency.json', 'w') as f:
     #     json.dump(flatten(json_serialize(consistency_data).values()), f, indent=1)
