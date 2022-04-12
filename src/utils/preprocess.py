@@ -160,7 +160,7 @@ def process_silver_facts(silver_facts):
     return data
 
 
-def graph_split(all_adj_list, n_nodes):
+def graph_split(all_adj_list):
     val_adj_list = defaultdict(set)
     test_adj_list = defaultdict(set)
 
@@ -171,6 +171,7 @@ def graph_split(all_adj_list, n_nodes):
             available_nodes.add(data_row.source)
             available_nodes.add(data_row.target)
     print(f"Total nodes: {len(available_nodes)}, total edges: {len(available_edges)}")
+    n_nodes = len(available_nodes)
 
     start_nodes = np.random.choice(list(all_adj_list.keys()), size=2, replace=False)
     for s in start_nodes:
@@ -224,7 +225,7 @@ def graph_split(all_adj_list, n_nodes):
 
     curr_val = start_nodes[0]
     curr_test = start_nodes[0]
-    while len(val_nodes) + len(test_nodes) < n_nodes and (curr_val is not None or curr_test is not None):
+    while len(val_nodes) + len(test_nodes) < n_nodes:
         curr_val = depth_step(curr_val, val_adj_list, val_degree_nodes, val_nodes, test_nodes)
         curr_test = depth_step(curr_test, test_adj_list, test_degree_nodes, test_nodes, val_nodes)
 
@@ -299,28 +300,27 @@ if __name__ == "__main__":
     train, s_val, s_test = data_split(s_data, train=0.9, val=0.05, test=0.05)
 
     # Eval data is all edges in constraint graph (single and multi hop)
-    n_nodes = len(c_graph['nodes'])
     # _, val, test = data_split(c_adj_list, train=0., val=0.5, test=0.5)
-    val, test = graph_split(c_adj_list, n_nodes)
+    val, test = graph_split(c_adj_list)
 
     # Consistency data is dense graph of all questions starting with isA
     # consistency_data = create_all_questions(c_graph)
 
-    with open('beliefbank-data-sep2021/constraints_qa.json', 'w') as f:
-        json.dump(json_serialize(c_adj_list), f, indent=1)
-
-    with open('beliefbank-data-sep2021/constraints_qa_multihop.json', 'w') as f:
-        json.dump(json_serialize(c_data), f, indent=1)
-
-    with open('beliefbank-data-sep2021/silver_qa.json', 'w') as f:
-        json.dump(json_serialize(s_data), f)
-
-    # with open('beliefbank-data-sep2021/qa.json', 'w') as f:
-    #     json.dump(flatten(data.values()), f, indent=1)
-
-    with open('beliefbank-data-sep2021/qa_train.json', 'w') as f:
-        json.dump(flatten(json_serialize(train).values()), f, indent=1)
-
+    # with open('beliefbank-data-sep2021/constraints_qa.json', 'w') as f:
+    #     json.dump(json_serialize(c_adj_list), f, indent=1)
+    #
+    # with open('beliefbank-data-sep2021/constraints_qa_multihop.json', 'w') as f:
+    #     json.dump(json_serialize(c_data), f, indent=1)
+    # 
+    # with open('beliefbank-data-sep2021/silver_qa.json', 'w') as f:
+    #     json.dump(json_serialize(s_data), f)
+    #
+    # # with open('beliefbank-data-sep2021/qa.json', 'w') as f:
+    # #     json.dump(flatten(data.values()), f, indent=1)
+    #
+    # with open('beliefbank-data-sep2021/qa_train.json', 'w') as f:
+    #     json.dump(flatten(json_serialize(train).values()), f, indent=1)
+    #
     # with open('beliefbank-data-sep2021/qa_val.json', 'w') as f:
     #     json.dump(flatten(json_serialize(val).values()), f, indent=1)
     #
