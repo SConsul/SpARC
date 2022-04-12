@@ -54,14 +54,14 @@ def register_hooks(model, config, activation, ):
             if layer_name_parts[0] == 'encoder' and layer_name_parts[-1] in ['layer_norm', 'final_layer_norm']:
                 print(f"Register hook on {name}")
                 layer.register_forward_hook(get_activation(name))
-                names.append(names)
+                names.append(name)
 
         if ('dec' in config['layer_names']) or ('all' in config['layer_names']):
             layer_name_parts = name.split('.')
             if layer_name_parts[0] == 'decoder' and layer_name_parts[-1] in ['layer_norm', 'final_layer_norm']:
                 print(f"Register hook on {name}")
                 layer.register_forward_hook(get_activation(name))
-                names.append(names)
+                names.append(name)
     return names
 
 
