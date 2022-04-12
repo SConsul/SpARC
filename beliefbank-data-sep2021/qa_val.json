@@ -5551,7 +5551,7 @@
   "gold": true
  },
  {
-  "question": "Is it true that a fish is capable of a navigate via polarised light?",
+  "question": "Is a fish is capable of navigate via polarised light?",
   "answer": "yes",
   "source": "IsA,fish",
   "target": "CapableOf,navigate via polarised light",
