@@ -295,20 +295,20 @@ if __name__ == "__main__":
     # val = merge(one_hop_val, multi_val)
     # test = merge(one_hop_test, multi_test)
 
-    with open('beliefbank-data-sep2021/constraints_qa.json', 'w') as f:
-        json.dump(json_serialize(c_adj_list), f, indent=1)
-
-    with open('beliefbank-data-sep2021/constraints_qa_multihop.json', 'w') as f:
-        json.dump(json_serialize(c_data), f, indent=1)
-
-    with open('beliefbank-data-sep2021/silver_qa.json', 'w') as f:
-        json.dump(json_serialize(s_data), f)
-
-    # with open('beliefbank-data-sep2021/qa.json', 'w') as f:
-    #     json.dump(flatten(data.values()), f, indent=1)
-
-    with open('beliefbank-data-sep2021/qa_train.json', 'w') as f:
-        json.dump(flatten(json_serialize(train).values()), f, indent=1)
+    # with open('beliefbank-data-sep2021/constraints_qa.json', 'w') as f:
+    #     json.dump(json_serialize(c_adj_list), f, indent=1)
+    #
+    # with open('beliefbank-data-sep2021/constraints_qa_multihop.json', 'w') as f:
+    #     json.dump(json_serialize(c_data), f, indent=1)
+    #
+    # with open('beliefbank-data-sep2021/silver_qa.json', 'w') as f:
+    #     json.dump(json_serialize(s_data), f)
+    #
+    # # with open('beliefbank-data-sep2021/qa.json', 'w') as f:
+    # #     json.dump(flatten(data.values()), f, indent=1)
+    #
+    # with open('beliefbank-data-sep2021/qa_train.json', 'w') as f:
+    #     json.dump(flatten(json_serialize(train).values()), f, indent=1)
 
     with open('beliefbank-data-sep2021/qa_val.json', 'w') as f:
         json.dump(flatten(json_serialize(val).values()), f, indent=1)
