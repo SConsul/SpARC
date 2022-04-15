@@ -1,15 +1,6 @@
 import json
-from collections import defaultdict, namedtuple
 from tqdm import tqdm
-
-Edge = namedtuple('DataRow', ['question', 'answer', 'source', 'target', 'gold', 'id', 'link_type'])
-
-class DataRow(Edge):
-    def __hash__(self):
-        return hash(self.question)
-
-    def __eq__(self, other):
-        return self.question == other.question
+from preprocess_utils import DataRow
 
 
 def json_serialize(data):
