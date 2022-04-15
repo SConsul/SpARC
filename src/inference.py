@@ -15,7 +15,7 @@ def batch(iterable, n=1):
         yield iterable[ndx:min(ndx + n, l)]
 
 
-def infer(model, test_dataset, qa, batch_size, device):
+def infer(model, tokenizer, test_dataset, qa, batch_size, device):
 
     test_dataloader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, drop_last=False)
     pbar = tqdm(zip(test_dataloader, batch(qa, batch_size)), total=len(test_dataloader))
@@ -76,7 +76,7 @@ if __name__ == "__main__":
 
     test_dataset = QADataset(args.in_path, tokenizer)
 
-    output_preds = infer(model, test_dataset, qa, args.batch_size, device)
+    output_preds = infer(model, tokenizer, test_dataset, qa, args.batch_size, device)
 
     output_preds = [dr._asdict() for dr in output_preds]
     with open(args.out_path, 'w') as outfile:

@@ -40,7 +40,7 @@ if __name__ == "__main__":
         singlehop_qa = json.load(f)
     singlehop_dataset = QADataset(args.in_path, tokenizer)
 
-    singlehop_preds = infer(model, singlehop_dataset, singlehop_qa, args.batch_size, device)
+    singlehop_preds = infer(model, tokenizer, singlehop_dataset, singlehop_qa, args.batch_size, device)
 
     singlehop_preds = [dr._asdict() for dr in singlehop_preds]
     with open(args.out_path, 'w') as outfile:
@@ -57,7 +57,7 @@ if __name__ == "__main__":
         json.dump(multihop_qa, f, indent=1)
     multihop_dataset = QADataset(args.consistency_path, tokenizer)
 
-    multihop_preds = infer(model, multihop_dataset, multihop_qa, args.batch_size, device)
+    multihop_preds = infer(model, tokenizer, multihop_dataset, multihop_qa, args.batch_size, device)
     multihop_preds = [dr._asdict() for dr in multihop_preds]
     with open(args.consistency_path, 'w') as f:
         json.dump(multihop_qa, f, indent=1)

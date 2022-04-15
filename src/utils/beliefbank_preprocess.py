@@ -3,7 +3,7 @@ import random
 import numpy as np
 from itertools import product
 from collections import defaultdict
-from preprocess_utils import DataRow, TEMPLATES
+from utils.preprocess_utils import DataRow, TEMPLATES
 
 
 def parse_source_target(source, target, use_pos=True):
