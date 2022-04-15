@@ -43,8 +43,7 @@ def infer(model, tokenizer, test_dataset, qa, batch_size, device):
             output_preds.append(
                 DataRow(question=data_row['question'], answer=data_row['answer'],
                         source=data_row['source'], target=data_row['target'],
-                        gold=False, id=data_row['id'], link_type=data_row['link_type'],
-                        pred=pred_text)
+                        gold=False, pred=pred_text)
             )
 
     return output_preds
