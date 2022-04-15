@@ -1,7 +1,7 @@
 from collections import namedtuple
 
-Edge = namedtuple('DataRow', ['question', 'answer', 'source', 'target', 'gold', 'id', 'link_type'],
-                  defaults=('', ''))
+Edge = namedtuple('DataRow', ['question', 'answer', 'source', 'target', 'gold', 'id', 'link_type', 'pred'],
+                  defaults=('', '', ''))
 
 
 class DataRow(Edge):
