@@ -6,7 +6,7 @@ from collections import defaultdict
 from utils.preprocess_utils import DataRow, TEMPLATES
 
 
-def parse_source_target(source, target, use_pos=True):
+def parse_source_target(source, target, non_countable, use_pos=True):
     # ASSUME: source is always "IsA"
     # Use non_countable
     _, s_obj = source.split(',')
@@ -28,8 +28,8 @@ def traverse(data_adj_list):
 
     def _traverse_dfs(source, n):
         for e in data_adj_list.get(n):
-            s_n_edge = DataRow(question=parse_source_target(source, e.target), answer=e.answer,
-                               source=source, target=e.target, gold=e.source == source)
+            s_n_edge = DataRow(question=parse_source_target(source, e.target, non_countable),
+                               answer=e.answer, source=source, target=e.target, gold=e.source == source)
 
             if s_n_edge not in visited[source]:
                 visited[source].add(s_n_edge)
@@ -53,8 +53,8 @@ def process_c_graph(c_graph):
         s, t = (e['source'], e['target']) if e['direction'] == 'forward' else (e['target'], e['source'])
         impl = e['weight']
 
-        row = DataRow(question=parse_source_target(s, t), answer='yes' if impl == 'yes_yes' else 'no',
-                      source=s, target=t, gold=True)
+        row = DataRow(question=parse_source_target(s, t, non_countable),
+                      answer='yes' if impl == 'yes_yes' else 'no', source=s, target=t, gold=True)
         # row = {'question': parse_source_target(s, t), 'answer': 'yes' if impl == 'yes_yes' else 'no',
                # 'source': s, 'target': t}
         data[s].add(row)
@@ -70,8 +70,8 @@ def create_all_questions(c_graph):
 
     all_questions = defaultdict(set)
     for source, target in all_pairs:
-        all_questions[source].add(DataRow(question=parse_source_target(source, target), answer='n/a',
-                                          source=source, target=target, gold=False))
+        all_questions[source].add(DataRow(question=parse_source_target(source, target, non_countable),
+                                          answer='n/a', source=source, target=target, gold=False))
     return all_questions
 
 
@@ -110,7 +110,7 @@ def process_silver_facts(silver_facts):
             use_pos = use_positive_question['IsA,' + source + target]
             t_type, t_obj = target.split(',')
             target_ = t_type + ',' + ('' if use_pos else 'not ') + t_obj
-            row = DataRow(question=parse_source_target('IsA,' + source, target, use_pos=use_pos),
+            row = DataRow(question=parse_source_target('IsA,' + source, target, non_countable, use_pos=use_pos),
                           answer=label if use_pos else flip_ans(label),
                           source='IsA,' + source, target=target_, gold=False)
             data['IsA,' + source].add(row)
