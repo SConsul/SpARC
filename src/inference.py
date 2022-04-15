@@ -38,10 +38,13 @@ def infer(model, test_dataset, qa, batch_size, device):
         # y[y==-100] = tokenizer.pad_token_id
         # a_s = tokenizer.batch_decode(y, skip_special_tokens=True)
         for pred, data_row in zip(preds, data_text):
+            # Out format is "$answer$ = Yes"
+            pred_text = pred.split("=")[1].strip().lowercase()
             output_preds.append(
                 DataRow(question=data_row['question'], answer=data_row['answer'],
                         source=data_row['source'], target=data_row['target'],
-                        gold=False, pred=pred)
+                        gold=False, id=data_row['id'], link_type=data_row['link_type'],
+                        pred=pred_text)
             )
 
     return output_preds
