@@ -53,3 +53,7 @@ def eval_consistency(multihop_out):
         num_edges += 1
 
     return 1-(violations/num_edges)
+
+
+with open('./beliefbank-data-sep2021/non_countable.txt', 'r') as f:
+    non_countable = f.read()
