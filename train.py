@@ -1,4 +1,6 @@
 import os
+import json
+import wandb
 import torch
 import argparse
 from tqdm import tqdm
@@ -14,6 +16,7 @@ from utils.loss.loss import binary_sim_loss, l1_loss
 
 def passed_arguments():
     parser = argparse.ArgumentParser()
+    parser.add_argument('--wandb', default=None, type=str, help="Wandb project name")
     parser.add_argument('--train_path', default="./beliefbank-data-sep2021/qa.json")
     parser.add_argument('--max_epochs', type=int, default=10)
     parser.add_argument('--batch_size', type=int, default=64)
@@ -32,6 +35,7 @@ def passed_arguments():
     parser.add_argument('--token_type', type=str, default=None)
     parser.add_argument('--sim_type', type=str, default=None)
     args = parser.parse_args()
+    print(args)
     return args
 
 
@@ -145,19 +149,30 @@ def train(model, train_dataset, writer, config):
             losses.append((ce_loss.item(), l1_reg_loss.item(), sim_loss.item()))
 
             if (it % 100) == 0:
-                writer.add_scalar("Train/CELoss/Iter", ce_loss.item(), it_n + 1)
-                writer.add_scalar("Train/L1Loss/Iter", l1_reg_loss.item(), it_n + 1)
-                writer.add_scalar("Train/SimLoss/Iter", sim_loss.item(), it_n + 1)
-                writer.add_scalar("Train/Loss/Iter", loss.item(), it_n + 1)
+                step_metrics = {
+                    "Train/CELoss/Iter": ce_loss.item(), "Train/L1Loss/Iter": l1_reg_loss.item(),
+                    "Train/SimLoss/Iter": sim_loss.item(), "Train/Loss/Iter": loss.item()
+                }
+                for name, val in step_metrics.items():
+                    writer.add_scalar(name, val, it_n + 1)
+
+                if config['wandb']:
+                    wandb.log(step_metrics, it_n + 1)
+
                 it_n += 100
 
         # Log average loss over epoch
         losses = torch.as_tensor(losses)
         mean_ce, mean_l1, mean_sim = losses.mean(dim=0)
-        writer.add_scalar("Train/CELoss/Epoch", mean_ce, epoch + 1)
-        writer.add_scalar("Train/L1Loss/Epoch", mean_l1, epoch + 1)
-        writer.add_scalar("Train/SimLoss/Epoch", mean_sim, epoch + 1)
-        writer.add_scalar("Train/Loss/Epoch", mean_ce + mean_l1 + mean_sim, epoch + 1)
+        epoch_metrics = {
+            "Train/CELoss/Epoch": mean_ce, "Train/L1Loss/Epoch": mean_l1,
+            "Train/SimLoss/Epoch": mean_sim, "Train/Loss/Epoch": mean_ce + mean_l1 + mean_sim
+        }
+        for name, val in epoch_metrics.items():
+            writer.add_scalar(name, val, epoch + 1)
+
+        if config['wandb']:
+            wandb.log(epoch_metrics, epoch + 1)
 
         # save checkpoint
         if ((epoch + 1) % 5) == 0:
@@ -190,7 +205,17 @@ def main():
     os.makedirs(logdir, exist_ok=True)
     writer = SummaryWriter(logdir)
 
+    # Set up wandb
+    if args.wandb is not None:
+        with open('wandb.json', 'r') as f:
+            login_key = json.load(f)['login']
+        wandb.login(key=login_key)
+        wandb.init(project=args.wandb, entity="team-sparc")
+        wandb.config = args.__dict__
+        wandb.watch(model)
+
     config = {
+        'wandb': args.wanb is not None,
         'device': device,
         'max_epochs': args.max_epochs,
         'batch_size': args.batch_size,
