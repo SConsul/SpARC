@@ -5,8 +5,8 @@ import torch
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 from torch.utils.data.dataloader import DataLoader
 
-from utils.dataset import QADataset
-from utils.preprocess_utils import DataRow
+from utils.datasets.dataset import QADataset
+from utils.preprocess.preprocess_utils import DataRow
 
 
 def batch(iterable, n=1):

@@ -7,9 +7,9 @@ from torch.utils.tensorboard import SummaryWriter
 from torch.utils.data.dataloader import DataLoader
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
-from utils.moco import Moco
-from utils.dataset import QADataset
-from utils.dataset_sim import QAPairsDataset
+from utils.datasets.dataset import QADataset
+from utils.datasets.dataset_sim import QAPairsDataset
+from utils.loss.loss import binary_sim_loss, l1_loss
 
 
 def passed_arguments():
@@ -35,7 +35,29 @@ def passed_arguments():
     return args
 
 
-def register_hooks(model, config, activation, ):
+def check_register_hook(name, config_layer_names):
+    name_parts = name.split('.')
+    exact_match = name in config_layer_names
+
+    all_match = 'all' in config_layer_names
+    enc_match = (('enc' in config_layer_names) or all_match) and \
+                (name_parts[0] == 'encoder') and \
+                (name_parts[-1] in ['layer_norm', 'final_layer_norm'])
+    dec_match = (('dec' in config_layer_names) or all_match) and \
+                (name_parts[0] == 'decoder') and \
+                (name_parts[-1] in ['layer_norm', 'final_layer_norm'])
+
+    adp_all_match = 'adapter_all' in config_layer_names
+    adp_enc_match = (('adapter_enc' in config_layer_names) or adp_all_match) and \
+                    (name_parts[0] == 'encoder') and \
+                    (name_parts[-1] in ['adapter_up'])
+    adp_dec_match = (('adapter_dec' in config_layer_names) or adp_all_match) and \
+                    (name_parts[0] == 'decoder') and \
+                    (name_parts[-1] in ['adapter_up'])
+    return exact_match or enc_match or dec_match or adp_enc_match or adp_dec_match
+
+
+def register_hooks(model, config, activation):
     def get_activation(name):
         def hook(model, input, output):
             activation[name] = output.detach()
@@ -44,24 +66,11 @@ def register_hooks(model, config, activation, ):
 
     names = []
     for name, layer in model.named_modules():
-        if name in config['layer_names']:
+        if check_register_hook(name, config['layer_names']):
             print(f"Register hook on {name}")
             layer.register_forward_hook(get_activation(name))
             names.append(name)
 
-        if ('enc' in config['layer_names']) or ('all' in config['layer_names']):
-            layer_name_parts = name.split('.')
-            if layer_name_parts[0] == 'encoder' and layer_name_parts[-1] in ['layer_norm', 'final_layer_norm']:
-                print(f"Register hook on {name}")
-                layer.register_forward_hook(get_activation(name))
-                names.append(name)
-
-        if ('dec' in config['layer_names']) or ('all' in config['layer_names']):
-            layer_name_parts = name.split('.')
-            if layer_name_parts[0] == 'decoder' and layer_name_parts[-1] in ['layer_norm', 'final_layer_norm']:
-                print(f"Register hook on {name}")
-                layer.register_forward_hook(get_activation(name))
-                names.append(name)
     return names
 
 
@@ -87,22 +96,13 @@ def train(model, train_dataset, writer, config):
     optimizer = optim.AdamW(optim_groups, lr=config['learning_rate'], betas=config['betas'])
 
     train_dataloader = DataLoader(train_dataset, batch_size=config['batch_size'],
-                                  num_workers=config['num_workers'], shuffle=True, drop_last=True)
+                                  num_workers=config['num_workers'], shuffle=True)
 
-    # Register hooks to get intermediate activation output
+    activation = {}
     model_layer_names = []
-    activations = {}
     if config['l1_reg'] is not None or config['sim'] is not None:
         print(f"L1 sparsity on {config['layer_names']}")
-        model_layer_names = register_hooks(model, config, activations)
-
-    # Set up moco
-    activations_k = {}
-    if config['sim'] is not None:
-        source_len, tgt_len = train_dataset.get_activation_src_tgt_len()
-        moco = Moco(model, model_layer_names, source_len=source_len, tgt_len=tgt_len)
-        moco.to(config['device'])
-        register_hooks(moco.model_k, config, activations_k)
+        model_layer_names = register_hooks(model, config, activation)
 
     it_n = 0
     for epoch in range(config['max_epochs']):
@@ -112,7 +112,7 @@ def train(model, train_dataset, writer, config):
             x = x.to(config['device'])  # (b, 1 or 2, InL)
             a = a.to(config['device'])  # (b, 1 or 2, InL)
             y = y.to(config['device'])  # (b, 1 or 2, OutL)
-            token_ids = token_ids.to(config['device'])
+            token_ids = token_ids.to(config['device'])  # (b, 1 or 2, I)
             b, s, inL = x.shape
             _, _, outL = y.shape
 
@@ -124,21 +124,14 @@ def train(model, train_dataset, writer, config):
 
             l1_reg_loss = torch.tensor(0.0, device=config['device'])
             if config['l1_reg'] is not None:
-                for name in activations:
-                    l1_regularization = config['l1_reg'] * torch.norm(activations[name], 1)
-                    l1_reg_loss += l1_regularization
+                for name in activation:
+                    l1_reg_loss += config['l1_reg'] * l1_loss(activation[name], token_ids.view(b*s, -1))
 
             sim_loss = torch.tensor(0.0, device=config['device'])
             if config['sim'] is not None:
-                # compute key features
-                with torch.no_grad():  # no gradient to keys
-                    moco._momentum_update_key_encoder()  # update the key encoder
-                    out_k = moco.model_k(input_ids=x.view(-1, inL), attention_mask=a.view(-1, inL),
-                                         labels=y.view(-1, outL))
-
-                for name in activations:
-                    sim_loss += config['sim'] * moco(activations[name], activations_k[name],
-                                                     token_ids.view(b*s, -1), name)
+                for name in activation:
+                    sim_loss += config['sim'] * binary_sim_loss(activation[name], token_ids.view(b*s, -1),
+                                                                config['sim_type'])
 
             loss = ce_loss + l1_reg_loss + sim_loss
             model.zero_grad()

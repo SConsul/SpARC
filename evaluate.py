@@ -4,10 +4,10 @@ import torch
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
 from inference import infer
-from utils.accuracy import f1_score
-from utils.dataset import QADataset
-from utils.beliefbank_preprocess import json_serialize, flatten
-from utils.consistency import gen_belief_graph, eval_consistency
+from utils.metrics.accuracy import f1_score
+from utils.datasets.dataset import QADataset
+from utils.preprocess.beliefbank_preprocess import json_serialize, flatten
+from utils.metrics.consistency import gen_belief_graph, eval_consistency
 
 
 if __name__ == "__main__":

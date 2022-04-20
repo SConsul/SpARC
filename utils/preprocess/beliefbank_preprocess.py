@@ -3,7 +3,7 @@ import random
 import numpy as np
 from itertools import product
 from collections import defaultdict
-from utils.preprocess_utils import DataRow, TEMPLATES
+from utils.preprocess.preprocess_utils import DataRow, TEMPLATES
 
 
 def parse_source_target(source, target, non_countable, use_pos=True):
@@ -275,7 +275,7 @@ if __name__ == "__main__":
     #     json.dump(flatten(json_serialize(train).values()), f, indent=1)
     #
     # with open('beliefbank-data-sep2021/constraints_qa.json', 'w') as f:
-    #     json.dump(json_serialize(c_adj_list), f, indent=1)
+    #     json.dump(flatten(json_serialize(c_adj_list).values()), f, indent=1)
     #
     # with open('beliefbank-data-sep2021/constraints_qa_multihop.json', 'w') as f:
     #     json.dump(json_serialize(c_data), f, indent=1)
