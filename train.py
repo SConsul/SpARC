@@ -111,8 +111,8 @@ def train(model, train_dataset, writer, config):
 
     if config['sim'] is not None:
         src_len, tgt_len = train_dataset.get_activation_src_tgt_len()
-        sim_loss = build_sim_loss(config['sim_type'], model_layer_names, src_len, tgt_len)
-        sim_loss.to(config['device'])
+        sim_loss_fn = build_sim_loss(config['sim_type'], model_layer_names, src_len, tgt_len)
+        sim_loss_fn.to(config['device'])
 
     it_n = 0
     for epoch in range(config['max_epochs']):
@@ -140,8 +140,8 @@ def train(model, train_dataset, writer, config):
             sim_loss = torch.tensor(0.0, device=config['device'])
             if config['sim'] is not None:
                 for name in activation:
-                    sim_loss += config['sim'] * sim_loss(activation[name], token_ids.view(b*s, -1),
-                                                         config['sim_type'])
+                    sim_loss += config['sim'] * sim_loss_fn(activation[name], token_ids.view(b*s, -1),
+                                                            config['sim_type'])
 
             loss = ce_loss + l1_reg_loss + sim_loss
             model.zero_grad()
