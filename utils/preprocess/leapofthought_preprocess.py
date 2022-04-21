@@ -1,6 +1,6 @@
 import json
 from tqdm import tqdm
-from utils.preprocess.preprocess_utils import DataRow
+from preprocess_utils import DataRow
 
 
 def json_serialize(data):
