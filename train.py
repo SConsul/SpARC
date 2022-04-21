@@ -65,7 +65,7 @@ def check_register_hook(name, config_layer_names):
 def register_hooks(model, config, activation):
     def get_activation(name):
         def hook(model, input, output):
-            activation[name] = output.detach()
+            activation[name] = output
 
         return hook
 
