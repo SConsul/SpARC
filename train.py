@@ -140,8 +140,7 @@ def train(model, train_dataset, writer, config):
             sim_loss = torch.tensor(0.0, device=config['device'])
             if config['sim'] is not None:
                 for name in activation:
-                    sim_loss += config['sim'] * sim_loss_fn(activation[name], token_ids.view(b*s, -1),
-                                                            config['sim_type'])
+                    sim_loss += config['sim'] * sim_loss_fn(activation[name], token_ids.view(b*s, -1), name)
 
             loss = ce_loss + l1_reg_loss + sim_loss
             model.zero_grad()
