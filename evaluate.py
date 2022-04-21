@@ -6,8 +6,8 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 from inference import infer
 from utils.metrics.accuracy import f1_score
 from utils.datasets.dataset import QADataset
-from utils.preprocess.beliefbank_preprocess import json_serialize, flatten
 from utils.metrics.consistency import gen_belief_graph, eval_consistency
+from utils.preprocess.preprocess_utils import json_serialize, json_serialize_adj_list, flatten
 
 
 if __name__ == "__main__":
@@ -42,9 +42,8 @@ if __name__ == "__main__":
 
     singlehop_preds = infer(model, tokenizer, singlehop_dataset, singlehop_qa, args.batch_size, device)
 
-    singlehop_preds = [dr._asdict() for dr in singlehop_preds]
     with open(args.out_path, 'w') as outfile:
-        json.dump(singlehop_preds, outfile, indent=1)
+        json.dump(json_serialize(singlehop_preds), outfile, indent=1)
 
     f1, skip = f1_score(singlehop_preds)
     print(f"Accuracy: {f1}, skipped: {skip}")
@@ -52,15 +51,14 @@ if __name__ == "__main__":
     # Now get multihop questions
     adj_list, multihop_adj_list = gen_belief_graph(singlehop_preds)
 
-    multihop_qa = flatten(json_serialize(multihop_adj_list).values())
+    multihop_qa = flatten(json_serialize_adj_list(multihop_adj_list).values())
     with open(args.consistency_path, 'w') as f:
         json.dump(multihop_qa, f, indent=1)
     multihop_dataset = QADataset(args.consistency_path, tokenizer)
 
     multihop_preds = infer(model, tokenizer, multihop_dataset, multihop_qa, args.batch_size, device)
-    multihop_preds = [dr._asdict() for dr in multihop_preds]
     with open(args.consistency_path, 'w') as f:
-        json.dump(multihop_qa, f, indent=1)
+        json.dump(json_serialize(multihop_preds), f, indent=1)
 
     consis = eval_consistency(multihop_preds)
     print(f"Consistency: {consis}")

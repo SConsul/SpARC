@@ -3,24 +3,7 @@ import random
 import numpy as np
 from itertools import product
 from collections import defaultdict
-from preprocess_utils import DataRow, TEMPLATES
-
-
-def parse_source_target(source, target, non_countable, use_pos=True):
-    # ASSUME: source is always "IsA"
-    # Use non_countable
-    _, s_obj = source.split(',')
-    link, t_obj = target.split(',')
-
-    template_qs = TEMPLATES[link]['templates' if use_pos else 'templates_negated']
-    question = random.choice(template_qs)
-
-    s_art = 'an ' if s_obj[0] in {'a', 'e', 'i', 'o', 'u'} else 'a '
-    s_art = '' if s_obj in non_countable else s_art
-    t_art = 'an ' if t_obj[0] in {'a', 'e', 'i', 'o', 'u'} else 'a '
-    t_art = '' if t_obj in non_countable else t_art
-
-    return question.replace('[X]', s_art + s_obj).replace('[Y]', t_art + t_obj)
+from preprocess_utils import DataRow, parse_source_target, json_serialize_adj_list, flatten
 
 
 def traverse(data_adj_list):
@@ -229,14 +212,6 @@ def merge(data1, data2):
     return new_data
 
 
-def json_serialize(data):
-    return {n: [q._asdict() for q in qs] for n, qs in data.items()}
-
-
-def flatten(l):
-    return [x for sub_l in l for x in sub_l]
-
-
 if __name__ == "__main__":
     with open('beliefbank-data-sep2021/constraints_v2.json', 'r') as f:
         c_graph = json.load(f)
@@ -266,27 +241,27 @@ if __name__ == "__main__":
     # consistency_data = create_all_questions(c_graph)
 
     # with open('beliefbank-data-sep2021/silver_qa.json', 'w') as f:
-    #     json.dump(json_serialize(s_data), f)
+    #     json.dump(json_serialize_adj_list(s_data), f)
     #
     # # with open('beliefbank-data-sep2021/qa.json', 'w') as f:
     # #     json.dump(flatten(data.values()), f, indent=1)
     #
     # with open('beliefbank-data-sep2021/qa_train.json', 'w') as f:
-    #     json.dump(flatten(json_serialize(train).values()), f, indent=1)
+    #     json.dump(flatten(json_serialize_adj_list(train).values()), f, indent=1)
     #
     # with open('beliefbank-data-sep2021/constraints_qa.json', 'w') as f:
-    #     json.dump(flatten(json_serialize(c_adj_list).values()), f, indent=1)
+    #     json.dump(flatten(json_serialize_adj_list(c_adj_list).values()), f, indent=1)
     #
     # with open('beliefbank-data-sep2021/constraints_qa_multihop.json', 'w') as f:
-    #     json.dump(json_serialize(c_data), f, indent=1)
+    #     json.dump(json_serialize_adj_list(c_data), f, indent=1)
     #
     # with open('beliefbank-data-sep2021/qa_val.json', 'w') as f:
-    #     json.dump(flatten(json_serialize(val).values()), f, indent=1)
+    #     json.dump(flatten(json_serialize_adj_list(val).values()), f, indent=1)
     #
     # with open('beliefbank-data-sep2021/qa_test.json', 'w') as f:
-    #     json.dump(flatten(json_serialize(test).values()), f, indent=1)
+    #     json.dump(flatten(json_serialize_adj_list(test).values()), f, indent=1)
 
     # with open('beliefbank-data-sep2021/qa_consistency.json', 'w') as f:
-    #     json.dump(flatten(json_serialize(consistency_data).values()), f, indent=1)
+    #     json.dump(flatten(json_serialize_adj_list(consistency_data).values()), f, indent=1)
 
 

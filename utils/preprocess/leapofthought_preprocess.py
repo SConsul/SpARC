@@ -1,14 +1,6 @@
 import json
 from tqdm import tqdm
-from preprocess_utils import DataRow
-
-
-def json_serialize(data):
-    # return {n: [q._asdict() for q in qs] for n, qs in data.items()}
-    output = []
-    for info in data:
-        output.append(info._asdict())
-    return output
+from preprocess_utils import DataRow, json_serialize
 
 
 def parse_question(source, target, predicate):

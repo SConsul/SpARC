@@ -1,6 +1,5 @@
 from collections import defaultdict
-from utils.preprocess.preprocess_utils import DataRow
-from utils.preprocess.beliefbank_preprocess import parse_source_target
+from utils.preprocess.preprocess_utils import DataRow, parse_source_target
 
 
 def traverse(data_adj_list):

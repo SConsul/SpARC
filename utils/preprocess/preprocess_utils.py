@@ -1,3 +1,4 @@
+import random
 from collections import namedtuple
 
 Edge = namedtuple('DataRow', ['question', 'answer', 'source', 'target', 'gold', 'id', 'link_type', 'pred'],
@@ -45,5 +46,30 @@ TEMPLATES = {
 }
 
 
-def json_serialize(data):
+def parse_source_target(source, target, non_countable, use_pos=True):
+    # ASSUME: source is always "IsA"
+    # Use non_countable
+    _, s_obj = source.split(',')
+    link, t_obj = target.split(',')
+
+    template_qs = TEMPLATES[link]['templates' if use_pos else 'templates_negated']
+    question = random.choice(template_qs)
+
+    s_art = 'an ' if s_obj[0] in {'a', 'e', 'i', 'o', 'u'} else 'a '
+    s_art = '' if s_obj in non_countable else s_art
+    t_art = 'an ' if t_obj[0] in {'a', 'e', 'i', 'o', 'u'} else 'a '
+    t_art = '' if t_obj in non_countable else t_art
+
+    return question.replace('[X]', s_art + s_obj).replace('[Y]', t_art + t_obj)
+
+
+def json_serialize_adj_list(data):
     return {n: [q._asdict() for q in qs] for n, qs in data.items()}
+
+
+def json_serialize(data):
+    return [q._asdict() for q in data]
+
+
+def flatten(l):
+    return [x for sub_l in l for x in sub_l]
