@@ -41,9 +41,9 @@ if __name__ == "__main__":
     singlehop_dataset = QADataset(args.in_path, tokenizer)
 
     singlehop_preds = infer(model, tokenizer, singlehop_dataset, singlehop_qa, args.batch_size, device)
-
+    singlehop_preds = json_serialize(singlehop_preds)
     with open(args.out_path, 'w') as outfile:
-        json.dump(json_serialize(singlehop_preds), outfile, indent=1)
+        json.dump(singlehop_preds, outfile, indent=1)
 
     f1, skip = f1_score(singlehop_preds)
     print(f"Accuracy: {f1}, skipped: {skip}")
