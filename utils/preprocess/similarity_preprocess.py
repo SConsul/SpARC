@@ -3,44 +3,24 @@ import numpy as np
 import random
 import argparse
 import torch
+from collections import defaultdict
 from scipy.spatial.distance import cosine
 from transformers import AutoModel, AutoTokenizer
+
+from preprocess_utils import DataRow
 
 
 def create_adjacency_list(train_data):
     """
     Use QA train json file to create an adjacency list of the form:
-    {
-        source_node: [
-            {
-                "question": question,
-                "answer": answer,
-                "source": source_node,
-                "target": target_node,
-                "gold": gold
-            }, ...
-        ]
-    }
+    {source_node: [DataRow1, DataRow2, ...]}
     """
-    adjacency_list = {}
-    count = 0
-    for data in train_data:
-        if data["source"] not in adjacency_list:
-            adjacency_list[data["source"]] = []
+    adj_list = defaultdict(list)
+    for data_row in train_data:
+        data_row = DataRow(**data_row)
+        adj_list[data_row.source].append(data_row)
 
-        info_dict = {
-            "question": data["question"],
-            "answer": data["answer"],
-            "source": data["source"],
-            "target": data["target"],
-            "gold": data["gold"]
-        }
-
-        adjacency_list[data["source"]].append(info_dict)
-        count += 1
-    print("Original Train Num:", count)
-
-    return adjacency_list, count
+    return adj_list, len(train_data)
 
 
 def get_similar_pairs_linked(adjacency_list, train_set_count):
@@ -68,10 +48,10 @@ def get_similar_pairs_linked(adjacency_list, train_set_count):
             info = info_list[next_index[source]]
             next_index[source] += 1
 
-            if info["target"] in adjacency_list.keys() and info["source"] != info["target"] and info["answer"] == 'yes':
-                index = random.randint(0, len(adjacency_list[info["target"]]) - 1)
-                match = adjacency_list[info["target"]][index]
-                link = (source, info["target"], match["target"])
+            if info.target in adjacency_list and info.source != info.target and info.answer == 'yes':
+                index = random.randint(0, len(adjacency_list[info.target]) - 1)
+                match = adjacency_list[info.target][index]
+                link = (source, info.target, match.target)
                 if link not in set_of_links:
                     similar_pairs.append((info, match))
                     set_of_links.add(link)
@@ -142,10 +122,7 @@ def get_similar_pairs_cosine(train_data):
     tokenizer = AutoTokenizer.from_pretrained("princeton-nlp/sup-simcse-bert-base-uncased")
     model = AutoModel.from_pretrained("princeton-nlp/sup-simcse-bert-base-uncased")
 
-    questions = []
-    for data in train_data:
-        questions.append(data["question"])
-    
+    questions = [data.question for data in train_data]
     inputs = tokenizer(questions, padding=True, truncation=True, return_tensors="pt")
 
     # Get the embeddings
@@ -172,39 +149,43 @@ def get_similar_pairs_cosine(train_data):
     return similar_pairs
 
 
+def json_serialize_pairs(question_pairs):
+    return [(q1._asdict(), q2._asdict()) for (q1, q2) in question_pairs]
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--train_path', default="./beliefbank-data-sep2021/qa_train.json")
-    parser.add_argument('--method', default="") # Options: adjacent, linked, cosine
+    parser.add_argument('--method', required=True, choices=["linked", "adjacent", "cosine"])
     args = parser.parse_args()
 
     with open(args.train_path) as f:
         train_data = json.load(f)
 
-    if (args.method == "linked"):
+    if args.method == "linked":
         adjacency_list, train_set_count = create_adjacency_list(train_data)
 
         similar_pairs_linked = get_similar_pairs_linked(adjacency_list, train_set_count)
 
-        with open('beliefbank-data-sep2021/qa_train_similar_linked.json', 'w') as f:
-            json.dump(similar_pairs_linked, f, indent=1)
+        with open('beliefbank-data-sep2021/qa_train_sim_linked.json', 'w') as f:
+            json.dump(json_serialize_pairs(similar_pairs_linked), f, indent=1)
 
-    elif (args.method == "adjacent"):
+    elif args.method == "adjacent":
         adjacency_list, train_set_count = create_adjacency_list(train_data)
 
         similar_pairs_adj = get_similar_pairs_adjacent(adjacency_list)
 
-        with open('beliefbank-data-sep2021/qa_train_similar_adjacent.json', 'w') as f:
-            json.dump(similar_pairs_adj, f, indent=1)
+        with open('beliefbank-data-sep2021/qa_train_sim_adjacent.json', 'w') as f:
+            json.dump(json_serialize_pairs(similar_pairs_adj), f, indent=1)
     
-    elif (args.method == "cosine_stats"):
+    elif args.method == "cosine_stats":
         linked_similarity_cosine_stats(train_data)
     
-    elif (args.method == "cosine"):
+    elif args.method == "cosine":
         similar_pairs_cosine = get_similar_pairs_cosine(train_data)
 
-        with open('beliefbank-data-sep2021/qa_train_similar_cosine.json', 'w') as f:
-            json.dump(similar_pairs_cosine, f, indent=1)
+        with open('beliefbank-data-sep2021/qa_train_similar_sim_cosine.json', 'w') as f:
+            json.dump(json_serialize_pairs(similar_pairs_cosine), f, indent=1)
     
     
 
