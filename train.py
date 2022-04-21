@@ -145,7 +145,7 @@ def train(model, train_dataset, writer, config):
             loss = ce_loss + l1_reg_loss + sim_loss
             model.zero_grad()
             loss.backward()
-            torch.nn.utils.clip_grad_norm_(model.parameters(), config['grad_norm_clip'])
+            grad_norm = torch.nn.utils.clip_grad_norm_(model.parameters(), config['grad_norm_clip'])
             optimizer.step()
 
             # report progress
@@ -156,7 +156,8 @@ def train(model, train_dataset, writer, config):
             if (it % 100) == 0:
                 step_metrics = {
                     "Train/CELoss-Iter": ce_loss.item(), "Train/L1Loss-Iter": l1_reg_loss.item(),
-                    "Train/SimLoss-Iter": sim_loss.item(), "Train/Loss-Iter": loss.item()
+                    "Train/SimLoss-Iter": sim_loss.item(), "Train/Loss-Iter": loss.item(),
+                    'Train/grad-norm': grad_norm.item()
                 }
                 for name, val in step_metrics.items():
                     writer.add_scalar(name, val, it_n + 1)
