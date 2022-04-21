@@ -12,8 +12,9 @@ def l1_loss(batch, idx):
     """
     b, L, c = batch.shape
     if idx[0, 0] != -1:
+        # WARNING: this might not work on decoder layers
         _, I = idx.shape
-        idx = idx.unsqueeze(2).expand(b, I, c)  # (2B, I, C)
+        idx = idx.unsqueeze(2).expand(-1, -1, c)  # (2B, I, C)
         batch = torch.gather(batch, dim=1, index=idx)  # (2B, I, C)
 
     return torch.norm(batch, 1)
