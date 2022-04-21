@@ -11,7 +11,8 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
 from utils.datasets.dataset import QADataset
 from utils.datasets.dataset_sim import QAPairsDataset
-from utils.loss.loss import binary_sim_loss, l1_loss
+from utils.loss.loss import l1_loss
+from utils.loss.sim_loss import build_sim_loss
 
 
 def passed_arguments():
@@ -33,7 +34,7 @@ def passed_arguments():
     parser.add_argument('--sim', type=float, default=None)
     parser.add_argument('--ce_loss', type=float, default=1.0)
     parser.add_argument('--token_type', type=str, default=None)
-    parser.add_argument('--sim_type', type=str, default=None)
+    parser.add_argument('--sim_type', type=str, default='batch', choices=['batch', 'angle', 'moco'])
     args = parser.parse_args()
     print(args)
     return args
@@ -108,6 +109,11 @@ def train(model, train_dataset, writer, config):
         print(f"L1 sparsity on {config['layer_names']}")
         model_layer_names = register_hooks(model, config, activation)
 
+    if config['sim'] is not None:
+        src_len, tgt_len = train_dataset.get_activation_src_tgt_len()
+        sim_loss = build_sim_loss(config['sim_type'], model_layer_names, src_len, tgt_len)
+        sim_loss.to(config['device'])
+
     it_n = 0
     for epoch in range(config['max_epochs']):
         losses = []
@@ -134,8 +140,8 @@ def train(model, train_dataset, writer, config):
             sim_loss = torch.tensor(0.0, device=config['device'])
             if config['sim'] is not None:
                 for name in activation:
-                    sim_loss += config['sim'] * binary_sim_loss(activation[name], token_ids.view(b*s, -1),
-                                                                config['sim_type'])
+                    sim_loss += config['sim'] * sim_loss(activation[name], token_ids.view(b*s, -1),
+                                                         config['sim_type'])
 
             loss = ce_loss + l1_reg_loss + sim_loss
             model.zero_grad()
