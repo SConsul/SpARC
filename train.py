@@ -17,7 +17,7 @@ from utils.loss.loss import binary_sim_loss, l1_loss
 def passed_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument('--wandb', default=None, type=str, help="Wandb project name")
-    parser.add_argument('--train_path', default="./beliefbank-data-sep2021/qa.json")
+    parser.add_argument('--train_path', default="./beliefbank-data-sep2021/qa_train.json")
     parser.add_argument('--max_epochs', type=int, default=10)
     parser.add_argument('--batch_size', type=int, default=64)
     parser.add_argument('--lr', type=float, default=3e-4)
@@ -215,7 +215,7 @@ def main():
         wandb.watch(model)
 
     config = {
-        'wandb': args.wanb is not None,
+        'wandb': args.wandb is not None,
         'device': device,
         'max_epochs': args.max_epochs,
         'batch_size': args.batch_size,
