@@ -150,8 +150,8 @@ def train(model, train_dataset, writer, config):
 
             if (it % 100) == 0:
                 step_metrics = {
-                    "Train/CELoss/Iter": ce_loss.item(), "Train/L1Loss/Iter": l1_reg_loss.item(),
-                    "Train/SimLoss/Iter": sim_loss.item(), "Train/Loss/Iter": loss.item()
+                    "Train/CELoss-Iter": ce_loss.item(), "Train/L1Loss-Iter": l1_reg_loss.item(),
+                    "Train/SimLoss-Iter": sim_loss.item(), "Train/Loss-Iter": loss.item()
                 }
                 for name, val in step_metrics.items():
                     writer.add_scalar(name, val, it_n + 1)
@@ -165,8 +165,8 @@ def train(model, train_dataset, writer, config):
         losses = torch.as_tensor(losses)
         mean_ce, mean_l1, mean_sim = losses.mean(dim=0)
         epoch_metrics = {
-            "Train/CELoss/Epoch": mean_ce, "Train/L1Loss/Epoch": mean_l1,
-            "Train/SimLoss/Epoch": mean_sim, "Train/Loss/Epoch": mean_ce + mean_l1 + mean_sim
+            "Train/CELoss-Epoch": mean_ce, "Train/L1Loss-Epoch": mean_l1,
+            "Train/SimLoss-Epoch": mean_sim, "Train/Loss-Epoch": mean_ce + mean_l1 + mean_sim
         }
         for name, val in epoch_metrics.items():
             writer.add_scalar(name, val, epoch + 1)
