@@ -9,6 +9,7 @@ from torch.utils.tensorboard import SummaryWriter
 from torch.utils.data.dataloader import DataLoader
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
+from evaluate import evaluate
 from utils.datasets.dataset import QADataset
 from utils.datasets.dataset_sim import QAPairsDataset
 from utils.loss.loss import l1_loss
@@ -19,18 +20,20 @@ def passed_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument('--wandb', default=None, type=str, help="Wandb project name")
     parser.add_argument('--train_path', default="./beliefbank-data-sep2021/qa_train.json")
+    parser.add_argument('--val_path', default="./beliefbank-data-sep2021/constraints_qa.json")
+    parser.add_argument('--model_path', type=str, required=True, help="Dir to save results")
     parser.add_argument('--max_epochs', type=int, default=10)
-    parser.add_argument('--batch_size', type=int, default=64)
+    parser.add_argument('--batch_size', type=int, default=32)
+    parser.add_argument('--val_batch_size', type=int, default=512)
     parser.add_argument('--lr', type=float, default=3e-4)
     parser.add_argument('--lr_decay', type=bool, default=False)
     parser.add_argument('--weight_decay', type=float, default=0.1)
-    parser.add_argument('--model_path', default="runs/baseline")
     parser.add_argument('--num_workers', type=int, default=4)
-    parser.add_argument('--l1_reg', type=float, default=None)
     parser.add_argument('--freeze_backbone', action='store_true', default=False)
     parser.add_argument('--adapter', action='store_true', default=False)
     # Options: lm_head, encoder.final_layer_norm, etc
     parser.add_argument('--layer_names', nargs='+', type=str, default=[])
+    parser.add_argument('--l1_reg', type=float, default=None)
     parser.add_argument('--sim', type=float, default=None)
     parser.add_argument('--ce_loss', type=float, default=1.0)
     parser.add_argument('--token_type', type=str, default=None)
@@ -79,7 +82,7 @@ def register_hooks(model, config, activation):
     return names
 
 
-def train(model, train_dataset, writer, config):
+def train(model, tokenizer, train_dataset, val_dataset, writer, config):
     if config['adapter']:
         # optim_groups = [p for n, p in model.named_parameters()
         #                 if len(n.split('.')) > 5 and n.split('.')[5] == 'adapters']
@@ -180,6 +183,13 @@ def train(model, train_dataset, writer, config):
         if config['wandb']:
             wandb.log(epoch_metrics, epoch + 1)
 
+        singlehop_path = os.path.join(config['val_path'], f'singlehop_{epoch+1}.json')
+        multihop_path = os.path.join(config['val_path'], f'multihop_{epoch + 1}.json')
+        f1, consis = evaluate(model, tokenizer, val_dataset, config['val_batch_size'], config['device'],
+                              singlehop_path, multihop_path)
+        if config['wandb']:
+            wandb.log({"Val/F1": f1, "Val/Consistency": consis}, epoch+1)
+
         # save checkpoint
         if ((epoch + 1) % 5) == 0:
             model_path = os.path.join(config['model_path'], f"{epoch + 1}.bin")
@@ -207,6 +217,10 @@ def main():
     else:
         train_dataset = QADataset(args.train_path, tokenizer)
 
+    val_dataset = QADataset(args.val_path, tokenizer)
+    val_path = os.path.join(args.model_path, 'val_results')
+    os.makedirs(val_path, exist_ok=True)
+
     logdir = os.path.join(args.model_path, 'logs')
     os.makedirs(logdir, exist_ok=True)
     writer = SummaryWriter(logdir)
@@ -225,6 +239,7 @@ def main():
         'device': device,
         'max_epochs': args.max_epochs,
         'batch_size': args.batch_size,
+        'val_batch_size': args.val_batch_size,
         'learning_rate': args.lr,
         'betas': (0.9, 0.95),
         'grad_norm_clip': 1.0,
@@ -235,6 +250,7 @@ def main():
         'lr_decay': args.lr_decay,
         # checkpoint settings
         'model_path': args.model_path,
+        'val_path': val_path,
         'num_workers': args.num_workers,  # for DataLoader
         'adapter': args.adapter,
         'layer_names': args.layer_names,
@@ -243,7 +259,7 @@ def main():
         'token_type': args.token_type,
         'sim_type': args.sim_type
     }
-    train(model, train_dataset, writer, config)
+    train(model, tokenizer, train_dataset, val_dataset, writer, config)
 
 
 if __name__ == "__main__":

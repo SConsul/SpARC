@@ -10,6 +10,32 @@ from utils.metrics.consistency import gen_belief_graph, eval_consistency
 from utils.preprocess.preprocess_utils import json_serialize, json_serialize_adj_list, flatten
 
 
+def evaluate(model, tokenizer, singlehop_dataset, batch_size, device, singlehop_path, consistency_path):
+    singlehop_preds = infer(model, tokenizer, singlehop_dataset, singlehop_qa, batch_size, device)
+    singlehop_preds = json_serialize(singlehop_preds)
+    with open(singlehop_path, 'w') as outfile:
+        json.dump(singlehop_preds, outfile, indent=1)
+
+    f1, skip = f1_score(singlehop_preds)
+    print(f"Accuracy: {f1}, skipped: {skip}")
+
+    # Now get multihop questions
+    adj_list, multihop_adj_list = gen_belief_graph(singlehop_preds)
+
+    multihop_qa = flatten(json_serialize_adj_list(multihop_adj_list).values())
+    with open(consistency_path, 'w') as f:
+        json.dump(multihop_qa, f, indent=1)
+    multihop_dataset = QADataset(consistency_path, tokenizer)
+
+    multihop_preds = infer(model, tokenizer, multihop_dataset, multihop_qa, batch_size, device)
+    with open(consistency_path, 'w') as f:
+        json.dump(json_serialize(multihop_preds), f, indent=1)
+
+    consis = eval_consistency(multihop_preds)
+    print(f"Consistency: {consis}")
+    return f1, consis
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--in_path', type=str, default="./beliefbank-data-sep2021/qa_val.json",
@@ -40,28 +66,8 @@ if __name__ == "__main__":
         singlehop_qa = json.load(f)
     singlehop_dataset = QADataset(args.in_path, tokenizer)
 
-    singlehop_preds = infer(model, tokenizer, singlehop_dataset, singlehop_qa, args.batch_size, device)
-    singlehop_preds = json_serialize(singlehop_preds)
-    with open(args.out_path, 'w') as outfile:
-        json.dump(singlehop_preds, outfile, indent=1)
-
-    f1, skip = f1_score(singlehop_preds)
-    print(f"Accuracy: {f1}, skipped: {skip}")
-
-    # Now get multihop questions
-    adj_list, multihop_adj_list = gen_belief_graph(singlehop_preds)
-
-    multihop_qa = flatten(json_serialize_adj_list(multihop_adj_list).values())
-    with open(args.consistency_path, 'w') as f:
-        json.dump(multihop_qa, f, indent=1)
-    multihop_dataset = QADataset(args.consistency_path, tokenizer)
-
-    multihop_preds = infer(model, tokenizer, multihop_dataset, multihop_qa, args.batch_size, device)
-    with open(args.consistency_path, 'w') as f:
-        json.dump(json_serialize(multihop_preds), f, indent=1)
-
-    consis = eval_consistency(multihop_preds)
-    print(f"Consistency: {consis}")
+    evaluate(model, tokenizer, singlehop_dataset, args.batch_size,
+             device, args.out_path, args.consistency_path)
 
 
 
