@@ -11,6 +11,7 @@ from utils.preprocess.preprocess_utils import json_serialize, json_serialize_adj
 
 
 def evaluate(model, tokenizer, singlehop_dataset, batch_size, device, singlehop_path, consistency_path):
+    singlehop_qa = singlehop_dataset.data
     singlehop_preds = infer(model, tokenizer, singlehop_dataset, singlehop_qa, batch_size, device)
     singlehop_preds = json_serialize(singlehop_preds)
     with open(singlehop_path, 'w') as outfile:
