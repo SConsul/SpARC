@@ -158,15 +158,15 @@ def train(model, tokenizer, train_dataset, val_dataset, writer, config):
 
             if (it % 100) == 0:
                 step_metrics = {
-                    "Train/CELoss-Iter": ce_loss.item(), "Train/L1Loss-Iter": l1_reg_loss.item(),
-                    "Train/SimLoss-Iter": sim_loss.item(), "Train/Loss-Iter": loss.item(),
-                    'Train/grad-norm': grad_norm.item()
+                    "CELoss-Iter": ce_loss.item(), "L1Loss-Iter": l1_reg_loss.item(),
+                    "SimLoss-Iter": sim_loss.item(), "Loss-Iter": loss.item(),
+                    'grad-norm': grad_norm.item()
                 }
                 for name, val in step_metrics.items():
-                    writer.add_scalar(name, val, it_n + 1)
+                    writer.add_scalar("Train/" + name, val, it_n + 1)
 
                 if config['wandb']:
-                    wandb.log(step_metrics, it_n + 1)
+                    wandb.log({"Train-step": step_metrics}, it_n + 1)
 
                 it_n += 100
 
@@ -174,21 +174,21 @@ def train(model, tokenizer, train_dataset, val_dataset, writer, config):
         losses = torch.as_tensor(losses)
         mean_ce, mean_l1, mean_sim = losses.mean(dim=0)
         epoch_metrics = {
-            "Train/CELoss-Epoch": mean_ce, "Train/L1Loss-Epoch": mean_l1,
-            "Train/SimLoss-Epoch": mean_sim, "Train/Loss-Epoch": mean_ce + mean_l1 + mean_sim
+            "CELoss-Epoch": mean_ce, "L1Loss-Epoch": mean_l1,
+            "SimLoss-Epoch": mean_sim, "Loss-Epoch": mean_ce + mean_l1 + mean_sim
         }
         for name, val in epoch_metrics.items():
-            writer.add_scalar(name, val, epoch + 1)
+            writer.add_scalar("Train/" + name, val, epoch + 1)
 
         if config['wandb']:
-            wandb.log(epoch_metrics, epoch + 1, commit=False)
+            wandb.log({"Train-epoch": epoch_metrics}, epoch + 1, commit=False)
 
         singlehop_path = os.path.join(config['val_path'], f'singlehop_{epoch+1}.json')
         multihop_path = os.path.join(config['val_path'], f'multihop_{epoch + 1}.json')
         f1, consis = evaluate(model, tokenizer, val_dataset, config['val_batch_size'], config['device'],
                               singlehop_path, multihop_path)
         if config['wandb']:
-            wandb.log({"Val/F1": f1, "Val/Consistency": consis}, epoch+1, commit=False)
+            wandb.log({"Val": {"F1": f1, "Consistency": consis}}, epoch+1, commit=False)
 
         # save checkpoint
         if ((epoch + 1) % 5) == 0:
