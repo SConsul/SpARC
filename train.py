@@ -15,6 +15,8 @@ from utils.datasets.dataset_sim import QAPairsDataset
 from utils.loss.loss import l1_loss
 from utils.loss.sim_loss import build_sim_loss
 
+os.environ["TOKENIZERS_PARALLELISM"] = "true"
+
 
 def passed_arguments():
     parser = argparse.ArgumentParser()
@@ -184,7 +186,7 @@ def train(model, tokenizer, train_dataset, val_dataset, writer, config):
             wandb.log(epoch_metrics)
 
         singlehop_path = os.path.join(config['val_path'], f'singlehop_{epoch+1}.json')
-        multihop_path = os.path.join(config['val_path'], f'multihop_{epoch + 1}.json')
+        multihop_path = os.path.join(config['val_path'], f'multihop_{epoch+1}.json')
         f1, consis = evaluate(model, tokenizer, val_dataset, config['val_batch_size'], config['device'],
                               singlehop_path, multihop_path)
         if config['wandb']:
