@@ -166,7 +166,7 @@ def train(model, tokenizer, train_dataset, val_dataset, writer, config):
                     writer.add_scalar("Train/" + name, val, it_n + 1)
 
                 if config['wandb']:
-                    wandb.log({"Train-step": step_metrics}, it_n + 1)
+                    wandb.log({"Train-step": step_metrics, "step": it_n + 1})
 
                 it_n += 100
 
@@ -181,14 +181,14 @@ def train(model, tokenizer, train_dataset, val_dataset, writer, config):
             writer.add_scalar("Train/" + name, val, epoch + 1)
 
         if config['wandb']:
-            wandb.log({"Train-epoch": epoch_metrics}, epoch + 1, commit=False)
+            wandb.log({"Train-epoch": epoch_metrics, "epoch": epoch + 1})
 
         singlehop_path = os.path.join(config['val_path'], f'singlehop_{epoch+1}.json')
         multihop_path = os.path.join(config['val_path'], f'multihop_{epoch + 1}.json')
         f1, consis = evaluate(model, tokenizer, val_dataset, config['val_batch_size'], config['device'],
                               singlehop_path, multihop_path)
         if config['wandb']:
-            wandb.log({"Val": {"F1": f1, "Consistency": consis}}, epoch+1, commit=False)
+            wandb.log({"Val": {"F1": f1, "Consistency": consis}, "epoch": epoch + 1})
 
         # save checkpoint
         if ((epoch + 1) % 5) == 0:
