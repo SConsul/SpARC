@@ -29,12 +29,18 @@ def traverse(data_adj_list):
 
 
 def gen_belief_graph(inf_out):
+    skipped = 0
     adj_list = defaultdict(set)
     for data_row in inf_out:
         data_row = DataRow(**data_row)
         assert data_row.pred != '', "Need model predictions on these edges"
-        adj_list[data_row.source].add(data_row)
 
+        if data_row.pred in {'yes', 'no'}:
+            adj_list[data_row.source].add(data_row)
+        else:
+            skipped += 1
+
+    print(f"Skipped edges for consistency: {skipped}")
     multihop_questions = traverse(adj_list)
     return adj_list, multihop_questions
 

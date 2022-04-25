@@ -39,7 +39,7 @@ def infer(model, tokenizer, test_dataset, qa, batch_size, device):
         # a_s = tokenizer.batch_decode(y, skip_special_tokens=True)
         for pred, data_row in zip(preds, data_text):
             # Out format is "$answer$ = Yes"
-            pred_text = pred.split("=")[1].strip().lower()
+            pred_text = pred.split("=")[1].strip().lower() if pred.find("=") > -1 else pred
             output_preds.append(
                 DataRow(question=data_row['question'], answer=data_row['answer'],
                         source=data_row['source'], target=data_row['target'],
