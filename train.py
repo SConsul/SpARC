@@ -24,7 +24,7 @@ def passed_arguments():
     parser.add_argument('--train_path', default="./beliefbank-data-sep2021/qa_train.json")
     parser.add_argument('--val_path', default="./beliefbank-data-sep2021/constraints_qa.json")
     parser.add_argument('--model_path', type=str, required=True, help="Dir to save results")
-    parser.add_argument('--max_epochs', type=int, default=10)
+    parser.add_argument('--max_epochs', type=int, default=5)
     parser.add_argument('--batch_size', type=int, default=32)
     parser.add_argument('--val_batch_size', type=int, default=512)
     parser.add_argument('--lr', type=float, default=3e-4)
