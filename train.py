@@ -41,7 +41,6 @@ def passed_arguments():
     parser.add_argument('--token_type', type=str, default=None)
     parser.add_argument('--sim_type', type=str, default='batch', choices=['batch', 'angle', 'moco'])
     args = parser.parse_args()
-    print(args)
     return args
 
 
@@ -211,6 +210,7 @@ def main():
         wandb.init(project=args.wandb, entity="team-sparc")
         wandb.config = args.__dict__
 
+    print(args)
     os.makedirs(args.model_path, exist_ok=True)
 
     device = torch.cuda.current_device() if torch.cuda.is_available() else 'cpu'
