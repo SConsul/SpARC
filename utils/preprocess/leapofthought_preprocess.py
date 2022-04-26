@@ -1,6 +1,6 @@
 import json
 from tqdm import tqdm
-from preprocess_utils import DataRow, json_serialize
+from utils.preprocess.preprocess_utils import DataRow, json_serialize
 
 
 def parse_question(source, target, predicate):
