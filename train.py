@@ -208,7 +208,7 @@ def main():
             login_key = json.load(f)['login']
         wandb.login(key=login_key)
         wandb.init(project=args.wandb, entity="team-sparc")
-        wandb.config = args.__dict__
+        wandb.config.update(args)
 
     print(args)
     os.makedirs(args.model_path, exist_ok=True)
