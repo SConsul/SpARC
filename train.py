@@ -30,7 +30,7 @@ def passed_arguments():
     parser.add_argument('--lr', type=float, default=3e-4)
     parser.add_argument('--lr_decay', type=bool, default=False)
     parser.add_argument('--weight_decay', type=float, default=0.1)
-    parser.add_argument('--num_workers', type=int, default=0)
+    parser.add_argument('--num_workers', type=int, default=2)
     parser.add_argument('--freeze_backbone', action='store_true', default=False)
     parser.add_argument('--adapter', action='store_true', default=False)
     # Options: lm_head, encoder.final_layer_norm, etc
