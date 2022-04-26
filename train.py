@@ -203,6 +203,13 @@ def train(model, tokenizer, train_dataset, val_dataset, writer, config):
 
 def main():
     args = passed_arguments()
+    # Set up wandb
+    if args.wandb is not None:
+        with open('wandb.json', 'r') as f:
+            login_key = json.load(f)['login']
+        wandb.login(key=login_key)
+        wandb.init(project=args.wandb, entity="team-sparc")
+        wandb.config = args.__dict__
 
     os.makedirs(args.model_path, exist_ok=True)
 
@@ -214,6 +221,8 @@ def main():
         model.set_active_adapters("beliefbank")
     model = model.to(device)
     # model = torch.nn.DataParallel(model).to(device)
+    if args.wandb is not None:
+        wandb.watch(model)
 
     if args.sim is not None:
         train_dataset = QAPairsDataset(args.train_path, tokenizer, token_type=args.token_type)
@@ -227,15 +236,6 @@ def main():
     logdir = os.path.join(args.model_path, 'logs')
     os.makedirs(logdir, exist_ok=True)
     writer = SummaryWriter(logdir)
-
-    # Set up wandb
-    if args.wandb is not None:
-        with open('wandb.json', 'r') as f:
-            login_key = json.load(f)['login']
-        wandb.login(key=login_key)
-        wandb.init(project=args.wandb, entity="team-sparc")
-        wandb.config = args.__dict__
-        wandb.watch(model)
 
     config = {
         'wandb': args.wandb is not None,
