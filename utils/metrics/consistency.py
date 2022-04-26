@@ -33,7 +33,7 @@ def gen_belief_graph(inf_out):
     adj_list = defaultdict(set)
     for data_row in inf_out:
         data_row = DataRow(**data_row)
-        assert data_row.pred != '', "Need model predictions on these edges"
+        # assert data_row.pred != '', "Need model predictions on these edges"
 
         if data_row.pred in {'yes', 'no'}:
             adj_list[data_row.source].add(data_row)
