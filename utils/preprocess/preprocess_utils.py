@@ -53,14 +53,14 @@ TEMPLATES = {
 }
 
 
-def parse_source_target(source, target, non_countable, use_pos=True):
+def parse_source_target(source, target, non_countable, use_random=True, use_pos=True):
     # ASSUME: source is always "IsA"
     # Use non_countable
     _, s_obj = source.split(',')
     link, t_obj = target.split(',')
 
     template_qs = TEMPLATES[link]['templates' if use_pos else 'templates_negated']
-    question = random.choice(template_qs)
+    question = random.choice(template_qs) if use_random else template_qs[0]
 
     s_art = 'an ' if s_obj[0] in {'a', 'e', 'i', 'o', 'u'} else 'a '
     s_art = '' if s_obj in non_countable else s_art

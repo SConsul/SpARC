@@ -8,8 +8,9 @@ def traverse(data_adj_list):
     def _traverse_dfs(source, n):
         for e in data_adj_list.get(n):
             # "Groundtruth" answer is expected model prediction for this multihop edge
-            s_n_edge = DataRow(question=parse_source_target(source, e.target, non_countable), answer=e.pred,
-                               source=source, target=e.target, gold=False, id=e.id, link_type=e.link_type)
+            s_n_edge = DataRow(question=parse_source_target(source, e.target, non_countable, use_random=False),
+                               answer=e.pred, source=source, target=e.target, gold=False,
+                               id=e.id, link_type=e.link_type)
 
             if s_n_edge not in visited[source]:
                 visited[source].add(s_n_edge)
