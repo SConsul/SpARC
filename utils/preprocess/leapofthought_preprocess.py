@@ -22,7 +22,7 @@ def parse_question(source, target, predicate):
     elif predicate == "/r/Desires":
         return f'Does {s_art}{source} desire {target}?'
     else:
-        print(predicate)
+        print("Predicate is: ", predicate)
         raise ValueError("NOOOOO")
 
 
