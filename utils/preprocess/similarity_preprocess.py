@@ -6,6 +6,7 @@ import torch
 from collections import defaultdict
 from scipy.spatial.distance import cosine
 from transformers import AutoModel, AutoTokenizer
+from tqdm import tqdm
 
 from preprocess_utils import DataRow
 
@@ -40,6 +41,7 @@ def get_similar_pairs_linked(adjacency_list, train_set_count):
     
     set_of_links = set()
     num_pairs_chosen = 0
+    pbar = tqdm(total=pair_limit)
     while (num_pairs_chosen < pair_limit):
         for source, info_list in adjacency_list.items():
             if next_index[source] >= len(info_list):
@@ -56,7 +58,9 @@ def get_similar_pairs_linked(adjacency_list, train_set_count):
                     similar_pairs.append((info, match))
                     set_of_links.add(link)
                     num_pairs_chosen += 1
+                    pbar.update(1)
                     break  
+    pbar.close()
     
     print("Total Num Pairs: ", len(similar_pairs))
     return similar_pairs
@@ -72,6 +76,7 @@ def get_similar_pairs_adjacent(adjacency_list):
     """
     similar_pairs = []
     max_num_pairs = float("-inf")
+    pbar = tqdm(total=len(adjacency_list.items()))
     for source, info_list in adjacency_list.items():
         num_pairs_count = 0
         for i in range(0, len(info_list), 2):
@@ -81,6 +86,8 @@ def get_similar_pairs_adjacent(adjacency_list):
                 similar_pairs.append((info_list[0], info_list[i]))
             num_pairs_count += 1
         max_num_pairs = max(max_num_pairs, num_pairs_count)
+        pbar.update(1)
+    pbar.close()
 
     print("Total Num Pairs:", len(similar_pairs))
     print("Max Pairs Per Source", max_num_pairs)
@@ -122,7 +129,7 @@ def get_similar_pairs_cosine(train_data):
     tokenizer = AutoTokenizer.from_pretrained("princeton-nlp/sup-simcse-bert-base-uncased")
     model = AutoModel.from_pretrained("princeton-nlp/sup-simcse-bert-base-uncased")
 
-    questions = [data.question for data in train_data]
+    questions = [data['question'] for data in train_data]
     inputs = tokenizer(questions, padding=True, truncation=True, return_tensors="pt")
 
     # Get the embeddings
@@ -136,11 +143,14 @@ def get_similar_pairs_cosine(train_data):
     num_questions = len(questions)
     pair_limit = int(num_questions / 2)
     print("Retrieving Pairs")
+    pbar = tqdm(total=pair_limit)
     while len(similar_pairs_index) < pair_limit:
         questionsIndex = random.sample(range(len(questions)), 2)
         cosine_sim = 1 - cosine(embeddings[questionsIndex[0]], embeddings[questionsIndex[1]])
         if cosine_sim >= threshold:
             similar_pairs_index.add(tuple(questionsIndex))
+            pbar.update(1)
+    pbar.close()
     
     similar_pairs = []
     for pair in list(similar_pairs_index):
@@ -157,7 +167,18 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--train_path', default="./beliefbank-data-sep2021/qa_train.json")
     parser.add_argument('--method', required=True, choices=["linked", "adjacent", "cosine"])
+    parser.add_argument('--output_path', default="./beliefbank-data-sep2021/qa_train.json")
     args = parser.parse_args()
+
+    # Beliefbank paths
+    # beliefbank-data-sep2021/qa_train_sim_linked.json
+    # beliefbank-data-sep2021/qa_train_sim_adjacent.json
+    # beliefbank-data-sep2021/qa_train_similar_sim_cosine.json
+
+    # LoT paths
+    # leap_of_thought_data/train_sim_linked.json
+    # leap_of_thought_data/train_sim_adjacent.json
+    # leap_of_thought_data/train_sim_simcse.json
 
     with open(args.train_path) as f:
         train_data = json.load(f)
@@ -167,7 +188,7 @@ if __name__ == "__main__":
 
         similar_pairs_linked = get_similar_pairs_linked(adjacency_list, train_set_count)
 
-        with open('beliefbank-data-sep2021/qa_train_sim_linked.json', 'w') as f:
+        with open(args.output_path, 'w') as f:
             json.dump(json_serialize_pairs(similar_pairs_linked), f, indent=1)
 
     elif args.method == "adjacent":
@@ -175,7 +196,7 @@ if __name__ == "__main__":
 
         similar_pairs_adj = get_similar_pairs_adjacent(adjacency_list)
 
-        with open('beliefbank-data-sep2021/qa_train_sim_adjacent.json', 'w') as f:
+        with open(args.output_path, 'w') as f:
             json.dump(json_serialize_pairs(similar_pairs_adj), f, indent=1)
     
     elif args.method == "cosine_stats":
@@ -184,7 +205,7 @@ if __name__ == "__main__":
     elif args.method == "cosine":
         similar_pairs_cosine = get_similar_pairs_cosine(train_data)
 
-        with open('beliefbank-data-sep2021/qa_train_similar_sim_cosine.json', 'w') as f:
+        with open(args.output_path, 'w') as f:
             json.dump(json_serialize_pairs(similar_pairs_cosine), f, indent=1)
     
     

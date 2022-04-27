@@ -5,7 +5,7 @@ from utils.preprocess.preprocess_utils import DataRow, json_serialize, parse_sou
 
 def process_constraint(link_info, data_id, link_type):
     predicate = link_info["predicate"]
-    source = "IsA," + link_info["subject"]
+    source = "/r/IsA," + link_info["subject"]
     target = predicate + "," + link_info["object"]
     question = parse_source_target(source, target, non_countable)
 
