@@ -1,36 +1,13 @@
 import json
 from tqdm import tqdm
-from utils.preprocess.preprocess_utils import DataRow, json_serialize
-
-
-def parse_question(source, target, predicate):
-    s_art = 'an ' if source[0] in {'a', 'e', 'i', 'o', 'u'} else 'a '
-    s_art = s_art if source[-1] != 's' else ''
-    t_art = 'an ' if target[0] in {'a', 'e', 'i', 'o', 'u'} else 'a '
-    t_art = t_art if target[-1] != 's' else ''
-
-    if predicate == '/r/IsA' or predicate == "hypernym":
-        return f'Is {s_art}{source} {t_art}{target}?'
-    elif predicate == "meronym":
-        return f'Does {s_art}{source} have {t_art}{target}?'
-    elif predicate == "/r/Antonym":
-        return f'{s_art}{source} is the opposite of {t_art}{target}?'
-    elif predicate == "/r/CapableOf":
-        return f'Can {s_art}{source} {target}?'
-    elif predicate == "/r/PartOf":
-        return f'Is {s_art}{source} part of {target}?'
-    elif predicate == "/r/Desires":
-        return f'Does {s_art}{source} desire {target}?'
-    else:
-        print("Predicate is: ", predicate)
-        raise ValueError("NOOOOO")
+from utils.preprocess.preprocess_utils import DataRow, json_serialize, parse_source_target
 
 
 def process_constraint(link_info, data_id, link_type):
-    source = link_info["subject"]
-    target = link_info["object"]
     predicate = link_info["predicate"]
-    question = parse_question(source, target, predicate)
+    source = "IsA," + link_info["subject"]
+    target = predicate + "," + link_info["object"]
+    question = parse_source_target(source, target, non_countable)
 
     answer = "yes" if link_info["validity"] == "always true" else "no"
 
@@ -62,18 +39,19 @@ def process_data(data):
         data_id = d["id"]
         for link in link_types:
             if link in metadata:
-                # all_data[data_id].extend(get_links(metadata, data_id, link))
                 all_data.extend(get_links(metadata, data_id, link))
 
         if "distractors" in metadata:
             for link in link_types:
                 if link in metadata['distractors']:
-                    # all_data[data_id].extend(get_links(metadata['distractors'], data_id, link))
                     all_data.extend(get_links(metadata['distractors'], data_id, link))
     return all_data
         
 
 if __name__ == "__main__":
+    with open('beliefbank-data-sep2021/non_countable.txt', 'r') as f:
+        non_countable = f.readlines()
+
     with open('leap_of_thought_data/original_lot/hypernyms_training_mix_short_train.jsonl', 'r') as f:
         train = [json.loads(line) for line in f]
     

@@ -42,7 +42,14 @@ TEMPLATES = {
                     "templates_negated": ["Is [X] not [Y]?", "Is it true that [X] is not [Y]?"]},
     "HasA": {"assertion_positive": "[X] has [Y].", "assertion_negative":  "[X] does not have [Y].",
              "templates": ["Does [X] have [Y]?", "Is it true that [X] has [Y]?"],
-             "templates_negated": ["Does [X] not have [Y]?", "Is it true that [X] has not [Y]?"]}
+             "templates_negated": ["Does [X] not have [Y]?", "Is it true that [X] has not [Y]?"]},
+    "/r/IsA": {"templates": ["Is [X] [Y]?"]},
+    "hypernym": {"templates": ["Is [X] [Y]?"]},
+    "meronym": {"templates": ["Does [X] have [Y]?"]},
+    "/r/Antonym": {"templates": ["Is [X] the opposite of [Y]?"]},
+    "/r/CapableOf": {"templates": ["Can [X] [Y]?"]},
+    "/r/PartOf": {"templates": ["Is [X] part of [Y]?"]},
+    "/r/Desires": {"templates": ["Does [X] desire [Y]?"]}
 }
 
 
