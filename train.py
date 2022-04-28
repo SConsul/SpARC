@@ -12,7 +12,7 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 from evaluate import evaluate
 from utils.datasets.dataset import QADataset
 from utils.datasets.dataset_sim import QAPairsDataset
-from utils.loss.loss import l1_loss
+from utils.loss.loss import l1_loss, hoyer_loss
 from utils.loss.sim_loss import build_sim_loss
 
 os.environ["TOKENIZERS_PARALLELISM"] = "true"  # is this ok?
@@ -107,11 +107,11 @@ def train(model, tokenizer, train_dataset, val_dataset, writer, config):
     train_dataloader = DataLoader(train_dataset, batch_size=config['batch_size'],
                                   num_workers=config['num_workers'], shuffle=True, drop_last=True)
 
-    activation = {}
+    activations = {}
     model_layer_names = []
     if config['l1_reg'] is not None or config['sim'] is not None:
         print(f"L1 sparsity on {config['layer_names']}")
-        model_layer_names = register_hooks(model, config, activation)
+        model_layer_names = register_hooks(model, config, activations)
 
     if config['sim'] is not None:
         src_len, tgt_len = train_dataset.get_activation_src_tgt_len()
@@ -138,13 +138,15 @@ def train(model, tokenizer, train_dataset, val_dataset, writer, config):
 
             l1_reg_loss = torch.tensor(0.0, device=config['device'])
             if config['l1_reg'] is not None:
-                for name in activation:
-                    l1_reg_loss += config['l1_reg'] * l1_loss(activation[name], token_ids.view(b*s, -1))
+                for name in activations:
+                    l1_reg_loss += config['l1_reg'] * hoyer_loss(activations[name], token_ids.view(b*s, -1))
+                l1_reg_loss /= len(activations)
 
             sim_loss = torch.tensor(0.0, device=config['device'])
             if config['sim'] is not None:
-                for name in activation:
-                    sim_loss += config['sim'] * sim_loss_fn(activation[name], token_ids.view(b*s, -1), name)
+                for name in activations:
+                    sim_loss += config['sim'] * sim_loss_fn(activations[name], token_ids.view(b*s, -1), name)
+                sim_loss /= len(activations)
 
             loss = ce_loss + l1_reg_loss + sim_loss
             model.zero_grad()
