@@ -17,7 +17,18 @@ def l1_loss(batch, idx):
         idx = idx.unsqueeze(2).expand(-1, -1, c)  # (2B, I, C)
         batch = torch.gather(batch, dim=1, index=idx)  # (2B, I, C)
 
-    return torch.norm(batch, 1)
+    return torch.norm(batch, 1) / batch.shape[1]
+
+
+def hoyer_loss(batch, idx, eps=1e-7):
+    b, L, c = batch.shape
+    if idx[0, 0] != -1:
+        # WARNING: this might not work on decoder layers
+        _, I = idx.shape
+        idx = idx.unsqueeze(2).expand(-1, -1, c)  # (2B, I, C)
+        batch = torch.gather(batch, dim=1, index=idx)  # (2B, I, C)
+
+    return (torch.norm(batch, 1).pow(2))/(batch.pow(2).sum() + eps)
 
 
 def binary_sim_loss(batch, idx, sim_type=None):
