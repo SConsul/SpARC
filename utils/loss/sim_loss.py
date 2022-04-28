@@ -34,9 +34,9 @@ class BatchSimLoss(SimLoss):
             idx = idx.unsqueeze(2).expand(-1, -1, c)  # (2B, I, C)
             x = torch.gather(x, dim=1, index=idx)  # (2B, I, C)
 
-        # Unit norm vectors across channel dim
+        # Unit norm vectors across channel dim, avg across num tokens in seq dim
         x = F.normalize(x, dim=-1)  # (2B, I, C)
-        x = x.view(b, -1)  # shape = (2B, I*C)
+        x = x.view(b, -1) / x.shape[1]  # shape = (2B, I*C)
 
         # batch = F.normalize(x, dim=1)  # shape (2B, L*C)
 
@@ -134,9 +134,9 @@ class Moco(SimLoss):
             idx = idx.unsqueeze(2).expand(b, I, c)  # (2B, I, C)
             activation = torch.gather(activation, dim=1, index=idx)  # (2B, I, C)
 
-        # Unit norm vectors across channel dim
+        # Unit norm vectors across channel dim, avg across num tokens in seq dim
         activation = F.normalize(activation, dim=-1)  # (2B, I, C)
-        activation = activation.view(b, -1)  # (2B, I*C)
+        activation = activation.view(b, -1) / activation.shape[1]  # (2B, I*C)
 
         # Randomly pick one of the two sentences in each pair to form positives
         rand_pos = torch.randint(0, 2, size=(b // 2,), dtype=bool)  # (B,)
