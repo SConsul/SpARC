@@ -12,8 +12,8 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 from evaluate import evaluate
 from utils.datasets.dataset import QADataset
 from utils.datasets.dataset_sim import QAPairsDataset
-from utils.loss.loss import l1_loss, hoyer_loss
 from utils.loss.sim_loss import build_sim_loss
+from utils.loss.sparsity_loss import build_sparsity_loss
 
 os.environ["TOKENIZERS_PARALLELISM"] = "true"  # is this ok?
 
@@ -34,11 +34,12 @@ def passed_arguments():
     parser.add_argument('--freeze_backbone', action='store_true', default=False)
     parser.add_argument('--adapter', action='store_true', default=False)
     # Options: lm_head, encoder.final_layer_norm, etc
-    parser.add_argument('--layer_names', nargs='+', type=str, default=[])
-    parser.add_argument('--l1_reg', type=float, default=None)
-    parser.add_argument('--sim', type=float, default=None)
     parser.add_argument('--ce_loss', type=float, default=1.0)
+    parser.add_argument('--layer_names', nargs='+', type=str, default=[])
     parser.add_argument('--token_type', type=str, default=None)
+    parser.add_argument('--l1_reg', type=float, default=None)
+    parser.add_argument('--l1_type', type=str, default='hoyer', choices=['l1', 'hoyer'])
+    parser.add_argument('--sim', type=float, default=None)
     parser.add_argument('--sim_type', type=str, default='batch', choices=['batch', 'angle', 'moco'])
     args = parser.parse_args()
     return args
@@ -113,6 +114,9 @@ def train(model, tokenizer, train_dataset, val_dataset, writer, config):
         print(f"L1 sparsity on {config['layer_names']}")
         model_layer_names = register_hooks(model, config, activations)
 
+    if config['l1_reg'] is not None:
+        l1_loss_fn = build_sparsity_loss(config['l1_type'])
+
     if config['sim'] is not None:
         src_len, tgt_len = train_dataset.get_activation_src_tgt_len()
         sim_loss_fn = build_sim_loss(config['sim_type'], model_layer_names, src_len, tgt_len)
@@ -139,7 +143,7 @@ def train(model, tokenizer, train_dataset, val_dataset, writer, config):
             l1_reg_loss = torch.tensor(0.0, device=config['device'])
             if config['l1_reg'] is not None:
                 for name in activations:
-                    l1_reg_loss += config['l1_reg'] * hoyer_loss(activations[name], token_ids.view(b*s, -1))
+                    l1_reg_loss += config['l1_reg'] * l1_loss_fn(activations[name], token_ids.view(b*s, -1))
                 l1_reg_loss /= len(activations)
 
             sim_loss = torch.tensor(0.0, device=config['device'])
