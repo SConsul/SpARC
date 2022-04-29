@@ -253,7 +253,6 @@ def main():
         'betas': (0.9, 0.95),
         'grad_norm_clip': 1.0,
         'weight_decay': args.weight_decay,  # only applied on matmul weights
-        'l1_reg': args.l1_reg,
         'freeze_backbone': args.freeze_backbone,
         # learning rate decay params: linear warmup followed by cosine decay to 10% of original
         'lr_decay': args.lr_decay,
@@ -263,10 +262,12 @@ def main():
         'num_workers': args.num_workers,  # for DataLoader
         'adapter': args.adapter,
         'layer_names': args.layer_names,
-        'sim': args.sim,
         'ce_loss': args.ce_loss,
+        'l1_reg': args.l1_reg,
+        'l1_type': args.l1_type,
+        'sim': args.sim,
+        'sim_type': args.sim_type,
         'token_type': args.token_type,
-        'sim_type': args.sim_type
     }
     train(model, tokenizer, train_dataset, val_dataset, writer, config)
 
