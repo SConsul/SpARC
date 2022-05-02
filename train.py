@@ -203,9 +203,7 @@ def train(model, tokenizer, train_dataset, val_dataset, writer, config):
             wandb.log({"Val/F1": f1, "Val/Consistency": consis, "Val/step": epoch+1})
         
         if config['sparsity_entropy']:
-            elt_sparsity, input_sparsity, output_sparsity = get_sparsity_entropy(model, activations, config['sparsity_threshold'])
-            
-            print(f"Sparsity elt: {elt_sparsity:.3f}, input: {input_sparsity:.3f}, output: {output_sparsity:.3f}")
+            total_sparsity, enc_sparsity, dec_sparsity = get_sparsity_entropy(model, activations, config['sparsity_threshold'])
 
         # save checkpoint
         if ((epoch + 1) % 5) == 0:
