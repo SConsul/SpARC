@@ -114,11 +114,11 @@ def train(model, tokenizer, train_dataset, val_dataset, writer, config):
 
     activations = {}
     model_layer_names = []
-    if config['l1_reg'] is not None or config['sim'] is not None:
-        print(f"L1 sparsity on {config['layer_names']}")
+    if config['l1_reg'] is not None or config['sim'] is not None or config['sparsity_entropy']:
         model_layer_names = register_hooks(model, config, activations)
 
     if config['l1_reg'] is not None:
+        print(f"L1 sparsity on {config['layer_names']}")
         l1_loss_fn = build_sparsity_loss(config['l1_type'])
 
     if config['sim'] is not None:
@@ -203,7 +203,7 @@ def train(model, tokenizer, train_dataset, val_dataset, writer, config):
             wandb.log({"Val/F1": f1, "Val/Consistency": consis, "Val/step": epoch+1})
         
         if config['sparsity_entropy']:
-            elt_sparsity, input_sparsity, output_sparsity = get_sparsity_entropy(model, config['sparsity_threshold'])
+            elt_sparsity, input_sparsity, output_sparsity = get_sparsity_entropy(model, activations, config['sparsity_threshold'])
             
             print(f"Sparsity elt: {elt_sparsity:.3f}, input: {input_sparsity:.3f}, output: {output_sparsity:.3f}")
 
@@ -277,6 +277,8 @@ def main():
         'sim': args.sim,
         'sim_type': args.sim_type,
         'token_type': args.token_type,
+        'sparsity_entropy': args.sparsity_entropy,
+        'sparsity_threshold': args.sparsity_threshold
     }
     train(model, tokenizer, train_dataset, val_dataset, writer, config)
 
