@@ -14,6 +14,7 @@ from utils.datasets.dataset import QADataset
 from utils.datasets.dataset_sim import QAPairsDataset
 from utils.loss.sim_loss import build_sim_loss
 from utils.loss.sparsity_loss import build_sparsity_loss
+from utils.analysis.sparsity_entropy import get_sparsity_entropy
 
 os.environ["TOKENIZERS_PARALLELISM"] = "true"  # is this ok?
 
@@ -41,6 +42,9 @@ def passed_arguments():
     parser.add_argument('--l1_type', type=str, default='hoyer', choices=['l1', 'hoyer'])
     parser.add_argument('--sim', type=float, default=None)
     parser.add_argument('--sim_type', type=str, default='batch', choices=['batch', 'angle', 'moco'])
+    parser.add_argument('--sparsity_entropy', action='store_true', default=False)
+    parser.add_argument('--sparsity_threshold', type=float, default=0)
+
     args = parser.parse_args()
     return args
 
@@ -197,6 +201,11 @@ def train(model, tokenizer, train_dataset, val_dataset, writer, config):
                               singlehop_path, multihop_path)
         if config['wandb']:
             wandb.log({"Val/F1": f1, "Val/Consistency": consis, "Val/step": epoch+1})
+        
+        if config['sparsity_entropy']:
+            elt_sparsity, input_sparsity, output_sparsity = get_sparsity_entropy(model, config['sparsity_threshold'])
+            
+            print(f"Sparsity elt: {elt_sparsity:.3f}, input: {input_sparsity:.3f}, output: {output_sparsity:.3f}")
 
         # save checkpoint
         if ((epoch + 1) % 5) == 0:
