@@ -14,6 +14,7 @@ from utils.datasets.dataset import QADataset
 from utils.datasets.dataset_sim import QAPairsDataset
 from utils.loss.sim_loss import build_sim_loss
 from utils.loss.sparsity_loss import build_sparsity_loss
+from utils.analysis.sparsity_entropy import get_sparsity_entropy
 
 os.environ["TOKENIZERS_PARALLELISM"] = "true"  # is this ok?
 
@@ -41,6 +42,9 @@ def passed_arguments():
     parser.add_argument('--l1_type', type=str, default='hoyer', choices=['l1', 'hoyer'])
     parser.add_argument('--sim', type=float, default=None)
     parser.add_argument('--sim_type', type=str, default='batch', choices=['batch', 'angle', 'moco'])
+    parser.add_argument('--sparsity_entropy', action='store_true', default=False)
+    parser.add_argument('--sparsity_threshold', type=float, default=0)
+
     args = parser.parse_args()
     return args
 
@@ -110,11 +114,11 @@ def train(model, tokenizer, train_dataset, val_dataset, writer, config):
 
     activations = {}
     model_layer_names = []
-    if config['l1_reg'] is not None or config['sim'] is not None:
-        print(f"L1 sparsity on {config['layer_names']}")
+    if config['l1_reg'] is not None or config['sim'] is not None or config['sparsity_entropy']:
         model_layer_names = register_hooks(model, config, activations)
 
     if config['l1_reg'] is not None:
+        print(f"L1 sparsity on {config['layer_names']}")
         l1_loss_fn = build_sparsity_loss(config['l1_type'])
 
     if config['sim'] is not None:
@@ -197,6 +201,9 @@ def train(model, tokenizer, train_dataset, val_dataset, writer, config):
                               singlehop_path, multihop_path)
         if config['wandb']:
             wandb.log({"Val/F1": f1, "Val/Consistency": consis, "Val/step": epoch+1})
+        
+        if config['sparsity_entropy']:
+            total_sparsity, enc_sparsity, dec_sparsity = get_sparsity_entropy(model, activations, config['sparsity_threshold'])
 
         # save checkpoint
         if ((epoch + 1) % 5) == 0:
@@ -268,6 +275,8 @@ def main():
         'sim': args.sim,
         'sim_type': args.sim_type,
         'token_type': args.token_type,
+        'sparsity_entropy': args.sparsity_entropy,
+        'sparsity_threshold': args.sparsity_threshold
     }
     train(model, tokenizer, train_dataset, val_dataset, writer, config)
 
