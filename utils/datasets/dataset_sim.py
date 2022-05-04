@@ -7,7 +7,7 @@ class QAPairsDataset(Dataset):
 
     LEN_TOKEN_TYPES = {
         'answer': 4, 'question': 4,
-        'eos': 1, 'link': 1
+        'eos': 1, 'common': 1
     }
 
     def __init__(self, json_filepath, tokenizer, max_source_len=64, max_target_len=8, token_type=None):
@@ -61,7 +61,7 @@ class QAPairsDataset(Dataset):
                  idx1 = [(inp1.input_ids[inp1.attention_mask>0]==1).nonzero()[0][-1]]
                  idx2 = [(inp2.input_ids[inp2.attention_mask>0]==1).nonzero()[0][-1]]
 
-            elif self.token_type == 'link':
+            elif self.token_type == 'common':
                 idx1 = inp1.input_ids[inp1.attention_mask > 0].shape[0] - 3
 
                 idx2 = (inp2.input_ids[inp2.attention_mask > 0] == inp1.input_ids[0][idx1]).nonzero()
