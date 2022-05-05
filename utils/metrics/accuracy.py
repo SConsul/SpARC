@@ -21,7 +21,9 @@ def f1_score(results):
                 TN += 1
         else:
             skip_count += 1
-    return TP / (TP + 0.5 * (FP + FN)), skip_count
+
+    denom = TP + 0.5 * (FP + FN)
+    return (TP / denom) if denom > 0 else 0., skip_count
 
 
 if __name__ == "__main__":
