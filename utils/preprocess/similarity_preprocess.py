@@ -159,6 +159,44 @@ def get_similar_pairs_cosine(train_data):
     return similar_pairs
 
 
+def get_similar_pairs_cosine_large(train_data):
+    """
+    Use SimCSE to get cosine similarity of question embeddings
+    """
+    tokenizer = AutoTokenizer.from_pretrained("princeton-nlp/sup-simcse-bert-base-uncased")
+    model = AutoModel.from_pretrained("princeton-nlp/sup-simcse-bert-base-uncased")
+
+    questions = [data['question'] for data in train_data]
+    threshold = 0.652
+    similar_pairs_index = set()
+    
+    num_questions = len(questions)
+    pair_limit = int(num_questions / 2)
+    
+    pbar = tqdm(total=pair_limit)
+    while len(similar_pairs_index) < pair_limit:
+        questionsIndex = random.sample(range(len(questions)), 2)
+        poss_pair = [questions[questionsIndex[0]], questions[questionsIndex[1]]]
+        inputs = tokenizer(poss_pair, padding=True, truncation=True, return_tensors="pt")
+
+        # Get the embeddings
+        with torch.no_grad():
+            embeddings = model(**inputs, output_hidden_states=True, return_dict=True).pooler_output
+
+        cosine_sim = 1 - cosine(embeddings[0], embeddings[1])
+        if cosine_sim >= threshold:
+            similar_pairs_index.add(tuple(questionsIndex))
+            print(poss_pair)
+            pbar.update(1)
+    pbar.close()
+    
+    similar_pairs = []
+    for pair in list(similar_pairs_index):
+        similar_pairs.append([train_data[pair[0]], train_data[pair[1]]])
+
+    return similar_pairs
+
+
 def json_serialize_pairs(question_pairs):
     return [(q1._asdict(), q2._asdict()) for (q1, q2) in question_pairs]
 
@@ -166,7 +204,7 @@ def json_serialize_pairs(question_pairs):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--train_path', default="./beliefbank-data-sep2021/qa_train.json")
-    parser.add_argument('--method', required=True, choices=["linked", "adjacent", "cosine"])
+    parser.add_argument('--method', required=True, choices=["linked", "adjacent", "cosine", "cosine_large"])
     parser.add_argument('--output_path', default="./beliefbank-data-sep2021/qa_train.json")
     args = parser.parse_args()
 
@@ -204,6 +242,12 @@ if __name__ == "__main__":
     
     elif args.method == "cosine":
         similar_pairs_cosine = get_similar_pairs_cosine(train_data)
+
+        with open(args.output_path, 'w') as f:
+            json.dump(json_serialize_pairs(similar_pairs_cosine), f, indent=1)
+
+    elif args.method == "cosine_large":
+        similar_pairs_cosine = get_similar_pairs_cosine_large(train_data)
 
         with open(args.output_path, 'w') as f:
             json.dump(json_serialize_pairs(similar_pairs_cosine), f, indent=1)
