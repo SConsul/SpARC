@@ -122,7 +122,7 @@ def linked_similarity_cosine_stats(linked_similarity_data):
     print("Cosine Variance: ", np.var(cosine_values))
 
 
-def get_similar_pairs_cosine(train_data):
+def get_similar_pairs_cosine(train_data, window_size=8000):
     """
     Use SimCSE to get cosine similarity of question embeddings
     """
@@ -130,12 +130,22 @@ def get_similar_pairs_cosine(train_data):
     model = AutoModel.from_pretrained("princeton-nlp/sup-simcse-bert-base-uncased")
 
     questions = [data['question'] for data in train_data]
-    inputs = tokenizer(questions, padding=True, truncation=True, return_tensors="pt")
 
     # Get the embeddings
-    print("Retrieve Embeddings")
+    embeddings = []
+    start = 0
+    end = start + window_size
     with torch.no_grad():
-        embeddings = model(**inputs, output_hidden_states=True, return_dict=True).pooler_output
+        while start < len(questions):
+            question_chunk = questions[start:end]
+            inputs = tokenizer(question_chunk, padding=True, truncation=True, return_tensors="pt")
+
+            print("Retrieve Embeddings ", start)
+            embed = model(**inputs, output_hidden_states=True, return_dict=True).pooler_output
+
+            embeddings.append(embed)
+            start = end
+            end += window_size
 
     threshold = 0.652
     similar_pairs_index = set()
@@ -166,7 +176,7 @@ def json_serialize_pairs(question_pairs):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--train_path', default="./beliefbank-data-sep2021/qa_train.json")
-    parser.add_argument('--method', required=True, choices=["linked", "adjacent", "cosine"])
+    parser.add_argument('--method', required=True, choices=["linked", "adjacent", "cosine", "cosine_large"])
     parser.add_argument('--output_path', default="./beliefbank-data-sep2021/qa_train.json")
     args = parser.parse_args()
 
@@ -206,9 +216,6 @@ if __name__ == "__main__":
         similar_pairs_cosine = get_similar_pairs_cosine(train_data)
 
         with open(args.output_path, 'w') as f:
-            json.dump(json_serialize_pairs(similar_pairs_cosine), f, indent=1)
-    
-    
+            json.dump(similar_pairs_cosine, f, indent=1)
 
 
-    
