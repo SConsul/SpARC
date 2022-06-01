@@ -6,10 +6,11 @@ class SimLoss(torch.nn.Module):
     def __init__(self):
         super().__init__()
 
-    def forward(self, x, idx, layer_name):
+    def forward(self, x, attn_mask, idx, layer_name):
         """
         :param x: shape (2B, L, C) of (a_0, a_0', a_1, a_1', ..., a_B, a_B')
             where consecutive questions are similar
+        :param attn_mask: (2B, L) of which tokens in the sequence to ignore
         :param idx: shape (2B, I) of which indices of the activation to compute cosine sim
         :param layer_name: Layer name of activation on which this loss is being computed
         :return: Loss value
@@ -27,26 +28,32 @@ class BatchSimLoss(SimLoss):
     def __init__(self):
         super().__init__()
 
-    def get_sim_matrix(self, x, idx):
+    def get_sim_matrix(self, x, attn_mask, idx):
         b, L, c = x.shape
         if idx[0, 0] != -1:
             _, I = idx.shape
             idx = idx.unsqueeze(2).expand(-1, -1, c)  # (2B, I, C)
             x = torch.gather(x, dim=1, index=idx)  # (2B, I, C)
 
-        # Unit norm vectors across channel dim, avg across num tokens in seq dim
-        x = F.normalize(x, dim=-1)  # (2B, I, C)
-        x = x.view(b, -1) / x.shape[1]  # shape = (2B, I*C)
+            # Unit norm vectors across channel dim, avg across num tokens in seq dim
+            x = F.normalize(x, dim=-1)  # (2B, I, C)
+            x = x.view(b, -1) / x.shape[1]  # shape = (2B, I*C)
+        else:
+            num_nonzero = attn_mask.sum(-1)  # (2B,)
+            mask = attn_mask.unsqueeze(-1).type(x.dtype)  # (2B, L, 1)
+
+            # Average the token vector across the sequence (non-padding tokens)
+            x = (x * mask).sum(1)/num_nonzero  # (2B, C)
 
         # batch = F.normalize(x, dim=1)  # shape (2B, L*C)
 
         # stores all the dot products of every combination
-        sim_matrix = x @ x.T  # shape (B,B)
+        sim_matrix = x @ x.T  # shape (2B,2B)
         return sim_matrix
 
-    def forward(self, x, idx, layer_name):
+    def forward(self, x, attn_mask, idx, layer_name):
         b, L, c = x.shape
-        sim_matrix = self.get_sim_matrix(x, idx)
+        sim_matrix = self.get_sim_matrix(x, attn_mask, idx)
 
         # # Sum all similarity, but overcounting 2 + a_i.a_{i+1},
         # # we want 1 - a_i.a_{i+1}, so add -2*a_i.a_{i+1} - 1
@@ -77,8 +84,8 @@ class BatchAngleLoss(BatchSimLoss):
     def __init__(self):
         super().__init__()
 
-    def forward(self, x, idx, layer_name):
-        sim_matrix = self.get_sim_matrix(x, idx)
+    def forward(self, x, attn_mask, idx, layer_name):
+        sim_matrix = self.get_sim_matrix(x, attn_mask, idx)
 
         eps = 1e-7
         sim_matrix = torch.clamp(sim_matrix, -1 + eps, 1 - eps)
@@ -127,7 +134,7 @@ class Moco(SimLoss):
 
         q_ptr[0] = ptr
 
-    def forward(self, activation, idx, layer_name):
+    def forward(self, activation, attn_mask, idx, layer_name):
         b, L, c = activation.shape  # (2B, L, C)
         if idx[0, 0] != -1:
             _, I = idx.shape
