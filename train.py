@@ -153,7 +153,7 @@ def train(model, tokenizer, train_dataset, val_dataset, writer, config):
             sim_loss = torch.tensor(0.0, device=config['device'])
             if config['sim'] is not None:
                 for name in activations:
-                    sim_loss += config['sim'] * sim_loss_fn(activations[name], a.view(1, inL), token_ids.view(b*s, -1), name)
+                    sim_loss += config['sim'] * sim_loss_fn(activations[name], a.view(-1, inL), token_ids.view(b*s, -1), name)
                 sim_loss /= len(activations)
 
             loss = ce_loss + l1_reg_loss + sim_loss
