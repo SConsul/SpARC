@@ -39,7 +39,7 @@ class BatchSimLoss(SimLoss):
             x = F.normalize(x, dim=-1)  # (2B, I, C)
             x = x.view(b, -1) / x.shape[1]  # shape = (2B, I*C)
         else:
-            num_nonzero = attn_mask.sum(-1)  # (2B,)
+            num_nonzero = attn_mask.sum(-1).view(-1, 1).type(x.dtype)  # (2B, 1)
             mask = attn_mask.unsqueeze(-1).type(x.dtype)  # (2B, L, 1)
 
             # Average the token vector across the sequence (non-padding tokens)
