@@ -220,7 +220,7 @@ def main():
         with open('wandb.json', 'r') as f:
             login_key = json.load(f)['login']
         wandb.login(key=login_key)
-        wandb.init(project=args.wandb, entity="team-sparc")
+        wandb.init(project=args.wandb, entity="sparc-team")
         wandb.config.update(args)
 
     print(args)
