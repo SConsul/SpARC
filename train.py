@@ -130,16 +130,17 @@ def train(model, tokenizer, train_dataset, val_dataset, writer, config):
     for epoch in range(config['max_epochs']):
         losses = []
         pbar = tqdm(enumerate(train_dataloader), total=len(train_dataloader))
-        for it, (x, a, y, token_ids) in pbar:
+        for it, (x, in_mask, y, out_mask, token_ids) in pbar:
             x = x.to(config['device'])  # (b, 1 or 2, InL)
-            a = a.to(config['device'])  # (b, 1 or 2, InL)
+            in_mask = in_mask.to(config['device'])  # (b, 1 or 2, InL)
             y = y.to(config['device'])  # (b, 1 or 2, OutL)
+            out_mask = out_mask.to(config['device'])  # (b, 1 or 2, OutL)
             token_ids = token_ids.to(config['device'])  # (b, 1 or 2, I)
             b, s, inL = x.shape
             _, _, outL = y.shape
 
             # Collapse batch dimension so model gets (b*s, L) shape tensors
-            out = model(input_ids=x.view(-1, inL), attention_mask=a.view(-1, inL), labels=y.view(-1, outL))
+            out = model(input_ids=x.view(-1, inL), attention_mask=in_mask.view(-1, inL), labels=y.view(-1, outL))
             ce_loss = out.loss
 
             ce_loss = config['ce_loss'] * ce_loss.mean()  # collapse all losses if they are scattered on multiple gpus
@@ -147,13 +148,15 @@ def train(model, tokenizer, train_dataset, val_dataset, writer, config):
             l1_reg_loss = torch.tensor(0.0, device=config['device'])
             if config['l1_reg'] is not None:
                 for name in activations:
-                    l1_reg_loss += config['l1_reg'] * l1_loss_fn(activations[name], a.view(-1, inL), token_ids.view(b*s, -1))
+                    mask = in_mask.view(-1, inL) if 'enc' in name else out_mask.view(-1, outL)
+                    l1_reg_loss += config['l1_reg'] * l1_loss_fn(activations[name], mask, token_ids.view(b*s, -1))
                 l1_reg_loss /= len(activations)
 
             sim_loss = torch.tensor(0.0, device=config['device'])
             if config['sim'] is not None:
                 for name in activations:
-                    sim_loss += config['sim'] * sim_loss_fn(activations[name], a.view(-1, inL), token_ids.view(b*s, -1), name)
+                    mask = in_mask.view(-1, inL) if 'enc' in name else out_mask.view(-1, outL)
+                    sim_loss += config['sim'] * sim_loss_fn(activations[name], mask, token_ids.view(b*s, -1), name)
                 sim_loss /= len(activations)
 
             loss = ce_loss + l1_reg_loss + sim_loss

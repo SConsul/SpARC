@@ -32,10 +32,11 @@ class QADataset(Dataset):
             max_length=self.target_len, padding="max_length", truncation=True
         )
         out_token_ids = out.input_ids
+        out_attn_mask = out.attention_mask
 
         # replace padding id's of labels by -100 for CrossEntropy to ignore (-100 is ignore index)
         out_token_ids[out_token_ids == self.tokenizer.pad_token_id] = -100
 
         # Keep batch dimension (as PyTorch will handle batching)
         # Shapes (1, InL), (1, InL), (1, OutL)
-        return in_token_ids, in_attn_mask, out_token_ids, torch.tensor([[-1]], dtype=torch.long)
+        return in_token_ids, in_attn_mask, out_token_ids, out_attn_mask, torch.tensor([[-1]], dtype=torch.long)

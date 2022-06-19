@@ -87,8 +87,9 @@ class QAPairsDataset(Dataset):
         out2 = self.tokenizer(a2, return_tensors='pt', max_length=self.target_len,
                               padding="max_length", truncation=True)
         out_token_ids = torch.cat((out1.input_ids, out2.input_ids), dim=0)  # (2, OutL)
+        out_attn_mask = torch.cat((out1.attention_mask, out2.attention_mask), dim=0)  # (2, OutL)
 
         # replace padding id's of labels by -100 for CrossEntropy to ignore (-100 is ignore index)
         out_token_ids[out_token_ids == self.tokenizer.pad_token_id] = -100
 
-        return in_token_ids, in_attn_mask, out_token_ids, token_idx  # (2, InL), (2, InL), (2, OutL), (2, I)
+        return in_token_ids, in_attn_mask, out_token_ids, out_attn_mask, token_idx  # (2, InL), (2, InL), (2, OutL), (2, I)
