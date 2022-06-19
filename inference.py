@@ -22,7 +22,7 @@ def infer(model, tokenizer, test_dataset, qa, batch_size, device):
 
     output_preds = []
     for inputs, data_text in pbar:
-        q_ids, attn, _, _ = inputs
+        q_ids, attn, _, _, _ = inputs
         q_ids = q_ids.to(device)
         attn = attn.to(device)
 
