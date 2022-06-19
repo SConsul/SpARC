@@ -25,8 +25,9 @@ class BatchSimLoss(SimLoss):
     First sum is -ve cosine similarity of similar questions,
     second sum is cosine similarity of each question with every other dissimilar question.
     """
-    def __init__(self):
+    def __init__(self, sequence_sim_type='pairwise_average'):
         super().__init__()
+        self.sim_type = sequence_sim_type
 
     def get_sim_matrix(self, x, attn_mask, idx):
         b, L, c = x.shape
@@ -38,17 +39,32 @@ class BatchSimLoss(SimLoss):
             # Unit norm vectors across channel dim, avg across num tokens in seq dim
             x = F.normalize(x, dim=-1)  # (2B, I, C)
             x = x.view(b, -1) / x.shape[1]  # shape = (2B, I*C)
-        else:
+
+            # stores all the dot products of every combination
+            sim_matrix = x @ x.T  # shape (2B,2B)
+        elif self.sim_type == 'average_token':
             num_nonzero = attn_mask.sum(-1).view(-1, 1).type(x.dtype)  # (2B, 1)
             mask = attn_mask.unsqueeze(-1).type(x.dtype)  # (2B, L, 1)
 
             # Average the token vector across the sequence (non-padding tokens)
             x = (x * mask).sum(1)/num_nonzero  # (2B, C)
+            x = F.normalize(x, dim=1)  # (2B, C)
+
+            # stores all the dot products of every combination
+            sim_matrix = x @ x.T  # shape (2B,2B)
+        elif self.sim_type == 'pairwise_average':
+            # Find average similarity between all pairs of tokens in 2 sequences
+            x = F.normalize(x, dim=-1)  # (2B, L, C)
+            batch_seq_matrix = torch.einsum('ixd,jyd->ijxy', x, x)  # (2B, 2B, L, L)
+            mask_matrix = torch.einsum('ix,jy->ijxy', attn_mask, attn_mask)  # (2B, 2B, L, L)
+
+            masked_seq = batch_seq_matrix * mask_matrix.type(batch_seq_matrix.dtype)  # (2B, 2B, L, L)
+            sim_matrix = masked_seq.sum((2, 3)) / mask_matrix.sum((2, 3))   # (2B, 2B)
+        else:
+            raise NotImplementedError(f'Invalid sim type: {self.sim_type}. Fool.')
 
         # batch = F.normalize(x, dim=1)  # shape (2B, L*C)
 
-        # stores all the dot products of every combination
-        sim_matrix = x @ x.T  # shape (2B,2B)
         return sim_matrix
 
     def forward(self, x, attn_mask, idx, layer_name):
@@ -81,8 +97,8 @@ class BatchSimLoss(SimLoss):
 
 
 class BatchAngleLoss(BatchSimLoss):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
     def forward(self, x, attn_mask, idx, layer_name):
         sim_matrix = self.get_sim_matrix(x, attn_mask, idx)
