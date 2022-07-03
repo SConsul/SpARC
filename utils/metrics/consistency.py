@@ -47,17 +47,23 @@ def gen_belief_graph(inf_out):
 
 
 def eval_consistency(multihop_out):
+    skipped = 0
     violations = 0
     num_edges = 0
     for e in multihop_out:
         if type(e) is dict:
             e = DataRow(**e)
 
-        assert e.pred != '', "Need model predictions on these edges"
+        # assert e.pred != '', "Need model predictions on these edges"
+        if e.pred == '':
+            skipped += 1
+            continue
+
         if e.answer != e.pred:
             violations += 1
         num_edges += 1
 
+    print(f"Num questions with no predicted answer (i.e. skipped): {skipped}")
     return 1-(violations/num_edges)
 
 
