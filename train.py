@@ -125,6 +125,7 @@ def train(model, tokenizer, train_dataset, val_dataset, writer, config):
         src_len, tgt_len = train_dataset.get_activation_src_tgt_len()
         sim_loss_fn = build_sim_loss(config['sim_type'], model_layer_names, src_len, tgt_len)
         sim_loss_fn.to(config['device'])
+    num_layers = len(activations) if len(activations) > 0 else 1.
 
     it_n = 0
     for epoch in range(config['max_epochs']):
@@ -149,15 +150,15 @@ def train(model, tokenizer, train_dataset, val_dataset, writer, config):
             if config['l1_reg'] is not None:
                 for name in activations:
                     mask = in_mask.view(-1, inL) if 'enc' in name else out_mask.view(-1, outL)
-                    l1_reg_loss += config['l1_reg'] * l1_loss_fn(activations[name], mask, token_ids.view(b*s, -1))
-                l1_reg_loss /= len(activations)
+                    l1_reg_loss += l1_loss_fn(activations[name], mask, token_ids.view(b*s, -1))
+                l1_reg_loss = config['l1_reg'] * l1_reg_loss / num_layers
 
             sim_loss = torch.tensor(0.0, device=config['device'])
             if config['sim'] is not None:
                 for name in activations:
                     mask = in_mask.view(-1, inL) if 'enc' in name else out_mask.view(-1, outL)
-                    sim_loss += config['sim'] * sim_loss_fn(activations[name], mask, token_ids.view(b*s, -1), name)
-                sim_loss /= len(activations)
+                    sim_loss += sim_loss_fn(activations[name], mask, token_ids.view(b*s, -1), name)
+                sim_loss = config['sim'] * sim_loss / num_layers
 
             loss = ce_loss + l1_reg_loss + sim_loss
             model.zero_grad()
